@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E75248E7B9300F77C7B /* AppDelegate.swift */; };
+		FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E77248E7B9300F77C7B /* SceneDelegate.swift */; };
+		FA360E7A248E7B9300F77C7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E79248E7B9300F77C7B /* ContentView.swift */; };
+		FA360E7C248E7B9500F77C7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA360E7B248E7B9500F77C7B /* Assets.xcassets */; };
+		FA360E7F248E7B9500F77C7B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA360E7E248E7B9500F77C7B /* Preview Assets.xcassets */; };
+		FA360E82248E7B9500F77C7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */; };
+		FA360E8D248E7B9600F77C7B /* CID_Gamified_TrainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E8C248E7B9600F77C7B /* CID_Gamified_TrainingTests.swift */; };
+		FA360E98248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E97248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift */; };
+		FA360EAA248E7C1500F77C7B /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = FA360EA9248E7C1400F77C7B /* .swiftlint.yml */; };
+		FA360EAE248E807000F77C7B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EAD248E807000F77C7B /* Question.swift */; };
+		FA360EB0248E809200F77C7B /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EAF248E809200F77C7B /* Training.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA360E89248E7B9600F77C7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA360E6A248E7B9300F77C7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA360E71248E7B9300F77C7B;
+			remoteInfo = "CID Gamified Training";
+		};
+		FA360E94248E7B9600F77C7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA360E6A248E7B9300F77C7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA360E71248E7B9300F77C7B;
+			remoteInfo = "CID Gamified Training";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FA360E72248E7B9300F77C7B /* CID Gamified Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CID Gamified Training.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA360E75248E7B9300F77C7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FA360E77248E7B9300F77C7B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FA360E79248E7B9300F77C7B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FA360E7B248E7B9500F77C7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA360E7E248E7B9500F77C7B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FA360E81248E7B9500F77C7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FA360E83248E7B9500F77C7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA360E88248E7B9600F77C7B /* CID Gamified TrainingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CID Gamified TrainingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA360E8C248E7B9600F77C7B /* CID_Gamified_TrainingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CID_Gamified_TrainingTests.swift; sourceTree = "<group>"; };
+		FA360E8E248E7B9600F77C7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA360E93248E7B9600F77C7B /* CID Gamified TrainingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CID Gamified TrainingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA360E97248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CID_Gamified_TrainingUITests.swift; sourceTree = "<group>"; };
+		FA360E99248E7B9600F77C7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA360EA9248E7C1400F77C7B /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; name = .swiftlint.yml; path = ../../XCode_Projects/FirstApp/.swiftlint.yml; sourceTree = "<group>"; };
+		FA360EAD248E807000F77C7B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		FA360EAF248E809200F77C7B /* Training.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA360E6F248E7B9300F77C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E85248E7B9600F77C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E90248E7B9600F77C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FA360E69248E7B9300F77C7B = {
+			isa = PBXGroup;
+			children = (
+				FA360EA9248E7C1400F77C7B /* .swiftlint.yml */,
+				FA360E74248E7B9300F77C7B /* CID Gamified Training */,
+				FA360E8B248E7B9600F77C7B /* CID Gamified TrainingTests */,
+				FA360E96248E7B9600F77C7B /* CID Gamified TrainingUITests */,
+				FA360E73248E7B9300F77C7B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FA360E73248E7B9300F77C7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA360E72248E7B9300F77C7B /* CID Gamified Training.app */,
+				FA360E88248E7B9600F77C7B /* CID Gamified TrainingTests.xctest */,
+				FA360E93248E7B9600F77C7B /* CID Gamified TrainingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA360E74248E7B9300F77C7B /* CID Gamified Training */ = {
+			isa = PBXGroup;
+			children = (
+				FA360E75248E7B9300F77C7B /* AppDelegate.swift */,
+				FA360E77248E7B9300F77C7B /* SceneDelegate.swift */,
+				FA360E79248E7B9300F77C7B /* ContentView.swift */,
+				FA360EAD248E807000F77C7B /* Question.swift */,
+				FA360EAF248E809200F77C7B /* Training.swift */,
+				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
+				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
+				FA360E83248E7B9500F77C7B /* Info.plist */,
+				FA360E7D248E7B9500F77C7B /* Preview Content */,
+			);
+			path = "CID Gamified Training";
+			sourceTree = "<group>";
+		};
+		FA360E7D248E7B9500F77C7B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FA360E7E248E7B9500F77C7B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FA360E8B248E7B9600F77C7B /* CID Gamified TrainingTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA360E8C248E7B9600F77C7B /* CID_Gamified_TrainingTests.swift */,
+				FA360E8E248E7B9600F77C7B /* Info.plist */,
+			);
+			path = "CID Gamified TrainingTests";
+			sourceTree = "<group>";
+		};
+		FA360E96248E7B9600F77C7B /* CID Gamified TrainingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FA360E97248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift */,
+				FA360E99248E7B9600F77C7B /* Info.plist */,
+			);
+			path = "CID Gamified TrainingUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FA360E71248E7B9300F77C7B /* CID Gamified Training */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA360E9C248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified Training" */;
+			buildPhases = (
+				FA360E6E248E7B9300F77C7B /* Sources */,
+				FA360E6F248E7B9300F77C7B /* Frameworks */,
+				FA360E70248E7B9300F77C7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CID Gamified Training";
+			productName = "CID Gamified Training";
+			productReference = FA360E72248E7B9300F77C7B /* CID Gamified Training.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FA360E87248E7B9600F77C7B /* CID Gamified TrainingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA360E9F248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified TrainingTests" */;
+			buildPhases = (
+				FA360E84248E7B9600F77C7B /* Sources */,
+				FA360E85248E7B9600F77C7B /* Frameworks */,
+				FA360E86248E7B9600F77C7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA360E8A248E7B9600F77C7B /* PBXTargetDependency */,
+			);
+			name = "CID Gamified TrainingTests";
+			productName = "CID Gamified TrainingTests";
+			productReference = FA360E88248E7B9600F77C7B /* CID Gamified TrainingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FA360E92248E7B9600F77C7B /* CID Gamified TrainingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA360EA2248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified TrainingUITests" */;
+			buildPhases = (
+				FA360E8F248E7B9600F77C7B /* Sources */,
+				FA360E90248E7B9600F77C7B /* Frameworks */,
+				FA360E91248E7B9600F77C7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA360E95248E7B9600F77C7B /* PBXTargetDependency */,
+			);
+			name = "CID Gamified TrainingUITests";
+			productName = "CID Gamified TrainingUITests";
+			productReference = FA360E93248E7B9600F77C7B /* CID Gamified TrainingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA360E6A248E7B9300F77C7B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = Alex;
+				TargetAttributes = {
+					FA360E71248E7B9300F77C7B = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					FA360E87248E7B9600F77C7B = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = FA360E71248E7B9300F77C7B;
+					};
+					FA360E92248E7B9600F77C7B = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = FA360E71248E7B9300F77C7B;
+					};
+				};
+			};
+			buildConfigurationList = FA360E6D248E7B9300F77C7B /* Build configuration list for PBXProject "CID Gamified Training" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FA360E69248E7B9300F77C7B;
+			productRefGroup = FA360E73248E7B9300F77C7B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA360E71248E7B9300F77C7B /* CID Gamified Training */,
+				FA360E87248E7B9600F77C7B /* CID Gamified TrainingTests */,
+				FA360E92248E7B9600F77C7B /* CID Gamified TrainingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FA360E70248E7B9300F77C7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA360EAA248E7C1500F77C7B /* .swiftlint.yml in Resources */,
+				FA360E82248E7B9500F77C7B /* LaunchScreen.storyboard in Resources */,
+				FA360E7F248E7B9500F77C7B /* Preview Assets.xcassets in Resources */,
+				FA360E7C248E7B9500F77C7B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E86248E7B9600F77C7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E91248E7B9600F77C7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA360E6E248E7B9300F77C7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */,
+				FA360EAE248E807000F77C7B /* Question.swift in Sources */,
+				FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */,
+				FA360E7A248E7B9300F77C7B /* ContentView.swift in Sources */,
+				FA360EB0248E809200F77C7B /* Training.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E84248E7B9600F77C7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA360E8D248E7B9600F77C7B /* CID_Gamified_TrainingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E8F248E7B9600F77C7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA360E98248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA360E8A248E7B9600F77C7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA360E71248E7B9300F77C7B /* CID Gamified Training */;
+			targetProxy = FA360E89248E7B9600F77C7B /* PBXContainerItemProxy */;
+		};
+		FA360E95248E7B9600F77C7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA360E71248E7B9300F77C7B /* CID Gamified Training */;
+			targetProxy = FA360E94248E7B9600F77C7B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA360E81248E7B9500F77C7B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FA360E9A248E7B9600F77C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FA360E9B248E7B9600F77C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FA360E9D248E7B9600F77C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
+				DEVELOPMENT_TEAM = BD9H74X3L8;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FA360E9E248E7B9600F77C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
+				DEVELOPMENT_TEAM = BD9H74X3L8;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FA360EA0248E7B9600F77C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BD9H74X3L8;
+				INFOPLIST_FILE = "CID Gamified TrainingTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-TrainingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CID Gamified Training.app/CID Gamified Training";
+			};
+			name = Debug;
+		};
+		FA360EA1248E7B9600F77C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BD9H74X3L8;
+				INFOPLIST_FILE = "CID Gamified TrainingTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-TrainingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CID Gamified Training.app/CID Gamified Training";
+			};
+			name = Release;
+		};
+		FA360EA3248E7B9600F77C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BD9H74X3L8;
+				INFOPLIST_FILE = "CID Gamified TrainingUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-TrainingUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "CID Gamified Training";
+			};
+			name = Debug;
+		};
+		FA360EA4248E7B9600F77C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BD9H74X3L8;
+				INFOPLIST_FILE = "CID Gamified TrainingUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-TrainingUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "CID Gamified Training";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA360E6D248E7B9300F77C7B /* Build configuration list for PBXProject "CID Gamified Training" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA360E9A248E7B9600F77C7B /* Debug */,
+				FA360E9B248E7B9600F77C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA360E9C248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified Training" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA360E9D248E7B9600F77C7B /* Debug */,
+				FA360E9E248E7B9600F77C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA360E9F248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified TrainingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA360EA0248E7B9600F77C7B /* Debug */,
+				FA360EA1248E7B9600F77C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA360EA2248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified TrainingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA360EA3248E7B9600F77C7B /* Debug */,
+				FA360EA4248E7B9600F77C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FA360E6A248E7B9300F77C7B /* Project object */;
+}
