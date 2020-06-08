@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct Gonogo: View {
+    
+    @State var index = 1
+    @State var points = 0
+    
     var body: some View {
         VStack {
             Spacer()
@@ -17,14 +21,23 @@ struct Gonogo: View {
                 .fontWeight(.black)
             Spacer()
                
-            Image("tank").resizable().scaledToFit()
+            Image("tank\(index)").resizable().scaledToFit()
             Spacer()
             
-            Button(action: {}) {
-                Text("Next")
+            Button(action: {
+                if self.index == 2 {
+                    self.points += 1
+                }
+                self.index = Int.random(in: 1...2)
+            }) {
+                Text("Foe")
                     .font(.largeTitle)
                     .fontWeight(.black)
             }
+            Spacer()
+            Text("Points: \(points)")
+                .font(.largeTitle)
+                .fontWeight(.black)
             Spacer()
         }
     }
