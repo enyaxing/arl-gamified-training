@@ -17,7 +17,7 @@ struct Training: View {
                 .fontWeight(.black)
             Spacer()
                
-            Image("tank").resizable().scaledToFit()
+            Image("tank1").resizable().scaledToFit()
             Spacer()
             
             Button(action: {}) {

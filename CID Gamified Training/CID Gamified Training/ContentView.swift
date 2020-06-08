@@ -30,6 +30,12 @@ struct ContentView: View {
                         .fontWeight(.black)
                 }
                 Spacer()
+                NavigationLink(destination: Gonogo()) {
+                    Text("Go/NoGo")
+                        .font(.largeTitle)
+                        .fontWeight(.black)
+                }
+                Spacer()
             }
         }
     }
