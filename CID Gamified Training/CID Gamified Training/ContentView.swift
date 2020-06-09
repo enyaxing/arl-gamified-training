@@ -15,12 +15,19 @@ struct ContentView: View {
                 Text("ARL Gamified Training")
                     .font(.largeTitle)
                     .fontWeight(.black)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(20)
                 Spacer()
                 
                 NavigationLink(destination: Question()) {
                     Text("Questionairre")
-                    .font(.largeTitle)
-                    .fontWeight(.black)
+                        .font(.largeTitle)
+                        .fontWeight(.black)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(20)
+                    
                 }
                 Spacer()
                 
@@ -28,15 +35,22 @@ struct ContentView: View {
                     Text("Training")
                         .font(.largeTitle)
                         .fontWeight(.black)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(20)
                 }
                 Spacer()
                 NavigationLink(destination: Gonogo()) {
                     Text("Go/NoGo")
                         .font(.largeTitle)
                         .fontWeight(.black)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(20)
                 }
                 Spacer()
             }
+            .background(Image("background"))
         }
     }
 }
