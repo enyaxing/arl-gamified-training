@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let defaults = UserDefaults.standard
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -49,10 +52,18 @@ struct ContentView: View {
                         .cornerRadius(20)
                 }
                 Spacer()
+                Text(focus(defaults: self.defaults))
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(20)
             }
             .background(Image("background"))
         }
     }
+}
+
+func focus(defaults: UserDefaults) -> String {
+    return defaults.string(forKey: "focus") ?? "None"
 }
 
 struct ContentView_Previews: PreviewProvider {

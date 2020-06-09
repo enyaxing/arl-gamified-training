@@ -10,6 +10,8 @@ import SwiftUI
 
 struct Question: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
+    let defaults = UserDefaults.standard
+    
     let questions = [
         "Compared to most people, are you typically unable to get what you want out of life?",
         "Growing up, would you ever “cross the line” by doing things that your parents would not tolerate?",
@@ -84,7 +86,15 @@ struct Question: View {
             .padding()
         }
         .alert(isPresented: $showFinishedAlert) {
-            Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(Text("Quit"))
+            Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(Text("Quit"), action: {
+                if self.getPromotionScore() > self.getPreventionScore() {
+                    self.defaults.set("Promotion", forKey: "focus")
+                } else if self.getPromotionScore() < self.getPreventionScore(){
+                    self.defaults.set("Prevention", forKey: "focus")
+                } else {
+                    self.defaults.set("Equal", forKey: "focus")
+                }
+            })
             )
         }
     }
@@ -140,7 +150,7 @@ struct Question: View {
     }
     
     func getPreventionScore() -> Int {
-        return ((6 - responses[1]) + (6 - responses[3]) + responses[4] + (6 - responses[5]) + (6 - responses[7]))
+        return ((6 - responses[1]) + (6 - responses[3]) + responses[4] + (6 - responses[5]) + (6 - responses[7])) / 5
     }
 }
 
