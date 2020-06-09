@@ -11,9 +11,9 @@ import SwiftUI
 struct Question: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
     let defaults = UserDefaults.standard
-
+    
     let questions = [
-        "Compared to most people, are you typically unable to get what you want out of life?",
+        "Compared to most people, are you typically unable to get what you want out of life?!",
         "Growing up, would you ever “cross the line” by doing things that your parents would not tolerate?",
         "How often have you accomplished things that got you \"psyched\" to work even harder?",
         "Did you get on your parents’ nerves often when you were growing up?",
@@ -87,13 +87,7 @@ struct Question: View {
         }
         .alert(isPresented: $showFinishedAlert) {
             Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(Text("Quit"), action: {
-                if self.getPromotionScore() > self.getPreventionScore() {
-                    self.defaults.set("Promotion", forKey: "focus")
-                } else if self.getPromotionScore() < self.getPreventionScore(){
-                    self.defaults.set("Prevention", forKey: "focus")
-                } else {
-                    self.defaults.set("Equal", forKey: "focus")
-                }
+                
             })
             )
         }
@@ -139,6 +133,17 @@ struct Question: View {
     /** Checks if we have finished the quiz. */
     func isCompleted() -> Bool{
            if questionCount == (questions.count - 1){
+                let promotion = "promotion"
+                let prevention = "prevention"
+                let equal = "equal"
+                
+                if getPromotionScore() > getPreventionScore() {
+                    defaults.set(promotion, forKey: "focus")
+                } else if self.getPromotionScore() < self.getPreventionScore(){
+                    defaults.set(prevention, forKey: "focus")
+                } else {
+                    defaults.set(equal, forKey: "focus")
+                }
                return true
            }
            return false
