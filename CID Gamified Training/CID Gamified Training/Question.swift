@@ -59,10 +59,20 @@ struct Question: View {
                     Text("\(getResponseDescription())")
                     Spacer()
                     
-                    Button(action: {
-                        self.answered(self.intCurResponse())
-                    }) {
-                        Text("Next")
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            
+                        }) {
+                            Text("Back")
+                        }
+                        Spacer()
+                        Button(action: {
+                            self.answered(self.intCurResponse())
+                        }) {
+                            Text("Next")
+                        }
+                        Spacer()
                     }
                     
                     Text("\(questionCount + 1) out of \(questions.count)")
@@ -74,7 +84,8 @@ struct Question: View {
             .padding()
         }
         .alert(isPresented: $showFinishedAlert) {
-            Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(<#T##label: Text##Text#>, action: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>))
+            Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(Text("Quit"))
+            )
         }
     }
     
@@ -118,9 +129,9 @@ struct Question: View {
     /** Checks if we have finished the quiz. */
     func isCompleted() -> Bool{
            if questionCount == (questions.count - 1){
-               return true;
+               return true
            }
-           return false;
+           return false
     }
        
     
