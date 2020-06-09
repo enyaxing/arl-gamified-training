@@ -171,7 +171,7 @@ struct Question: View {
         let r11: Int = responses[10]!
         
         let promotionScore = ((6 - r1) + r3 + r7 + (6 - r9) + r10 + (6 - r11)) / 6
-        let preventionScore = ((6 - r2) + (6 - r3) + r5 + (6 - r6) + (6 - r8)) / 5
+        let preventionScore = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / 5
         return (promotionScore, preventionScore)
     }
     
