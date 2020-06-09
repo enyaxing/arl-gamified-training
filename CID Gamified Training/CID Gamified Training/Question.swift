@@ -74,7 +74,7 @@ struct Question: View {
             .padding()
         }
         .alert(isPresented: $showFinishedAlert) {
-            Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(<#T##label: Text##Text#>, action: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>))
+            Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(Text("Let's get to training!")))
         }
     }
     
