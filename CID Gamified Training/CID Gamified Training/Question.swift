@@ -10,6 +10,8 @@ import SwiftUI
 
 struct Question: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
+    let defaults = UserDefaults.standard
+
     let questions = [
         "Compared to most people, are you typically unable to get what you want out of life?",
         "Growing up, would you ever “cross the line” by doing things that your parents would not tolerate?",
@@ -23,7 +25,7 @@ struct Question: View {
         "I feel like I have made progress toward being successful in my life.",
         "I have found very few hobbies or activities in my life that capture my interest or motivate me to put effort into them."
         ]
-    
+
     let responseDescription = [["never or seldom", "sometimes", "very often"],
                                ["never or seldom", "sometimes", "very often"],
                                ["never or seldom", "a few times", "many times"],
@@ -36,12 +38,12 @@ struct Question: View {
                                ["certainly false", " ", "certainly true"],
                                ["certainly false", " ", "certainly true"]
     ]
-    
+
     @State private var responses: [Int] = []
     @State private var questionCount = 0
     @State private var curResponse = 3.0
     @State private var showFinishedAlert = false
-    
+
     var body: some View {
         HStack {
             NavigationView {
@@ -58,13 +60,23 @@ struct Question: View {
                     Text("\(Int(curResponse))")
                     Text("\(getResponseDescription())")
                     Spacer()
-                    
-                    Button(action: {
-                        self.answered(self.intCurResponse())
-                    }) {
-                        Text("Next")
+
+                    HStack {
+                        Spacer()
+                        Button(action: {
+
+                        }) {
+                            Text("Back")
+                        }
+                        Spacer()
+                        Button(action: {
+                            self.answered(self.intCurResponse())
+                        }) {
+                            Text("Next")
+                        }
+                        Spacer()
                     }
-                    
+
                     Text("\(questionCount + 1) out of \(questions.count)")
                     Spacer()
                 }
@@ -74,17 +86,26 @@ struct Question: View {
             .padding()
         }
         .alert(isPresented: $showFinishedAlert) {
-            Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(Text("Let's get to training!")))
+            Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(Text("Quit"), action: {
+                if self.getPromotionScore() > self.getPreventionScore() {
+                    self.defaults.set("Promotion", forKey: "focus")
+                } else if self.getPromotionScore() < self.getPreventionScore(){
+                    self.defaults.set("Prevention", forKey: "focus")
+                } else {
+                    self.defaults.set("Equal", forKey: "focus")
+                }
+            })
+            )
         }
     }
-    
-    
+
+
     /** When we receive an answer, record the response and give the user the next question. */
     func answered(_ ans: Int) {
         self.responses.append(ans)
         nextQuestion()
     }
-    
+
     /** Checks if we have reached the end of the quiz. If we are done, calculate and show the results. If not,
      go on to the next question. */
     func nextQuestion() {
@@ -95,12 +116,12 @@ struct Question: View {
             print(questionCount)
         }
     }
-    
+
     /** Returns the current repsonse as an integer. */
     func intCurResponse() -> Int {
         return Int(curResponse)
     }
-    
+
     /** Returns the correct response description based on current response. Based on responseDescription values.*/
     func getResponseDescription() -> String {
         let responseAsInt = intCurResponse()
@@ -111,25 +132,25 @@ struct Question: View {
         } else if responseAsInt ==  5 {
             return responseDescription[questionCount][2]
         }
-        
+
         return " "
     }
-    
+
     /** Checks if we have finished the quiz. */
     func isCompleted() -> Bool{
            if questionCount == (questions.count - 1){
-               return true;
+               return true
            }
-           return false;
+           return false
     }
-       
-    
+
+
     func getPromotionScore() -> Int {
         return ((6 - responses[0]) + responses[2] + responses[6] + (6 - responses[8]) + responses[9] + (6 - responses[10])) / 6
     }
-    
+
     func getPreventionScore() -> Int {
-        return ((6 - responses[1]) + (6 - responses[3]) + responses[4] + (6 - responses[5]) + (6 - responses[7]))
+        return ((6 - responses[1]) + (6 - responses[3]) + responses[4] + (6 - responses[5]) + (6 - responses[7])) / 5
     }
 }
 

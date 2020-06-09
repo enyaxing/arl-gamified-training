@@ -10,23 +10,56 @@ import SwiftUI
 
 struct Gonogo: View {
     
+    /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = 1
+    
+    /** Points gained from session. */
     @State var points = 0
-    @State var timeRemaining = 5
-    let images = [Image("tank1"), Image("tank2")]
+    
+    /** Time remaining for the turn. */
+    @State var timeRemaining = 3
+    
+    /** Session time remaining. */
+    @State var sessionTime = 60
+    
+    /** Boolean to show if the training game has ended. */
+    @State var stopped = false
+    
+    /** Boolean to show ending alert. */
+    @State var alert = false
+    
+    /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         VStack {
-            Text("Time Remaining: \(timeRemaining)")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .onReceive(timer) { _ in
-                        if self.timeRemaining > 0 {
-                            self.timeRemaining -= 1
-                        } else{
-                            self.timeRemaining = 5
-                            self.index = self.index + 1
-                    }
+            VStack {
+                Text("Session Time: \(sessionTime)")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .onReceive(timer) { _ in
+                            if self.sessionTime > 0 {
+                                self.sessionTime -= 1
+                            } else if !self.stopped {
+                                self.stopped = true
+                                self.alert = true
+                            }
+                }
+                
+                Text("Time Remaining: \(timeRemaining)")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .onReceive(timer) { _ in
+                        if self.timeRemaining > 0 && !self.stopped {
+                                self.timeRemaining -= 1
+                            } else if !self.stopped{
+                                self.timeRemaining = 3
+                                if self.index == 1 {
+                                    self.points += 1
+                                }
+                                self.index = Int.random(in: 1...2)
+                        }
+                }
             }
             
             Spacer()
@@ -39,11 +72,13 @@ struct Gonogo: View {
             Spacer()
             
             Button(action: {
-                if self.index == 2 {
-                    self.points += 1
+                if !self.stopped {
+                    if self.index == 2 {
+                        self.points += 1
+                    }
+                    self.timeRemaining = 3
+                    self.index = Int.random(in: 1...2)
                 }
-                self.timeRemaining = 5
-                self.index = Int.random(in: 1...2)
             }) {
                 Text("Foe")
                     .font(.largeTitle)
@@ -54,6 +89,12 @@ struct Gonogo: View {
                 .font(.largeTitle)
                 .fontWeight(.black)
             Spacer()
+        }
+        .alert(isPresented: $alert) {
+            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)"), dismissButton: .default(Text("Quit"), action: {
+                self.alert = false
+            })
+            )
         }
     }
 }

@@ -9,18 +9,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let defaults = UserDefaults.standard
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
                 Text("ARL Gamified Training")
                     .font(.largeTitle)
                     .fontWeight(.black)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(20)
                 Spacer()
                 
                 NavigationLink(destination: Question()) {
                     Text("Questionairre")
-                    .font(.largeTitle)
-                    .fontWeight(.black)
+                        .font(.largeTitle)
+                        .fontWeight(.black)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(20)
+                    
                 }
                 Spacer()
                 
@@ -28,17 +38,32 @@ struct ContentView: View {
                     Text("Training")
                         .font(.largeTitle)
                         .fontWeight(.black)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(20)
                 }
                 Spacer()
                 NavigationLink(destination: Gonogo()) {
                     Text("Go/NoGo")
                         .font(.largeTitle)
                         .fontWeight(.black)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(20)
                 }
                 Spacer()
+                Text(focus(defaults: self.defaults))
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(20)
             }
+            .background(Image("background"))
         }
     }
+}
+
+func focus(defaults: UserDefaults) -> String {
+    return defaults.string(forKey: "focus") ?? "None"
 }
 
 struct ContentView_Previews: PreviewProvider {
