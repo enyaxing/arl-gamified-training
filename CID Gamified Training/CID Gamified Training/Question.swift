@@ -13,7 +13,7 @@ struct Question: View {
     let defaults = UserDefaults.standard
     
     let questions = [
-        "Compared to most people, are you typically unable to get what you want out of life?!",
+        "Compared to most people, are you typically unable to get what you want out of life?",
         "Growing up, would you ever “cross the line” by doing things that your parents would not tolerate?",
         "How often have you accomplished things that got you \"psyched\" to work even harder?",
         "Did you get on your parents’ nerves often when you were growing up?",
@@ -39,7 +39,7 @@ struct Question: View {
                                ["certainly false", " ", "certainly true"]
     ]
 
-    @State private var responses: [Int] = []
+    @State private var responses: [Int: Int] = [:]
     @State private var questionCount = 0
     @State private var curResponse = 3.0
     @State private var showFinishedAlert = false
@@ -64,7 +64,7 @@ struct Question: View {
                     HStack {
                         Spacer()
                         Button(action: {
-
+                            self.prevQuestion()
                         }) {
                             Text("Back")
                         }
@@ -86,9 +86,8 @@ struct Question: View {
             .padding()
         }
         .alert(isPresented: $showFinishedAlert) {
-            Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(Text("Quit"), action: {
-                
-            })
+            let (promotionScore, preventionScore) = getScore()
+            return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"))
             )
         }
     }
@@ -96,7 +95,7 @@ struct Question: View {
 
     /** When we receive an answer, record the response and give the user the next question. */
     func answered(_ ans: Int) {
-        self.responses.append(ans)
+        self.responses[questionCount] = ans
         nextQuestion()
     }
 
@@ -107,7 +106,13 @@ struct Question: View {
             showFinishedAlert = true
         } else {
             questionCount += 1
-            print(questionCount)
+        }
+    }
+    
+    /** Goes back one question. */
+    func prevQuestion() {
+        if questionCount > 0 {
+            questionCount -= 1
         }
     }
 
@@ -136,27 +141,40 @@ struct Question: View {
                 let promotion = "promotion"
                 let prevention = "prevention"
                 let equal = "equal"
-                
-                if getPromotionScore() > getPreventionScore() {
+                let (promotionScore, preventionScore) = getScore()
+            
+                if promotionScore > preventionScore {
                     defaults.set(promotion, forKey: "focus")
-                } else if self.getPromotionScore() < self.getPreventionScore(){
+                } else if promotionScore < preventionScore{
                     defaults.set(prevention, forKey: "focus")
                 } else {
                     defaults.set(equal, forKey: "focus")
                 }
+                print(responses)
                return true
            }
            return false
     }
 
 
-    func getPromotionScore() -> Int {
-        return ((6 - responses[0]) + responses[2] + responses[6] + (6 - responses[8]) + responses[9] + (6 - responses[10])) / 6
+    func getScore() -> (Int, Int) {
+        let r1: Int = responses[0]!
+        let r2: Int = responses[1]!
+        let r3: Int = responses[2]!
+        let r4: Int = responses[3]!
+        let r5: Int = responses[4]!
+        let r6: Int = responses[5]!
+        let r7: Int = responses[6]!
+        let r8: Int = responses[7]!
+        let r9: Int = responses[8]!
+        let r10: Int = responses[9]!
+        let r11: Int = responses[10]!
+        
+        let promotionScore = ((6 - r1) + r3 + r7 + (6 - r9) + r10 + (6 - r11)) / 6
+        let preventionScore = ((6 - r2) + (6 - r3) + r5 + (6 - r6) + (6 - r8)) / 5
+        return (promotionScore, preventionScore)
     }
-
-    func getPreventionScore() -> Int {
-        return ((6 - responses[1]) + (6 - responses[3]) + responses[4] + (6 - responses[5]) + (6 - responses[7])) / 5
-    }
+    
 }
 
 struct Question_Previews: PreviewProvider {
