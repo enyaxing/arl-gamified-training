@@ -23,6 +23,7 @@ struct Question: View {
         "I feel like I have made progress toward being successful in my life.",
         "I have found very few hobbies or activities in my life that capture my interest or motivate me to put effort into them."
         ]
+    
     let responseDescription = [["never or seldom", "sometimes", "very often"],
                                ["never or seldom", "sometimes", "very often"],
                                ["never or seldom", "a few times", "many times"],
@@ -40,43 +41,69 @@ struct Question: View {
     @State private var questionCount = 0
     @State private var curResponse = 3.0
     var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
-                Text(questions[questionCount])
-                    .font(.headline)
-                    .padding([.leading, .bottom, .trailing])
-                Spacer()
-                HStack {
-                    Slider(value: $curResponse, in: 1...5, step: 1)
-                    .padding([.horizontal])
+        HStack {
+            NavigationView {
+                VStack {
+                    Spacer()
+                    Text(questions[questionCount])
+                        .font(.title)
+                        .padding([.leading, .bottom, .trailing])
+                    Spacer()
+                    HStack {
+                        Slider(value: $curResponse, in: 1...5, step: 1)
+                        .padding([.horizontal])
+                    }
+                    Text("\(Int(curResponse))")
+                    Text("\(getResponseDescription())")
+                    Spacer()
+                    
+                    ZStack {
+                        Button(action: {
+                            self.answered(self.intCurResponse())
+                        }) {
+                            Text("Next")
+                        }
+
+//                        NavigationLink(destination: /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Destination@*/Text("Destination")/*@END_MENU_TOKEN@*/) {
+//                            Text("Congratulations! View your results.")
+//                        }
+                    }
+                    
+                    Text("\(questionCount + 1) out of \(questions.count)")
+                    Spacer()
                 }
-                Text("\(Int(curResponse))")
-                Text("\(getResponseDescription())")
-                Spacer()
+                .navigationBarTitle(Text("Quiz")
+                .font(.largeTitle))
             }
-            .navigationBarTitle(Text("Quiz")
-            .font(.largeTitle))
+            .padding()
         }
-        .padding()
         
     }
     
     
+    /** When we receive an answer, record the response and give the user the next question. */
     func answered(_ ans: Int) {
         self.responses.append(ans)
         print(ans)
         nextQuestion()
     }
     
+    /** Checks if we have reached the end of the quiz. If we are done, calculate and show the results. If not,
+     go on to the next question. */
     func nextQuestion() {
-        questionCount += 1
+        if isCompleted() {
+            
+        } else {
+            questionCount += 1
+        }
     }
     
+    /** Returns the current repsonse as an integer. */
     func intCurResponse() -> Int {
         return Int(curResponse)
     }
     
+    /** Returns the correct response description based on current response. Based on responseDescription values.*/
     func getResponseDescription() -> String {
         let responseAsInt = intCurResponse()
         if responseAsInt == 1 {
@@ -88,6 +115,21 @@ struct Question: View {
         }
         
         return " "
+    }
+    
+    /** Checks if we have finished the quiz. */
+    func isCompleted() -> Bool{
+           if questionCount == questions.count {
+               return true;
+           }
+           return false;
+    }
+       
+    /** Returns two integers. First is the promotion score, second is the prevention score. **/
+    func calcResults() -> (Int, Int) {
+        let promotionScore = ((6 - responses[0]) + responses[2] + responses[6] + (6 - responses[8]) + responses[9] + (6 - responses[10])) / 6
+        let preventionScore = ((6 - responses[1]) + (6 - responses[3]) + responses[4] + (6 - responses[5]) + (6 - responses[7]))
+        return (promotionScore, preventionScore)
     }
 }
 
