@@ -40,6 +40,8 @@ struct Question: View {
     @State private var responses: [Int] = []
     @State private var questionCount = 0
     @State private var curResponse = 3.0
+    @State private var showFinishedAlert = false
+    
     var body: some View {
         HStack {
             NavigationView {
@@ -57,16 +59,10 @@ struct Question: View {
                     Text("\(getResponseDescription())")
                     Spacer()
                     
-                    ZStack {
-                        Button(action: {
-                            self.answered(self.intCurResponse())
-                        }) {
-                            Text("Next")
-                        }
-
-//                        NavigationLink(destination: /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Destination@*/Text("Destination")/*@END_MENU_TOKEN@*/) {
-//                            Text("Congratulations! View your results.")
-//                        }
+                    Button(action: {
+                        self.answered(self.intCurResponse())
+                    }) {
+                        Text("Next")
                     }
                     
                     Text("\(questionCount + 1) out of \(questions.count)")
@@ -77,14 +73,15 @@ struct Question: View {
             }
             .padding()
         }
-        
+        .alert(isPresented: $showFinishedAlert) {
+            Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(getPromotionScore()) and your prevention score is \(getPreventionScore())."), dismissButton: .default(<#T##label: Text##Text#>, action: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>))
+        }
     }
     
     
     /** When we receive an answer, record the response and give the user the next question. */
     func answered(_ ans: Int) {
         self.responses.append(ans)
-        print(ans)
         nextQuestion()
     }
     
@@ -92,9 +89,10 @@ struct Question: View {
      go on to the next question. */
     func nextQuestion() {
         if isCompleted() {
-            
+            showFinishedAlert = true
         } else {
             questionCount += 1
+            print(questionCount)
         }
     }
     
@@ -119,17 +117,19 @@ struct Question: View {
     
     /** Checks if we have finished the quiz. */
     func isCompleted() -> Bool{
-           if questionCount == questions.count {
+           if questionCount == (questions.count - 1){
                return true;
            }
            return false;
     }
        
-    /** Returns two integers. First is the promotion score, second is the prevention score. **/
-    func calcResults() -> (Int, Int) {
-        let promotionScore = ((6 - responses[0]) + responses[2] + responses[6] + (6 - responses[8]) + responses[9] + (6 - responses[10])) / 6
-        let preventionScore = ((6 - responses[1]) + (6 - responses[3]) + responses[4] + (6 - responses[5]) + (6 - responses[7]))
-        return (promotionScore, preventionScore)
+    
+    func getPromotionScore() -> Int {
+        return ((6 - responses[0]) + responses[2] + responses[6] + (6 - responses[8]) + responses[9] + (6 - responses[10])) / 6
+    }
+    
+    func getPreventionScore() -> Int {
+        return ((6 - responses[1]) + (6 - responses[3]) + responses[4] + (6 - responses[5]) + (6 - responses[7]))
     }
 }
 
