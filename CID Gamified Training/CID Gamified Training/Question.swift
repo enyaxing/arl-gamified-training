@@ -92,7 +92,6 @@ struct Question: View {
         }
     }
 
-
     /** When we receive an answer, record the response and give the user the next question. */
     func answered(_ ans: Int) {
         self.responses[questionCount] = ans
@@ -155,7 +154,6 @@ struct Question: View {
            }
            return false
     }
-
 
     func getScore() -> (Int, Int) {
         let r1: Int = responses[0]!

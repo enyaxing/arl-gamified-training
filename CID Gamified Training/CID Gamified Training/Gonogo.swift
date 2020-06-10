@@ -31,6 +31,9 @@ struct Gonogo: View {
     /** Number of lives left. */
     @State var lives = 3
     
+    /** Are you dead. */
+    @State var dead = false
+    
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -41,7 +44,7 @@ struct Gonogo: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .onReceive(timer) { _ in
-                            if self.sessionTime > 0 {
+                        if self.sessionTime > 0 && !self.stopped {
                                 self.sessionTime -= 1
                             } else if !self.stopped {
                                 self.stopped = true 
@@ -61,6 +64,10 @@ struct Gonogo: View {
                                     self.points += 1
                                 } else {
                                     self.lives -= 1
+                                    if self.lives == 0 {
+                                        self.dead = true
+                                        self.stopped = true
+                                    }
                             }
                                 self.index = Int.random(in: 1...2)
                         }
@@ -82,6 +89,10 @@ struct Gonogo: View {
                         self.points += 1
                     } else {
                         self.lives -= 1
+                        if self.lives == 0 {
+                            self.dead = true
+                            self.stopped = true
+                        }
                     }
                     self.timeRemaining = 3
                     self.index = Int.random(in: 1...2)
@@ -113,10 +124,15 @@ struct Gonogo: View {
                 }
             }
         }
-                
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)"), dismissButton: .default(Text("Quit"), action: {
                 self.alert = false
+            })
+            )
+        }
+        .alert(isPresented: $dead) {
+            Alert(title: Text("You Lose!"), message: Text("You have no hearts remaining."), dismissButton: .default(Text("Quit"), action: {
+                self.dead = false
             })
             )
         }
