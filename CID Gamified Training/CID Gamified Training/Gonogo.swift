@@ -28,6 +28,9 @@ struct Gonogo: View {
     /** Boolean to show ending alert. */
     @State var alert = false
     
+    /** Number of lives left. */
+    @State var lives = 3
+    
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -41,7 +44,7 @@ struct Gonogo: View {
                             if self.sessionTime > 0 {
                                 self.sessionTime -= 1
                             } else if !self.stopped {
-                                self.stopped = true
+                                self.stopped = true 
                                 self.alert = true
                             }
                 }
@@ -56,7 +59,9 @@ struct Gonogo: View {
                                 self.timeRemaining = 3
                                 if self.index == 1 {
                                     self.points += 1
-                                }
+                                } else {
+                                    self.lives -= 1
+                            }
                                 self.index = Int.random(in: 1...2)
                         }
                 }
@@ -75,6 +80,8 @@ struct Gonogo: View {
                 if !self.stopped {
                     if self.index == 2 {
                         self.points += 1
+                    } else {
+                        self.lives -= 1
                     }
                     self.timeRemaining = 3
                     self.index = Int.random(in: 1...2)
@@ -88,8 +95,25 @@ struct Gonogo: View {
             Text("Points: \(points)")
                 .font(.largeTitle)
                 .fontWeight(.black)
-            Spacer()
+            VStack {
+                HStack {
+                    Text("Lives Left")
+                    if self.lives == 3 {
+                        Image("heart").resizable().frame(width: 34, height: 34)
+                        Image("heart").resizable().frame(width: 34, height: 34)
+                        Image("heart").resizable().frame(width: 34, height: 34)
+                    } else if self.lives == 2 {
+                       Image("heart").resizable().frame(width: 34, height: 34)
+                       Image("heart").resizable().frame(width: 34, height: 34)
+                    } else if self.lives == 1 {
+                       Image("heart").resizable().frame(width: 34, height: 34)
+                    } else {
+                        
+                    }
+                }
+            }
         }
+                
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)"), dismissButton: .default(Text("Quit"), action: {
                 self.alert = false
