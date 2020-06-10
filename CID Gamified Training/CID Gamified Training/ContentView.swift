@@ -12,6 +12,8 @@ struct ContentView: View {
     
     let defaults = UserDefaults.standard
     
+    @State var regular = focus(defaults: UserDefaults.standard)
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -23,7 +25,7 @@ struct ContentView: View {
                     .cornerRadius(20)
                 Spacer()
                 
-                NavigationLink(destination: Question()) {
+                NavigationLink(destination: Question(regular: $regular)) {
                     Text("Questionairre")
                         .font(.largeTitle)
                         .fontWeight(.black)
@@ -52,7 +54,7 @@ struct ContentView: View {
                         .cornerRadius(20)
                 }
                 Spacer()
-                Text(focus(defaults: self.defaults))
+                Text(self.regular)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(20)

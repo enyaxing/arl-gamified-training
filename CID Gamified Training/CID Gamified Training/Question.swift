@@ -43,6 +43,7 @@ struct Question: View {
     @State private var questionCount = 0
     @State private var curResponse = 3.0
     @State private var showFinishedAlert = false
+    @Binding var regular: String
 
     var body: some View {
         HStack {
@@ -150,6 +151,7 @@ struct Question: View {
                     defaults.set(equal, forKey: "focus")
                 }
                 print(responses)
+                self.regular = focus(defaults: defaults)
                return true
            }
            return false
@@ -177,6 +179,6 @@ struct Question: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        Question()
+        Question(regular: ContentView().$regular)
     }
 }
