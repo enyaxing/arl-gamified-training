@@ -3,10 +3,72 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		985F57032491794C0087D44B /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985F57022491794C0087D44B /* Promotion.swift */; };
+		985F5706249182F10087D44B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 985F5705249182F10087D44B /* Lottie */; };
+		985F5740249184150087D44B /* Switch.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5708249184140087D44B /* Switch.json */; };
+		985F5741249184150087D44B /* TwitterHeart.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5709249184140087D44B /* TwitterHeart.json */; };
+		985F5742249184150087D44B /* 9squares-AlBoardman.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F570A249184140087D44B /* 9squares-AlBoardman.json */; };
+		985F5743249184150087D44B /* MotionCorpse-Jrcanest.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F570B249184140087D44B /* MotionCorpse-Jrcanest.json */; };
+		985F5744249184150087D44B /* TwitterHeartButton.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F570C249184140087D44B /* TwitterHeartButton.json */; };
+		985F5745249184150087D44B /* T.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F570E249184140087D44B /* T.json */; };
+		985F5746249184150087D44B /* A.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F570F249184140087D44B /* A.json */; };
+		985F5747249184150087D44B /* X.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5710249184140087D44B /* X.json */; };
+		985F5748249184150087D44B /* BlinkingCursor.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5711249184140087D44B /* BlinkingCursor.json */; };
+		985F5749249184150087D44B /* M.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5712249184140087D44B /* M.json */; };
+		985F574A249184150087D44B /* L.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5713249184140087D44B /* L.json */; };
+		985F574B249184150087D44B /* Y.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5714249184140087D44B /* Y.json */; };
+		985F574C249184150087D44B /* U.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5715249184140087D44B /* U.json */; };
+		985F574D249184150087D44B /* K.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5716249184140087D44B /* K.json */; };
+		985F574E249184150087D44B /* R.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5717249184140087D44B /* R.json */; };
+		985F574F249184150087D44B /* G.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5718249184140087D44B /* G.json */; };
+		985F5750249184150087D44B /* F.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5719249184140087D44B /* F.json */; };
+		985F5751249184150087D44B /* S.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571A249184140087D44B /* S.json */; };
+		985F5752249184150087D44B /* J.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571B249184140087D44B /* J.json */; };
+		985F5753249184150087D44B /* I.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571C249184140087D44B /* I.json */; };
+		985F5754249184150087D44B /* E.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571D249184140087D44B /* E.json */; };
+		985F5755249184150087D44B /* Apostrophe.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571E249184140087D44B /* Apostrophe.json */; };
+		985F5756249184150087D44B /* P.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571F249184140087D44B /* P.json */; };
+		985F5757249184150087D44B /* Q.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5720249184140087D44B /* Q.json */; };
+		985F5758249184150087D44B /* D.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5721249184140087D44B /* D.json */; };
+		985F5759249184150087D44B /* Colon.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5722249184140087D44B /* Colon.json */; };
+		985F575A249184150087D44B /* H.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5723249184140087D44B /* H.json */; };
+		985F575B249184150087D44B /* C.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5724249184140087D44B /* C.json */; };
+		985F575C249184150087D44B /* V.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5725249184140087D44B /* V.json */; };
+		985F575D249184150087D44B /* Comma.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5726249184140087D44B /* Comma.json */; };
+		985F575E249184150087D44B /* O.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5727249184140087D44B /* O.json */; };
+		985F575F249184150087D44B /* Z.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5728249184140087D44B /* Z.json */; };
+		985F5760249184150087D44B /* N.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5729249184140087D44B /* N.json */; };
+		985F5761249184150087D44B /* W.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572A249184140087D44B /* W.json */; };
+		985F5762249184150087D44B /* B.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572B249184140087D44B /* B.json */; };
+		985F5763249184150087D44B /* HamburgerArrow.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572C249184140087D44B /* HamburgerArrow.json */; };
+		985F5764249184150087D44B /* vcTransition1.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572D249184140087D44B /* vcTransition1.json */; };
+		985F5765249184150087D44B /* LottieLogo2.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572E249184140087D44B /* LottieLogo2.json */; };
+		985F5766249184150087D44B /* Boat_Loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572F249184140087D44B /* Boat_Loader.json */; };
+		985F5767249184150087D44B /* GeometryTransformTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5730249184140087D44B /* GeometryTransformTest.json */; };
+		985F5768249184150087D44B /* Watermelon.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5731249184140087D44B /* Watermelon.json */; };
+		985F5769249184150087D44B /* Keypath.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5732249184140087D44B /* Keypath.json */; };
+		985F576A249184150087D44B /* IconTransitions.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5733249184140087D44B /* IconTransitions.json */; };
+		985F576B249184150087D44B /* vcTransition2.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5734249184140087D44B /* vcTransition2.json */; };
+		985F576C249184150087D44B /* LottieLogo1.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5735249184140087D44B /* LottieLogo1.json */; };
+		985F576D249184150087D44B /* base64Test.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5736249184140087D44B /* base64Test.json */; };
+		985F576E249184150087D44B /* Switch_States.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5737249184140087D44B /* Switch_States.json */; };
+		985F576F249184150087D44B /* FirstText.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5738249184140087D44B /* FirstText.json */; };
+		985F5770249184150087D44B /* setValueTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5739249184140087D44B /* setValueTest.json */; };
+		985F5771249184150087D44B /* Zoom.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F573A249184140087D44B /* Zoom.json */; };
+		985F5772249184150087D44B /* keypathTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F573B249184140087D44B /* keypathTest.json */; };
+		985F5773249184150087D44B /* PinJump.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F573C249184140087D44B /* PinJump.json */; };
+		985F5774249184150087D44B /* DisableNodesTest.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F573D249184140087D44B /* DisableNodesTest.json */; };
+		985F5775249184150087D44B /* LottieLogo1_masked.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F573E249184140087D44B /* LottieLogo1_masked.json */; };
+		985F5776249184150087D44B /* timeremap.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F573F249184140087D44B /* timeremap.json */; };
+		985F5778249184AA0087D44B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985F5777249184AA0087D44B /* LottieView.swift */; };
+		985F577A24918A7C0087D44B /* check.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F577924918A7B0087D44B /* check.json */; };
+		985F577C24918D3A0087D44B /* Heart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985F577B24918D3A0087D44B /* Heart.swift */; };
+		985F577E24918DA80087D44B /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F577D24918DA80087D44B /* heart.json */; };
+		985F578024918E630087D44B /* sad.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F577F24918E630087D44B /* sad.json */; };
 		98A031E5248ED60900239274 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 98A031E4248ED60900239274 /* .swiftlint.yml */; };
 		FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E75248E7B9300F77C7B /* AppDelegate.swift */; };
 		FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E77248E7B9300F77C7B /* SceneDelegate.swift */; };
@@ -39,6 +101,67 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		985F57022491794C0087D44B /* Promotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promotion.swift; sourceTree = "<group>"; };
+		985F5708249184140087D44B /* Switch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Switch.json; sourceTree = "<group>"; };
+		985F5709249184140087D44B /* TwitterHeart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TwitterHeart.json; sourceTree = "<group>"; };
+		985F570A249184140087D44B /* 9squares-AlBoardman.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "9squares-AlBoardman.json"; sourceTree = "<group>"; };
+		985F570B249184140087D44B /* MotionCorpse-Jrcanest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "MotionCorpse-Jrcanest.json"; sourceTree = "<group>"; };
+		985F570C249184140087D44B /* TwitterHeartButton.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TwitterHeartButton.json; sourceTree = "<group>"; };
+		985F570E249184140087D44B /* T.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = T.json; sourceTree = "<group>"; };
+		985F570F249184140087D44B /* A.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = A.json; sourceTree = "<group>"; };
+		985F5710249184140087D44B /* X.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = X.json; sourceTree = "<group>"; };
+		985F5711249184140087D44B /* BlinkingCursor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BlinkingCursor.json; sourceTree = "<group>"; };
+		985F5712249184140087D44B /* M.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = M.json; sourceTree = "<group>"; };
+		985F5713249184140087D44B /* L.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = L.json; sourceTree = "<group>"; };
+		985F5714249184140087D44B /* Y.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Y.json; sourceTree = "<group>"; };
+		985F5715249184140087D44B /* U.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = U.json; sourceTree = "<group>"; };
+		985F5716249184140087D44B /* K.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = K.json; sourceTree = "<group>"; };
+		985F5717249184140087D44B /* R.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = R.json; sourceTree = "<group>"; };
+		985F5718249184140087D44B /* G.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = G.json; sourceTree = "<group>"; };
+		985F5719249184140087D44B /* F.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = F.json; sourceTree = "<group>"; };
+		985F571A249184140087D44B /* S.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = S.json; sourceTree = "<group>"; };
+		985F571B249184140087D44B /* J.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = J.json; sourceTree = "<group>"; };
+		985F571C249184140087D44B /* I.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = I.json; sourceTree = "<group>"; };
+		985F571D249184140087D44B /* E.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = E.json; sourceTree = "<group>"; };
+		985F571E249184140087D44B /* Apostrophe.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Apostrophe.json; sourceTree = "<group>"; };
+		985F571F249184140087D44B /* P.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = P.json; sourceTree = "<group>"; };
+		985F5720249184140087D44B /* Q.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Q.json; sourceTree = "<group>"; };
+		985F5721249184140087D44B /* D.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = D.json; sourceTree = "<group>"; };
+		985F5722249184140087D44B /* Colon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Colon.json; sourceTree = "<group>"; };
+		985F5723249184140087D44B /* H.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = H.json; sourceTree = "<group>"; };
+		985F5724249184140087D44B /* C.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = C.json; sourceTree = "<group>"; };
+		985F5725249184140087D44B /* V.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = V.json; sourceTree = "<group>"; };
+		985F5726249184140087D44B /* Comma.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Comma.json; sourceTree = "<group>"; };
+		985F5727249184140087D44B /* O.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = O.json; sourceTree = "<group>"; };
+		985F5728249184140087D44B /* Z.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Z.json; sourceTree = "<group>"; };
+		985F5729249184140087D44B /* N.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = N.json; sourceTree = "<group>"; };
+		985F572A249184140087D44B /* W.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = W.json; sourceTree = "<group>"; };
+		985F572B249184140087D44B /* B.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = B.json; sourceTree = "<group>"; };
+		985F572C249184140087D44B /* HamburgerArrow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HamburgerArrow.json; sourceTree = "<group>"; };
+		985F572D249184140087D44B /* vcTransition1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vcTransition1.json; sourceTree = "<group>"; };
+		985F572E249184140087D44B /* LottieLogo2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LottieLogo2.json; sourceTree = "<group>"; };
+		985F572F249184140087D44B /* Boat_Loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Boat_Loader.json; sourceTree = "<group>"; };
+		985F5730249184140087D44B /* GeometryTransformTest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GeometryTransformTest.json; sourceTree = "<group>"; };
+		985F5731249184140087D44B /* Watermelon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Watermelon.json; sourceTree = "<group>"; };
+		985F5732249184140087D44B /* Keypath.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Keypath.json; sourceTree = "<group>"; };
+		985F5733249184140087D44B /* IconTransitions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = IconTransitions.json; sourceTree = "<group>"; };
+		985F5734249184140087D44B /* vcTransition2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vcTransition2.json; sourceTree = "<group>"; };
+		985F5735249184140087D44B /* LottieLogo1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LottieLogo1.json; sourceTree = "<group>"; };
+		985F5736249184140087D44B /* base64Test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = base64Test.json; sourceTree = "<group>"; };
+		985F5737249184140087D44B /* Switch_States.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Switch_States.json; sourceTree = "<group>"; };
+		985F5738249184140087D44B /* FirstText.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FirstText.json; sourceTree = "<group>"; };
+		985F5739249184140087D44B /* setValueTest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = setValueTest.json; sourceTree = "<group>"; };
+		985F573A249184140087D44B /* Zoom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Zoom.json; sourceTree = "<group>"; };
+		985F573B249184140087D44B /* keypathTest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = keypathTest.json; sourceTree = "<group>"; };
+		985F573C249184140087D44B /* PinJump.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PinJump.json; sourceTree = "<group>"; };
+		985F573D249184140087D44B /* DisableNodesTest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DisableNodesTest.json; sourceTree = "<group>"; };
+		985F573E249184140087D44B /* LottieLogo1_masked.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LottieLogo1_masked.json; sourceTree = "<group>"; };
+		985F573F249184140087D44B /* timeremap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timeremap.json; sourceTree = "<group>"; };
+		985F5777249184AA0087D44B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		985F577924918A7B0087D44B /* check.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = check.json; sourceTree = "<group>"; };
+		985F577B24918D3A0087D44B /* Heart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heart.swift; sourceTree = "<group>"; };
+		985F577D24918DA80087D44B /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
+		985F577F24918E630087D44B /* sad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sad.json; sourceTree = "<group>"; };
 		98A031E4248ED60900239274 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		FA360E72248E7B9300F77C7B /* CID Gamified Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CID Gamified Training.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA360E75248E7B9300F77C7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985F5706249182F10087D44B /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +208,79 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		985F5707249184140087D44B /* TestAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				985F577F24918E630087D44B /* sad.json */,
+				985F577D24918DA80087D44B /* heart.json */,
+				985F577924918A7B0087D44B /* check.json */,
+				985F5708249184140087D44B /* Switch.json */,
+				985F5709249184140087D44B /* TwitterHeart.json */,
+				985F570A249184140087D44B /* 9squares-AlBoardman.json */,
+				985F570B249184140087D44B /* MotionCorpse-Jrcanest.json */,
+				985F570C249184140087D44B /* TwitterHeartButton.json */,
+				985F570D249184140087D44B /* TypeFace */,
+				985F572C249184140087D44B /* HamburgerArrow.json */,
+				985F572D249184140087D44B /* vcTransition1.json */,
+				985F572E249184140087D44B /* LottieLogo2.json */,
+				985F572F249184140087D44B /* Boat_Loader.json */,
+				985F5730249184140087D44B /* GeometryTransformTest.json */,
+				985F5731249184140087D44B /* Watermelon.json */,
+				985F5732249184140087D44B /* Keypath.json */,
+				985F5733249184140087D44B /* IconTransitions.json */,
+				985F5734249184140087D44B /* vcTransition2.json */,
+				985F5735249184140087D44B /* LottieLogo1.json */,
+				985F5736249184140087D44B /* base64Test.json */,
+				985F5737249184140087D44B /* Switch_States.json */,
+				985F5738249184140087D44B /* FirstText.json */,
+				985F5739249184140087D44B /* setValueTest.json */,
+				985F573A249184140087D44B /* Zoom.json */,
+				985F573B249184140087D44B /* keypathTest.json */,
+				985F573C249184140087D44B /* PinJump.json */,
+				985F573D249184140087D44B /* DisableNodesTest.json */,
+				985F573E249184140087D44B /* LottieLogo1_masked.json */,
+				985F573F249184140087D44B /* timeremap.json */,
+			);
+			path = TestAnimations;
+			sourceTree = "<group>";
+		};
+		985F570D249184140087D44B /* TypeFace */ = {
+			isa = PBXGroup;
+			children = (
+				985F570E249184140087D44B /* T.json */,
+				985F570F249184140087D44B /* A.json */,
+				985F5710249184140087D44B /* X.json */,
+				985F5711249184140087D44B /* BlinkingCursor.json */,
+				985F5712249184140087D44B /* M.json */,
+				985F5713249184140087D44B /* L.json */,
+				985F5714249184140087D44B /* Y.json */,
+				985F5715249184140087D44B /* U.json */,
+				985F5716249184140087D44B /* K.json */,
+				985F5717249184140087D44B /* R.json */,
+				985F5718249184140087D44B /* G.json */,
+				985F5719249184140087D44B /* F.json */,
+				985F571A249184140087D44B /* S.json */,
+				985F571B249184140087D44B /* J.json */,
+				985F571C249184140087D44B /* I.json */,
+				985F571D249184140087D44B /* E.json */,
+				985F571E249184140087D44B /* Apostrophe.json */,
+				985F571F249184140087D44B /* P.json */,
+				985F5720249184140087D44B /* Q.json */,
+				985F5721249184140087D44B /* D.json */,
+				985F5722249184140087D44B /* Colon.json */,
+				985F5723249184140087D44B /* H.json */,
+				985F5724249184140087D44B /* C.json */,
+				985F5725249184140087D44B /* V.json */,
+				985F5726249184140087D44B /* Comma.json */,
+				985F5727249184140087D44B /* O.json */,
+				985F5728249184140087D44B /* Z.json */,
+				985F5729249184140087D44B /* N.json */,
+				985F572A249184140087D44B /* W.json */,
+				985F572B249184140087D44B /* B.json */,
+			);
+			path = TypeFace;
+			sourceTree = "<group>";
+		};
 		FA360E69248E7B9300F77C7B = {
 			isa = PBXGroup;
 			children = (
@@ -114,9 +311,13 @@
 				FA360EAD248E807000F77C7B /* Question.swift */,
 				FA360EAF248E809200F77C7B /* Training.swift */,
 				FA360EB7248ED74900F77C7B /* Gonogo.swift */,
+				985F5777249184AA0087D44B /* LottieView.swift */,
+				985F57022491794C0087D44B /* Promotion.swift */,
+				985F577B24918D3A0087D44B /* Heart.swift */,
 				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
 				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
 				FA360E83248E7B9500F77C7B /* Info.plist */,
+				985F5707249184140087D44B /* TestAnimations */,
 				FA360E7D248E7B9500F77C7B /* Preview Content */,
 			);
 			path = "CID Gamified Training";
@@ -164,6 +365,9 @@
 			dependencies = (
 			);
 			name = "CID Gamified Training";
+			packageProductDependencies = (
+				985F5705249182F10087D44B /* Lottie */,
+			);
 			productName = "CID Gamified Training";
 			productReference = FA360E72248E7B9300F77C7B /* CID Gamified Training.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +440,9 @@
 				Base,
 			);
 			mainGroup = FA360E69248E7B9300F77C7B;
+			packageReferences = (
+				985F5704249182F10087D44B /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = FA360E73248E7B9300F77C7B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -252,10 +459,68 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985F577A24918A7C0087D44B /* check.json in Resources */,
+				985F5764249184150087D44B /* vcTransition1.json in Resources */,
+				985F5762249184150087D44B /* B.json in Resources */,
+				985F575F249184150087D44B /* Z.json in Resources */,
+				985F5774249184150087D44B /* DisableNodesTest.json in Resources */,
+				985F5745249184150087D44B /* T.json in Resources */,
+				985F5741249184150087D44B /* TwitterHeart.json in Resources */,
+				985F5742249184150087D44B /* 9squares-AlBoardman.json in Resources */,
+				985F5751249184150087D44B /* S.json in Resources */,
+				985F5773249184150087D44B /* PinJump.json in Resources */,
+				985F576F249184150087D44B /* FirstText.json in Resources */,
+				985F5758249184150087D44B /* D.json in Resources */,
+				985F574E249184150087D44B /* R.json in Resources */,
+				985F5760249184150087D44B /* N.json in Resources */,
+				985F574D249184150087D44B /* K.json in Resources */,
+				985F5761249184150087D44B /* W.json in Resources */,
+				985F5763249184150087D44B /* HamburgerArrow.json in Resources */,
+				985F5771249184150087D44B /* Zoom.json in Resources */,
+				985F574F249184150087D44B /* G.json in Resources */,
+				985F5753249184150087D44B /* I.json in Resources */,
+				985F576C249184150087D44B /* LottieLogo1.json in Resources */,
+				985F576E249184150087D44B /* Switch_States.json in Resources */,
+				985F578024918E630087D44B /* sad.json in Resources */,
+				985F5766249184150087D44B /* Boat_Loader.json in Resources */,
+				985F576B249184150087D44B /* vcTransition2.json in Resources */,
+				985F574C249184150087D44B /* U.json in Resources */,
+				985F575E249184150087D44B /* O.json in Resources */,
+				985F5769249184150087D44B /* Keypath.json in Resources */,
+				985F5740249184150087D44B /* Switch.json in Resources */,
+				985F576D249184150087D44B /* base64Test.json in Resources */,
+				985F575C249184150087D44B /* V.json in Resources */,
+				985F5754249184150087D44B /* E.json in Resources */,
+				985F5743249184150087D44B /* MotionCorpse-Jrcanest.json in Resources */,
+				985F5749249184150087D44B /* M.json in Resources */,
 				98A031E5248ED60900239274 /* .swiftlint.yml in Resources */,
+				985F574B249184150087D44B /* Y.json in Resources */,
+				985F5757249184150087D44B /* Q.json in Resources */,
+				985F575B249184150087D44B /* C.json in Resources */,
 				FA360E82248E7B9500F77C7B /* LaunchScreen.storyboard in Resources */,
 				FA360E7F248E7B9500F77C7B /* Preview Assets.xcassets in Resources */,
+				985F5772249184150087D44B /* keypathTest.json in Resources */,
+				985F576A249184150087D44B /* IconTransitions.json in Resources */,
+				985F5752249184150087D44B /* J.json in Resources */,
+				985F5776249184150087D44B /* timeremap.json in Resources */,
+				985F575A249184150087D44B /* H.json in Resources */,
+				985F5755249184150087D44B /* Apostrophe.json in Resources */,
 				FA360E7C248E7B9500F77C7B /* Assets.xcassets in Resources */,
+				985F575D249184150087D44B /* Comma.json in Resources */,
+				985F574A249184150087D44B /* L.json in Resources */,
+				985F5770249184150087D44B /* setValueTest.json in Resources */,
+				985F5765249184150087D44B /* LottieLogo2.json in Resources */,
+				985F5759249184150087D44B /* Colon.json in Resources */,
+				985F577E24918DA80087D44B /* heart.json in Resources */,
+				985F5748249184150087D44B /* BlinkingCursor.json in Resources */,
+				985F5744249184150087D44B /* TwitterHeartButton.json in Resources */,
+				985F5756249184150087D44B /* P.json in Resources */,
+				985F5768249184150087D44B /* Watermelon.json in Resources */,
+				985F5747249184150087D44B /* X.json in Resources */,
+				985F5750249184150087D44B /* F.json in Resources */,
+				985F5767249184150087D44B /* GeometryTransformTest.json in Resources */,
+				985F5775249184150087D44B /* LottieLogo1_masked.json in Resources */,
+				985F5746249184150087D44B /* A.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,12 +545,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				985F577C24918D3A0087D44B /* Heart.swift in Sources */,
 				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,
+				985F57032491794C0087D44B /* Promotion.swift in Sources */,
 				FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */,
 				FA360EAE248E807000F77C7B /* Question.swift in Sources */,
 				FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */,
 				FA360E7A248E7B9300F77C7B /* ContentView.swift in Sources */,
 				FA360EB0248E809200F77C7B /* Training.swift in Sources */,
+				985F5778249184AA0087D44B /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +884,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		985F5704249182F10087D44B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		985F5705249182F10087D44B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 985F5704249182F10087D44B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA360E6A248E7B9300F77C7B /* Project object */;
 }
