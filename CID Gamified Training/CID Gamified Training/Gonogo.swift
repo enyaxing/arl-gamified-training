@@ -62,8 +62,12 @@ struct Gonogo: View {
                                 self.timeRemaining = 3
                                 if self.index == 1 {
                                     self.points += 1
-                                }
+                                    self.correct = true
+                                } else {
+                                    self.correct = false
+                            }
                                 self.index = Int.random(in: 1...2)
+                            self.feedback = true
                         }
                 }
             }
@@ -88,12 +92,16 @@ struct Gonogo: View {
             }
             
             Button(action: {
-                if !self.stopped {
+                if !self.stopped && !self.feedback {
+                    self.timeRemaining = 3
                     if self.index == 2 {
                         self.points += 1
+                        self.correct = true
+                    } else {
+                        self.correct = false
                     }
-                    self.timeRemaining = 3
                     self.index = Int.random(in: 1...2)
+                    self.feedback = true
                 }
             }) {
                 Text("Foe")

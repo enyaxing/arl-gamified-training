@@ -95,7 +95,6 @@ struct Training: View {
                         self.index = Int.random(in: 1...2)
                         self.feedback = true
                     }
-                    
                 }) {
                     Text("Foe")
                         .font(.largeTitle)
