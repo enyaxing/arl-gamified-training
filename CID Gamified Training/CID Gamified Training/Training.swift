@@ -16,15 +16,15 @@ struct Training: View {
     var body: some View {
         Group {
             if self.summary {
-                Summary(showing: $summary)
+                Summary()
             } else {
-                Main(summary: $summary)
+                TrainingMain(summary: $summary)
             }
         }
     }
 }
 
-struct Main: View {
+struct TrainingMain: View {
     
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = Int.random(in: 1...2)
@@ -33,7 +33,7 @@ struct Main: View {
     @State var points = 0
     
     /** Session time remaining. */
-    @State var sessionTime = 60
+    @State var sessionTime = 5
     
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
