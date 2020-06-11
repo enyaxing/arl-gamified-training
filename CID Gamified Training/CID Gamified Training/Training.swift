@@ -47,6 +47,7 @@ struct TrainingMain: View {
     /** Is question correct? */
     @State var correct = true
     
+    /** Show summary. */
     @Binding var summary: Bool
     
     /** Timer that pings the app every second. */

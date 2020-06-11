@@ -9,6 +9,23 @@
 import SwiftUI
 
 struct GonogoPrevention: View {
+    
+    /** Show summary view. */
+    @State var summary = false
+    
+    var body: some View {
+        Group {
+            if self.summary {
+                Summary()
+            } else {
+                GonogoPreventionMain(summary: $summary)
+            }
+        }
+    }
+}
+
+struct GonogoPreventionMain: View {
+    
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = Int.random(in: 1...2)
     
@@ -35,6 +52,9 @@ struct GonogoPrevention: View {
     
     /** Is question correct? */
     @State var correct = true
+    
+    /** Show summary. */
+    @Binding var summary: Bool
     
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
