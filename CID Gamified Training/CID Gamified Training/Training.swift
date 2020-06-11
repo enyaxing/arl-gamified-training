@@ -33,7 +33,7 @@ struct TrainingMain: View {
     @State var points = 0
     
     /** Session time remaining. */
-    @State var sessionTime = 5
+    @State var sessionTime = 60
     
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
@@ -74,9 +74,9 @@ struct TrainingMain: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        LottieView(filename: "correct", playing: $feedback).scaledToFit()
+                        One(playing: $feedback)
                     } else {
-                        LottieView(filename: "incorrect", playing: $feedback).scaledToFit()
+                        Zero(playing: $feedback)
                     }
                 } else {
                     Image("tank\(index)").resizable().scaledToFit()

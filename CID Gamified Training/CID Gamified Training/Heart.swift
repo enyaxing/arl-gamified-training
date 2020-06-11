@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Heart: View {
-    @State var playing = true
+    @Binding var playing: Bool
     
     var body: some View {
         ZStack {
@@ -32,6 +32,6 @@ struct Heart: View {
 
 struct Heart_Previews: PreviewProvider {
     static var previews: some View {
-        Heart()
+        Heart(playing: Binding.constant(true))
     }
 }
