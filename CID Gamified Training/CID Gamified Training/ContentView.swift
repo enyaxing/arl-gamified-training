@@ -43,7 +43,7 @@ struct ContentView: View {
                         } else if self.regular == "prevention" {
                             TrainingPrevention()
                         } else {
-                            Summary()
+                            Rejection()
                         }
                     }) {
                     Text("Training")
@@ -61,7 +61,7 @@ struct ContentView: View {
                         } else if self.regular == "prevention" {
                             GonogoPrevention()
                         } else {
-                            Summary()
+                            Rejection()
                         }
                     }) {
                     Text("Go/NoGo")
