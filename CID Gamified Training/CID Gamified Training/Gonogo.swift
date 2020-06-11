@@ -81,9 +81,9 @@ struct Gonogo: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        LottieView(filename: "correct", playing: $feedback).scaledToFit()
+                        One(playing: $feedback)
                     } else {
-                        LottieView(filename: "incorrect", playing: $feedback).scaledToFit()
+                        Zero(playing: $feedback)
                     }
                 } else {
                     Image("tank\(index)").resizable().scaledToFit()
@@ -119,7 +119,6 @@ struct Gonogo: View {
             })
             )
         }
-        .background(Color.gray.edgesIgnoringSafeArea(.all))
     }
 }
 

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TrainingPrevention: View {
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
-    @State var index = 1
+    @State var index = Int.random(in: 1...2)
     
     /** Points gained from session. */
     @State var points = 0
@@ -20,15 +20,18 @@ struct TrainingPrevention: View {
     
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
-    
-    /** Boolean to show ending alert. */
-    @State var alert = false
 
     /** Number of lives left. */
     @State var lives = 3
     
     /** Are you dead. */
     @State var dead = false
+    
+    /** When to show feedback. */
+    @State var feedback = false
+    
+    /** Is question correct? */
+    @State var correct = true
     
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -43,7 +46,6 @@ struct TrainingPrevention: View {
                             self.sessionTime -= 1
                         } else if !self.stopped {
                             self.stopped = true
-                            self.alert = true
                         }
             }
             Spacer()
@@ -52,8 +54,18 @@ struct TrainingPrevention: View {
                 .fontWeight(.black)
             Spacer()
                
-            Image("tank\(index)").resizable().scaledToFit()
-            Spacer()
+            Group {
+                if self.feedback {
+                    if self.correct {
+                        Life(playing: $feedback)
+                    } else {
+                        Heart(playing: $feedback)
+                    }
+                } else {
+                    Image("tank\(index)").resizable().scaledToFit()
+                    Spacer()
+                }
+            }
             
             HStack {
                 Spacer()
@@ -61,14 +73,17 @@ struct TrainingPrevention: View {
                     if !self.stopped {
                         if self.index == 1 {
                             self.points += 1
+                            self.correct = true
                         } else {
                             self.lives -= 1
+                            self.correct = false
                             if self.lives == 0 {
                                 self.dead = true
                                 self.stopped = true
                             }
                         }
                         self.index = Int.random(in: 1...2)
+                        self.feedback = true
                     }
                 }) {
                     Text("Friendly")
@@ -80,14 +95,17 @@ struct TrainingPrevention: View {
                     if !self.stopped {
                         if self.index == 2 {
                             self.points += 1
+                            self.correct = true
                         } else {
                             self.lives -= 1
+                            self.correct = false
                             if self.lives == 0 {
                                 self.dead = true
                                 self.stopped = true
                             }
                         }
                         self.index = Int.random(in: 1...2)
+                        self.feedback = true
                     }
                 }) {
                     Text("Foe")

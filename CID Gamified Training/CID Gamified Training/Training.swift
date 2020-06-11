@@ -132,7 +132,6 @@ struct TrainingMain: View {
             })
             )
             }
-        .background(Color.gray.edgesIgnoringSafeArea(.all))
     }
 }
 
