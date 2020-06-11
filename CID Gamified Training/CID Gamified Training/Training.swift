@@ -16,7 +16,7 @@ struct Training: View {
     var body: some View {
         Group {
             if self.summary {
-                Summary(showing: $summary)
+                Summary()
             } else {
                 Main(summary: $summary)
             }
