@@ -112,7 +112,8 @@ struct Training: View {
                 self.alert = false
             })
             )
-        }
+            }
+        .background(Color.gray.edgesIgnoringSafeArea(.all))
     }
 }
 

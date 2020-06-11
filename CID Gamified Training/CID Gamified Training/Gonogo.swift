@@ -119,6 +119,7 @@ struct Gonogo: View {
             })
             )
         }
+        .background(Color.gray.edgesIgnoringSafeArea(.all))
     }
 }
 
