@@ -6,11 +6,12 @@
 //  Copyright © 2020 Alex. All rights reserved.
 //
 import SwiftUI
+import Lottie
 
 struct Training: View {
     
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
-    @State var index = 1
+    @State var index = Int.random(in: 1...2)
     
     /** Points gained from session. */
     @State var points = 0
@@ -24,12 +25,18 @@ struct Training: View {
     /** Boolean to show ending alert. */
     @State var alert = false
     
+    /** When to show feedback. */
+    @State var feedback = false
+    
+    /** Is question correct? */
+    @State var correct = true
+    
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
-            Text("Session Time: \(sessionTime)")
+            Text("Questions Remaining: \(sessionTime)")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .onReceive(timer) { _ in
@@ -38,23 +45,38 @@ struct Training: View {
                         } else if !self.stopped {
                             self.stopped = true
                             self.alert = true
-                        }
+                    }
             }
             Spacer()
             Text("Training")
                 .font(.largeTitle)
                 .fontWeight(.black)
             Spacer()
-            Image("tank\(index)").resizable().scaledToFit()
-            Spacer()
+            
+            Group {
+                if self.feedback {
+                    if self.correct {
+                        LottieView(filename: "correct", playing: $feedback).scaledToFit()
+                    } else {
+                        LottieView(filename: "incorrect", playing: $feedback).scaledToFit()
+                    }
+                } else {
+                    Image("tank\(index)").resizable().scaledToFit()
+                    Spacer()
+                }
+            }
             HStack {
                 Spacer()
                 Button(action: {
-                    if !self.stopped {
+                    if !self.stopped && !self.feedback {
                         if self.index == 1 {
                             self.points += 1
+                            self.correct = true
+                        } else {
+                            self.correct = false
                         }
                         self.index = Int.random(in: 1...2)
+                        self.feedback = true
                     }
                 }) {
                     Text("Friendly")
@@ -63,12 +85,17 @@ struct Training: View {
                 }
                 Spacer()
                 Button(action: {
-                    if !self.stopped {
+                    if !self.stopped && !self.feedback {
                         if self.index == 2 {
                             self.points += 1
+                            self.correct = true
+                        } else {
+                            self.correct = false
                         }
                         self.index = Int.random(in: 1...2)
+                        self.feedback = true
                     }
+                    
                 }) {
                     Text("Foe")
                         .font(.largeTitle)

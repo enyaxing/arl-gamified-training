@@ -12,6 +12,7 @@ import Lottie
 struct LottieView: UIViewRepresentable {
     typealias UIViewType = UIView
     var filename: String
+    @Binding var playing: Bool
     
     func makeUIView(context:   UIViewRepresentableContext<LottieView>) -> UIView{
             let view = UIView(frame: .zero)
@@ -19,7 +20,10 @@ struct LottieView: UIViewRepresentable {
             let animation = Animation.named(filename)
             animationView.animation = animation
             animationView.contentMode = .scaleAspectFit
-            animationView.play()
+        animationView.play { (finished) in
+            Thread.sleep(forTimeInterval: 0.5)
+            self.playing = false
+        }
             
             animationView.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(animationView)
@@ -32,13 +36,5 @@ struct LottieView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {
         
-    }
-    
-    
-}
-
-struct LottieView_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

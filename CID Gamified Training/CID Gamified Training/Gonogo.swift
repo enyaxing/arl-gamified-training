@@ -11,7 +11,7 @@ import SwiftUI
 struct Gonogo: View {
     
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
-    @State var index = 1
+    @State var index = Int.random(in: 1...2)
     
     /** Points gained from session. */
     @State var points = 0
