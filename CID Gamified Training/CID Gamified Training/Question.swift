@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+enum ActiveAlert {
+    case showFinishedAlert, alreadyCompletedAlert
+}
+
 struct Question: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
     let defaults = UserDefaults.standard
@@ -42,8 +46,8 @@ struct Question: View {
     @State private var responses: [Int: Int] = [:]
     @State private var questionCount = 0
     @State var curResponse: Int
-    @State private var showFinishedAlert = false
-    @State private var alreadyCompletedAlert = false
+    @State private var showAlert: Bool = false
+    @State private var activeAlert: ActiveAlert = .alreadyCompletedAlert
     @Binding var regular: String
 
     var body: some View {
@@ -94,14 +98,20 @@ struct Question: View {
             .padding()
         }
         
-        .alert(isPresented: $showFinishedAlert) {
-            let (promotionScore, preventionScore) = getScore()
-            return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"))
-            )
-        }
-        .alert(isPresented: $alreadyCompletedAlert) {
-            Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.questionCount = 0}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
+        .alert(isPresented: $showAlert) {
+            
+            switch activeAlert {
+                case .alreadyCompletedAlert:
+                    return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.questionCount = 0}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
+                case .showFinishedAlert:
+                    let (promotionScore, preventionScore) = getScore()
+                    return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit")))
+                default:
+                    return Alert(title: Text("Unknown Error"))
             }
+        }
+        
+            
     }
 
     /** When we receive an answer, record the response and give the user the next question. */
@@ -115,7 +125,8 @@ struct Question: View {
     func nextQuestion() {
         isAlreadyCompleted()
         if isCompleted() {
-            showFinishedAlert = true
+            activeAlert = .showFinishedAlert
+            showAlert = true
         } else {
             questionCount += 1
         }
@@ -142,15 +153,13 @@ struct Question: View {
     }
 
     /** Checks whether the quiz has already been completed. */
-    func isAlreadyCompleted() -> Bool {
+    func isAlreadyCompleted() {
         if questionCount == 0 {
             if self.regular != "None" {
-                alreadyCompletedAlert = true
-                return true
+                activeAlert = .alreadyCompletedAlert
+                showAlert = true
             }
         }
-
-        return false
     }
     
     /** Checks if we have finished the quiz. */
