@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Summary: View {
-    
+
     var body: some View {
         VStack {
             Text("Question 1")

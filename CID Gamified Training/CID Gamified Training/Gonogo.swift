@@ -10,6 +10,21 @@ import SwiftUI
 
 struct Gonogo: View {
     
+    /** Show summary view. */
+    @State var summary = false
+    
+    var body: some View {
+        Group {
+            if self.summary {
+                Summary()
+            } else {
+                GonogoMain(summary: $summary)
+            }
+        }
+    }
+}
+
+struct GonogoMain: View {
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = Int.random(in: 1...2)
     
@@ -34,6 +49,9 @@ struct Gonogo: View {
     /** Is question correct? */
     @State var correct = true
     
+    /** Show summary. */
+    @Binding var summary: Bool
+    
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -47,7 +65,7 @@ struct Gonogo: View {
                         if self.sessionTime > 0 && !self.stopped {
                                 self.sessionTime -= 1
                             } else if !self.stopped {
-                                self.stopped = true 
+                                self.stopped = true
                                 self.alert = true
                             }
                 }
@@ -81,9 +99,9 @@ struct Gonogo: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        LottieView(filename: "correct", playing: $feedback).scaledToFit()
+                        One(playing: $feedback)
                     } else {
-                        LottieView(filename: "incorrect", playing: $feedback).scaledToFit()
+                        Zero(playing: $feedback)
                     }
                 } else {
                     Image("tank\(index)").resizable().scaledToFit()
@@ -119,7 +137,6 @@ struct Gonogo: View {
             })
             )
         }
-        .background(Color.gray.edgesIgnoringSafeArea(.all))
     }
 }
 

@@ -18,13 +18,13 @@ struct Training: View {
             if self.summary {
                 Summary()
             } else {
-                Main(summary: $summary)
+                TrainingMain(summary: $summary)
             }
         }
     }
 }
 
-struct Main: View {
+struct TrainingMain: View {
     
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = Int.random(in: 1...2)
@@ -47,6 +47,7 @@ struct Main: View {
     /** Is question correct? */
     @State var correct = true
     
+    /** Show summary. */
     @Binding var summary: Bool
     
     /** Timer that pings the app every second. */
@@ -74,9 +75,9 @@ struct Main: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        LottieView(filename: "correct", playing: $feedback).scaledToFit()
+                        One(playing: $feedback)
                     } else {
-                        LottieView(filename: "incorrect", playing: $feedback).scaledToFit()
+                        Zero(playing: $feedback)
                     }
                 } else {
                     Image("tank\(index)").resizable().scaledToFit()
@@ -132,7 +133,6 @@ struct Main: View {
             })
             )
             }
-        .background(Color.gray.edgesIgnoringSafeArea(.all))
     }
 }
 

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Zero: View {
-    @State var playing = true
+    @Binding var playing: Bool
     var body: some View {
         ZStack {
             VStack {
@@ -35,6 +35,6 @@ struct Zero: View {
 
 struct Zero_Previews: PreviewProvider {
     static var previews: some View {
-        Zero()
+        Zero(playing: Binding.constant(true))
     }
 }
