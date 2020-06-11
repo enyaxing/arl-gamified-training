@@ -10,11 +10,18 @@ import SwiftUI
 
 struct Rejection: View {
     var body: some View {
-        Text("Please take the questionairre to determine whether your regulatory focus is Prevention or Promotion.  You cannot play any training games until you are classified as either Prevention or Promotion.")
-        .font(.largeTitle)
-        .fontWeight(.bold)
-        .multilineTextAlignment(.center)
-        .padding()
+        VStack {
+            Text("Please take the questionairre to determine your regulatory focus.")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .padding()
+            Text("You cannot train until you are classified as Prevention or Promotion.")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .padding()
+        }
     }
 }
 

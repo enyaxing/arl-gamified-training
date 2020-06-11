@@ -106,8 +106,8 @@ struct Question: View {
                 case .showFinishedAlert:
                     let (promotionScore, preventionScore) = getScore()
                     return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit")))
-                default:
-                    return Alert(title: Text("Unknown Error"))
+//                default:
+//                    return Alert(title: Text("Unknown Error"))
             }
         }
         
