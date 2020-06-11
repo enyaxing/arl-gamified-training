@@ -10,6 +10,22 @@ import Lottie
 
 struct Training: View {
     
+    /** Show summary view. */
+    @State var summary = false
+    
+    var body: some View {
+        Group {
+            if self.summary {
+                Summary(showing: $summary)
+            } else {
+                Main(summary: $summary)
+            }
+        }
+    }
+}
+
+struct Main: View {
+    
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = Int.random(in: 1...2)
     
@@ -31,12 +47,14 @@ struct Training: View {
     /** Is question correct? */
     @State var correct = true
     
+    @Binding var summary: Bool
+    
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
-            Text("Questions Remaining: \(sessionTime)")
+            Text("Session Time: \(sessionTime)")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .onReceive(timer) { _ in
@@ -95,7 +113,6 @@ struct Training: View {
                         self.index = Int.random(in: 1...2)
                         self.feedback = true
                     }
-                    
                 }) {
                     Text("Foe")
                         .font(.largeTitle)
@@ -111,9 +128,11 @@ struct Training: View {
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Quit"), action: {
                 self.alert = false
+                self.summary = true
             })
             )
-        }
+            }
+        .background(Color.gray.edgesIgnoringSafeArea(.all))
     }
 }
 

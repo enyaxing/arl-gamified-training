@@ -28,6 +28,12 @@ struct Gonogo: View {
     /** Boolean to show ending alert. */
     @State var alert = false
     
+    /** When to show feedback. */
+    @State var feedback = false
+    
+    /** Is question correct? */
+    @State var correct = true
+    
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -56,8 +62,12 @@ struct Gonogo: View {
                                 self.timeRemaining = 3
                                 if self.index == 1 {
                                     self.points += 1
-                                }
+                                    self.correct = true
+                                } else {
+                                    self.correct = false
+                            }
                                 self.index = Int.random(in: 1...2)
+                            self.feedback = true
                         }
                 }
             }
@@ -68,16 +78,30 @@ struct Gonogo: View {
                 .fontWeight(.black)
             Spacer()
                
-            Image("tank\(index)").resizable().scaledToFit()
-            Spacer()
+            Group {
+                if self.feedback {
+                    if self.correct {
+                        LottieView(filename: "correct", playing: $feedback).scaledToFit()
+                    } else {
+                        LottieView(filename: "incorrect", playing: $feedback).scaledToFit()
+                    }
+                } else {
+                    Image("tank\(index)").resizable().scaledToFit()
+                    Spacer()
+                }
+            }
             
             Button(action: {
-                if !self.stopped {
+                if !self.stopped && !self.feedback {
+                    self.timeRemaining = 3
                     if self.index == 2 {
                         self.points += 1
+                        self.correct = true
+                    } else {
+                        self.correct = false
                     }
-                    self.timeRemaining = 3
                     self.index = Int.random(in: 1...2)
+                    self.feedback = true
                 }
             }) {
                 Text("Foe")
@@ -95,6 +119,7 @@ struct Gonogo: View {
             })
             )
         }
+        .background(Color.gray.edgesIgnoringSafeArea(.all))
     }
 }
 
