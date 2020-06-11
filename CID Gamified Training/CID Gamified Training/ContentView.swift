@@ -25,7 +25,7 @@ struct ContentView: View {
                     .cornerRadius(20)
                 Spacer()
                 
-                NavigationLink(destination: Question(regular: $regular)) {
+                NavigationLink(destination: Question(curResponse: 0, regular: $regular)) {
                     Text("Questionairre")
                         .font(.largeTitle)
                         .fontWeight(.black)
