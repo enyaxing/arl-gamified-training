@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+enum ActiveAlert {
+    case showFinishedAlert, alreadyCompletedAlert
+}
+
 struct Question: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
     let defaults = UserDefaults.standard
@@ -41,25 +45,31 @@ struct Question: View {
 
     @State private var responses: [Int: Int] = [:]
     @State private var questionCount = 0
-    @State private var curResponse = 3.0
-    @State private var showFinishedAlert = false
+    @State var curResponse: Int
+    @State private var showAlert: Bool = false
+    @State private var activeAlert: ActiveAlert = .alreadyCompletedAlert
     @Binding var regular: String
 
     var body: some View {
         HStack {
             NavigationView {
-                VStack {
+                VStack() {
                     Spacer()
                     Text(questions[questionCount])
                         .font(.title)
                         .padding([.leading, .bottom, .trailing])
                     Spacer()
-                    HStack {
-                        Slider(value: $curResponse, in: 1...5, step: 1)
-                        .padding([.horizontal])
-                    }
-                    Text("\(Int(curResponse))")
-                    Text("\(getResponseDescription())")
+//                    HStack {
+//                        Slider(value: $curResponse, in: 1...5, step: 1)
+//                        .padding([.horizontal])
+//                    }
+                    
+//                    Picker("h", selection: $curResponse) {
+//                        Text("1").tag(1)
+//                        Text("2").tag(2)
+//                    }
+//                    .pickerStyle(WheelPickerStyle())
+                    RadioButtons(curResponse: $curResponse)
                     Spacer()
 
                     HStack {
@@ -71,12 +81,13 @@ struct Question: View {
                         }
                         Spacer()
                         Button(action: {
-                            self.answered(self.intCurResponse())
+                            self.answered(self.curResponse)
                         }) {
                             Text("Next")
                         }
                         Spacer()
                     }
+                    .padding(.bottom)
 
                     Text("\(questionCount + 1) out of \(questions.count)")
                     Spacer()
@@ -86,11 +97,21 @@ struct Question: View {
             }
             .padding()
         }
-        .alert(isPresented: $showFinishedAlert) {
-            let (promotionScore, preventionScore) = getScore()
-            return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"))
-            )
+        
+        .alert(isPresented: $showAlert) {
+            
+            switch activeAlert {
+                case .alreadyCompletedAlert:
+                    return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.questionCount = 0}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
+                case .showFinishedAlert:
+                    let (promotionScore, preventionScore) = getScore()
+                    return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit")))
+                default:
+                    return Alert(title: Text("Unknown Error"))
+            }
         }
+        
+            
     }
 
     /** When we receive an answer, record the response and give the user the next question. */
@@ -102,8 +123,10 @@ struct Question: View {
     /** Checks if we have reached the end of the quiz. If we are done, calculate and show the results. If not,
      go on to the next question. */
     func nextQuestion() {
+        isAlreadyCompleted()
         if isCompleted() {
-            showFinishedAlert = true
+            activeAlert = .showFinishedAlert
+            showAlert = true
         } else {
             questionCount += 1
         }
@@ -116,25 +139,29 @@ struct Question: View {
         }
     }
 
-    /** Returns the current repsonse as an integer. */
-    func intCurResponse() -> Int {
-        return Int(curResponse)
-    }
-
     /** Returns the correct response description based on current response. Based on responseDescription values.*/
     func getResponseDescription() -> String {
-        let responseAsInt = intCurResponse()
-        if responseAsInt == 1 {
+        if curResponse == 1 {
             return responseDescription[questionCount][0]
-        } else if responseAsInt == 3 {
+        } else if curResponse == 3 {
             return responseDescription[questionCount][1]
-        } else if responseAsInt ==  5 {
+        } else if curResponse ==  5 {
             return responseDescription[questionCount][2]
         }
 
         return " "
     }
 
+    /** Checks whether the quiz has already been completed. */
+    func isAlreadyCompleted() {
+        if questionCount == 0 {
+            if self.regular != "None" {
+                activeAlert = .alreadyCompletedAlert
+                showAlert = true
+            }
+        }
+    }
+    
     /** Checks if we have finished the quiz. */
     func isCompleted() -> Bool{
            if questionCount == (questions.count - 1){
@@ -152,7 +179,7 @@ struct Question: View {
                 }
                 print(responses)
                 self.regular = focus(defaults: defaults)
-               return true
+                return true
            }
            return false
     }
@@ -179,6 +206,33 @@ struct Question: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        Question(regular: ContentView().$regular)
+        Question(curResponse: 0, regular: ContentView().$regular)
+    }
+}
+
+struct RadioButtons: View {
+    @Binding var curResponse: Int
+    var body: some View {
+        HStack {
+            ForEach(1...5, id: \.self) {i in
+                Button(action: {
+                    self.curResponse = i
+                }) {
+                    VStack {
+                        ZStack{
+                            Circle().fill(self.curResponse == i ? Color.blue : Color.black.opacity(0.2)).frame(width: 20, height: 25)
+                            if self.curResponse == i{
+                                Circle().stroke(Color.blue, lineWidth: 4).frame(width: 32, height: 25)
+                            }
+                        }
+                        Text("\(i)")
+                    }
+                }
+                .padding(.horizontal, 8.0)
+                .foregroundColor(.black)
+            }
+            .padding(.top)
+        }
+    .cornerRadius(30)
     }
 }

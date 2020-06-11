@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct Promotion: View {
+    @State var playing = true
     
     var body: some View {
         ZStack {
@@ -17,7 +18,7 @@ struct Promotion: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .position(x: 200, y: 260)
-                LottieView(filename: "check")
+                LottieView(filename: "check", playing: $playing)
                     .frame(width: 800, height: 800)
                     .position(x: 200, y: 0)
             }
