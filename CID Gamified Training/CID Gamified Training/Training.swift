@@ -17,7 +17,7 @@ struct Training: View {
     @State var points = 0
     
     /** Session time remaining. */
-    @State var sessionTime = 60
+    @State var sessionTime = 20
     
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
@@ -31,22 +31,11 @@ struct Training: View {
     /** Is question correct? */
     @State var correct = true
     
-    /** Timer that pings the app every second. */
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
     var body: some View {
         VStack {
             Text("Questions Remaining: \(sessionTime)")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .onReceive(timer) { _ in
-                    if self.sessionTime > 0 && !self.stopped {
-                            self.sessionTime -= 1
-                        } else if !self.stopped {
-                            self.stopped = true
-                            self.alert = true
-                    }
-            }
             Spacer()
             Text("Training")
                 .font(.largeTitle)
@@ -77,6 +66,11 @@ struct Training: View {
                         }
                         self.index = Int.random(in: 1...2)
                         self.feedback = true
+                        self.sessionTime -= 1
+                        if self.sessionTime == 0 {
+                            self.stopped = true
+                            self.alert = true
+                        }
                     }
                 }) {
                     Text("Friendly")
@@ -94,6 +88,11 @@ struct Training: View {
                         }
                         self.index = Int.random(in: 1...2)
                         self.feedback = true
+                        self.sessionTime -= 1
+                        if self.sessionTime == 0 {
+                            self.stopped = true
+                            self.alert = true
+                        }
                     }
                     
                 }) {
