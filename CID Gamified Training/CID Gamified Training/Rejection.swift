@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Rejection: View {
     var body: some View {
-        Text("Please take the questionairre to determine whether your regulatory focus is Prevention or Promotion.  You cannot play any training games until you are classified as either Prevention or Promotion.")
+        Text("Please take the questionairre to determine your regulatory focus. You cannot play any training games until you are classified as either Prevention or Promotion.")
         .font(.largeTitle)
         .fontWeight(.bold)
         .multilineTextAlignment(.center)

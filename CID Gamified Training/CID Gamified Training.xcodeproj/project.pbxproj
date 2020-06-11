@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		985F57032491794C0087D44B /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985F57022491794C0087D44B /* Promotion.swift */; };
+		981E891D2492B94D001A2B1A /* 1.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89172492B94D001A2B1A /* 1.json */; };
+		981E891F2492B94D001A2B1A /* greenplus.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89192492B94D001A2B1A /* greenplus.json */; };
+		981E89202492B94D001A2B1A /* 0.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E891A2492B94D001A2B1A /* 0.json */; };
+		981E89212492B94D001A2B1A /* plus-one.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E891B2492B94D001A2B1A /* plus-one.json */; };
+		981E89242492B9BE001A2B1A /* Zero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981E89232492B9BE001A2B1A /* Zero.swift */; };
+		981E89262492BBE0001A2B1A /* blackplus.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89252492BBDF001A2B1A /* blackplus.json */; };
+		981E89282492BFC1001A2B1A /* One.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981E89272492BFC1001A2B1A /* One.swift */; };
+		985F57032491794C0087D44B /* Life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985F57022491794C0087D44B /* Life.swift */; };
 		985F5706249182F10087D44B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 985F5705249182F10087D44B /* Lottie */; };
 		985F5740249184150087D44B /* Switch.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5708249184140087D44B /* Switch.json */; };
 		985F5741249184150087D44B /* TwitterHeart.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5709249184140087D44B /* TwitterHeart.json */; };
@@ -107,7 +114,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		985F57022491794C0087D44B /* Promotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promotion.swift; sourceTree = "<group>"; };
+		981E89172492B94D001A2B1A /* 1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 1.json; sourceTree = "<group>"; };
+		981E89192492B94D001A2B1A /* greenplus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = greenplus.json; sourceTree = "<group>"; };
+		981E891A2492B94D001A2B1A /* 0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 0.json; sourceTree = "<group>"; };
+		981E891B2492B94D001A2B1A /* plus-one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "plus-one.json"; sourceTree = "<group>"; };
+		981E89232492B9BE001A2B1A /* Zero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zero.swift; sourceTree = "<group>"; };
+		981E89252492BBDF001A2B1A /* blackplus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blackplus.json; sourceTree = "<group>"; };
+		981E89272492BFC1001A2B1A /* One.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One.swift; sourceTree = "<group>"; };
+		985F57022491794C0087D44B /* Life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Life.swift; sourceTree = "<group>"; };
 		985F5708249184140087D44B /* Switch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Switch.json; sourceTree = "<group>"; };
 		985F5709249184140087D44B /* TwitterHeart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TwitterHeart.json; sourceTree = "<group>"; };
 		985F570A249184140087D44B /* 9squares-AlBoardman.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "9squares-AlBoardman.json"; sourceTree = "<group>"; };
@@ -223,6 +237,11 @@
 		985F5707249184140087D44B /* TestAnimations */ = {
 			isa = PBXGroup;
 			children = (
+				981E89252492BBDF001A2B1A /* blackplus.json */,
+				981E891A2492B94D001A2B1A /* 0.json */,
+				981E89172492B94D001A2B1A /* 1.json */,
+				981E89192492B94D001A2B1A /* greenplus.json */,
+				981E891B2492B94D001A2B1A /* plus-one.json */,
 				FA33666F2492A800004D96DB /* correct.json */,
 				FA33666E2492A800004D96DB /* incorrect.json */,
 				985F577F24918E630087D44B /* sad.json */,
@@ -330,7 +349,9 @@
 				FA33666A24926C29004D96DB /* Summary.swift */,
 				FA33666C24926F74004D96DB /* Rejection.swift */,
 				985F5777249184AA0087D44B /* LottieView.swift */,
-				985F57022491794C0087D44B /* Promotion.swift */,
+				981E89232492B9BE001A2B1A /* Zero.swift */,
+				981E89272492BFC1001A2B1A /* One.swift */,
+				985F57022491794C0087D44B /* Life.swift */,
 				985F577B24918D3A0087D44B /* Heart.swift */,
 				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
 				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
@@ -477,9 +498,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				981E891D2492B94D001A2B1A /* 1.json in Resources */,
 				985F577A24918A7C0087D44B /* check.json in Resources */,
+				981E89202492B94D001A2B1A /* 0.json in Resources */,
 				985F5764249184150087D44B /* vcTransition1.json in Resources */,
 				985F5762249184150087D44B /* B.json in Resources */,
+				981E891F2492B94D001A2B1A /* greenplus.json in Resources */,
 				985F575F249184150087D44B /* Z.json in Resources */,
 				985F5774249184150087D44B /* DisableNodesTest.json in Resources */,
 				985F5745249184150087D44B /* T.json in Resources */,
@@ -528,9 +552,11 @@
 				FA360E7C248E7B9500F77C7B /* Assets.xcassets in Resources */,
 				985F575D249184150087D44B /* Comma.json in Resources */,
 				985F574A249184150087D44B /* L.json in Resources */,
+				981E89262492BBE0001A2B1A /* blackplus.json in Resources */,
 				985F5770249184150087D44B /* setValueTest.json in Resources */,
 				985F5765249184150087D44B /* LottieLogo2.json in Resources */,
 				985F5759249184150087D44B /* Colon.json in Resources */,
+				981E89212492B94D001A2B1A /* plus-one.json in Resources */,
 				985F577E24918DA80087D44B /* heart.json in Resources */,
 				985F5748249184150087D44B /* BlinkingCursor.json in Resources */,
 				985F5744249184150087D44B /* TwitterHeartButton.json in Resources */,
@@ -567,11 +593,13 @@
 			files = (
 				985F577C24918D3A0087D44B /* Heart.swift in Sources */,
 				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,
-				985F57032491794C0087D44B /* Promotion.swift in Sources */,
+				985F57032491794C0087D44B /* Life.swift in Sources */,
 				FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */,
 				FA360EAE248E807000F77C7B /* Question.swift in Sources */,
 				FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */,
 				FA33666924926B28004D96DB /* GonogoPrevention.swift in Sources */,
+				981E89242492B9BE001A2B1A /* Zero.swift in Sources */,
+				981E89282492BFC1001A2B1A /* One.swift in Sources */,
 				FA360E7A248E7B9300F77C7B /* ContentView.swift in Sources */,
 				FA33666724926B1A004D96DB /* TrainingPrevention.swift in Sources */,
 				FA360EB0248E809200F77C7B /* Training.swift in Sources */,

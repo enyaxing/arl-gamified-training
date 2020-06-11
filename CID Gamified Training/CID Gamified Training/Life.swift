@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Promotion: View {
+struct Life: View {
     @State var playing = true
     
     var body: some View {
@@ -26,8 +26,8 @@ struct Promotion: View {
     }
 }
 
-struct Promotion_Previews: PreviewProvider {
+struct Life_Previews: PreviewProvider {
     static var previews: some View {
-        Promotion()
+        Life()
     }
 }
