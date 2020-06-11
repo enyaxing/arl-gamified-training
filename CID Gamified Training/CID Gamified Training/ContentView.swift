@@ -36,7 +36,16 @@ struct ContentView: View {
                 }
                 Spacer()
                 
-                NavigationLink(destination: Training()) {
+                NavigationLink(destination:
+                    Group {
+                        if self.regular == "promotion" {
+                            Training()
+                        } else if self.regular == "prevention" {
+                            TrainingPrevention()
+                        } else {
+                            Summary()
+                        }
+                    }) {
                     Text("Training")
                         .font(.largeTitle)
                         .fontWeight(.black)
@@ -45,7 +54,16 @@ struct ContentView: View {
                         .cornerRadius(20)
                 }
                 Spacer()
-                NavigationLink(destination: Gonogo()) {
+                NavigationLink(destination:
+                    Group {
+                        if self.regular == "promotion" {
+                            Gonogo()
+                        } else if self.regular == "prevention" {
+                            GonogoPrevention()
+                        } else {
+                            Summary()
+                        }
+                    }) {
                     Text("Go/NoGo")
                         .font(.largeTitle)
                         .fontWeight(.black)
