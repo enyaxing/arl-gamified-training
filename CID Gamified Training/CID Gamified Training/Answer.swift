@@ -9,6 +9,7 @@
 import Foundation
 
 struct Answer {
+    var id: Int
     var expected: String
     var received: String
     var image: String

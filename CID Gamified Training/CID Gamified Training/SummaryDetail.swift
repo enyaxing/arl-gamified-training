@@ -9,40 +9,35 @@
 import SwiftUI
 
 struct SummaryDetail: View {
+    
+    var answer: Answer
+    
     var body: some View {
         VStack {
-                ScrollView {
-             Text("Summary")
-                 .font(.largeTitle)
-                 .fontWeight(.bold)
-                    VStack {
-                        Image("tank2").resizable().scaledToFit()
-             HStack {
-                 Text("The correct answer is")
-                     .font(.title)
-                     .fontWeight(.semibold)
-                 Text("Friend")
-                     .font(.title)
-                     .fontWeight(.semibold)
-                     .foregroundColor(Color.green)
-                 + Text(".")
-                     .font(.title)
-                     .fontWeight(.semibold)
-                    }
-             HStack {
-                 Text("You chose")
-                     .font(.title)
-                     .fontWeight(.semibold)
-                 Text("Foe")
-                     .font(.title)
-                     .fontWeight(.semibold)
-                     .foregroundColor(Color.red)
-                 + Text(".")
-                     .font(.title)
-                     .fontWeight(.semibold)
-                    }
-            
+            Image(self.answer.image).resizable().scaledToFit()
+         HStack {
+             Text("The correct answer is")
+                 .font(.title)
+                 .fontWeight(.semibold)
+            Text(self.answer.expected)
+                 .font(.title)
+                 .fontWeight(.semibold)
+                 .foregroundColor(Color.green)
+             + Text(".")
+                 .font(.title)
+                 .fontWeight(.semibold)
                 }
+         HStack {
+             Text("You chose")
+                 .font(.title)
+                 .fontWeight(.semibold)
+            Text(self.answer.received)
+                 .font(.title)
+                 .fontWeight(.semibold)
+                 .foregroundColor(Color.red)
+             + Text(".")
+                 .font(.title)
+                 .fontWeight(.semibold)
             }
         }
     }
@@ -50,6 +45,6 @@ struct SummaryDetail: View {
 
 struct SummaryDetail_Previews: PreviewProvider {
     static var previews: some View {
-        SummaryDetail()
+        SummaryDetail(answer: Answer(id: 1, expected: "foe", received: "foe", image: "tank1"))
     }
 }
