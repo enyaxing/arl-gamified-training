@@ -15,7 +15,26 @@ struct SummaryDetail: View {
     var body: some View {
         VStack {
             Image(self.answer.image).resizable().scaledToFit()
-         HStack {
+            if self.answer.expected == self.answer.received {
+                HStack {
+                    VStack {
+                 Text("You chose ")
+                     .font(.title)
+                     .fontWeight(.semibold)
+                + Text(self.answer.expected)
+                     .font(.title)
+                     .fontWeight(.semibold)
+                     .foregroundColor(Color.green)
+                + Text(",")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                 Text("the correct answer.")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                }
+              }
+            } else {
+             HStack {
              Text("The correct answer is")
                  .font(.title)
                  .fontWeight(.semibold)
@@ -38,6 +57,7 @@ struct SummaryDetail: View {
              + Text(".")
                  .font(.title)
                  .fontWeight(.semibold)
+                }
             }
         }
     }

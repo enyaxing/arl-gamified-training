@@ -25,7 +25,7 @@ struct LottieView: UIViewRepresentable {
             }
             animationView.animation = animation
             animationView.contentMode = .scaleAspectFit
-        animationView.play { (finished) in
+            animationView.play { (finished) in
             Thread.sleep(forTimeInterval: 0.5)
             self.playing = false
         }
