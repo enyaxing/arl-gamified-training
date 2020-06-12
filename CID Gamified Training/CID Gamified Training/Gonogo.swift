@@ -134,6 +134,7 @@ struct GonogoMain: View {
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Quit"), action: {
                     self.alert = false
+                self.summary = true
             })
             )
         }

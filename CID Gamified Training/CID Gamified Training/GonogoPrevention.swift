@@ -161,6 +161,7 @@ struct GonogoPreventionMain: View {
         .alert(isPresented: $dead) {
             Alert(title: Text("You Lose!"), message: Text("You have no hearts remaining."), dismissButton: .default(Text("Quit"), action: {
                 self.dead = false
+                self.summary = true
             })
             )
         }
