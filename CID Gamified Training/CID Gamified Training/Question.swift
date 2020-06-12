@@ -16,15 +16,9 @@ struct Question: View {
     @State var completed: Bool = false
     @Binding var regular: String
     var body: some View {
-        ZStack {
-            if completed {
-                ContentView().transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
-            } else {
-                QuestionMain(curResponse: 0, regular: ContentView().$regular, completed: $completed)
-                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
-            }
-        }
         
+        QuestionMain(curResponse: 0, regular: ContentView().$regular, completed: $completed)
+                    
     }
 }
 
@@ -121,6 +115,9 @@ struct QuestionMain: View {
                     return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"), action: {self.completed = true}))
             }
         }
+        .onAppear() {
+            self.isAlreadyCompleted()
+        }
         
     }
 
@@ -133,7 +130,6 @@ struct QuestionMain: View {
     /** Checks if we have reached the end of the quiz. If we are done, calculate and show the results. If not,
      go on to the next question. */
     func nextQuestion() {
-        isAlreadyCompleted()
         if isCompleted() {
             activeAlert = .showFinishedAlert
             showAlert = true

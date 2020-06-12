@@ -22,18 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         
         let contentView = ContentView()
-        let quizView = Question(regular: $regular)
-        
-        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            if hasLaunchedBefore {
-                window.rootViewController = UIHostingController(rootView: contentView)
-            } else {
-                window.rootViewController = UIHostingController(rootView: quizView)
-            }
+            window.rootViewController = UIHostingController(rootView: contentView)
             
             self.window = window
             window.makeKeyAndVisible()
