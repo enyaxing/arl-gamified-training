@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Summary: View {
     
-    var answers: [Answer] = [Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), Answer(id: 2, expected: "friend", received: "foe", image: "tank1")]
+    var answers: [Answer]
 
     var body: some View {
         NavigationView {
@@ -51,6 +51,6 @@ func percentage(answer: [Answer]) -> Double {
 
 struct Summary_Previews: PreviewProvider {
     static var previews: some View {
-        Summary()
+        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), Answer(id: 2, expected: "friend", received: "foe", image: "tank1")])
     }
 }
