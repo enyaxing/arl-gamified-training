@@ -12,20 +12,17 @@ struct Heart: View {
     @Binding var playing: Bool
     
     var body: some View {
-        ZStack {
-            VStack {
-                Text("Wrong!                                     You lost one life")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .position(x: 200, y: 120)
+        VStack {
+            HStack {
+                Text("Wrong!\nYou lost one life!")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
                 LottieView(filename: "sad", playing: $playing)
                 .frame(width: 50, height: 50)
-                .position(x: 360, y: -80)
-                LottieView(filename: "heart", playing: $playing)
-                    .frame(width: 600, height: 600)
-                    .position(x: 200, y: -30)
             }
+            LottieView(filename: "heart", playing: $playing)
+                .frame(width: 400, height: 200)
         }
     }
 }

@@ -9,51 +9,40 @@
 import SwiftUI
 
 struct Summary: View {
-    
+
+    var answers: [Answer]
 
     var body: some View {
+        NavigationView {
             VStack {
-                ScrollView {
-             Text("Summary")
-                 .font(.largeTitle)
-                 .fontWeight(.bold)
-                    VStack {
-                        Text("Question 1")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        Image("tank2").resizable().scaledToFit()
-                        HStack {
-                            Text("The correct answer is")
-                                .font(.title)
-                                .fontWeight(.semibold)
-                            Text("Friend")
-                                .font(.title)
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color.green)
-                            + Text(".")
-                                .font(.title)
-                                .fontWeight(.semibold)
-                        }
-                        HStack {
-                            Text("You chose")
-                                .font(.title)
-                                .fontWeight(.semibold)
-                            Text("Foe")
-                                .font(.title)
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color.red)
-                            + Text(".")
-                                .font(.title)
-                                .fontWeight(.semibold)
-                        }
+                Text("Summary")
+                    .font(.largeTitle)
+                    .fontWeight(.black)
+                Text("Correct: \(countCorrect(answer: answers))")
+                Text("Incorrect: \(incorrect(answer: answers))")
+                Text("Percentage: \(percentage(answer: answers), specifier: "%.2f")%")
+                List(self.answers, id: \.id) { answer in
+                    NavigationLink(destination: SummaryDetail(answer: answer)) {
+                        SummaryRow(answer: answer)
                     }
                 }
             }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
+        }
+    }
+}
+
+func countCorrect(answer: [Answer]) -> Int {
+    var count = 0
+    for ans in answer {
+        if ans.expected == ans.received {
+            count += 1
         }
     }
 
 struct Summary_Previews: PreviewProvider {
     static var previews: some View {
-        Summary()
+        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), Answer(id: 2, expected: "friend", received: "foe", image: "tank1")])
     }
 }

@@ -9,10 +9,26 @@
 import SwiftUI
 
 enum ActiveAlert {
-    case showFinishedAlert, alreadyCompletedAlert
+    case showFinishedAlert, alreadyCompletedAlert, noAnswerSelectedAlert
 }
 
 struct Question: View {
+    @State var completed: Bool = false
+    @Binding var regular: String
+    var body: some View {
+        
+        QuestionMain(curResponse: 0, regular: ContentView().$regular)
+                    
+    }
+}
+
+struct Question_Previews: PreviewProvider {
+    static var previews: some View {
+        Question(regular: ContentView().$regular)
+    }
+}
+
+struct QuestionMain: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
     let defaults = UserDefaults.standard
     
@@ -59,16 +75,6 @@ struct Question: View {
                         .font(.title)
                         .padding([.leading, .bottom, .trailing])
                     Spacer()
-//                    HStack {
-//                        Slider(value: $curResponse, in: 1...5, step: 1)
-//                        .padding([.horizontal])
-//                    }
-                    
-//                    Picker("h", selection: $curResponse) {
-//                        Text("1").tag(1)
-//                        Text("2").tag(2)
-//                    }
-//                    .pickerStyle(WheelPickerStyle())
                     RadioButtons(curResponse: $curResponse)
                     Spacer()
 
@@ -102,33 +108,41 @@ struct Question: View {
             
             switch activeAlert {
                 case .alreadyCompletedAlert:
-                    return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.questionCount = 0}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
+                    return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
                 case .showFinishedAlert:
                     let (promotionScore, preventionScore) = getScore()
-                    return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit")))
-//                default:
-//                    return Alert(title: Text("Unknown Error"))
+                    return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"), action: {}))
+                case .noAnswerSelectedAlert:
+                    return Alert(title: Text("Error"), message: Text("Please select an answer choice to continue"), dismissButton: .default(Text("Okay")))
+                
             }
         }
+        .onAppear() {
+            self.isAlreadyCompleted()
+        }
         
-            
     }
 
     /** When we receive an answer, record the response and give the user the next question. */
     func answered(_ ans: Int) {
-        self.responses[questionCount] = ans
-        nextQuestion()
+        if ans == 0 {
+            activeAlert = .noAnswerSelectedAlert
+            showAlert = true
+        } else {
+            self.responses[questionCount] = ans
+            nextQuestion()
+        }
     }
 
     /** Checks if we have reached the end of the quiz. If we are done, calculate and show the results. If not,
      go on to the next question. */
     func nextQuestion() {
-        isAlreadyCompleted()
         if isCompleted() {
             activeAlert = .showFinishedAlert
             showAlert = true
         } else {
             questionCount += 1
+            curResponse = 0
         }
     }
     
@@ -200,13 +214,6 @@ struct Question: View {
         let promotionScore = ((6 - r1) + r3 + r7 + (6 - r9) + r10 + (6 - r11)) / 6
         let preventionScore = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / 5
         return (promotionScore, preventionScore)
-    }
-    
-}
-
-struct Question_Previews: PreviewProvider {
-    static var previews: some View {
-        Question(curResponse: 0, regular: ContentView().$regular)
     }
 }
 

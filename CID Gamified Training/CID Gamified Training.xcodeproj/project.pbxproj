@@ -83,6 +83,7 @@
 		FA33666D24926F74004D96DB /* Rejection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33666C24926F74004D96DB /* Rejection.swift */; };
 		FA3366702492A800004D96DB /* incorrect.json in Resources */ = {isa = PBXBuildFile; fileRef = FA33666E2492A800004D96DB /* incorrect.json */; };
 		FA3366712492A800004D96DB /* correct.json in Resources */ = {isa = PBXBuildFile; fileRef = FA33666F2492A800004D96DB /* correct.json */; };
+		FA3503AB2493BB6A00DD4207 /* happy.json in Resources */ = {isa = PBXBuildFile; fileRef = FA3503AA2493BB6A00DD4207 /* happy.json */; };
 		FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E75248E7B9300F77C7B /* AppDelegate.swift */; };
 		FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E77248E7B9300F77C7B /* SceneDelegate.swift */; };
 		FA360E7A248E7B9300F77C7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E79248E7B9300F77C7B /* ContentView.swift */; };
@@ -94,6 +95,9 @@
 		FA360EAE248E807000F77C7B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EAD248E807000F77C7B /* Question.swift */; };
 		FA360EB0248E809200F77C7B /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EAF248E809200F77C7B /* Training.swift */; };
 		FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EB7248ED74900F77C7B /* Gonogo.swift */; };
+		FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B112493F386006CF82A /* SummaryRow.swift */; };
+		FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B132493F3B9006CF82A /* SummaryDetail.swift */; };
+		FAF40B162493F3CB006CF82A /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B152493F3CB006CF82A /* Answer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +193,7 @@
 		FA33666C24926F74004D96DB /* Rejection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rejection.swift; sourceTree = "<group>"; };
 		FA33666E2492A800004D96DB /* incorrect.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = incorrect.json; sourceTree = "<group>"; };
 		FA33666F2492A800004D96DB /* correct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = correct.json; sourceTree = "<group>"; };
+		FA3503AA2493BB6A00DD4207 /* happy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happy.json; sourceTree = "<group>"; };
 		FA360E72248E7B9300F77C7B /* CID Gamified Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CID Gamified Training.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA360E75248E7B9300F77C7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA360E77248E7B9300F77C7B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +211,9 @@
 		FA360EAD248E807000F77C7B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		FA360EAF248E809200F77C7B /* Training.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
 		FA360EB7248ED74900F77C7B /* Gonogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gonogo.swift; sourceTree = "<group>"; };
+		FAF40B112493F386006CF82A /* SummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRow.swift; sourceTree = "<group>"; };
+		FAF40B132493F3B9006CF82A /* SummaryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetail.swift; sourceTree = "<group>"; };
+		FAF40B152493F3CB006CF82A /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +245,7 @@
 		985F5707249184140087D44B /* TestAnimations */ = {
 			isa = PBXGroup;
 			children = (
+				FA3503AA2493BB6A00DD4207 /* happy.json */,
 				981E89252492BBDF001A2B1A /* blackplus.json */,
 				981E891A2492B94D001A2B1A /* 0.json */,
 				981E89172492B94D001A2B1A /* 1.json */,
@@ -347,12 +356,15 @@
 				FA360EB7248ED74900F77C7B /* Gonogo.swift */,
 				FA33666824926B28004D96DB /* GonogoPrevention.swift */,
 				FA33666A24926C29004D96DB /* Summary.swift */,
+				FAF40B112493F386006CF82A /* SummaryRow.swift */,
+				FAF40B132493F3B9006CF82A /* SummaryDetail.swift */,
 				FA33666C24926F74004D96DB /* Rejection.swift */,
 				985F5777249184AA0087D44B /* LottieView.swift */,
 				981E89232492B9BE001A2B1A /* Zero.swift */,
 				981E89272492BFC1001A2B1A /* One.swift */,
 				985F57022491794C0087D44B /* Life.swift */,
 				985F577B24918D3A0087D44B /* Heart.swift */,
+				FAF40B152493F3CB006CF82A /* Answer.swift */,
 				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
 				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
 				FA360E83248E7B9500F77C7B /* Info.plist */,
@@ -500,6 +512,7 @@
 			files = (
 				981E891D2492B94D001A2B1A /* 1.json in Resources */,
 				985F577A24918A7C0087D44B /* check.json in Resources */,
+				FA3503AB2493BB6A00DD4207 /* happy.json in Resources */,
 				981E89202492B94D001A2B1A /* 0.json in Resources */,
 				985F5764249184150087D44B /* vcTransition1.json in Resources */,
 				985F5762249184150087D44B /* B.json in Resources */,
@@ -592,8 +605,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				985F577C24918D3A0087D44B /* Heart.swift in Sources */,
+				FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */,
 				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,
+				FAF40B162493F3CB006CF82A /* Answer.swift in Sources */,
 				985F57032491794C0087D44B /* Life.swift in Sources */,
+				FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */,
 				FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */,
 				FA360EAE248E807000F77C7B /* Question.swift in Sources */,
 				FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */,
@@ -772,7 +788,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
-				DEVELOPMENT_TEAM = BD9H74X3L8;
+				DEVELOPMENT_TEAM = NT6WD95XKF;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -780,7 +796,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training";
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -793,7 +809,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
-				DEVELOPMENT_TEAM = BD9H74X3L8;
+				DEVELOPMENT_TEAM = NT6WD95XKF;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -801,7 +817,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training";
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

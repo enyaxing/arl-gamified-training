@@ -11,23 +11,20 @@ import SwiftUI
 struct Zero: View {
     @Binding var playing: Bool
     var body: some View {
-        ZStack {
-            VStack {
+        VStack {
+            
+            HStack {
                 Text("Wrong! Try Again")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .position(x: 170, y: 60)
                 LottieView(filename: "sad", playing: $playing)
                     .frame(width: 50, height: 50)
-                    .position(x: 345, y: -150)
-                HStack {
-                    LottieView(filename: "blackplus", playing: $playing)
-                    .frame(width: 400, height: 400)
-                    .position(x: 125, y: -50)
-                    LottieView(filename: "0", playing: $playing)
-                    .frame(width: 300, height: 300)
-                    .position(x: 110, y: -50)
-                }
+            }
+            HStack {
+                LottieView(filename: "blackplus", playing: $playing)
+                .frame(width: 200, height: 300)
+                LottieView(filename: "0", playing: $playing)
+                .frame(width: 200, height: 300)
             }
         }
     }

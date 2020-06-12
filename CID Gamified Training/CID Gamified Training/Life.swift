@@ -12,17 +12,17 @@ struct Life: View {
     @Binding var playing: Bool
     
     var body: some View {
-        ZStack {
             VStack {
-                Text("Nice job! Keep it up!")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .position(x: 200, y: 100)
+                HStack {
+                    Text("Nice job! Keep it up!")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    LottieView(filename: "happy", playing: $playing)
+                    .frame(width: 50, height: 50)
+                }
                 LottieView(filename: "check", playing: $playing)
-                    .frame(width: 800, height: 800)
-                    .position(x: 200, y: 0)
+                    .frame(width: 400, height: 300)
             }
-        }
     }
 }
 
