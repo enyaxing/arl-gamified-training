@@ -13,15 +13,12 @@ struct Gonogo: View {
     /** Show summary view. */
     @State var summary = false
     
-    /** List of answers. */
-    @State var answers: [Answer] = []
-    
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers)
+                Summary()
             } else {
-                GonogoMain(summary: $summary, answers: $answers)
+                GonogoMain(summary: $summary)
             }
         }
     }
@@ -55,9 +52,6 @@ struct GonogoMain: View {
     /** Show summary. */
     @Binding var summary: Bool
     
-    /** List of answers. */
-    @Binding var answers: [Answer]
-    
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -87,10 +81,8 @@ struct GonogoMain: View {
                                 if self.index == 1 {
                                     self.points += 1
                                     self.correct = true
-                                    self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: "tank1"))
                                 } else {
                                     self.correct = false
-                                    self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank2"))
                             }
                             self.index = Int.random(in: 1...2)
                             self.feedback = true
@@ -123,10 +115,8 @@ struct GonogoMain: View {
                     if self.index == 2 {
                         self.points += 1
                         self.correct = true
-                        self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: "tank2"))
                     } else {
                         self.correct = false
-                        self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank1"))
                     }
                     self.index = Int.random(in: 1...2)
                     self.feedback = true

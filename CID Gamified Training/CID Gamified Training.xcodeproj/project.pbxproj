@@ -356,20 +356,20 @@
 				FA360EB7248ED74900F77C7B /* Gonogo.swift */,
 				FA33666824926B28004D96DB /* GonogoPrevention.swift */,
 				FA33666A24926C29004D96DB /* Summary.swift */,
-				FAF40B112493F386006CF82A /* SummaryRow.swift */,
-				FAF40B132493F3B9006CF82A /* SummaryDetail.swift */,
 				FA33666C24926F74004D96DB /* Rejection.swift */,
 				985F5777249184AA0087D44B /* LottieView.swift */,
 				981E89232492B9BE001A2B1A /* Zero.swift */,
 				981E89272492BFC1001A2B1A /* One.swift */,
 				985F57022491794C0087D44B /* Life.swift */,
 				985F577B24918D3A0087D44B /* Heart.swift */,
-				FAF40B152493F3CB006CF82A /* Answer.swift */,
 				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
 				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
 				FA360E83248E7B9500F77C7B /* Info.plist */,
 				985F5707249184140087D44B /* TestAnimations */,
 				FA360E7D248E7B9500F77C7B /* Preview Content */,
+				FAF40B112493F386006CF82A /* SummaryRow.swift */,
+				FAF40B132493F3B9006CF82A /* SummaryDetail.swift */,
+				FAF40B152493F3CB006CF82A /* Answer.swift */,
 			);
 			path = "CID Gamified Training";
 			sourceTree = "<group>";
