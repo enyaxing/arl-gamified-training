@@ -5,11 +5,10 @@
 //  Created by Alex on 6/11/20.
 //  Copyright © 2020 Alex. All rights reserved.
 //
-
 import SwiftUI
 
 struct Summary: View {
-
+    
     var answers: [Answer]
 
     var body: some View {
@@ -40,6 +39,16 @@ func countCorrect(answer: [Answer]) -> Int {
             count += 1
         }
     }
+    return count
+}
+
+func incorrect(answer: [Answer]) -> Int {
+    return answer.count - countCorrect(answer: answer)
+}
+
+func percentage(answer: [Answer]) -> Double {
+    return ((Double(countCorrect(answer: answer)) / Double(answer.count)) * 100.0)
+}
 
 struct Summary_Previews: PreviewProvider {
     static var previews: some View {

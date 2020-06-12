@@ -13,11 +13,16 @@ struct LottieView: UIViewRepresentable {
     typealias UIViewType = UIView
     var filename: String
     @Binding var playing: Bool
+    var isLoop = false
+    
     
     func makeUIView(context:   UIViewRepresentableContext<LottieView>) -> UIView{
             let view = UIView(frame: .zero)
             let animationView = AnimationView()
             let animation = Animation.named(filename)
+            if self.isLoop {
+                animationView.loopMode = .loop
+            }
             animationView.animation = animation
             animationView.contentMode = .scaleAspectFit
         animationView.play { (finished) in
@@ -36,5 +41,12 @@ struct LottieView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {
         
+    }
+    
+}
+
+struct LottieView_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

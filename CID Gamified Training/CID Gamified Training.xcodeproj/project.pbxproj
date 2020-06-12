@@ -14,6 +14,7 @@
 		981E89242492B9BE001A2B1A /* Zero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981E89232492B9BE001A2B1A /* Zero.swift */; };
 		981E89262492BBE0001A2B1A /* blackplus.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89252492BBDF001A2B1A /* blackplus.json */; };
 		981E89282492BFC1001A2B1A /* One.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981E89272492BFC1001A2B1A /* One.swift */; };
+		984B8478249422DF00C4F080 /* Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B8477249422DF00C4F080 /* Loop.swift */; };
 		985F57032491794C0087D44B /* Life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985F57022491794C0087D44B /* Life.swift */; };
 		985F5706249182F10087D44B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 985F5705249182F10087D44B /* Lottie */; };
 		985F5740249184150087D44B /* Switch.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5708249184140087D44B /* Switch.json */; };
@@ -125,6 +126,7 @@
 		981E89232492B9BE001A2B1A /* Zero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zero.swift; sourceTree = "<group>"; };
 		981E89252492BBDF001A2B1A /* blackplus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blackplus.json; sourceTree = "<group>"; };
 		981E89272492BFC1001A2B1A /* One.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One.swift; sourceTree = "<group>"; };
+		984B8477249422DF00C4F080 /* Loop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loop.swift; sourceTree = "<group>"; };
 		985F57022491794C0087D44B /* Life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Life.swift; sourceTree = "<group>"; };
 		985F5708249184140087D44B /* Switch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Switch.json; sourceTree = "<group>"; };
 		985F5709249184140087D44B /* TwitterHeart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TwitterHeart.json; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				FAF40B132493F3B9006CF82A /* SummaryDetail.swift */,
 				FA33666C24926F74004D96DB /* Rejection.swift */,
 				985F5777249184AA0087D44B /* LottieView.swift */,
+				984B8477249422DF00C4F080 /* Loop.swift */,
 				981E89232492B9BE001A2B1A /* Zero.swift */,
 				981E89272492BFC1001A2B1A /* One.swift */,
 				985F57022491794C0087D44B /* Life.swift */,
@@ -604,6 +607,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				984B8478249422DF00C4F080 /* Loop.swift in Sources */,
 				985F577C24918D3A0087D44B /* Heart.swift in Sources */,
 				FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */,
 				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,

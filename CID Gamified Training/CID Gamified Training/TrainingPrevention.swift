@@ -57,9 +57,11 @@ struct TrainingPreventionMain: View {
     
     /** List of answers. */
     @Binding var answers: [Answer]
+
     
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     
     var body: some View {
         VStack {
@@ -148,15 +150,9 @@ struct TrainingPreventionMain: View {
            VStack {
                 HStack {
                     Text("Lives Left")
-                    if self.lives == 3 {
-                        Image("heart").resizable().frame(width: 34, height: 34)
-                        Image("heart").resizable().frame(width: 34, height: 34)
-                        Image("heart").resizable().frame(width: 34, height: 34)
-                    } else if self.lives == 2 {
-                       Image("heart").resizable().frame(width: 34, height: 34)
-                       Image("heart").resizable().frame(width: 34, height: 34)
-                    } else if self.lives == 1 {
-                       Image("heart").resizable().frame(width: 34, height: 34)
+                    
+                    ForEach(0 ..< self.lives, id: \.self) { image in
+                    Image("heart").resizable().frame(width: 34, height: 34)
                     }
                 }
             }

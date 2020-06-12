@@ -153,17 +153,8 @@ struct GonogoPreventionMain: View {
             VStack {
                 HStack {
                     Text("Lives Left")
-                    if self.lives == 3 {
-                        Image("heart").resizable().frame(width: 34, height: 34)
-                        Image("heart").resizable().frame(width: 34, height: 34)
-                        Image("heart").resizable().frame(width: 34, height: 34)
-                    } else if self.lives == 2 {
-                       Image("heart").resizable().frame(width: 34, height: 34)
-                       Image("heart").resizable().frame(width: 34, height: 34)
-                    } else if self.lives == 1 {
-                       Image("heart").resizable().frame(width: 34, height: 34)
-                    } else {
-                        
+                    ForEach(0 ..< self.lives, id: \.self) { image in
+                    Image("heart").resizable().frame(width: 34, height: 34)
                     }
                 }
             }
