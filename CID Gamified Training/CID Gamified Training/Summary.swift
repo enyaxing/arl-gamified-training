@@ -27,6 +27,8 @@ struct Summary: View {
                     }
                 }
             }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
         }
     }
 }
