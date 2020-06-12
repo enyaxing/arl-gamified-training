@@ -16,13 +16,15 @@ struct Question: View {
     @State var completed: Bool = false
     @Binding var regular: String
     var body: some View {
-        Group {
+        ZStack {
             if completed {
-                ContentView()
+                ContentView().transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
             } else {
                 QuestionMain(curResponse: 0, regular: ContentView().$regular, completed: $completed)
+                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
             }
         }
+        
     }
 }
 
@@ -120,7 +122,6 @@ struct QuestionMain: View {
             }
         }
         
-            
     }
 
     /** When we receive an answer, record the response and give the user the next question. */
