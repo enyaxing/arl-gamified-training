@@ -13,12 +13,15 @@ struct TrainingPrevention: View {
     /** Show summary view. */
     @State var summary = false
     
+    /** List of answers. */
+    @State var answers: [Answer] = []
+    
     var body: some View {
         Group {
             if self.summary {
-                Summary()
+                Summary(answers: answers)
             } else {
-                TrainingPreventionMain(summary: $summary)
+                TrainingPreventionMain(summary: $summary, answers: $answers)
             }
         }
     }
@@ -51,6 +54,9 @@ struct TrainingPreventionMain: View {
     
     /** Show summary. */
     @Binding var summary: Bool
+    
+    /** List of answers. */
+    @Binding var answers: [Answer]
     
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -93,9 +99,11 @@ struct TrainingPreventionMain: View {
                         if self.index == 1 {
                             self.points += 1
                             self.correct = true
+                            self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: "tank1"))
                         } else {
                             self.lives -= 1
                             self.correct = false
+                            self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: "tank2"))
                             if self.lives == 0 {
                                 self.dead = true
                                 self.stopped = true
@@ -115,9 +123,11 @@ struct TrainingPreventionMain: View {
                         if self.index == 2 {
                             self.points += 1
                             self.correct = true
+                            self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: "tank2"))
                         } else {
                             self.lives -= 1
                             self.correct = false
+                            self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank1"))
                             if self.lives == 0 {
                                 self.dead = true
                                 self.stopped = true
