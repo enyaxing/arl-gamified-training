@@ -9,7 +9,7 @@
 import SwiftUI
 
 enum ActiveAlert {
-    case showFinishedAlert, alreadyCompletedAlert
+    case showFinishedAlert, alreadyCompletedAlert, noAnswerSelectedAlert
 }
 
 struct Question: View {
@@ -17,7 +17,7 @@ struct Question: View {
     @Binding var regular: String
     var body: some View {
         
-        QuestionMain(curResponse: 0, regular: ContentView().$regular, completed: $completed)
+        QuestionMain(curResponse: 0, regular: ContentView().$regular)
                     
     }
 }
@@ -65,7 +65,6 @@ struct QuestionMain: View {
     @State private var showAlert: Bool = false
     @State private var activeAlert: ActiveAlert = .alreadyCompletedAlert
     @Binding var regular: String
-    @Binding var completed: Bool
 
     var body: some View {
         HStack {
@@ -109,10 +108,13 @@ struct QuestionMain: View {
             
             switch activeAlert {
                 case .alreadyCompletedAlert:
-                    return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.completed = true}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
+                    return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
                 case .showFinishedAlert:
                     let (promotionScore, preventionScore) = getScore()
-                    return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"), action: {self.completed = true}))
+                    return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"), action: {}))
+                case .noAnswerSelectedAlert:
+                    return Alert(title: Text("Error"), message: Text("Please select an answer choice to continue"), dismissButton: .default(Text("Okay")))
+                
             }
         }
         .onAppear() {
@@ -123,8 +125,13 @@ struct QuestionMain: View {
 
     /** When we receive an answer, record the response and give the user the next question. */
     func answered(_ ans: Int) {
-        self.responses[questionCount] = ans
-        nextQuestion()
+        if ans == 0 {
+            activeAlert = .noAnswerSelectedAlert
+            showAlert = true
+        } else {
+            self.responses[questionCount] = ans
+            nextQuestion()
+        }
     }
 
     /** Checks if we have reached the end of the quiz. If we are done, calculate and show the results. If not,
@@ -135,6 +142,7 @@ struct QuestionMain: View {
             showAlert = true
         } else {
             questionCount += 1
+            curResponse = 0
         }
     }
     
