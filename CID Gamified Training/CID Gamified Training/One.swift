@@ -17,6 +17,9 @@ struct One: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .position(x: 200, y: 100)
+                LottieView(filename: "happy", playing: $playing)
+                .frame(width: 50, height: 50)
+                .position(x: 370, y: -120)
                 HStack {
                     LottieView(filename: "blackplus", playing: $playing)
                     .frame(width: 400, height: 400)
