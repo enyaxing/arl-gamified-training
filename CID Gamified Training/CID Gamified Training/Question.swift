@@ -13,6 +13,26 @@ enum ActiveAlert {
 }
 
 struct Question: View {
+    @State var completed: Bool = false
+    @Binding var regular: String
+    var body: some View {
+        Group {
+            if completed {
+                ContentView()
+            } else {
+                QuestionMain(curResponse: 0, regular: ContentView().$regular, completed: $completed)
+            }
+        }
+    }
+}
+
+struct Question_Previews: PreviewProvider {
+    static var previews: some View {
+        Question(regular: ContentView().$regular)
+    }
+}
+
+struct QuestionMain: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
     let defaults = UserDefaults.standard
     
@@ -49,6 +69,7 @@ struct Question: View {
     @State private var showAlert: Bool = false
     @State private var activeAlert: ActiveAlert = .alreadyCompletedAlert
     @Binding var regular: String
+    @Binding var completed: Bool
 
     var body: some View {
         HStack {
@@ -92,10 +113,10 @@ struct Question: View {
             
             switch activeAlert {
                 case .alreadyCompletedAlert:
-                    return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.questionCount = 0}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
+                    return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.completed = true}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
                 case .showFinishedAlert:
                     let (promotionScore, preventionScore) = getScore()
-                    return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit")))
+                    return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"), action: {self.completed = true}))
             }
         }
         
@@ -188,13 +209,6 @@ struct Question: View {
         let promotionScore = ((6 - r1) + r3 + r7 + (6 - r9) + r10 + (6 - r11)) / 6
         let preventionScore = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / 5
         return (promotionScore, preventionScore)
-    }
-    
-}
-
-struct Question_Previews: PreviewProvider {
-    static var previews: some View {
-        Question(curResponse: 0, regular: ContentView().$regular)
     }
 }
 
