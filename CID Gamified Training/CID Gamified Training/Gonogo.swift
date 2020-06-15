@@ -17,12 +17,12 @@ struct Gonogo: View {
     @State var answers: [Answer] = []
     
     var body: some View {
-        Group {
-            if self.summary {
-                Summary(answers: answers)
-            } else {
-                GonogoMain(summary: $summary, answers: $answers)
+        VStack {
+            GonogoMain(summary: $summary, answers: $answers)
+            NavigationLink(destination: Summary(answers: answers), isActive: self.$summary) {
+                EmptyView()
             }
+            .hidden()
         }
     }
 }

@@ -12,23 +12,20 @@ struct Summary: View {
     var answers: [Answer]
 
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Summary")
-                    .font(.largeTitle)
-                    .fontWeight(.black)
-                Text("Correct: \(countCorrect(answer: answers))")
-                Text("Incorrect: \(incorrect(answer: answers))")
-                Text("Percentage: \(percentage(answer: answers), specifier: "%.2f")%")
-                List(self.answers, id: \.id) { answer in
-                    NavigationLink(destination: SummaryDetail(answer: answer)) {
-                        SummaryRow(answer: answer)
-                    }
+        VStack {
+            Text("Summary")
+                .font(.largeTitle)
+                .fontWeight(.black)
+            Text("Correct: \(countCorrect(answer: answers))")
+            Text("Incorrect: \(incorrect(answer: answers))")
+            Text("Percentage: \(percentage(answer: answers), specifier: "%.2f")%")
+            List(self.answers, id: \.id) { answer in
+                NavigationLink(destination: SummaryDetail(answer: answer)) {
+                    SummaryRow(answer: answer)
                 }
             }
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
         }
+        .navigationBarTitle("")
     }
 }
 
