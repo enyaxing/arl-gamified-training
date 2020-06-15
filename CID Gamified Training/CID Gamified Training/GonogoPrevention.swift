@@ -33,7 +33,7 @@ struct GonogoPrevention: View {
 struct GonogoPreventionMain: View {
     
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
-    @State var index = Int.random(in: 1...2)
+    @State var index = 0
     
     /** Points gained from session. */
     @State var points = 0
@@ -65,6 +65,12 @@ struct GonogoPreventionMain: View {
     /** List of answers. */
     @Binding var answers: [Answer]
     
+    /** List of pictures grouped by friendly or foe. */
+    let models = [Model.friendly, Model.foe]
+    
+    /** Friendly or foe folder selector.  0=friendly, 1=foe*/
+    @State var folder = Int.random(in: 0...1)
+    
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -90,20 +96,21 @@ struct GonogoPreventionMain: View {
                                 self.timeRemaining -= 1
                             } else if !self.stopped{
                                 self.timeRemaining = 3
-                                if self.index == 1 {
+                                if self.folder == 0 {
                                     self.points += 1
                                     self.correct = true
-                                    self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: "tank1"))
+                                    self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                                 } else {
                                     self.lives -= 1
                                     self.correct = false
-                                    self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: "tank2"))
+                                    self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                                     if self.lives == 0 {
                                         self.dead = true
                                         self.stopped = true
                                     }
                             }
-                                self.index = Int.random(in: 1...2)
+                            self.folder = Int.random(in: 0...1)
+                                self.index = Int.random(in: 0..<self.models[self.folder].count)
                             self.feedback = true
                         }
                 }
@@ -123,28 +130,29 @@ struct GonogoPreventionMain: View {
                         Heart(playing: $feedback)
                     }
                 } else {
-                    Image("tank\(index)").resizable().scaledToFit()
+                    ImageView(withURL: models[self.folder][self.index].imageURL)
                     Spacer()
                 }
             }
             
             Button(action: {
                 if !self.stopped {
-                    if self.index == 2 {
+                    if self.folder == 1 {
                         self.points += 1
                         self.correct = true
-                        self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: "tank2"))
+                        self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
                     } else {
                         self.lives -= 1
                         self.correct = false
-                        self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank1"))
+                        self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
                         if self.lives == 0 {
                             self.dead = true
                             self.stopped = true
                         }
                     }
                     self.timeRemaining = 3
-                    self.index = Int.random(in: 1...2)
+                    self.folder = Int.random(in: 0...1)
+                    self.index = Int.random(in: 0..<self.models[self.folder].count)
                     self.feedback = true
                 }
             }) {

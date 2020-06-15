@@ -13,7 +13,7 @@ struct SummaryRow: View {
     
     var body: some View {
         HStack {
-            Image(answer.image).resizable()
+            ImageView(withURL: answer.image)
                 .frame(width: 50, height: 50)
             Group {
                 if correct(answer: self.answer) {

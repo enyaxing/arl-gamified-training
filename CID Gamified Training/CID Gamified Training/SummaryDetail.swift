@@ -16,7 +16,7 @@ struct SummaryDetail: View {
     
     var body: some View {
         VStack {
-            Image(self.answer.image).resizable().scaledToFit()
+            ImageView(withURL: self.answer.image)
             if self.answer.expected == self.answer.received {
                 HStack {
                     VStack {
