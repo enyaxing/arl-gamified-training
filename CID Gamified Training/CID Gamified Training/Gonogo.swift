@@ -123,10 +123,9 @@ struct GonogoMain: View {
                     }
                 } else {
                     ImageView(withURL: models[self.folder][self.index].imageURL)
-                    Spacer()
                 }
-            }
-            
+            }.frame(width: 400, height: 400)
+            Spacer()
             Button(action: {
                 if !self.stopped && !self.feedback {
                     if self.folder == 1 {
