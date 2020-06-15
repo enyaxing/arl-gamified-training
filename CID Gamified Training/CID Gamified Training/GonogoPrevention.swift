@@ -16,13 +16,17 @@ struct GonogoPrevention: View {
     /** List of answers. */
     @State var answers: [Answer] = []
     
+    /** Back bar. */
+    @Binding var back: Bool
+    
     var body: some View {
-        VStack {
-            NavigationLink(destination: Summary(answers: answers), isActive: self.$summary) {
-                EmptyView()
+        Group {
+            if self.summary {
+                Summary(answers: answers, back: $back)
+            } else {
+                GonogoPreventionMain(summary: $summary, answers: $answers)
             }
-            GonogoPreventionMain(summary: $summary, answers: $answers)
-        }
+        }.navigationBarBackButtonHidden(back)
     }
 }
 
@@ -170,6 +174,6 @@ struct GonogoPreventionMain: View {
 
 struct GonogoPrevention_Previews: PreviewProvider {
     static var previews: some View {
-        GonogoPrevention()
+        GonogoPrevention(back: ContentView().$back)
     }
 }

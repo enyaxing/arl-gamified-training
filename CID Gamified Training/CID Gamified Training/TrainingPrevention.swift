@@ -16,14 +16,17 @@ struct TrainingPrevention: View {
     /** List of answers. */
     @State var answers: [Answer] = []
     
+    /** Back bar. */
+    @Binding var back: Bool
+    
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers)
+                Summary(answers: answers, back: $back)
             } else {
                 TrainingPreventionMain(summary: $summary, answers: $answers)
-            }
-        }
+            } 
+        }.navigationBarBackButtonHidden(back)
     }
 }
 
@@ -169,6 +172,6 @@ struct TrainingPreventionMain: View {
 
 struct TrainingPrevention_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingPrevention()
+        TrainingPrevention(back: ContentView().$back)
     }
 }

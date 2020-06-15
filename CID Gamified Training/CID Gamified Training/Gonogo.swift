@@ -16,14 +16,17 @@ struct Gonogo: View {
     /** List of answers. */
     @State var answers: [Answer] = []
     
+    /** Back bar. */
+    @Binding var back: Bool
+    
     var body: some View {
-        VStack {
-            GonogoMain(summary: $summary, answers: $answers)
-            NavigationLink(destination: Summary(answers: answers), isActive: self.$summary) {
-                EmptyView()
+        Group {
+            if self.summary {
+                Summary(answers: answers, back: $back)
+            } else {
+                GonogoMain(summary: $summary, answers: $answers)
             }
-            .hidden()
-        }
+        }.navigationBarBackButtonHidden(back)
     }
 }
 
@@ -90,7 +93,7 @@ struct GonogoMain: View {
                                     self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: "tank1"))
                                 } else {
                                     self.correct = false
-                                    self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank2"))
+                                    self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: "tank2"))
                             }
                             self.index = Int.random(in: 1...2)
                             self.feedback = true
@@ -153,6 +156,6 @@ struct GonogoMain: View {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-        Gonogo()
+        Gonogo(back: ContentView().$back)
     }
 }

@@ -16,14 +16,17 @@ struct Training: View {
     /** List of answers. */
     @State var answers: [Answer] = []
     
+    /** Back bar. */
+    @Binding var back: Bool
+    
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers)
+                Summary(answers: answers, back: $back)
             } else {
                 TrainingMain(summary: $summary, answers: $answers)
             }
-        }
+            } .navigationBarBackButtonHidden(back)
     }
 }
 
@@ -97,10 +100,10 @@ struct TrainingMain: View {
                         if self.index == 1 {
                             self.points += 1
                             self.correct = true
-                            self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank1"))
+                            self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: "tank1"))
                         } else {
                             self.correct = false
-                            self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: "tank2"))
+                            self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: "tank2"))
                         }
                         self.index = Int.random(in: 1...2)
                         self.feedback = true
@@ -119,7 +122,7 @@ struct TrainingMain: View {
                             self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: "tank2"))
                         } else {
                             self.correct = false
-                            self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: "tank2"))
+                            self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank1"))
                         }
                         self.index = Int.random(in: 1...2)
                         self.feedback = true
@@ -148,6 +151,6 @@ struct TrainingMain: View {
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training()
+        Training(back: ContentView().$back)
     }
 }
