@@ -150,10 +150,10 @@ struct GonogoPreventionMain: View {
                             self.stopped = true
                         }
                     }
-                    self.timeRemaining = 3
                     self.folder = Int.random(in: 0...1)
                     self.index = Int.random(in: 0..<self.models[self.folder].count)
                     self.feedback = true
+                    self.timeRemaining = 3
                 }
             }) {
                 Text("Foe")

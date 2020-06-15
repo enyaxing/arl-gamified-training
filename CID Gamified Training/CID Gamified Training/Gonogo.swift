@@ -129,7 +129,6 @@ struct GonogoMain: View {
             
             Button(action: {
                 if !self.stopped && !self.feedback {
-                    self.timeRemaining = 3
                     if self.folder == 1 {
                         self.points += 1
                         self.correct = true
@@ -141,6 +140,7 @@ struct GonogoMain: View {
                     self.folder = Int.random(in: 0...1)
                     self.index = Int.random(in: 0..<self.models[self.folder].count)
                     self.feedback = true
+                    self.timeRemaining = 3
                 }
             }) {
                 Text("Foe")
