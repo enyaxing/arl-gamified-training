@@ -13,22 +13,6 @@ enum ActiveAlert {
 }
 
 struct Question: View {
-    @State var completed: Bool = false
-    @Binding var regular: String
-    var body: some View {
-        
-        QuestionMain(curResponse: 0, regular: ContentView().$regular)
-                    
-    }
-}
-
-struct Question_Previews: PreviewProvider {
-    static var previews: some View {
-        Question(regular: ContentView().$regular)
-    }
-}
-
-struct QuestionMain: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
     let defaults = UserDefaults.standard
     
@@ -59,61 +43,71 @@ struct QuestionMain: View {
                                ["certainly false", " ", "certainly true"]
     ]
 
+    /** Dictionary mapping of responses. Key = question number, value = response value. */
     @State private var responses: [Int: Int] = [:]
-    @State private var questionCount = 0
+    
+    /** Integer that keeps track of which question the user is on. */
+    @State private var questionCount:Int = 0
+    
+    /** Integer that tracks the user's current response. */
     @State var curResponse: Int
+    
+    /** Boolean that determines whether an alert should be shown or not. */
     @State private var showAlert: Bool = false
+    
+    /** Sets the default activeAlert. */
     @State private var activeAlert: ActiveAlert = .alreadyCompletedAlert
+    
+    /** Used to pass regulatory focus type to other views. */
     @Binding var regular: String
+    
+    /** Environment variable used to dismiss view. */
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
-        HStack {
-            NavigationView {
-                VStack() {
-                    Spacer()
-                    Text(questions[questionCount])
-                        .font(.title)
-                        .padding([.leading, .bottom, .trailing])
-                    Spacer()
-                    RadioButtons(curResponse: $curResponse)
-                    Spacer()
+        VStack {
+            Spacer()
+            Text(questions[questionCount])
+                .font(.title)
+                .padding([.leading, .bottom, .trailing])
+            Spacer()
+            RadioButtons(curResponse: $curResponse)
+            Spacer()
 
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            self.prevQuestion()
-                        }) {
-                            Text("Back")
-                        }
-                        Spacer()
-                        Button(action: {
-                            self.answered(self.curResponse)
-                        }) {
-                            Text("Next")
-                        }
-                        Spacer()
-                    }
-                    .padding(.bottom)
-
-                    Text("\(questionCount + 1) out of \(questions.count)")
-                    Spacer()
+            HStack {
+                Spacer()
+                Button(action: {
+                    self.prevQuestion()
+                }) {
+                    Text("Back")
                 }
-                .navigationBarTitle(Text("Quiz")
-                .font(.largeTitle))
+                Spacer()
+                Button(action: {
+                    self.answered(self.curResponse)
+                }) {
+                    Text("Next")
+                }
+                Spacer()
             }
-            .padding()
-        }
+            .padding(.bottom)
+
+            Text("\(questionCount + 1) out of \(questions.count)")
+            Spacer()
+    }
+    .navigationBarTitle(Text("Quiz")
+    .font(.largeTitle))
+    .padding()
+    
+    .alert(isPresented: $showAlert) {
         
-        .alert(isPresented: $showAlert) {
-            
-            switch activeAlert {
-                case .alreadyCompletedAlert:
-                    return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
-                case .showFinishedAlert:
-                    let (promotionScore, preventionScore) = getScore()
-                    return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"), action: {}))
-                case .noAnswerSelectedAlert:
-                    return Alert(title: Text("Error"), message: Text("Please select an answer choice to continue"), dismissButton: .default(Text("Okay")))
+        switch activeAlert {
+            case .alreadyCompletedAlert:
+                return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
+            case .showFinishedAlert:
+                let (promotionScore, preventionScore) = getScore()
+                return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
+            case .noAnswerSelectedAlert:
+                return Alert(title: Text("Error"), message: Text("Please select an answer choice to continue"), dismissButton: .default(Text("Okay")))
                 
             }
         }
@@ -150,6 +144,7 @@ struct QuestionMain: View {
     func prevQuestion() {
         if questionCount > 0 {
             questionCount -= 1
+            curResponse = responses[questionCount]!
         }
     }
 
@@ -243,3 +238,10 @@ struct RadioButtons: View {
     .cornerRadius(30)
     }
 }
+
+struct Question_Previews: PreviewProvider {
+    static var previews: some View {
+        Question(curResponse: 0, regular: ContentView().$regular)
+    }
+}
+

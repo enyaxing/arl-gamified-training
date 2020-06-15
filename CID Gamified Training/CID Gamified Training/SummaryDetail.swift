@@ -12,9 +12,11 @@ struct SummaryDetail: View {
     
     var answer: Answer
     
+    @Binding var back: Bool
+    
     var body: some View {
         VStack {
-            Image(self.answer.image).resizable().scaledToFit()
+            ImageView(withURL: self.answer.image)
             if self.answer.expected == self.answer.received {
                 HStack {
                     VStack {
@@ -59,12 +61,16 @@ struct SummaryDetail: View {
                  .fontWeight(.semibold)
                 }
             }
+        }.onAppear {
+            self.back = true
+        }.onDisappear {
+            self.back = false
         }
     }
 }
 
 struct SummaryDetail_Previews: PreviewProvider {
     static var previews: some View {
-        SummaryDetail(answer: Answer(id: 1, expected: "foe", received: "foe", image: "tank1"))
+        SummaryDetail(answer: Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), back: ContentView().$back)
     }
 }

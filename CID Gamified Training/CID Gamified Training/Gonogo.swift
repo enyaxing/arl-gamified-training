@@ -16,20 +16,23 @@ struct Gonogo: View {
     /** List of answers. */
     @State var answers: [Answer] = []
     
+    /** Back bar. */
+    @Binding var back: Bool
+    
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers)
+                Summary(answers: answers, back: $back)
             } else {
                 GonogoMain(summary: $summary, answers: $answers)
             }
-        }
+        }.navigationBarBackButtonHidden(back)
     }
 }
 
 struct GonogoMain: View {
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
-    @State var index = Int.random(in: 1...2)
+    @State var index = 0
     
     /** Points gained from session. */
     @State var points = 0
@@ -61,6 +64,12 @@ struct GonogoMain: View {
     /** List of answers. */
     @Binding var answers: [Answer]
     
+    /** List of pictures grouped by friendly or foe. */
+    let models = [Model.friendly, Model.foe]
+    
+    /** Friendly or foe folder selector.  0=friendly, 1=foe*/
+    @State var folder = Int.random(in: 0...1)
+    
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -87,16 +96,17 @@ struct GonogoMain: View {
                                 self.timeRemaining -= 1
                             } else if !self.stopped{
                                 self.timeRemaining = 3
-                                if self.index == 1 {
+                                if self.folder == 0 {
                                     self.points += 1
                                     self.stars += 1
                                     self.correct = true
-                                    self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: "tank1"))
+                                    self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                                 } else {
                                     self.correct = false
-                                    self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank2"))
+                                    self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                             }
-                            self.index = Int.random(in: 1...2)
+                            self.folder = Int.random(in: 0...1)
+                            self.index = Int.random(in: 0..<self.models[self.folder].count)
                             self.feedback = true
                         }
                 }
@@ -116,25 +126,25 @@ struct GonogoMain: View {
                         PlusZero(playing: $feedback)
                     }
                 } else {
-                    Image("tank\(index)").resizable().scaledToFit()
-                    Spacer()
+                    ImageView(withURL: models[self.folder][self.index].imageURL)
                 }
-            }
-            
+            }.frame(width: 400, height: 400)
+            Spacer()
             Button(action: {
                 if !self.stopped && !self.feedback {
-                    self.timeRemaining = 3
-                    if self.index == 2 {
+                    if self.folder == 1 {
                         self.points += 1
                         self.stars += 1
                         self.correct = true
-                        self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: "tank2"))
+                        self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
                     } else {
                         self.correct = false
-                        self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank1"))
+                        self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
                     }
-                    self.index = Int.random(in: 1...2)
+                    self.folder = Int.random(in: 0...1)
+                    self.index = Int.random(in: 0..<self.models[self.folder].count)
                     self.feedback = true
+                    self.timeRemaining = 3
                 }
             }) {
                 Text("Foe")
@@ -168,6 +178,6 @@ struct GonogoMain: View {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-        Gonogo()
+        Gonogo(back: ContentView().$back)
     }
 }

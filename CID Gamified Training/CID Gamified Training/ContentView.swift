@@ -14,6 +14,8 @@ struct ContentView: View {
     
     @State var regular = focus(defaults: UserDefaults.standard)
     
+    @State var back = false
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -25,7 +27,7 @@ struct ContentView: View {
                     .cornerRadius(20)
                 Spacer()
                 
-                NavigationLink(destination: Question(regular: $regular)) {
+                NavigationLink(destination: Question(curResponse: 0, regular: $regular)) {
                     Text("Questionairre")
                         .font(.largeTitle)
                         .fontWeight(.black)
@@ -39,9 +41,9 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group {
                         if self.regular == "promotion" {
-                            Training()
+                            Training(back: $back)
                         } else if self.regular == "prevention" {
-                            TrainingPrevention()
+                            TrainingPrevention(back: $back)
                         } else {
                             Rejection()
                         }
@@ -57,9 +59,9 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group {
                         if self.regular == "promotion" {
-                            Gonogo()
+                            Gonogo(back: $back)
                         } else if self.regular == "prevention" {
-                            GonogoPrevention()
+                            GonogoPrevention(back: $back)
                         } else {
                             Rejection()
                         }
