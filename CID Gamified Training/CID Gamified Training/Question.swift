@@ -144,6 +144,7 @@ struct Question: View {
     func prevQuestion() {
         if questionCount > 0 {
             questionCount -= 1
+            curResponse = responses[questionCount]!
         }
     }
 
