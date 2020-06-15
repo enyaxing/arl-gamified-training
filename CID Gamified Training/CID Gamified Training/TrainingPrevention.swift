@@ -40,8 +40,8 @@ struct TrainingPreventionMain: View {
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
 
-    /** Number of lives left. */
-    @State var lives = 3
+    /** Number of stars. */
+    @State var stars = 20
     
     /** Are you dead. */
     @State var dead = false
@@ -84,9 +84,9 @@ struct TrainingPreventionMain: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        Life(playing: $feedback)
+                        MinusZero(playing: $feedback)
                     } else {
-                        Heart(playing: $feedback)
+                        MinusOne(playing: $feedback)
                     }
                 } else {
                     Image("tank\(index)").resizable().scaledToFit()
@@ -103,10 +103,10 @@ struct TrainingPreventionMain: View {
                             self.correct = true
                             self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: "tank1"))
                         } else {
-                            self.lives -= 1
+                            self.stars -= 1
                             self.correct = false
                             self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: "tank2"))
-                            if self.lives == 0 {
+                            if self.stars == 0 {
                                 self.dead = true
                                 self.stopped = true
                             }
@@ -127,10 +127,10 @@ struct TrainingPreventionMain: View {
                             self.correct = true
                             self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: "tank2"))
                         } else {
-                            self.lives -= 1
+                            self.stars -= 1
                             self.correct = false
                             self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank1"))
-                            if self.lives == 0 {
+                            if self.stars == 0 {
                                 self.dead = true
                                 self.stopped = true
                             }
@@ -148,17 +148,17 @@ struct TrainingPreventionMain: View {
             
             Spacer()
            VStack {
+                Text("Stars Remaining")
+                .fontWeight(.black)
                 HStack {
-                    Text("Lives Left")
-                    
-                    ForEach(0 ..< self.lives, id: \.self) { image in
-                    Image("heart").resizable().frame(width: 34, height: 34)
+                    ForEach(0 ..< self.stars, id: \.self) { image in
+                        Image("star").resizable().frame(width: 40, height: 40)
                     }
                 }
             }
         }
         .alert(isPresented: $dead) {
-            Alert(title: Text("You Lose!"), message: Text("You have no hearts remaining."), dismissButton: .default(Text("Quit"), action: {
+            Alert(title: Text("You Lose!"), message: Text("You have no stars remaining."), dismissButton: .default(Text("Quit"), action: {
                 self.dead = false
                 self.summary = true
             })

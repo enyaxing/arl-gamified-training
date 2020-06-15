@@ -15,7 +15,7 @@ struct GonogoPrevention: View {
     
     /** List of answers. */
     @State var answers: [Answer] = []
-    
+
     var body: some View {
         Group {
             if self.summary {
@@ -44,9 +44,6 @@ struct GonogoPreventionMain: View {
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
     
-    /** Number of lives left. */
-    @State var lives = 3
-    
     /** Are you dead. */
     @State var dead = false
     
@@ -55,6 +52,15 @@ struct GonogoPreventionMain: View {
     
     /** Is question correct? */
     @State var correct = true
+    
+    /** Number of stars. */
+    @State var stars = 20
+    
+    /** Counter. */
+    @State var counter = 0
+    
+    /** Number of rows. */
+    @State var rows = 4
     
     /** Show summary. */
     @Binding var summary: Bool
@@ -92,10 +98,14 @@ struct GonogoPreventionMain: View {
                                     self.correct = true
                                     self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: "tank1"))
                                 } else {
-                                    self.lives -= 1
+                                    self.stars -= 1
+                                    self.counter += 1
                                     self.correct = false
                                     self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: "tank2"))
-                                    if self.lives == 0 {
+                                    if self.counter == 5 {
+                                        self.rows -= 1
+                                    }
+                                    if self.stars == 0 {
                                         self.dead = true
                                         self.stopped = true
                                     }
@@ -115,9 +125,9 @@ struct GonogoPreventionMain: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        Life(playing: $feedback)
+                        MinusZero(playing: $feedback)
                     } else {
-                        Heart(playing: $feedback)
+                        MinusOne(playing: $feedback)
                     }
                 } else {
                     Image("tank\(index)").resizable().scaledToFit()
@@ -132,10 +142,14 @@ struct GonogoPreventionMain: View {
                         self.correct = true
                         self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: "tank2"))
                     } else {
-                        self.lives -= 1
+                        self.stars -= 1
+                        self.counter += 1
                         self.correct = false
                         self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank1"))
-                        if self.lives == 0 {
+                        if self.counter == 5 {
+                            self.rows -= 1
+                        }
+                        if self.stars == 0 {
                             self.dead = true
                             self.stopped = true
                         }
@@ -149,18 +163,30 @@ struct GonogoPreventionMain: View {
                     .font(.largeTitle)
                     .fontWeight(.black)
             }
+            
             Spacer()
+            
             VStack {
-                HStack {
-                    Text("Lives Left")
-                    ForEach(0 ..< self.lives, id: \.self) { image in
-                    Image("heart").resizable().frame(width: 34, height: 34)
+                Text("Stars Remaining")
+                .fontWeight(.black)
+                ForEach(0 ..< self.rows - 1) { row in
+                    HStack {
+                        ForEach(0 ..< 5, id: \.self) { image in
+                            Image("star").resizable().frame(width: 30, height: 30)
+                                }
+                            }
+                    }
+                // last row
+                    HStack {
+                        ForEach(0 ..< abs(5 - self.counter), id: \.self) { image in
+                            Image("star").resizable().frame(width: 30, height: 30)
+                            }
                     }
                 }
-            }
+                        
         }
         .alert(isPresented: $dead) {
-            Alert(title: Text("You Lose!"), message: Text("You have no hearts remaining."), dismissButton: .default(Text("Quit"), action: {
+            Alert(title: Text("You Lose!"), message: Text("You have no stars remaining."), dismissButton: .default(Text("Quit"), action: {
                 self.dead = false
                 self.summary = true
             })

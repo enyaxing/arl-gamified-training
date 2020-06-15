@@ -52,6 +52,9 @@ struct GonogoMain: View {
     /** Is question correct? */
     @State var correct = true
     
+    /** Number of stars. */
+    @State var stars = 0
+    
     /** Show summary. */
     @Binding var summary: Bool
     
@@ -86,6 +89,7 @@ struct GonogoMain: View {
                                 self.timeRemaining = 3
                                 if self.index == 1 {
                                     self.points += 1
+                                    self.stars += 1
                                     self.correct = true
                                     self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: "tank1"))
                                 } else {
@@ -107,9 +111,9 @@ struct GonogoMain: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        One(playing: $feedback)
+                        PlusOne(playing: $feedback)
                     } else {
-                        Zero(playing: $feedback)
+                        PlusZero(playing: $feedback)
                     }
                 } else {
                     Image("tank\(index)").resizable().scaledToFit()
@@ -122,6 +126,7 @@ struct GonogoMain: View {
                     self.timeRemaining = 3
                     if self.index == 2 {
                         self.points += 1
+                        self.stars += 1
                         self.correct = true
                         self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: "tank2"))
                     } else {
@@ -140,6 +145,16 @@ struct GonogoMain: View {
             Text("Points: \(points)")
                 .font(.largeTitle)
                 .fontWeight(.black)
+            Spacer()
+            VStack {
+                Text("Stars Collected")
+                .fontWeight(.black)
+                HStack {
+                    ForEach(0 ..< self.stars, id: \.self) { image in
+                        Image("star").resizable().frame(width: 13, height: 13)
+                    }
+                }
+            }
         }
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Quit"), action: {

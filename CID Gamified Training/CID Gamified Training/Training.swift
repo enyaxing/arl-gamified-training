@@ -50,11 +50,18 @@ struct TrainingMain: View {
     /** Is question correct? */
     @State var correct = true
     
+    /** Number of stars. */
+    @State var stars = 0
+    
+    /** Counter. */
+    @State var counter = 0
+    
     /** Show summary. */
     @Binding var summary: Bool
     
     /** List of answers. */
     @Binding var answers: [Answer]
+    
     
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -81,9 +88,9 @@ struct TrainingMain: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        One(playing: $feedback)
+                        PlusOne(playing: $feedback)
                     } else {
-                        Zero(playing: $feedback)
+                        PlusZero(playing: $feedback)
                     }
                 } else {
                     Image("tank\(index)").resizable().scaledToFit()
@@ -96,6 +103,8 @@ struct TrainingMain: View {
                     if !self.stopped && !self.feedback {
                         if self.index == 1 {
                             self.points += 1
+                            self.stars += 1
+                            self.counter += 1
                             self.correct = true
                             self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: "tank1"))
                         } else {
@@ -115,6 +124,8 @@ struct TrainingMain: View {
                     if !self.stopped && !self.feedback {
                         if self.index == 2 {
                             self.points += 1
+                            self.stars += 1
+                            self.counter += 1
                             self.correct = true
                             self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: "tank2"))
                         } else {
@@ -135,6 +146,16 @@ struct TrainingMain: View {
             Text("Points: \(points)")
                 .font(.largeTitle)
                 .fontWeight(.black)
+            Spacer()
+            VStack {
+                Text("Stars Collected")
+                .fontWeight(.black)
+                HStack {
+                    ForEach(0 ..< self.stars, id: \.self) { image in
+                        Image("star").resizable().frame(width: 40, height: 40)
+                    }
+                }
+            }
         }
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Quit"), action: {
