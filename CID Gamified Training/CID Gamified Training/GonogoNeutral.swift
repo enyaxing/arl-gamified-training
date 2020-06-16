@@ -51,9 +51,6 @@ struct GonogoNeutralMain: View {
     /** When to show feedback. */
     @State var feedback = false
     
-    /** Is transition playing? */
-    @State var playing = false
-    
     /** Is question correct? */
     @State var correct = true
     
@@ -87,8 +84,12 @@ struct GonogoNeutralMain: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .onReceive(timer) { _ in
-                        if self.timeRemaining > 0 && !self.stopped && !self.feedback {
+                        if self.timeRemaining > 0 && !self.stopped {
+                            if self.feedback {
+                                self.timeRemaining -= 0
+                            } else {
                                 self.timeRemaining -= 1
+                            }
                         } else if !self.stopped {
                                 self.timeRemaining = 3
                                 if self.folder == 0 {
@@ -102,7 +103,6 @@ struct GonogoNeutralMain: View {
                             self.folder = Int.random(in: 0...1)
                             self.index = Int.random(in: 0..<self.models[self.folder].count)
                             self.feedback = true
-                            self.playing = true
                             if self.sessionTime == 1 {
                                 self.stopped = true
                                 self.alert = true
@@ -118,7 +118,7 @@ struct GonogoNeutralMain: View {
                             CheckMark(playing: $feedback)
                     } else {
                             XMark(playing: $feedback)
-                        }
+                }
             } else {
                 ImageView(withURL: models[self.folder][self.index].imageURL)
                 }
