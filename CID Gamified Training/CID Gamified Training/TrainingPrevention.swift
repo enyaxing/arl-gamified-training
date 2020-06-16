@@ -158,13 +158,13 @@ struct TrainingPreventionMain: View {
                 Spacer()
             }
 
-            Spacer()
+           Spacer()
            VStack {
                 Text("Stars Remaining")
                 .fontWeight(.black)
                 HStack {
                     ForEach(0 ..< self.stars, id: \.self) { image in
-                        Image("star").resizable().frame(width: 40, height: 40)
+                        Image("star").resizable().frame(width: 13, height: 13)
                     }
                 }
             }

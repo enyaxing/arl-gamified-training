@@ -12,18 +12,17 @@
 		981E89202492B94D001A2B1A /* 0.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E891A2492B94D001A2B1A /* 0.json */; };
 		981E89212492B94D001A2B1A /* plus-one.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E891B2492B94D001A2B1A /* plus-one.json */; };
 		981E89262492BBE0001A2B1A /* blackplus.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89252492BBDF001A2B1A /* blackplus.json */; };
-		984B8478249422DF00C4F080 /* Loop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B8477249422DF00C4F080 /* Loop.swift */; };
 		984B847A2498179C00C4F080 /* star.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B84792498179C00C4F080 /* star.json */; };
-		984B847C249818E200C4F080 /* PlusOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B847B249818E200C4F080 /* PlusOne.swift */; };
-		984B847E249818EF00C4F080 /* PlusZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B847D249818EF00C4F080 /* PlusZero.swift */; };
 		984B8480249818FC00C4F080 /* MinusZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B847F249818FC00C4F080 /* MinusZero.swift */; };
-		984B84822498190400C4F080 /* MinusOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B84812498190400C4F080 /* MinusOne.swift */; };
 		984B848824981B9100C4F080 /* star3.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848324981B9100C4F080 /* star3.json */; };
 		984B848924981B9100C4F080 /* star2.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848424981B9100C4F080 /* star2.json */; };
 		984B848A24981B9100C4F080 /* star1.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848524981B9100C4F080 /* star1.json */; };
 		984B848B24981B9100C4F080 /* star4.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848624981B9100C4F080 /* star4.json */; };
 		984B848C24981B9100C4F080 /* star5.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848724981B9100C4F080 /* star5.json */; };
 		984B848E249821F300C4F080 /* minus.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848D249821F300C4F080 /* minus.json */; };
+		984B8491249860CB00C4F080 /* PlusOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B847B249818E200C4F080 /* PlusOne.swift */; };
+		984B84922498615700C4F080 /* MinusOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B84812498190400C4F080 /* MinusOne.swift */; };
+		984B84932498615C00C4F080 /* PlusZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B847D249818EF00C4F080 /* PlusZero.swift */; };
 		985F5706249182F10087D44B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 985F5705249182F10087D44B /* Lottie */; };
 		985F5740249184150087D44B /* Switch.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5708249184140087D44B /* Switch.json */; };
 		985F5741249184150087D44B /* TwitterHeart.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5709249184140087D44B /* TwitterHeart.json */; };
@@ -137,12 +136,11 @@
 		981E891A2492B94D001A2B1A /* 0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 0.json; sourceTree = "<group>"; };
 		981E891B2492B94D001A2B1A /* plus-one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "plus-one.json"; sourceTree = "<group>"; };
 		981E89252492BBDF001A2B1A /* blackplus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blackplus.json; sourceTree = "<group>"; };
-		984B8477249422DF00C4F080 /* Loop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loop.swift; sourceTree = "<group>"; };
 		984B84792498179C00C4F080 /* star.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star.json; sourceTree = "<group>"; };
 		984B847B249818E200C4F080 /* PlusOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusOne.swift; sourceTree = "<group>"; };
-		984B847D249818EF00C4F080 /* PlusZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusZero.swift; sourceTree = "<group>"; };
-		984B847F249818FC00C4F080 /* MinusZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinusZero.swift; sourceTree = "<group>"; };
-		984B84812498190400C4F080 /* MinusOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinusOne.swift; sourceTree = "<group>"; };
+		984B847D249818EF00C4F080 /* PlusZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlusZero.swift; path = "CID Gamified Training/PlusZero.swift"; sourceTree = SOURCE_ROOT; };
+		984B847F249818FC00C4F080 /* MinusZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MinusZero.swift; path = "CID Gamified Training/MinusZero.swift"; sourceTree = SOURCE_ROOT; };
+		984B84812498190400C4F080 /* MinusOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MinusOne.swift; path = "CID Gamified Training/MinusOne.swift"; sourceTree = SOURCE_ROOT; };
 		984B848324981B9100C4F080 /* star3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star3.json; sourceTree = "<group>"; };
 		984B848424981B9100C4F080 /* star2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star2.json; sourceTree = "<group>"; };
 		984B848524981B9100C4F080 /* star1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star1.json; sourceTree = "<group>"; };
@@ -219,7 +217,7 @@
 		FA3503AA2493BB6A00DD4207 /* happy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happy.json; sourceTree = "<group>"; };
 		FA360E72248E7B9300F77C7B /* CID Gamified Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CID Gamified Training.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA360E75248E7B9300F77C7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FA360E77248E7B9300F77C7B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FA360E77248E7B9300F77C7B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "CID Gamified Training/SceneDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		FA360E79248E7B9300F77C7B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FA360E7B248E7B9500F77C7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA360E7E248E7B9500F77C7B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -236,7 +234,7 @@
 		FA360EB7248ED74900F77C7B /* Gonogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gonogo.swift; sourceTree = "<group>"; };
 		FAF40B112493F386006CF82A /* SummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRow.swift; sourceTree = "<group>"; };
 		FAF40B132493F3B9006CF82A /* SummaryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetail.swift; sourceTree = "<group>"; };
-		FAF40B152493F3CB006CF82A /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		FAF40B152493F3CB006CF82A /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = "CID Gamified Training/Answer.swift"; sourceTree = SOURCE_ROOT; };
 		FAF922C22497BBC400F3EA80 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		FAF922C42497BBD500F3EA80 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		FAF922C62497BC0A00F3EA80 /* friendly.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = friendly.txt; sourceTree = "<group>"; };
@@ -396,7 +394,6 @@
 				FAF40B132493F3B9006CF82A /* SummaryDetail.swift */,
 				FA33666C24926F74004D96DB /* Rejection.swift */,
 				985F5777249184AA0087D44B /* LottieView.swift */,
-				984B8477249422DF00C4F080 /* Loop.swift */,
 				984B847B249818E200C4F080 /* PlusOne.swift */,
 				984B847D249818EF00C4F080 /* PlusZero.swift */,
 				984B847F249818FC00C4F080 /* MinusZero.swift */,
@@ -405,13 +402,13 @@
 				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
 				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
 				FA360E83248E7B9500F77C7B /* Info.plist */,
-				985F5707249184140087D44B /* TestAnimations */,
-				FA360E7D248E7B9500F77C7B /* Preview Content */,
 				FAF922C22497BBC400F3EA80 /* ImageLoader.swift */,
 				FAF922C42497BBD500F3EA80 /* Model.swift */,
 				FAF922CA2497BCA000F3EA80 /* ImageView.swift */,
 				FAF922C62497BC0A00F3EA80 /* friendly.txt */,
 				FAF922C82497BC1700F3EA80 /* foe.txt */,
+				985F5707249184140087D44B /* TestAnimations */,
+				FA360E7D248E7B9500F77C7B /* Preview Content */,
 			);
 			path = "CID Gamified Training";
 			sourceTree = "<group>";
@@ -657,15 +654,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF922C52497BBD500F3EA80 /* Model.swift in Sources */,
-				984B8478249422DF00C4F080 /* Loop.swift in Sources */,
-				985F577C24918D3A0087D44B /* Heart.swift in Sources */,
+				984B8491249860CB00C4F080 /* PlusOne.swift in Sources */,
 				FAF922C32497BBC400F3EA80 /* ImageLoader.swift in Sources */,
+				984B84922498615700C4F080 /* MinusOne.swift in Sources */,
 				FAF922CB2497BCA000F3EA80 /* ImageView.swift in Sources */,
 				FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */,
 				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,
 				984B8480249818FC00C4F080 /* MinusZero.swift in Sources */,
 				FAF40B162493F3CB006CF82A /* Answer.swift in Sources */,
 				FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */,
+				984B84932498615C00C4F080 /* PlusZero.swift in Sources */,
 				FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */,
 				FA360EAE248E807000F77C7B /* Question.swift in Sources */,
 				FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */,

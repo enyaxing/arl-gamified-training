@@ -156,15 +156,14 @@ struct TrainingMain: View {
             Text("Points: \(points)")
                 .font(.largeTitle)
                 .fontWeight(.black)
-            Spacer()
             VStack {
                 Text("Stars Collected")
                 .fontWeight(.black)
                 HStack {
                     ForEach(0 ..< self.stars, id: \.self) { image in
-                        Image("star").resizable().frame(width: 40, height: 40)
+                    Image("star").resizable().frame(width: 13, height: 13)
                     }
-                }
+                 }
             }
         }
         .alert(isPresented: $alert) {

@@ -57,6 +57,9 @@ struct GonogoMain: View {
     
     /** Number of stars. */
     @State var stars = 0
+
+    /** Counter. */
+    @State var rows = 0
     
     /** Show summary. */
     @Binding var summary: Bool
@@ -105,6 +108,9 @@ struct GonogoMain: View {
                                     self.correct = false
                                     self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                             }
+                            if self.stars % 5 == 0 {
+                                self.rows += 1
+                            }
                             self.folder = Int.random(in: 0...1)
                             self.index = Int.random(in: 0..<self.models[self.folder].count)
                             self.feedback = true
@@ -141,6 +147,9 @@ struct GonogoMain: View {
                         self.correct = false
                         self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
                     }
+                    if self.stars % 5 == 0 {
+                        self.rows += 1
+                    }
                     self.folder = Int.random(in: 0...1)
                     self.index = Int.random(in: 0..<self.models[self.folder].count)
                     self.feedback = true
@@ -155,15 +164,14 @@ struct GonogoMain: View {
             Text("Points: \(points)")
                 .font(.largeTitle)
                 .fontWeight(.black)
-            Spacer()
             VStack {
                 Text("Stars Collected")
                 .fontWeight(.black)
                 HStack {
                     ForEach(0 ..< self.stars, id: \.self) { image in
-                        Image("star").resizable().frame(width: 13, height: 13)
+                    Image("star").resizable().frame(width: 13, height: 13)
                     }
-                }
+                 }
             }
         }
         .alert(isPresented: $alert) {

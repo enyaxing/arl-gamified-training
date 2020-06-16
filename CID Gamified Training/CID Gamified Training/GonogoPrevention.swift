@@ -114,10 +114,13 @@ struct GonogoPreventionMain: View {
                                     self.counter += 1
                                     self.correct = false
                                     self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
-                                    if self.lives == 0 {
+                                    if self.stars == 0 {
                                         self.dead = true
                                         self.stopped = true
                                     }
+                            }
+                            if self.counter % 5 == 0 {
+                                self.rows -= 1
                             }
                             self.folder = Int.random(in: 0...1)
                                 self.index = Int.random(in: 0..<self.models[self.folder].count)
@@ -155,10 +158,13 @@ struct GonogoPreventionMain: View {
                         self.counter += 1
                         self.correct = false
                         self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
-                        if self.lives == 0 {
+                        if self.stars == 0 {
                             self.dead = true
                             self.stopped = true
                         }
+                    }
+                    if self.counter % 5 == 0 {
+                        self.rows -= 1
                     }
                     self.folder = Int.random(in: 0...1)
                     self.index = Int.random(in: 0..<self.models[self.folder].count)
@@ -172,25 +178,16 @@ struct GonogoPreventionMain: View {
             }
 
             Spacer()
-
+            
             VStack {
                 Text("Stars Remaining")
                 .fontWeight(.black)
-                ForEach(0 ..< self.rows - 1) { row in
-                    HStack {
-                        ForEach(0 ..< 5, id: \.self) { image in
-                            Image("star").resizable().frame(width: 30, height: 30)
-                                }
+                HStack {
+                    ForEach(0 ..< self.stars, id: \.self) { image in
+                        Image("star").resizable().frame(width: 13, height: 13)
                             }
+                        }
                     }
-                // last row
-                    HStack {
-                        ForEach(0 ..< abs(5 - self.counter), id: \.self) { image in
-                            Image("star").resizable().frame(width: 30, height: 30)
-                            }
-                    }
-                }
-
         }
         .alert(isPresented: $dead) {
             Alert(title: Text("You Lose!"), message: Text("You have no stars remaining."), dismissButton: .default(Text("Quit"), action: {

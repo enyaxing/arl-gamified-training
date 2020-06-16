@@ -16,8 +16,10 @@ struct PlusZero: View {
                 Text("Wrong! Try Again")
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                    .offset(y: 40)
                 LottieView(filename: "sad", playing: $playing)
                     .frame(width: 50, height: 50)
+                    .offset(y: 40)
             }
             HStack {
              LottieView(filename: "blackplus", playing: $playing)
