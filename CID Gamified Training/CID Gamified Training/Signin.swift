@@ -16,6 +16,7 @@ struct Signin: View {
     @State var show = false
     @State var signup = false
     @State var invalid = false
+    @State var error = ""
     
     var body: some View {
         
@@ -47,7 +48,7 @@ struct Signin: View {
                 }
             }
         }.alert(isPresented: $invalid) {
-        Alert(title: Text("Invalid"), message: Text("Invalid password or username."), dismissButton: .default(Text("Dismiss"), action: {
+            Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
             self.invalid = false
         })
         )
@@ -58,15 +59,15 @@ struct Signin: View {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
                 self.show = false
+                self.error = error?.localizedDescription ?? ""
                 self.invalid = true
+                
             } else {
                 self.show = true
             }
         }
     }
 }
-
-
 
 struct Signin_Previews: PreviewProvider {
     static var previews: some View {

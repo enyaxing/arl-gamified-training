@@ -15,6 +15,8 @@ struct Signup: View {
     @State var email: String = ""
     @State var password: String = ""
     @Binding var show: Bool
+    @State var invalid = false
+    @State var error = ""
     
     var body: some View {
         NavigationView {
@@ -32,14 +34,20 @@ struct Signup: View {
                     }
                 }.navigationBarTitle("Sign Up")
             }
+        } .alert(isPresented: $invalid) {
+            Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
+            self.invalid = false
+        })
+        )
         }
     }
     
     func createUser(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error != nil {
-                print(error?.localizedDescription ?? "")
                 self.show = false
+                self.error = error?.localizedDescription ?? ""
+                self.invalid = true
             } else {
                 self.show = true
             }
