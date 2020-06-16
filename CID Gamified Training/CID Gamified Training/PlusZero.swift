@@ -17,18 +17,18 @@ struct PlusZero: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .offset(y: 40)
-                LottieView(filename: "sad", playing: $playing)
+                LottieView(fileName: "sad", playing: $playing)
                     .frame(width: 50, height: 50)
                     .offset(y: 40)
             }
             HStack {
-             LottieView(filename: "blackplus", playing: $playing)
+             LottieView(fileName: "blackplus", playing: $playing)
              .frame(width: 200, height: 200)
              .offset(x: 140)
-             LottieView(filename: "0", playing: $playing)
+             LottieView(fileName: "0", playing: $playing)
              .frame(width: 160, height: 150)
-             .offset(x: 50)
-             LottieView(filename: "star1", playing: $playing)
+             .offset(x: 60)
+             LottieView(fileName: "star1", playing: $playing)
              .frame(width: 400, height: 400)
              .offset(x: -90)
             }

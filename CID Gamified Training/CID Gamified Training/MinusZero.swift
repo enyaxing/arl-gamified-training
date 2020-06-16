@@ -18,18 +18,18 @@ struct MinusZero: View {
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
                 .offset(y: 40)
-                LottieView(filename: "happy", playing: $playing)
+                LottieView(fileName: "happy", playing: $playing)
                 .frame(width: 50, height: 50)
                 .offset(y: 40)
             }
             HStack {
-             LottieView(filename: "minus", playing: $playing)
+             LottieView(fileName: "minus", playing: $playing)
              .frame(width: 80, height: 80)
              .offset(x: 140)
-             LottieView(filename: "0", playing: $playing)
+             LottieView(fileName: "0", playing: $playing)
              .frame(width: 160, height: 150)
-             .offset(x: 100)
-             LottieView(filename: "star1", playing: $playing)
+             .offset(x: 120)
+             LottieView(fileName: "star1", playing: $playing)
              .frame(width: 400, height: 400)
              .offset(x: -30)
             }

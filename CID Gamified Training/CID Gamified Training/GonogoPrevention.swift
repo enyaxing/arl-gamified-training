@@ -1,3 +1,4 @@
+  
 //
 //  GonogoPrevention.swift
 //  CID Gamified Training
@@ -5,7 +6,6 @@
 //  Created by Alex on 6/11/20.
 //  Copyright © 2020 Alex. All rights reserved.
 //
-
 import SwiftUI
 
 struct GonogoPrevention: View {
@@ -89,7 +89,7 @@ struct GonogoPreventionMain: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .onReceive(timer) { _ in
-                        if self.timeRemaining > 0 && !self.stopped {
+                        if self.timeRemaining > 0 && !self.stopped && !self.feedback {
                                 self.timeRemaining -= 1
                             } else if !self.stopped{
                                 self.timeRemaining = 3

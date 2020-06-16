@@ -1,3 +1,4 @@
+  
 //
 //  PlusOne.swift
 //  CID Gamified Training
@@ -5,7 +6,6 @@
 //  Created by Christine Lou on 6/15/20.
 //  Copyright © 2020 Alex. All rights reserved.
 //
-
 import SwiftUI
 
 struct CheckMark: View {
@@ -17,11 +17,11 @@ struct CheckMark: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.top)
-                    LottieView(filename: "happy", playing: $playing)
+                    LottieView(fileName: "happy", playing: $playing)
                        .frame(width: 50, height: 50)
                    }
                    HStack {
-                    LottieView(filename: "correct", playing: $playing)
+                    LottieView(fileName: "correct", playing: $playing)
                     .frame(width: 400, height: 400)
                         .background(Color.green)
                    }
