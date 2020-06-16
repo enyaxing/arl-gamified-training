@@ -85,7 +85,9 @@ struct GonogoNeutralMain: View {
                     .fontWeight(.bold)
                     .onReceive(timer) { _ in
                         if self.timeRemaining > 0 && !self.stopped {
-                            if !self.feedback {
+                            if self.feedback {
+                                self.timeRemaining -= 0
+                            } else {
                                 self.timeRemaining -= 1
                             }
                         } else if !self.stopped {
