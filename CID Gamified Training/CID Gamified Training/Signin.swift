@@ -14,12 +14,16 @@ struct Signin: View {
     @State var email: String = ""
     @State var password: String = ""
     @State var show = false
+    @State var signup = false
+    @State var invalid = false
     
     var body: some View {
         
         Group {
             if show {
                 ContentView()
+            } else if signup {
+                Signup(show: $show)
             } else {
                 NavigationView {
                     VStack {
@@ -33,18 +37,28 @@ struct Signin: View {
                             }) {
                                 Text("Sign in")
                             }
+                            Button(action: {
+                                self.signup = true
+                            }) {
+                                Text("New User? Sign up Here!")
+                            }
                         }.navigationBarTitle("Sign in")
                     }
                 }
             }
+        }.alert(isPresented: $invalid) {
+        Alert(title: Text("Invalid"), message: Text("Invalid password or username."), dismissButton: .default(Text("Dismiss"), action: {
+            self.invalid = false
+        })
+        )
         }
     }
     
     func login(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
-                print(error?.localizedDescription ?? "")
                 self.show = false
+                self.invalid = true
             } else {
                 self.show = true
             }
