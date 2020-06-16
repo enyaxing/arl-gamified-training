@@ -137,7 +137,7 @@
 		981E891B2492B94D001A2B1A /* plus-one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "plus-one.json"; sourceTree = "<group>"; };
 		981E89252492BBDF001A2B1A /* blackplus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blackplus.json; sourceTree = "<group>"; };
 		984B84792498179C00C4F080 /* star.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star.json; sourceTree = "<group>"; };
-		984B847B249818E200C4F080 /* PlusOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusOne.swift; sourceTree = "<group>"; };
+		984B847B249818E200C4F080 /* PlusOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlusOne.swift; path = "CID Gamified Training/PlusOne.swift"; sourceTree = SOURCE_ROOT; };
 		984B847D249818EF00C4F080 /* PlusZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlusZero.swift; path = "CID Gamified Training/PlusZero.swift"; sourceTree = SOURCE_ROOT; };
 		984B847F249818FC00C4F080 /* MinusZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MinusZero.swift; path = "CID Gamified Training/MinusZero.swift"; sourceTree = SOURCE_ROOT; };
 		984B84812498190400C4F080 /* MinusOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MinusOne.swift; path = "CID Gamified Training/MinusOne.swift"; sourceTree = SOURCE_ROOT; };

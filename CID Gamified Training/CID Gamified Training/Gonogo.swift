@@ -105,9 +105,6 @@ struct GonogoMain: View {
                                     self.correct = false
                                     self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                             }
-                            if self.stars % 5 == 0 {
-                                self.rows += 1
-                            }
                             self.folder = Int.random(in: 0...1)
                             self.index = Int.random(in: 0..<self.models[self.folder].count)
                             self.feedback = true
@@ -143,9 +140,6 @@ struct GonogoMain: View {
                     } else {
                         self.correct = false
                         self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
-                    }
-                    if self.stars % 5 == 0 {
-                        self.rows += 1
                     }
                     self.folder = Int.random(in: 0...1)
                     self.index = Int.random(in: 0..<self.models[self.folder].count)

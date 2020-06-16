@@ -109,7 +109,6 @@ struct TrainingMain: View {
                         if self.folder == 0 {
                             self.points += 1
                             self.stars += 1
-                            self.counter += 1
                             self.correct = true
                             self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                         } else {
@@ -131,7 +130,6 @@ struct TrainingMain: View {
                         if self.folder == 1 {
                             self.points += 1
                             self.stars += 1
-                            self.counter += 1
                             self.correct = true
                             self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
                         } else {

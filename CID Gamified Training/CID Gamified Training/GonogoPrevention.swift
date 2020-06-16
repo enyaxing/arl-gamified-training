@@ -105,16 +105,12 @@ struct GonogoPreventionMain: View {
                                     self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                                 } else {
                                     self.stars -= 1
-                                    self.counter += 1
                                     self.correct = false
                                     self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                                     if self.stars == 0 {
                                         self.dead = true
                                         self.stopped = true
                                     }
-                            }
-                            if self.counter % 5 == 0 {
-                                self.rows -= 1
                             }
                             self.folder = Int.random(in: 0...1)
                                 self.index = Int.random(in: 0..<self.models[self.folder].count)
@@ -149,16 +145,12 @@ struct GonogoPreventionMain: View {
                         self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
                     } else {
                         self.stars -= 1
-                        self.counter += 1
                         self.correct = false
                         self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
                         if self.stars == 0 {
                             self.dead = true
                             self.stopped = true
                         }
-                    }
-                    if self.counter % 5 == 0 {
-                        self.rows -= 1
                     }
                     self.folder = Int.random(in: 0...1)
                     self.index = Int.random(in: 0..<self.models[self.folder].count)
