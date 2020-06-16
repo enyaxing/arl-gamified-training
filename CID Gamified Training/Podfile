@@ -8,6 +8,7 @@ target 'CID Gamified Training' do
   # Pods for CID Gamified Training
   pod 'Firebase/Auth'
   pod 'Firebase/Analytics'
+  pod 'Surge', '~> 2.3.0'
 
   target 'CID Gamified TrainingTests' do
     inherit! :search_paths
@@ -17,5 +18,4 @@ target 'CID Gamified Training' do
   target 'CID Gamified TrainingUITests' do
     # Pods for testing
   end
-
 end

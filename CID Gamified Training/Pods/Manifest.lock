@@ -73,10 +73,12 @@ PODS:
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.9)
+  - Surge (2.3.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
+  - Surge (~> 2.3.0)
 
 SPEC REPOS:
   trunk:
@@ -93,6 +95,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - nanopb
     - PromisesObjC
+    - Surge
 
 SPEC CHECKSUMS:
   Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
@@ -108,7 +111,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
+  Surge: 13979cd9593e943f9ce1202439da2999ea57e46d
 
-PODFILE CHECKSUM: 12b28352e7e242a5b2cbe582f27498f45245a2b9
+PODFILE CHECKSUM: a30fad8bcc7d56dbd551dc013417da228d50b370
 
 COCOAPODS: 1.9.3
