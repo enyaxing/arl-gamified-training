@@ -164,16 +164,16 @@ struct GonogoPreventionMain: View {
             }
 
             Spacer()
-            
-            VStack {
-                Text("Stars Remaining")
-                .fontWeight(.black)
-                HStack {
-                    ForEach(0 ..< self.stars, id: \.self) { image in
-                        Image("star").resizable().frame(width: 13, height: 13)
-                            }
-                        }
-                    }
+            HStack {
+                Text("Stars Remaining  ")
+                    .fontWeight(.black)
+                    .font(.largeTitle)
+                Text("\(self.stars)")
+                    .fontWeight(.black)
+                    .font(.largeTitle)
+                Image("star").resizable().frame(width: 40, height: 40)
+                    .aspectRatio(contentMode: .fit)
+            }
         }
         .alert(isPresented: $dead) {
             Alert(title: Text("You Lose!"), message: Text("You have no stars remaining."), dismissButton: .default(Text("Quit"), action: {
