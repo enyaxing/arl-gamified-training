@@ -283,7 +283,7 @@ struct Question: View {
         
         return scores
     }
-
+}
 
 struct RadioButtons: View {
     @Binding var curResponse: Int
