@@ -7,7 +7,7 @@
 //
 import SwiftUI
 
-struct Training: View {
+struct TrainingNeutral: View {
 
     /** Show summary view. */
     @State var summary = false
@@ -23,13 +23,13 @@ struct Training: View {
             if self.summary {
                 Summary(answers: answers, back: $back)
             } else {
-                TrainingMain(summary: $summary, answers: $answers)
+                TrainingNeutralMain(summary: $summary, answers: $answers)
             }
             } .navigationBarBackButtonHidden(back)
     }
 }
 
-struct TrainingMain: View {
+struct TrainingNeutralMain: View {
 
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = 0
@@ -51,9 +51,6 @@ struct TrainingMain: View {
 
     /** Is question correct? */
     @State var correct = true
-
-    /** Number of stars. */
-    @State var stars = 0
 
     /** Show summary. */
     @Binding var summary: Bool
@@ -99,7 +96,6 @@ struct TrainingMain: View {
                     if !self.stopped && !self.feedback {
                         if self.folder == 0 {
                             self.points += 1
-                            self.stars += 1
                             self.correct = true
                             self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                         } else {
@@ -126,7 +122,6 @@ struct TrainingMain: View {
                     if !self.stopped && !self.feedback {
                         if self.folder == 1 {
                             self.points += 1
-                            self.stars += 1
                             self.correct = true
                             self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
                         } else {
@@ -150,16 +145,6 @@ struct TrainingMain: View {
                 Spacer()
             }
             Spacer()
-             HStack {
-                Text("Stars Collected    ")
-                .fontWeight(.black)
-                .font(.largeTitle)
-                Text("\(self.stars)")
-                .fontWeight(.black)
-                .font(.largeTitle)
-                Image("star").resizable().frame(width: 40, height: 40)
-                .aspectRatio(contentMode: .fit)
-                }
         }
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
@@ -171,8 +156,8 @@ struct TrainingMain: View {
     }
 }
 
-struct Training_Previews: PreviewProvider {
+struct TrainingNeutral_Previews: PreviewProvider {
     static var previews: some View {
-        Training(back: ContentView().$back)
+        TrainingNeutral(back: ContentView().$back)
     }
 }

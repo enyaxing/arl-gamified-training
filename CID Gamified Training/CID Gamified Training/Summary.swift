@@ -32,6 +32,7 @@ struct Summary: View {
                         .foregroundColor(Color.red)
                 } else {
                     Text("Correct: \(countCorrect(answer: answers))")
+                        .fontWeight(.bold)
                         .foregroundColor(Color.green)
                     Text("Incorrect: \(incorrect(answer: answers))")
                         .fontWeight(.bold)
@@ -44,7 +45,7 @@ struct Summary: View {
                 }
             }
         }
-        .navigationBarTitle("Summary")
+        .navigationBarTitle("")
     }
 }
 
