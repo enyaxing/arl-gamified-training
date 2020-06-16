@@ -79,10 +79,12 @@ struct ContentView: View {
                         .cornerRadius(20)
                 }
                 Spacer()
-                Text(self.regular)
+                NavigationLink(destination: Focus(regular: $regular)) {
+                    Text(self.regular)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(20)
+                }
             }
             .background(Image("background"))
         }

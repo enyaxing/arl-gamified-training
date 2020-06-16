@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct XMark: View {
-      @Binding var playing: Bool
+    @Binding var playing: Bool
     var body: some View {
         VStack {
             HStack {
