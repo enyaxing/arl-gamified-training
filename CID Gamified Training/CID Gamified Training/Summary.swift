@@ -12,15 +12,32 @@ struct Summary: View {
     var answers: [Answer]
     
     @Binding var back: Bool
+    
+    let regular = focus(defaults: UserDefaults.standard)
 
     var body: some View {
         VStack {
             Text("Summary")
                 .font(.largeTitle)
                 .fontWeight(.black)
-            Text("Correct: \(countCorrect(answer: answers))")
-            Text("Incorrect: \(incorrect(answer: answers))")
-            Text("Percentage: \(percentage(answer: answers), specifier: "%.2f")%")
+            
+            Group {
+                if regular == "promotion" {
+                    Text("Correct: \(countCorrect(answer: answers))/\(answers.count)")
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.green)
+                } else if regular == "prevention" {
+                    Text("Incorrect: \(incorrect(answer: answers))/\(answers.count)")
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.red)
+                } else {
+                    Text("Correct: \(countCorrect(answer: answers))")
+                        .foregroundColor(Color.green)
+                    Text("Incorrect: \(incorrect(answer: answers))")
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.red)
+                }
+            }
             List(self.answers, id: \.id) { answer in
                 NavigationLink(destination: SummaryDetail(answer: answer, back: self.$back)) {
                     SummaryRow(answer: answer)
