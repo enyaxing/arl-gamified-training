@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		666F71C0177B1DCC85E24CED /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F854BE26425E61C2BBB45051 /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework */; };
 		981E891D2492B94D001A2B1A /* 1.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89172492B94D001A2B1A /* 1.json */; };
 		981E891F2492B94D001A2B1A /* greenplus.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89192492B94D001A2B1A /* greenplus.json */; };
 		981E89202492B94D001A2B1A /* 0.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E891A2492B94D001A2B1A /* 0.json */; };
@@ -85,6 +86,8 @@
 		985F578024918E630087D44B /* sad.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F577F24918E630087D44B /* sad.json */; };
 		98A031E5248ED60900239274 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 98A031E4248ED60900239274 /* .swiftlint.yml */; };
 		C54576202497486B0053C09D /* calculation.py in Resources */ = {isa = PBXBuildFile; fileRef = C545761F2497486B0053C09D /* calculation.py */; };
+		D663760F1D1D0ABC58CC2D16 /* Pods_CID_Gamified_Training.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */; };
+		D83DA4B420C1CCB6F1F8311D /* Pods_CID_Gamified_TrainingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */; };
 		FA33666724926B1A004D96DB /* TrainingPrevention.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33666624926B1A004D96DB /* TrainingPrevention.swift */; };
 		FA33666924926B28004D96DB /* GonogoPrevention.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33666824926B28004D96DB /* GonogoPrevention.swift */; };
 		FA33666B24926C29004D96DB /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33666A24926C29004D96DB /* Summary.swift */; };
@@ -108,6 +111,9 @@
 		FAEFD8C9249914B8004FA58B /* CheckMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8C8249914B8004FA58B /* CheckMark.swift */; };
 		FAEFD8CB249914C3004FA58B /* XMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8CA249914C3004FA58B /* XMark.swift */; };
 		FAEFD8CD249916FA004FA58B /* Focus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8CC249916FA004FA58B /* Focus.swift */; };
+		FAEFD8CF24991D98004FA58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */; };
+		FAEFD8D124992B0E004FA58B /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8D024992B0E004FA58B /* Signup.swift */; };
+		FAEFD8D324993097004FA58B /* Signin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8D224993097004FA58B /* Signin.swift */; };
 		FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B112493F386006CF82A /* SummaryRow.swift */; };
 		FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B132493F3B9006CF82A /* SummaryDetail.swift */; };
 		FAF40B162493F3CB006CF82A /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B152493F3CB006CF82A /* Answer.swift */; };
@@ -136,6 +142,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A072E26B06846B8808B17AD /* Pods-CID Gamified Training-CID Gamified TrainingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training-CID Gamified TrainingUITests.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4BA07CF9C67D9CD254514D71 /* Pods-CID Gamified TrainingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified TrainingTests.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified TrainingTests/Pods-CID Gamified TrainingTests.release.xcconfig"; sourceTree = "<group>"; };
+		614D84461AF81BEA1A359CAD /* Pods-CID Gamified Training.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training.debug.xcconfig"; sourceTree = "<group>"; };
+		694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CID_Gamified_Training.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CID_Gamified_TrainingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		981E89172492B94D001A2B1A /* 1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 1.json; sourceTree = "<group>"; };
 		981E89192492B94D001A2B1A /* greenplus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = greenplus.json; sourceTree = "<group>"; };
 		981E891A2492B94D001A2B1A /* 0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 0.json; sourceTree = "<group>"; };
@@ -212,7 +223,11 @@
 		985F577D24918DA80087D44B /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
 		985F577F24918E630087D44B /* sad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sad.json; sourceTree = "<group>"; };
 		98A031E4248ED60900239274 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		AC257A6E2836F63691C0FAE8 /* Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training.release.xcconfig"; sourceTree = "<group>"; };
 		C545761F2497486B0053C09D /* calculation.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = calculation.py; sourceTree = "<group>"; };
+		CA6FEA425998A184252E3E11 /* Pods-CID Gamified TrainingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified TrainingTests.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified TrainingTests/Pods-CID Gamified TrainingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F854BE26425E61C2BBB45051 /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA33666624926B1A004D96DB /* TrainingPrevention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPrevention.swift; sourceTree = "<group>"; };
 		FA33666824926B28004D96DB /* GonogoPrevention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GonogoPrevention.swift; sourceTree = "<group>"; };
 		FA33666A24926C29004D96DB /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
@@ -242,6 +257,9 @@
 		FAEFD8C8249914B8004FA58B /* CheckMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMark.swift; sourceTree = "<group>"; };
 		FAEFD8CA249914C3004FA58B /* XMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMark.swift; sourceTree = "<group>"; };
 		FAEFD8CC249916FA004FA58B /* Focus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focus.swift; sourceTree = "<group>"; };
+		FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FAEFD8D024992B0E004FA58B /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		FAEFD8D224993097004FA58B /* Signin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signin.swift; sourceTree = "<group>"; };
 		FAF40B112493F386006CF82A /* SummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRow.swift; sourceTree = "<group>"; };
 		FAF40B132493F3B9006CF82A /* SummaryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetail.swift; sourceTree = "<group>"; };
 		FAF40B152493F3CB006CF82A /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = "CID Gamified Training/Answer.swift"; sourceTree = SOURCE_ROOT; };
@@ -258,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				985F5706249182F10087D44B /* Lottie in Frameworks */,
+				D663760F1D1D0ABC58CC2D16 /* Pods_CID_Gamified_Training.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +284,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D83DA4B420C1CCB6F1F8311D /* Pods_CID_Gamified_TrainingTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,12 +292,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				666F71C0177B1DCC85E24CED /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5678E027EEA9ED43C7E7560B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */,
+				F854BE26425E61C2BBB45051 /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework */,
+				94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56EC43024CD540961ABEE83F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				614D84461AF81BEA1A359CAD /* Pods-CID Gamified Training.debug.xcconfig */,
+				BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */,
+				AC257A6E2836F63691C0FAE8 /* Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig */,
+				3A072E26B06846B8808B17AD /* Pods-CID Gamified Training-CID Gamified TrainingUITests.release.xcconfig */,
+				CA6FEA425998A184252E3E11 /* Pods-CID Gamified TrainingTests.debug.xcconfig */,
+				4BA07CF9C67D9CD254514D71 /* Pods-CID Gamified TrainingTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		985F5707249184140087D44B /* TestAnimations */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +418,8 @@
 				FA360E8B248E7B9600F77C7B /* CID Gamified TrainingTests */,
 				FA360E96248E7B9600F77C7B /* CID Gamified TrainingUITests */,
 				FA360E73248E7B9300F77C7B /* Products */,
+				56EC43024CD540961ABEE83F /* Pods */,
+				5678E027EEA9ED43C7E7560B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -413,9 +459,11 @@
 				FAEFD8C8249914B8004FA58B /* CheckMark.swift */,
 				FAEFD8CA249914C3004FA58B /* XMark.swift */,
 				FAF40B152493F3CB006CF82A /* Answer.swift */,
+				FAEFD8CC249916FA004FA58B /* Focus.swift */,
 				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
 				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
 				FA360E83248E7B9500F77C7B /* Info.plist */,
+				FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */,
 				FAF922C22497BBC400F3EA80 /* ImageLoader.swift */,
 				FAF922C42497BBD500F3EA80 /* Model.swift */,
 				FAF922CA2497BCA000F3EA80 /* ImageView.swift */,
@@ -423,7 +471,8 @@
 				FAF922C82497BC1700F3EA80 /* foe.txt */,
 				985F5707249184140087D44B /* TestAnimations */,
 				FA360E7D248E7B9500F77C7B /* Preview Content */,
-				FAEFD8CC249916FA004FA58B /* Focus.swift */,
+				FAEFD8D024992B0E004FA58B /* Signup.swift */,
+				FAEFD8D224993097004FA58B /* Signin.swift */,
 			);
 			path = "CID Gamified Training";
 			sourceTree = "<group>";
@@ -461,9 +510,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA360E9C248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified Training" */;
 			buildPhases = (
+				E57EE99EE135336F3A950ECE /* [CP] Check Pods Manifest.lock */,
 				FA360E6E248E7B9300F77C7B /* Sources */,
 				FA360E6F248E7B9300F77C7B /* Frameworks */,
 				FA360E70248E7B9300F77C7B /* Resources */,
+				F3876C2C3870F3C3376454B1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -481,6 +532,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA360E9F248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified TrainingTests" */;
 			buildPhases = (
+				065BA8676820AFCDAB7DDF91 /* [CP] Check Pods Manifest.lock */,
 				FA360E84248E7B9600F77C7B /* Sources */,
 				FA360E85248E7B9600F77C7B /* Frameworks */,
 				FA360E86248E7B9600F77C7B /* Resources */,
@@ -499,9 +551,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA360EA2248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified TrainingUITests" */;
 			buildPhases = (
+				DAFE9D8AAF16CAD7B6D6070A /* [CP] Check Pods Manifest.lock */,
 				FA360E8F248E7B9600F77C7B /* Sources */,
 				FA360E90248E7B9600F77C7B /* Frameworks */,
 				FA360E91248E7B9600F77C7B /* Resources */,
+				6468B137AC0E3D712BC29DB7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -629,6 +683,7 @@
 				985F574A249184150087D44B /* L.json in Resources */,
 				981E89262492BBE0001A2B1A /* blackplus.json in Resources */,
 				985F5770249184150087D44B /* setValueTest.json in Resources */,
+				FAEFD8CF24991D98004FA58B /* GoogleService-Info.plist in Resources */,
 				984B847A2498179C00C4F080 /* star.json in Resources */,
 				985F5765249184150087D44B /* LottieLogo2.json in Resources */,
 				985F5759249184150087D44B /* Colon.json in Resources */,
@@ -663,6 +718,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		065BA8676820AFCDAB7DDF91 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CID Gamified TrainingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6468B137AC0E3D712BC29DB7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAFE9D8AAF16CAD7B6D6070A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CID Gamified Training-CID Gamified TrainingUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E57EE99EE135336F3A950ECE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CID Gamified Training-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3876C2C3870F3C3376454B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FA360E6E248E7B9300F77C7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -679,9 +837,11 @@
 				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,
 				984B8480249818FC00C4F080 /* MinusZero.swift in Sources */,
 				FAF40B162493F3CB006CF82A /* Answer.swift in Sources */,
+				FAEFD8D324993097004FA58B /* Signin.swift in Sources */,
 				FAEFD8C5249911F6004FA58B /* TrainingNeutral.swift in Sources */,
 				FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */,
 				984B84932498615C00C4F080 /* PlusZero.swift in Sources */,
+				FAEFD8D124992B0E004FA58B /* Signup.swift in Sources */,
 				FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */,
 				FA360EAE248E807000F77C7B /* Question.swift in Sources */,
 				FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */,
@@ -856,11 +1016,12 @@
 		};
 		FA360E9D248E7B9600F77C7B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 614D84461AF81BEA1A359CAD /* Pods-CID Gamified Training.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
-				DEVELOPMENT_TEAM = NT6WD95XKF;
+				DEVELOPMENT_TEAM = BD9H74X3L8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -868,7 +1029,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -877,11 +1038,12 @@
 		};
 		FA360E9E248E7B9600F77C7B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
-				DEVELOPMENT_TEAM = NT6WD95XKF;
+				DEVELOPMENT_TEAM = BD9H74X3L8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -889,7 +1051,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -898,6 +1060,7 @@
 		};
 		FA360EA0248E7B9600F77C7B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA6FEA425998A184252E3E11 /* Pods-CID Gamified TrainingTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -921,6 +1084,7 @@
 		};
 		FA360EA1248E7B9600F77C7B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BA07CF9C67D9CD254514D71 /* Pods-CID Gamified TrainingTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -944,6 +1108,7 @@
 		};
 		FA360EA3248E7B9600F77C7B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC257A6E2836F63691C0FAE8 /* Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -965,6 +1130,7 @@
 		};
 		FA360EA4248E7B9600F77C7B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A072E26B06846B8808B17AD /* Pods-CID Gamified Training-CID Gamified TrainingUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
