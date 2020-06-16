@@ -212,79 +212,79 @@ struct Question: View {
         return (promotionScore, preventionScore)
     }
     
-    func calculate() ->[[Double]] {
-        var pre_cnt: Int
-        var pro_cnt: Int
-        
-        var pre: Double
-        var pro: Double
-        
-        let r1: Int = responses[0]!
-        let r2: Int = responses[1]!
-        let r3: Int = responses[2]!
-        let r4: Int = responses[3]!
-        let r5: Int = responses[4]!
-        let r6: Int = responses[5]!
-        let r7: Int = responses[6]!
-        let r8: Int = responses[7]!
-        let r9: Int = responses[8]!
-        let r10: Int = responses[9]!
-        let r11: Int = responses[10]!
-        
-        let B: Matrix<Double> = [1.565563, -0.502494, -0.112472, -6.720915, -2.630483, 1.413550, 0.676953, 0.641702, 0.282040]
-        
-        var T = 0.677422
-        
-        if pre_cnt == 6 {
-            pre = 3.0
-        } else {
-            pre = ((6 - r1) + r3 + r7 + (6 - r9) + r10 + (6 - r11)) / (6 - pre_cnt)
-        }
-        
-        if pro_cnt == 5 {
-            pro = 3.6
-        } else {
-            pro = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / (5 - pro_cnt)
-        }
-        
-        var MSE = 0.953010
-        
-        let iCovX: Matrix<Double> = [
-        [    0.8873,   -0.0740,   -0.1814,   -0.8873,   -0.8873,    0.0740,    0.1814,    0.0740,    0.1814],
-        [   -0.0740,    0.0494,   -0.0166,    0.0740,    0.0740,   -0.0494,    0.0166,   -0.0494,    0.0166],
-        [   -0.1814,   -0.0166,    0.0627,    0.1814,    0.1814,    0.0166,   -0.0627,    0.0166,   -0.0627],
-        [   -0.8873,    0.0740,    0.1814,    3.9430,    0.8873,   -0.3611,   -0.7339,   -0.0740,   -0.1814],
-        [   -0.8873,    0.0740,    0.1814,    0.8873,    2.7615,   -0.0740,   -0.1814,   -0.3327,   -0.4982],
-        [    0.0740,   -0.0494,    0.0166,   -0.3611,   -0.0740,    0.1104,    0.0048,    0.0494,   -0.0166],
-        [    0.1814,    0.0166,   -0.0627,   -0.7339,   -0.1814,    0.0048,    0.1923,   -0.0166,    0.0627],
-        [    0.0740,   -0.0494,    0.0166,   -0.0740,   -0.3327,    0.0494,   -0.0166,    0.1119,    0.0068],
-        [    0.1814,   0.0166 ,   -0.0627,   -0.1814,   -0.4982,   -0.0166,    0.0627,    0.0068,    0.1342 ]]
-        
-        var scores: [[Double]] = [
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0]]
-        
-        var X0: Matrix<Double> = [1, pre, pro, 0, 1, 0, 0, pre, pro]
-        temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
-        scores[0][0] = transpose(X0) * B
-        scores[0][1] = csores[0][0] - temp
-        scores[0][2] = scores[0][0] + temp
-        
-        var X1: Matrix<Double> = [ 1, pre, pro, 1, 0, pre, pro, 0, 0]
-        temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
-        scores[1][0] = transpose(X1) * B
-        scores[1][1] = scores[1][0] - temp
-        scores[1][2] = scores [1][0] + temp
-        
-        var X2: Matrix<Double> = [1, pre, pro, 0, 0, 0, 0, 0, 0]
-        temp = T * sqrt(MSE * (1 + transpose(X2) * (iCovX * X0)))
-        scores[2][0] = transpose(X0) * B
-        scores[2][1] = scores[2][0] - temp
-        scores[2][2] = scores [2][0] + temp
-        
-        return scores
-    }
+//    func calculate() ->[[Double]] {
+//        var pre_cnt: Int
+//        var pro_cnt: Int
+//        
+//        var pre: Double
+//        var pro: Double
+//        
+//        let r1: Int = responses[0]!
+//        let r2: Int = responses[1]!
+//        let r3: Int = responses[2]!
+//        let r4: Int = responses[3]!
+//        let r5: Int = responses[4]!
+//        let r6: Int = responses[5]!
+//        let r7: Int = responses[6]!
+//        let r8: Int = responses[7]!
+//        let r9: Int = responses[8]!
+//        let r10: Int = responses[9]!
+//        let r11: Int = responses[10]!
+//        
+//        let B: Matrix<Double> = [1.565563, -0.502494, -0.112472, -6.720915, -2.630483, 1.413550, 0.676953, 0.641702, 0.282040]
+//        
+//        var T = 0.677422
+//        
+//        if pre_cnt == 6 {
+//            pre = 3.0
+//        } else {
+//            pre = ((6 - r1) + r3 + r7 + (6 - r9) + r10 + (6 - r11)) / (6 - pre_cnt)
+//        }
+//        
+//        if pro_cnt == 5 {
+//            pro = 3.6
+//        } else {
+//            pro = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / (5 - pro_cnt)
+//        }
+//        
+//        var MSE = 0.953010
+//        
+//        let iCovX: Matrix<Double> = [
+//        [    0.8873,   -0.0740,   -0.1814,   -0.8873,   -0.8873,    0.0740,    0.1814,    0.0740,    0.1814],
+//        [   -0.0740,    0.0494,   -0.0166,    0.0740,    0.0740,   -0.0494,    0.0166,   -0.0494,    0.0166],
+//        [   -0.1814,   -0.0166,    0.0627,    0.1814,    0.1814,    0.0166,   -0.0627,    0.0166,   -0.0627],
+//        [   -0.8873,    0.0740,    0.1814,    3.9430,    0.8873,   -0.3611,   -0.7339,   -0.0740,   -0.1814],
+//        [   -0.8873,    0.0740,    0.1814,    0.8873,    2.7615,   -0.0740,   -0.1814,   -0.3327,   -0.4982],
+//        [    0.0740,   -0.0494,    0.0166,   -0.3611,   -0.0740,    0.1104,    0.0048,    0.0494,   -0.0166],
+//        [    0.1814,    0.0166,   -0.0627,   -0.7339,   -0.1814,    0.0048,    0.1923,   -0.0166,    0.0627],
+//        [    0.0740,   -0.0494,    0.0166,   -0.0740,   -0.3327,    0.0494,   -0.0166,    0.1119,    0.0068],
+//        [    0.1814,   0.0166 ,   -0.0627,   -0.1814,   -0.4982,   -0.0166,    0.0627,    0.0068,    0.1342 ]]
+//        
+//        var scores: [[Double]] = [
+//        [0, 0, 0],
+//        [0, 0, 0],
+//        [0, 0, 0]]
+//        
+//        var X0: Matrix<Double> = [1, pre, pro, 0, 1, 0, 0, pre, pro]
+//        temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
+//        scores[0][0] = transpose(X0) * B
+//        scores[0][1] = csores[0][0] - temp
+//        scores[0][2] = scores[0][0] + temp
+//        
+//        var X1: Matrix<Double> = [ 1, pre, pro, 1, 0, pre, pro, 0, 0]
+//        temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
+//        scores[1][0] = transpose(X1) * B
+//        scores[1][1] = scores[1][0] - temp
+//        scores[1][2] = scores [1][0] + temp
+//        
+//        var X2: Matrix<Double> = [1, pre, pro, 0, 0, 0, 0, 0, 0]
+//        temp = T * sqrt(MSE * (1 + transpose(X2) * (iCovX * X0)))
+//        scores[2][0] = transpose(X0) * B
+//        scores[2][1] = scores[2][0] - temp
+//        scores[2][2] = scores [2][0] + temp
+//        
+//        return scores
+//    }
 }
 
 struct RadioButtons: View {
