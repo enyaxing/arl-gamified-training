@@ -56,9 +56,6 @@ struct TrainingMain: View {
     /** Number of stars. */
     @State var stars = 0
 
-    /** Counter. */
-    @State var counter = 0
-
     /** Show summary. */
     @Binding var summary: Bool
 

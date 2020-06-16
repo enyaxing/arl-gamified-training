@@ -57,9 +57,6 @@ struct GonogoMain: View {
     
     /** Number of stars. */
     @State var stars = 0
-
-    /** Counter. */
-    @State var rows = 0
     
     /** Show summary. */
     @Binding var summary: Bool

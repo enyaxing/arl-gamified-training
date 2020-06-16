@@ -62,12 +62,6 @@ struct GonogoPreventionMain: View {
     /** Number of stars. */
     @State var stars = 20
 
-    /** Counter. */
-    @State var counter = 0
-
-    /** Number of rows. */
-    @State var rows = 4
-
     /** Show summary. */
     @Binding var summary: Bool
 
