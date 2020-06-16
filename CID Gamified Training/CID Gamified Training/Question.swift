@@ -105,8 +105,7 @@ struct Question: View {
             case .alreadyCompletedAlert:
                 return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
             case .showFinishedAlert:
-                let (promotionScore, preventionScore) = getScore()
-                return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
+                return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your focus type is: \(self.regular)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
             case .noAnswerSelectedAlert:
                 return Alert(title: Text("Error"), message: Text("Please select an answer choice to continue"), dismissButton: .default(Text("Okay")))
                 
@@ -175,26 +174,46 @@ struct Question: View {
     /** Checks if we have finished the quiz. */
     func isCompleted() -> Bool{
            if questionCount == (questions.count - 1){
-                let promotion = "promotion"
-                let prevention = "prevention"
-                let equal = "equal"
-                let (promotionScore, preventionScore) = getScore()
-            
-                if promotionScore > preventionScore {
-                    defaults.set(promotion, forKey: "focus")
-                } else if promotionScore < preventionScore{
-                    defaults.set(prevention, forKey: "focus")
-                } else {
-                    defaults.set(equal, forKey: "focus")
-                }
-                print(responses)
-                self.regular = focus(defaults: defaults)
+                analyzeScore()
                 return true
            }
            return false
     }
 
-    func getScore() -> (Int, Int) {
+    /** Calculates which regulatory focus type will be most beneficial to the user. Returns the type as either preventino, promotion, or equal. */
+    func analyzeScore() -> String {
+        let (pre, pro) = calculateScore()
+        let scores: [[Double]] = calculateIntervals(pre, pro)
+        
+        let promotion = abs(scores[0][0])
+        let prevention = abs(scores[1][0])
+        let control = abs(scores[2][0])
+        
+        let minVal = min(prevention, promotion, control)
+        var selected: String
+        if  minVal == prevention {
+            selected = "prevention"
+        } else if minVal == promotion {
+            selected = "promotion"
+        } else {
+            selected = "equal"
+        }
+        
+        defaults.set(selected, forKey: "focus")
+        self.regular = focus(defaults: defaults)
+        
+        return selected
+    }
+    
+    /** Heuristic from Dr. Benjamin Files. Modified from Python to Swift.
+            Outputs: Prevention score, promotion score, confidence interval array
+     */
+    func calculateScore() -> (Double, Double) {
+        /** Response for prevention: 1.0, promotion: 5.0 score: [5, 1, 1, 1, 5, 1, 1, 1, 5, 1, 5]*/
+        /** Response for prevention: 5.0, promotion: 1.0 score: [1, 5, 5, 5, 1, 5, 5, 5, 1, 5, 1]*/
+        var pre: Double
+        var pro: Double
+        
         let r1: Int = responses[0]!
         let r2: Int = responses[1]!
         let r3: Int = responses[2]!
@@ -207,84 +226,94 @@ struct Question: View {
         let r10: Int = responses[9]!
         let r11: Int = responses[10]!
         
-        let promotionScore = ((6 - r1) + r3 + r7 + (6 - r9) + r10 + (6 - r11)) / 6
-        let preventionScore = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / 5
-        return (promotionScore, preventionScore)
-    }
-    
-//    func calculate() ->[[Double]] {
-//        var pre_cnt: Int
-//        var pro_cnt: Int
-//        
-//        var pre: Double
-//        var pro: Double
-//        
-//        let r1: Int = responses[0]!
-//        let r2: Int = responses[1]!
-//        let r3: Int = responses[2]!
-//        let r4: Int = responses[3]!
-//        let r5: Int = responses[4]!
-//        let r6: Int = responses[5]!
-//        let r7: Int = responses[6]!
-//        let r8: Int = responses[7]!
-//        let r9: Int = responses[8]!
-//        let r10: Int = responses[9]!
-//        let r11: Int = responses[10]!
-//        
-//        let B: Matrix<Double> = [1.565563, -0.502494, -0.112472, -6.720915, -2.630483, 1.413550, 0.676953, 0.641702, 0.282040]
-//        
-//        var T = 0.677422
-//        
+
+
+//        for i in 0..<response_values.count {
+//            if response[i] == 0 {
+//                if [0, 1, 3,5, 7, 8, 10].contains(i) {
+//                    response_values[i] = 6
+//                }
+//                if i in [0, 2, 6, 8, 9, 10] {
+//                    pre_cnt += 1
+//                } else {
+//                    pro_cnt += 1
+//                }
+//            }
+//        }
+        
 //        if pre_cnt == 6 {
 //            pre = 3.0
 //        } else {
-//            pre = ((6 - r1) + r3 + r7 + (6 - r9) + r10 + (6 - r11)) / (6 - pre_cnt)
+//            let part1: Int = (6 - r1) + r3 + r7
+//            let part2: Int = (6 - r9) + r10 + (6 - r11)
+//            pre = Double((part1 + part2) / (6))
 //        }
-//        
+        
+        let pre_part1: Double = Double((6 - r1) + r3 + r7)
+        let pre_part2: Double = Double((6 - r9) + r10 + (6 - r11))
+        pre = (pre_part1 + pre_part2) / (6)
+        
+        let pro_part1: Double = Double((6 - r2) + (6 - r4) + r5)
+        let pro_part2: Double = Double((6 - r6) + (6 - r8))
+        pro = (pro_part1 + pro_part2) / 5
+
 //        if pro_cnt == 5 {
 //            pro = 3.6
 //        } else {
 //            pro = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / (5 - pro_cnt)
 //        }
-//        
-//        var MSE = 0.953010
-//        
-//        let iCovX: Matrix<Double> = [
-//        [    0.8873,   -0.0740,   -0.1814,   -0.8873,   -0.8873,    0.0740,    0.1814,    0.0740,    0.1814],
-//        [   -0.0740,    0.0494,   -0.0166,    0.0740,    0.0740,   -0.0494,    0.0166,   -0.0494,    0.0166],
-//        [   -0.1814,   -0.0166,    0.0627,    0.1814,    0.1814,    0.0166,   -0.0627,    0.0166,   -0.0627],
-//        [   -0.8873,    0.0740,    0.1814,    3.9430,    0.8873,   -0.3611,   -0.7339,   -0.0740,   -0.1814],
-//        [   -0.8873,    0.0740,    0.1814,    0.8873,    2.7615,   -0.0740,   -0.1814,   -0.3327,   -0.4982],
-//        [    0.0740,   -0.0494,    0.0166,   -0.3611,   -0.0740,    0.1104,    0.0048,    0.0494,   -0.0166],
-//        [    0.1814,    0.0166,   -0.0627,   -0.7339,   -0.1814,    0.0048,    0.1923,   -0.0166,    0.0627],
-//        [    0.0740,   -0.0494,    0.0166,   -0.0740,   -0.3327,    0.0494,   -0.0166,    0.1119,    0.0068],
-//        [    0.1814,   0.0166 ,   -0.0627,   -0.1814,   -0.4982,   -0.0166,    0.0627,    0.0068,    0.1342 ]]
-//        
-//        var scores: [[Double]] = [
-//        [0, 0, 0],
-//        [0, 0, 0],
-//        [0, 0, 0]]
-//        
-//        var X0: Matrix<Double> = [1, pre, pro, 0, 1, 0, 0, pre, pro]
-//        temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
-//        scores[0][0] = transpose(X0) * B
-//        scores[0][1] = csores[0][0] - temp
-//        scores[0][2] = scores[0][0] + temp
-//        
-//        var X1: Matrix<Double> = [ 1, pre, pro, 1, 0, pre, pro, 0, 0]
-//        temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
-//        scores[1][0] = transpose(X1) * B
-//        scores[1][1] = scores[1][0] - temp
-//        scores[1][2] = scores [1][0] + temp
-//        
-//        var X2: Matrix<Double> = [1, pre, pro, 0, 0, 0, 0, 0, 0]
-//        temp = T * sqrt(MSE * (1 + transpose(X2) * (iCovX * X0)))
-//        scores[2][0] = transpose(X0) * B
-//        scores[2][1] = scores[2][0] - temp
-//        scores[2][2] = scores [2][0] + temp
-//        
-//        return scores
-//    }
+        
+        return (pre, pro)
+    }
+    
+    func calculateIntervals(_ pre: Double, _ pro: Double) -> [[Double]] {
+        let B: Matrix<Double> = [[1.565563, -0.502494, -0.112472, -6.720915, -2.630483, 1.413550, 0.676953, 0.641702, 0.282040]]
+        let T = 0.677422
+        
+        let MSE = 0.953010
+        
+        let iCovX: Matrix<Double> = [
+        [    0.8873,   -0.0740,   -0.1814,   -0.8873,   -0.8873,    0.0740,    0.1814,    0.0740,    0.1814],
+        [   -0.0740,    0.0494,   -0.0166,    0.0740,    0.0740,   -0.0494,    0.0166,   -0.0494,    0.0166],
+        [   -0.1814,   -0.0166,    0.0627,    0.1814,    0.1814,    0.0166,   -0.0627,    0.0166,   -0.0627],
+        [   -0.8873,    0.0740,    0.1814,    3.9430,    0.8873,   -0.3611,   -0.7339,   -0.0740,   -0.1814],
+        [   -0.8873,    0.0740,    0.1814,    0.8873,    2.7615,   -0.0740,   -0.1814,   -0.3327,   -0.4982],
+        [    0.0740,   -0.0494,    0.0166,   -0.3611,   -0.0740,    0.1104,    0.0048,    0.0494,   -0.0166],
+        [    0.1814,    0.0166,   -0.0627,   -0.7339,   -0.1814,    0.0048,    0.1923,   -0.0166,    0.0627],
+        [    0.0740,   -0.0494,    0.0166,   -0.0740,   -0.3327,    0.0494,   -0.0166,    0.1119,    0.0068],
+        [    0.1814,   0.0166 ,   -0.0627,   -0.1814,   -0.4982,   -0.0166,    0.0627,    0.0068,    0.1342 ]]
+        
+        var scores: [[Double]] = [
+            [0.0, 0.0, 0.0],
+            [0.0, 0.0, 0.0],
+            [0.0, 0.0, 0.0]]
+        
+//        gain case 1
+        let X0: Matrix<Double> = [[1, pre, pro, 0, 1, 0, 0, pre, pro]]
+        let temp1 = (X0 * iCovX) * transpose(X0)
+        let temp2 = T * sqrt(MSE * (1 + temp1[0][0]))
+        scores[0][0] = (B * transpose(X0))[0][0]
+        scores[0][1] = Double(scores[0][0] - temp2)
+        scores[0][2] = Double(scores[0][0] + temp2)
+        
+//        loss case 2
+        let X1: Matrix<Double> = [[ 1, pre, pro, 1, 0, pre, pro, 0, 0]]
+        let temp3 = (X1 * iCovX) * transpose(X1)
+        let temp4 = T * sqrt(MSE * (1 + temp3[0][0]))
+        scores[1][0] = (B * transpose(X1))[0][0]
+        scores[1][1] = scores[1][0] - temp4
+        scores[1][2] = scores [1][0] + temp4
+        
+//        control case 3
+        let X2: Matrix<Double> = [[1, pre, pro, 0, 0, 0, 0, 0, 0]]
+        let temp5 = (X2 * iCovX) * transpose(X2)
+        let temp6 = T * sqrt(MSE * (1 + temp5[0][0]))
+        scores[2][0] = (B * transpose(X2))[0][0]
+        scores[2][1] = scores[2][0] - temp6
+        scores[2][2] = scores [2][0] + temp6
+        
+        return scores
+    }
 }
 
 struct RadioButtons: View {
