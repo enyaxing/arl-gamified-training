@@ -15,7 +15,7 @@ enum ActiveAlert {
 struct Question: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
     let defaults = UserDefaults.standard
-    
+
     let questions = [
         "Compared to most people, are you typically unable to get what you want out of life?",
         "Growing up, would you ever “cross the line” by doing things that your parents would not tolerate?",
@@ -45,22 +45,22 @@ struct Question: View {
 
     /** Dictionary mapping of responses. Key = question number, value = response value. */
     @State private var responses: [Int: Int] = [:]
-    
+
     /** Integer that keeps track of which question the user is on. */
     @State private var questionCount:Int = 0
-    
+
     /** Integer that tracks the user's current response. */
     @State var curResponse: Int
-    
+
     /** Boolean that determines whether an alert should be shown or not. */
     @State private var showAlert: Bool = false
-    
+
     /** Sets the default activeAlert. */
     @State private var activeAlert: ActiveAlert = .alreadyCompletedAlert
-    
+
     /** Used to pass regulatory focus type to other views. */
     @Binding var regular: String
-    
+
     /** Environment variable used to dismiss view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -97,9 +97,9 @@ struct Question: View {
     .navigationBarTitle(Text("Quiz")
     .font(.largeTitle))
     .padding()
-    
+
     .alert(isPresented: $showAlert) {
-        
+
         switch activeAlert {
             case .alreadyCompletedAlert:
                 return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
@@ -108,13 +108,13 @@ struct Question: View {
                 return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your promotion score is \(promotionScore) and your prevention score is \(preventionScore)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
             case .noAnswerSelectedAlert:
                 return Alert(title: Text("Error"), message: Text("Please select an answer choice to continue"), dismissButton: .default(Text("Okay")))
-                
+
             }
         }
         .onAppear() {
             self.isAlreadyCompleted()
         }
-        
+
     }
 
     /** When we receive an answer, record the response and give the user the next question. */
@@ -139,7 +139,7 @@ struct Question: View {
             curResponse = 0
         }
     }
-    
+
     /** Goes back one question. */
     func prevQuestion() {
         if questionCount > 0 {
@@ -170,7 +170,7 @@ struct Question: View {
             }
         }
     }
-    
+
     /** Checks if we have finished the quiz. */
     func isCompleted() -> Bool{
            if questionCount == (questions.count - 1){
@@ -178,7 +178,7 @@ struct Question: View {
                 let prevention = "prevention"
                 let equal = "equal"
                 let (promotionScore, preventionScore) = getScore()
-            
+
                 if promotionScore > preventionScore {
                     defaults.set(promotion, forKey: "focus")
                 } else if promotionScore < preventionScore{
@@ -205,12 +205,12 @@ struct Question: View {
         let r9: Int = responses[8]!
         let r10: Int = responses[9]!
         let r11: Int = responses[10]!
-        
+
         let promotionScore = ((6 - r1) + r3 + r7 + (6 - r9) + r10 + (6 - r11)) / 6
         let preventionScore = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / 5
         return (promotionScore, preventionScore)
     }
-    
+
 //    func calculate() ->[[Double]] {
 //        var pre_cnt: Int
 //        var pro_cnt: Int
@@ -318,4 +318,3 @@ struct Question_Previews: PreviewProvider {
         Question(curResponse: 0, regular: ContentView().$regular)
     }
 }
-
