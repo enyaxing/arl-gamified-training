@@ -233,7 +233,7 @@ struct Question: View {
         
         let B: Matrix<Double> = [1.565563, -0.502494, -0.112472, -6.720915, -2.630483, 1.413550, 0.676953, 0.641702, 0.282040]
         
-        T = 0.677422
+        var T = 0.677422
         
         if pre_cnt == 6 {
             pre = 3.0
@@ -247,7 +247,7 @@ struct Question: View {
             pro = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / (5 - pro_cnt)
         }
         
-        MSE = 0.953010
+        var MSE = 0.953010
         
         let iCovX: Matrix<Double> = [
         [    0.8873,   -0.0740,   -0.1814,   -0.8873,   -0.8873,    0.0740,    0.1814,    0.0740,    0.1814],
@@ -265,23 +265,25 @@ struct Question: View {
         [0, 0, 0],
         [0, 0, 0]]
         
-        X0: Matrix<Double> = [1, pre, pro, 0, 1, 0, 0, pre, pro]
+        var X0: Matrix<Double> = [1, pre, pro, 0, 1, 0, 0, pre, pro]
         temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
         scores[0][0] = transpose(X0) * B
         scores[0][1] = csores[0][0] - temp
         scores[0][2] = scores[0][0] + temp
         
-        X0: Matrix<Double> = [ 1, pre, pro, 1, 0, pre, pro, 0, 0]
+        var X1: Matrix<Double> = [ 1, pre, pro, 1, 0, pre, pro, 0, 0]
         temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
-        scores[1][0] = transpose(X0) * B
+        scores[1][0] = transpose(X1) * B
         scores[1][1] = scores[1][0] - temp
         scores[1][2] = scores [1][0] + temp
         
-        X0: Matrix<Double> = [1, pre, pro, 0, 0, 0, 0, 0, 0]
-        temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
+        var X2: Matrix<Double> = [1, pre, pro, 0, 0, 0, 0, 0, 0]
+        temp = T * sqrt(MSE * (1 + transpose(X2) * (iCovX * X0)))
         scores[2][0] = transpose(X0) * B
         scores[2][1] = scores[2][0] - temp
         scores[2][2] = scores [2][0] + temp
+        
+        return scores
     }
 }
 
