@@ -41,7 +41,7 @@ struct GonogoMain: View {
     @State var timeRemaining = 3
     
     /** Session time remaining. */
-    @State var sessionTime = 60
+    @State var sessionTime = 20
     
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
@@ -75,18 +75,14 @@ struct GonogoMain: View {
     
     var body: some View {
         VStack {
+            Text("Go/NoGo")
+            .font(.largeTitle)
+            .fontWeight(.black)
+            Spacer()
             VStack {
-                Text("Session Time: \(sessionTime)")
+                Text("Questions Remaining: \(sessionTime)")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .onReceive(timer) { _ in
-                        if self.sessionTime > 0 && !self.stopped {
-                                self.sessionTime -= 1
-                            } else if !self.stopped {
-                                self.stopped = true
-                                self.alert = true
-                            }
-                }
                 
                 Text("Time Remaining: \(timeRemaining)")
                     .font(.largeTitle)
@@ -108,16 +104,15 @@ struct GonogoMain: View {
                             self.folder = Int.random(in: 0...1)
                             self.index = Int.random(in: 0..<self.models[self.folder].count)
                             self.feedback = true
+                            if self.sessionTime == 1 {
+                                self.stopped = true
+                                self.alert = true
+                            }
+                            self.sessionTime -= 1
                         }
                 }
             }
-            
             Spacer()
-            Text("Go/NoGo")
-                .font(.largeTitle)
-                .fontWeight(.black)
-            Spacer()
-               
             Group {
                 if self.feedback {
                     if self.correct {
@@ -145,6 +140,11 @@ struct GonogoMain: View {
                     self.index = Int.random(in: 0..<self.models[self.folder].count)
                     self.feedback = true
                     self.timeRemaining = 3
+                    if self.sessionTime == 1 {
+                        self.stopped = true
+                        self.alert = true
+                    }
+                    self.sessionTime -= 1
                 }
             }) {
                 Text("Foe")
@@ -164,7 +164,7 @@ struct GonogoMain: View {
                  }
         }
         .alert(isPresented: $alert) {
-            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Quit"), action: {
+            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
                 self.summary = true
             })

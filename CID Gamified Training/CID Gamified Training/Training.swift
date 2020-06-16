@@ -39,7 +39,7 @@ struct TrainingMain: View {
     @State var points = 0
 
     /** Session time remaining. */
-    @State var sessionTime = 60
+    @State var sessionTime = 20
 
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
@@ -73,21 +73,13 @@ struct TrainingMain: View {
 
     var body: some View {
         VStack {
-            Text("Session Time: \(sessionTime)")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .onReceive(timer) { _ in
-                    if self.sessionTime > 0 && !self.stopped {
-                            self.sessionTime -= 1
-                        } else if !self.stopped {
-                            self.stopped = true
-                            self.alert = true
-                    }
-            }
-            Spacer()
             Text("Training")
                 .font(.largeTitle)
                 .fontWeight(.black)
+            Spacer()
+            Text("Questions Remaining: \(sessionTime)")
+                .font(.largeTitle)
+                .fontWeight(.bold)
             Spacer()
 
             Group {
@@ -118,6 +110,12 @@ struct TrainingMain: View {
                         self.folder = Int.random(in: 0...1)
                         self.index = Int.random(in: 0..<self.models[self.folder].count)
                         self.feedback = true
+                        if self.sessionTime == 1 {
+                            self.stopped = true
+                            self.alert = true
+                        }
+                        self.sessionTime -= 1
+                        
                     }
                 }) {
                     Text("Friendly")
@@ -139,6 +137,11 @@ struct TrainingMain: View {
                         self.folder = Int.random(in: 0...1)
                         self.index = Int.random(in: 0..<self.models[self.folder].count)
                         self.feedback = true
+                        if self.sessionTime == 1 {
+                            self.stopped = true
+                            self.alert = true
+                        }
+                        self.sessionTime -= 1
                     }
                 }) {
                     Text("Foe")
@@ -160,7 +163,7 @@ struct TrainingMain: View {
                 }
         }
         .alert(isPresented: $alert) {
-            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Quit"), action: {
+            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
                 self.summary = true
             })

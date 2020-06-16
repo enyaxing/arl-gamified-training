@@ -42,13 +42,10 @@ struct GonogoPreventionMain: View {
     @State var timeRemaining = 3
 
     /** Session time remaining. */
-    @State var sessionTime = 60
+    @State var sessionTime = 20
 
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
-
-    /** Are you dead. */
-    @State var dead = false
 
     /** Boolean to show ending alert. */
     @State var alert = false
@@ -79,17 +76,14 @@ struct GonogoPreventionMain: View {
 
     var body: some View {
         VStack {
+            Text("Go/NoGo")
+            .font(.largeTitle)
+            .fontWeight(.black)
+            Spacer()
             VStack {
-                Text("Session Time: \(sessionTime)")
+                Text("Questions Remaining: \(sessionTime)")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .onReceive(timer) { _ in
-                        if self.sessionTime > 0 && !self.stopped {
-                                self.sessionTime -= 1
-                            } else if !self.stopped {
-                                self.stopped = true
-                            }
-                }
 
                 Text("Time Remaining: \(timeRemaining)")
                     .font(.largeTitle)
@@ -107,24 +101,19 @@ struct GonogoPreventionMain: View {
                                     self.stars -= 1
                                     self.correct = false
                                     self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
-                                    if self.stars == 0 {
-                                        self.dead = true
-                                        self.stopped = true
-                                    }
                             }
                             self.folder = Int.random(in: 0...1)
                                 self.index = Int.random(in: 0..<self.models[self.folder].count)
                             self.feedback = true
+                            if self.sessionTime == 1 {
+                                self.stopped = true
+                                self.alert = true
+                            }
+                            self.sessionTime -= 1
                         }
                 }
             }
-
             Spacer()
-            Text("Go/NoGo")
-                .font(.largeTitle)
-                .fontWeight(.black)
-            Spacer()
-
             Group {
                 if self.feedback {
                     if self.correct {
@@ -147,15 +136,16 @@ struct GonogoPreventionMain: View {
                         self.stars -= 1
                         self.correct = false
                         self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
-                        if self.stars == 0 {
-                            self.dead = true
-                            self.stopped = true
-                        }
                     }
                     self.folder = Int.random(in: 0...1)
                     self.index = Int.random(in: 0..<self.models[self.folder].count)
                     self.feedback = true
                     self.timeRemaining = 3
+                    if self.sessionTime == 1 {
+                        self.stopped = true
+                        self.alert = true
+                    }
+                    self.sessionTime -= 1
                 }
             }) {
                 Text("Foe")
@@ -175,15 +165,8 @@ struct GonogoPreventionMain: View {
                     .aspectRatio(contentMode: .fit)
             }
         }
-        .alert(isPresented: $dead) {
-            Alert(title: Text("You Lose!"), message: Text("You have no stars remaining."), dismissButton: .default(Text("Quit"), action: {
-                self.dead = false
-                self.summary = true
-            })
-            )
-        }
         .alert(isPresented: $alert) {
-        Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Quit"), action: {
+        Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
             self.alert = false
             self.summary = true
         })

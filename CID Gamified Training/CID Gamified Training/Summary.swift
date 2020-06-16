@@ -44,7 +44,7 @@ struct Summary: View {
                 }
             }
         }
-        .navigationBarTitle("")
+        .navigationBarTitle("Summary")
     }
 }
 
