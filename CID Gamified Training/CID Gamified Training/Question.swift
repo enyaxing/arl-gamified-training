@@ -5,7 +5,6 @@
 //  Created by Alex on 6/8/20.
 //  Copyright © 2020 Alex. All rights reserved.
 //
-
 import SwiftUI
 import Surge
 
@@ -16,7 +15,7 @@ enum ActiveAlert {
 struct Question: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
     let defaults = UserDefaults.standard
-    
+
     let questions = [
         "Compared to most people, are you typically unable to get what you want out of life?",
         "Growing up, would you ever “cross the line” by doing things that your parents would not tolerate?",
@@ -46,22 +45,22 @@ struct Question: View {
 
     /** Dictionary mapping of responses. Key = question number, value = response value. */
     @State private var responses: [Int: Int] = [:]
-    
+
     /** Integer that keeps track of which question the user is on. */
     @State private var questionCount:Int = 0
-    
+
     /** Integer that tracks the user's current response. */
     @State var curResponse: Int
-    
+
     /** Boolean that determines whether an alert should be shown or not. */
     @State private var showAlert: Bool = false
-    
+
     /** Sets the default activeAlert. */
     @State private var activeAlert: ActiveAlert = .alreadyCompletedAlert
-    
+
     /** Used to pass regulatory focus type to other views. */
     @Binding var regular: String
-    
+
     /** Environment variable used to dismiss view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -98,9 +97,9 @@ struct Question: View {
     .navigationBarTitle(Text("Quiz")
     .font(.largeTitle))
     .padding()
-    
+
     .alert(isPresented: $showAlert) {
-        
+
         switch activeAlert {
             case .alreadyCompletedAlert:
                 return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
@@ -108,13 +107,13 @@ struct Question: View {
                 return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your focus type is: \(self.regular)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
             case .noAnswerSelectedAlert:
                 return Alert(title: Text("Error"), message: Text("Please select an answer choice to continue"), dismissButton: .default(Text("Okay")))
-                
+
             }
         }
         .onAppear() {
             self.isAlreadyCompleted()
         }
-        
+
     }
 
     /** When we receive an answer, record the response and give the user the next question. */
@@ -139,7 +138,7 @@ struct Question: View {
             curResponse = 0
         }
     }
-    
+
     /** Goes back one question. */
     func prevQuestion() {
         if questionCount > 0 {
@@ -170,11 +169,28 @@ struct Question: View {
             }
         }
     }
-    
+
     /** Checks if we have finished the quiz. */
     func isCompleted() -> Bool{
            if questionCount == (questions.count - 1){
+<<<<<<< HEAD
                 analyzeScore()
+=======
+                let promotion = "promotion"
+                let prevention = "prevention"
+                let equal = "equal"
+                let (promotionScore, preventionScore) = getScore()
+
+                if promotionScore > preventionScore {
+                    defaults.set(promotion, forKey: "focus")
+                } else if promotionScore < preventionScore{
+                    defaults.set(prevention, forKey: "focus")
+                } else {
+                    defaults.set(equal, forKey: "focus")
+                }
+                print(responses)
+                self.regular = focus(defaults: defaults)
+>>>>>>> cf6bf1668cf63d8fc202426e2289e09e63f35df5
                 return true
            }
            return false
@@ -225,6 +241,7 @@ struct Question: View {
         let r9: Int = responses[8]!
         let r10: Int = responses[9]!
         let r11: Int = responses[10]!
+<<<<<<< HEAD
         
 
 
@@ -241,6 +258,37 @@ struct Question: View {
 //            }
 //        }
         
+=======
+
+        let promotionScore = ((6 - r1) + r3 + r7 + (6 - r9) + r10 + (6 - r11)) / 6
+        let preventionScore = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / 5
+        return (promotionScore, preventionScore)
+    }
+
+//    func calculate() ->[[Double]] {
+//        var pre_cnt: Int
+//        var pro_cnt: Int
+//
+//        var pre: Double
+//        var pro: Double
+//
+//        let r1: Int = responses[0]!
+//        let r2: Int = responses[1]!
+//        let r3: Int = responses[2]!
+//        let r4: Int = responses[3]!
+//        let r5: Int = responses[4]!
+//        let r6: Int = responses[5]!
+//        let r7: Int = responses[6]!
+//        let r8: Int = responses[7]!
+//        let r9: Int = responses[8]!
+//        let r10: Int = responses[9]!
+//        let r11: Int = responses[10]!
+//
+//        let B: Matrix<Double> = [1.565563, -0.502494, -0.112472, -6.720915, -2.630483, 1.413550, 0.676953, 0.641702, 0.282040]
+//
+//        var T = 0.677422
+//
+>>>>>>> cf6bf1668cf63d8fc202426e2289e09e63f35df5
 //        if pre_cnt == 6 {
 //            pre = 3.0
 //        } else {
@@ -248,6 +296,7 @@ struct Question: View {
 //            let part2: Int = (6 - r9) + r10 + (6 - r11)
 //            pre = Double((part1 + part2) / (6))
 //        }
+<<<<<<< HEAD
         
         let pre_part1: Double = Double((6 - r1) + r3 + r7)
         let pre_part2: Double = Double((6 - r9) + r10 + (6 - r11))
@@ -257,11 +306,15 @@ struct Question: View {
         let pro_part2: Double = Double((6 - r6) + (6 - r8))
         pro = (pro_part1 + pro_part2) / 5
 
+=======
+//
+>>>>>>> cf6bf1668cf63d8fc202426e2289e09e63f35df5
 //        if pro_cnt == 5 {
 //            pro = 3.6
 //        } else {
 //            pro = ((6 - r2) + (6 - r4) + r5 + (6 - r6) + (6 - r8)) / (5 - pro_cnt)
 //        }
+<<<<<<< HEAD
         
         return (pre, pro)
     }
@@ -314,6 +367,47 @@ struct Question: View {
         
         return scores
     }
+=======
+//
+//        var MSE = 0.953010
+//
+//        let iCovX: Matrix<Double> = [
+//        [    0.8873,   -0.0740,   -0.1814,   -0.8873,   -0.8873,    0.0740,    0.1814,    0.0740,    0.1814],
+//        [   -0.0740,    0.0494,   -0.0166,    0.0740,    0.0740,   -0.0494,    0.0166,   -0.0494,    0.0166],
+//        [   -0.1814,   -0.0166,    0.0627,    0.1814,    0.1814,    0.0166,   -0.0627,    0.0166,   -0.0627],
+//        [   -0.8873,    0.0740,    0.1814,    3.9430,    0.8873,   -0.3611,   -0.7339,   -0.0740,   -0.1814],
+//        [   -0.8873,    0.0740,    0.1814,    0.8873,    2.7615,   -0.0740,   -0.1814,   -0.3327,   -0.4982],
+//        [    0.0740,   -0.0494,    0.0166,   -0.3611,   -0.0740,    0.1104,    0.0048,    0.0494,   -0.0166],
+//        [    0.1814,    0.0166,   -0.0627,   -0.7339,   -0.1814,    0.0048,    0.1923,   -0.0166,    0.0627],
+//        [    0.0740,   -0.0494,    0.0166,   -0.0740,   -0.3327,    0.0494,   -0.0166,    0.1119,    0.0068],
+//        [    0.1814,   0.0166 ,   -0.0627,   -0.1814,   -0.4982,   -0.0166,    0.0627,    0.0068,    0.1342 ]]
+//
+//        var scores: [[Double]] = [
+//        [0, 0, 0],
+//        [0, 0, 0],
+//        [0, 0, 0]]
+//
+//        var X0: Matrix<Double> = [1, pre, pro, 0, 1, 0, 0, pre, pro]
+//        temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
+//        scores[0][0] = transpose(X0) * B
+//        scores[0][1] = csores[0][0] - temp
+//        scores[0][2] = scores[0][0] + temp
+//
+//        var X1: Matrix<Double> = [ 1, pre, pro, 1, 0, pre, pro, 0, 0]
+//        temp = T * sqrt(MSE * (1 + transpose(X0) * (iCovX * X0)))
+//        scores[1][0] = transpose(X1) * B
+//        scores[1][1] = scores[1][0] - temp
+//        scores[1][2] = scores [1][0] + temp
+//
+//        var X2: Matrix<Double> = [1, pre, pro, 0, 0, 0, 0, 0, 0]
+//        temp = T * sqrt(MSE * (1 + transpose(X2) * (iCovX * X0)))
+//        scores[2][0] = transpose(X0) * B
+//        scores[2][1] = scores[2][0] - temp
+//        scores[2][2] = scores [2][0] + temp
+//
+//        return scores
+//    }
+>>>>>>> cf6bf1668cf63d8fc202426e2289e09e63f35df5
 }
 
 struct RadioButtons: View {
@@ -348,4 +442,3 @@ struct Question_Previews: PreviewProvider {
         Question(curResponse: 0, regular: ContentView().$regular)
     }
 }
-

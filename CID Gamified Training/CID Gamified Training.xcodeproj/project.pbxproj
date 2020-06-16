@@ -85,6 +85,7 @@
 		985F577E24918DA80087D44B /* heart.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F577D24918DA80087D44B /* heart.json */; };
 		985F578024918E630087D44B /* sad.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F577F24918E630087D44B /* sad.json */; };
 		98A031E5248ED60900239274 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 98A031E4248ED60900239274 /* .swiftlint.yml */; };
+		98E7F6102499898B0034E912 /* x.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F60F2499898B0034E912 /* x.json */; };
 		C54576202497486B0053C09D /* calculation.py in Resources */ = {isa = PBXBuildFile; fileRef = C545761F2497486B0053C09D /* calculation.py */; };
 		D663760F1D1D0ABC58CC2D16 /* Pods_CID_Gamified_Training.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */; };
 		D83DA4B420C1CCB6F1F8311D /* Pods_CID_Gamified_TrainingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */; };
@@ -223,6 +224,7 @@
 		985F577D24918DA80087D44B /* heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart.json; sourceTree = "<group>"; };
 		985F577F24918E630087D44B /* sad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sad.json; sourceTree = "<group>"; };
 		98A031E4248ED60900239274 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		98E7F60F2499898B0034E912 /* x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = x.json; sourceTree = "<group>"; };
 		AC257A6E2836F63691C0FAE8 /* Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training.release.xcconfig"; sourceTree = "<group>"; };
 		C545761F2497486B0053C09D /* calculation.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = calculation.py; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 		985F5707249184140087D44B /* TestAnimations */ = {
 			isa = PBXGroup;
 			children = (
+				98E7F60F2499898B0034E912 /* x.json */,
 				984B848D249821F300C4F080 /* minus.json */,
 				984B84792498179C00C4F080 /* star.json */,
 				984B848524981B9100C4F080 /* star1.json */,
@@ -686,6 +689,7 @@
 				FAEFD8CF24991D98004FA58B /* GoogleService-Info.plist in Resources */,
 				984B847A2498179C00C4F080 /* star.json in Resources */,
 				985F5765249184150087D44B /* LottieLogo2.json in Resources */,
+				98E7F6102499898B0034E912 /* x.json in Resources */,
 				985F5759249184150087D44B /* Colon.json in Resources */,
 				981E89212492B94D001A2B1A /* plus-one.json in Resources */,
 				985F577E24918DA80087D44B /* heart.json in Resources */,

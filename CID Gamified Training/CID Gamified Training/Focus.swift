@@ -23,7 +23,7 @@ struct Focus: View {
             Picker(selection: $selection, label: Text("Picker")) {
                 Text("promotion").tag("promotion")
                 Text("prevention").tag("prevention")
-                Text("equal").tag("equal")
+                Text("neutral").tag("neutral")
             } .pickerStyle(SegmentedPickerStyle())
         } .onDisappear {
             self.defaults.set(self.selection, forKey: "focus")

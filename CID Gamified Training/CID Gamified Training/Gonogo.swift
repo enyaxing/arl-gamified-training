@@ -5,7 +5,6 @@
 //  Created by Alex on 6/8/20.
 //  Copyright © 2020 Alex. All rights reserved.
 //
-
 import SwiftUI
 
 struct Gonogo: View {
@@ -71,7 +70,7 @@ struct GonogoMain: View {
     @State var folder = Int.random(in: 0...1)
     
     /** Timer that pings the app every second. */
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
@@ -89,7 +88,9 @@ struct GonogoMain: View {
                     .fontWeight(.bold)
                     .onReceive(timer) { _ in
                         if self.timeRemaining > 0 && !self.stopped {
+                            if !self.feedback {
                                 self.timeRemaining -= 1
+                            }
                             } else if !self.stopped{
                                 self.timeRemaining = 3
                                 if self.folder == 0 {
@@ -178,3 +179,4 @@ struct Gonogo_Previews: PreviewProvider {
         Gonogo(back: ContentView().$back)
     }
 }
+

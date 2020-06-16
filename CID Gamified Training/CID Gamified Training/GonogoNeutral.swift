@@ -5,7 +5,6 @@
 //  Created by Alex on 6/8/20.
 //  Copyright © 2020 Alex. All rights reserved.
 //
-
 import SwiftUI
 
 struct GonogoNeutral: View {
@@ -86,8 +85,12 @@ struct GonogoNeutralMain: View {
                     .fontWeight(.bold)
                     .onReceive(timer) { _ in
                         if self.timeRemaining > 0 && !self.stopped {
+                            if self.feedback {
+                                self.timeRemaining -= 0
+                            } else {
                                 self.timeRemaining -= 1
-                            } else if !self.stopped{
+                            }
+                        } else if !self.stopped {
                                 self.timeRemaining = 3
                                 if self.folder == 0 {
                                     self.points += 1
@@ -112,12 +115,12 @@ struct GonogoNeutralMain: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        CheckMark(playing: $feedback)
+                            CheckMark(playing: $feedback)
                     } else {
-                        XMark(playing: $feedback)
-                    }
-                } else {
-                    ImageView(withURL: models[self.folder][self.index].imageURL)
+                            XMark(playing: $feedback)
+                }
+            } else {
+                ImageView(withURL: models[self.folder][self.index].imageURL)
                 }
             }.frame(width: 400, height: 400)
             Spacer()

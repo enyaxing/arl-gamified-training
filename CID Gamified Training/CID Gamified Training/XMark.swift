@@ -5,7 +5,6 @@
 //  Created by Christine Lou on 6/15/20.
 //  Copyright © 2020 Alex. All rights reserved.
 //
-
 import SwiftUI
 
 struct XMark: View {
@@ -16,11 +15,11 @@ struct XMark: View {
                 Text("Wrong! Try Again")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                LottieView(filename: "sad", playing: $playing)
+                LottieView(fileName: "sad", playing: $playing)
                     .frame(width: 50, height: 50)
             }
             HStack {
-             LottieView(filename: "incorrect", playing: $playing)
+             LottieView(fileName: "incorrect", playing: $playing)
              .frame(width: 400, height: 400)
                 .background(Color.red)
             }

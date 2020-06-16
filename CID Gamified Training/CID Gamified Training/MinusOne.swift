@@ -20,13 +20,13 @@ struct MinusOne: View {
                 .offset(y: 40)
             }
             HStack {
-             LottieView(filename: "minus", playing: $playing)
+             LottieView(fileName: "minus", playing: $playing)
              .frame(width: 80, height: 80)
              .offset(x: 140)
-             LottieView(filename: "1", playing: $playing)
+             LottieView(fileName: "1", playing: $playing)
              .frame(width: 150, height: 150)
-             .offset(x: 100)
-             LottieView(filename: "star1", playing: $playing)
+             .offset(x: 120)
+             LottieView(fileName: "star1", playing: $playing)
              .frame(width: 400, height: 400)
              .offset(x: -30)
             }

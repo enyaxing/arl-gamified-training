@@ -17,17 +17,17 @@ struct PlusOne: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(.top)
-                    LottieView(filename: "happy", playing: $playing)
+                    LottieView(fileName: "happy", playing: $playing)
                        .frame(width: 50, height: 50)
                    }
                    HStack {
-                    LottieView(filename: "blackplus", playing: $playing)
+                    LottieView(fileName: "blackplus", playing: $playing)
                     .frame(width: 200, height: 200)
                     .offset(x: 140)
-                    LottieView(filename: "1", playing: $playing)
+                    LottieView(fileName: "1", playing: $playing)
                     .frame(width: 150, height: 150)
-                    .offset(x: 50)
-                    LottieView(filename: "star1", playing: $playing)
+                    .offset(x: 60)
+                    LottieView(fileName: "star1", playing: $playing)
                     .frame(width: 400, height: 400)
                     .offset(x: -90)
                    }
