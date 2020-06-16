@@ -105,6 +105,8 @@
 		FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EB7248ED74900F77C7B /* Gonogo.swift */; };
 		FAEFD8C5249911F6004FA58B /* TrainingNeutral.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8C4249911F6004FA58B /* TrainingNeutral.swift */; };
 		FAEFD8C724991208004FA58B /* GonogoNeutral.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8C624991208004FA58B /* GonogoNeutral.swift */; };
+		FAEFD8C9249914B8004FA58B /* CheckMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8C8249914B8004FA58B /* CheckMark.swift */; };
+		FAEFD8CB249914C3004FA58B /* XMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8CA249914C3004FA58B /* XMark.swift */; };
 		FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B112493F386006CF82A /* SummaryRow.swift */; };
 		FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B132493F3B9006CF82A /* SummaryDetail.swift */; };
 		FAF40B162493F3CB006CF82A /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B152493F3CB006CF82A /* Answer.swift */; };
@@ -236,6 +238,8 @@
 		FA360EB7248ED74900F77C7B /* Gonogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gonogo.swift; sourceTree = "<group>"; };
 		FAEFD8C4249911F6004FA58B /* TrainingNeutral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingNeutral.swift; sourceTree = "<group>"; };
 		FAEFD8C624991208004FA58B /* GonogoNeutral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GonogoNeutral.swift; sourceTree = "<group>"; };
+		FAEFD8C8249914B8004FA58B /* CheckMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMark.swift; sourceTree = "<group>"; };
+		FAEFD8CA249914C3004FA58B /* XMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMark.swift; sourceTree = "<group>"; };
 		FAF40B112493F386006CF82A /* SummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRow.swift; sourceTree = "<group>"; };
 		FAF40B132493F3B9006CF82A /* SummaryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetail.swift; sourceTree = "<group>"; };
 		FAF40B152493F3CB006CF82A /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = "CID Gamified Training/Answer.swift"; sourceTree = SOURCE_ROOT; };
@@ -404,6 +408,8 @@
 				984B847D249818EF00C4F080 /* PlusZero.swift */,
 				984B847F249818FC00C4F080 /* MinusZero.swift */,
 				984B84812498190400C4F080 /* MinusOne.swift */,
+				FAEFD8C8249914B8004FA58B /* CheckMark.swift */,
+				FAEFD8CA249914C3004FA58B /* XMark.swift */,
 				FAF40B152493F3CB006CF82A /* Answer.swift */,
 				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
 				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
@@ -662,9 +668,11 @@
 				FAF922C52497BBD500F3EA80 /* Model.swift in Sources */,
 				984B8491249860CB00C4F080 /* PlusOne.swift in Sources */,
 				FAF922C32497BBC400F3EA80 /* ImageLoader.swift in Sources */,
+				FAEFD8C9249914B8004FA58B /* CheckMark.swift in Sources */,
 				984B84922498615700C4F080 /* MinusOne.swift in Sources */,
 				FAF922CB2497BCA000F3EA80 /* ImageView.swift in Sources */,
 				FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */,
+				FAEFD8CB249914C3004FA58B /* XMark.swift in Sources */,
 				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,
 				984B8480249818FC00C4F080 /* MinusZero.swift in Sources */,
 				FAF40B162493F3CB006CF82A /* Answer.swift in Sources */,

@@ -81,9 +81,9 @@ struct TrainingNeutralMain: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        PlusOne(playing: $feedback)
+                        CheckMark(playing: $feedback)
                     } else {
-                        PlusZero(playing: $feedback)
+                        XMark(playing: $feedback)
                     }
                 } else {
                     ImageView(withURL: models[self.folder][self.index].imageURL)
