@@ -138,7 +138,7 @@ struct TrainingNeutralMain: View {
                         self.sessionTime -= 1
                     }
                 }) {
-                    Text("Foe")
+                    Text("Enemy")
                         .font(.largeTitle)
                         .fontWeight(.black)
                 }

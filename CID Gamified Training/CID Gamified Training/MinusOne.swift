@@ -13,22 +13,15 @@ struct MinusOne: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Wrong! You lost one star!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-                .offset(y: 40)
-            }
-            HStack {
              LottieView(fileName: "minus", playing: $playing)
              .frame(width: 80, height: 80)
-             .offset(x: 140)
-             LottieView(fileName: "1", playing: $playing)
-             .frame(width: 150, height: 150)
-             .offset(x: 120)
-             LottieView(fileName: "star1", playing: $playing)
-             .frame(width: 400, height: 400)
-             .offset(x: -30)
+             .offset(x: 30)
+             LottieView(fileName: "one", playing: $playing)
+             .frame(width: 160, height: 160)
+             .offset(x: 0)
+             LottieView(fileName: "star", playing: $playing, isLoop: true)
+             .frame(width: 180, height: 180)
+             .offset(x: -20, y: -10)
             }
         }
     }

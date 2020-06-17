@@ -148,7 +148,7 @@ struct GonogoMain: View {
                     self.sessionTime -= 1
                 }
             }) {
-                Text("Foe")
+                Text("Enemy")
                     .font(.largeTitle)
                     .fontWeight(.black)
             }
@@ -162,6 +162,7 @@ struct GonogoMain: View {
                 .font(.largeTitle)
                 Image("star").resizable().frame(width: 40, height: 40)
                 .aspectRatio(contentMode: .fit)
+                .offset(y: -2)
                  }
         }
         .alert(isPresented: $alert) {

@@ -12,19 +12,10 @@ struct CheckMark: View {
     @Binding var playing: Bool
     var body: some View {
          VStack {
-                HStack {
-                    Text("Correct! Nice job!")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding(.top)
-                    LottieView(fileName: "happy", playing: $playing)
-                       .frame(width: 50, height: 50)
-                   }
-                   HStack {
-                    LottieView(fileName: "correct", playing: $playing)
-                    .frame(width: 400, height: 400)
-                        .background(Color.green)
-                   }
+            HStack {
+            LottieView(fileName: "correct", playing: $playing)
+            .frame(width: 1000, height: 1000)
+            }
         }
     }
 }

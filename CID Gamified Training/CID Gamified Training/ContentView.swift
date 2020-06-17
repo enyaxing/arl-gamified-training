@@ -5,7 +5,6 @@
 //  Created by Alex on 6/8/20.
 //  Copyright © 2020 Alex. All rights reserved.
 //
-
 import SwiftUI
 import Firebase
 
@@ -29,6 +28,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
+
                 Text("ARL Gamified Training")
                     .font(.largeTitle)
                     .fontWeight(.black)
@@ -38,14 +38,16 @@ struct ContentView: View {
                 Spacer()
                 
                 NavigationLink(destination: Question(curResponse: 0, regular: $regular, uid: $uid)) {
+                    Group {
                     Text("Questionairre")
                         .font(.largeTitle)
                         .fontWeight(.black)
                         .padding()
                         .background(Color.white)
                         .cornerRadius(20)
-                    
+                    }
                 }
+                
                 Spacer()
                 
                 NavigationLink(destination:

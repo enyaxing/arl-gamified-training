@@ -8,18 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		666F71C0177B1DCC85E24CED /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F854BE26425E61C2BBB45051 /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework */; };
-		981E891D2492B94D001A2B1A /* 1.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89172492B94D001A2B1A /* 1.json */; };
-		981E891F2492B94D001A2B1A /* greenplus.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89192492B94D001A2B1A /* greenplus.json */; };
-		981E89202492B94D001A2B1A /* 0.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E891A2492B94D001A2B1A /* 0.json */; };
-		981E89212492B94D001A2B1A /* plus-one.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E891B2492B94D001A2B1A /* plus-one.json */; };
 		981E89262492BBE0001A2B1A /* blackplus.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89252492BBDF001A2B1A /* blackplus.json */; };
-		984B847A2498179C00C4F080 /* star.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B84792498179C00C4F080 /* star.json */; };
 		984B8480249818FC00C4F080 /* MinusZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B847F249818FC00C4F080 /* MinusZero.swift */; };
-		984B848824981B9100C4F080 /* star3.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848324981B9100C4F080 /* star3.json */; };
-		984B848924981B9100C4F080 /* star2.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848424981B9100C4F080 /* star2.json */; };
-		984B848A24981B9100C4F080 /* star1.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848524981B9100C4F080 /* star1.json */; };
-		984B848B24981B9100C4F080 /* star4.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848624981B9100C4F080 /* star4.json */; };
-		984B848C24981B9100C4F080 /* star5.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848724981B9100C4F080 /* star5.json */; };
 		984B848E249821F300C4F080 /* minus.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848D249821F300C4F080 /* minus.json */; };
 		984B8491249860CB00C4F080 /* PlusOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B847B249818E200C4F080 /* PlusOne.swift */; };
 		984B84922498615700C4F080 /* MinusOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984B84812498190400C4F080 /* MinusOne.swift */; };
@@ -86,6 +76,11 @@
 		985F578024918E630087D44B /* sad.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F577F24918E630087D44B /* sad.json */; };
 		98A031E5248ED60900239274 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 98A031E4248ED60900239274 /* .swiftlint.yml */; };
 		98E7F6102499898B0034E912 /* x.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F60F2499898B0034E912 /* x.json */; };
+		98E7F612249AB1400034E912 /* star.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F611249AB1400034E912 /* star.json */; };
+		98E7F615249AB4B00034E912 /* one.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F613249AB4B00034E912 /* one.json */; };
+		98E7F616249AB4B00034E912 /* zero.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F614249AB4B00034E912 /* zero.json */; };
+		98E7F618249ABE490034E912 /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E7F617249ABE490034E912 /* Transition.swift */; };
+		98E7F622249AC6EA0034E912 /* countdown.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F621249AC6EA0034E912 /* countdown.json */; };
 		C54576202497486B0053C09D /* calculation.py in Resources */ = {isa = PBXBuildFile; fileRef = C545761F2497486B0053C09D /* calculation.py */; };
 		D663760F1D1D0ABC58CC2D16 /* Pods_CID_Gamified_Training.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */; };
 		D83DA4B420C1CCB6F1F8311D /* Pods_CID_Gamified_TrainingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */; };
@@ -148,21 +143,11 @@
 		614D84461AF81BEA1A359CAD /* Pods-CID Gamified Training.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training.debug.xcconfig"; sourceTree = "<group>"; };
 		694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CID_Gamified_Training.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CID_Gamified_TrainingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		981E89172492B94D001A2B1A /* 1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 1.json; sourceTree = "<group>"; };
-		981E89192492B94D001A2B1A /* greenplus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = greenplus.json; sourceTree = "<group>"; };
-		981E891A2492B94D001A2B1A /* 0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 0.json; sourceTree = "<group>"; };
-		981E891B2492B94D001A2B1A /* plus-one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "plus-one.json"; sourceTree = "<group>"; };
 		981E89252492BBDF001A2B1A /* blackplus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blackplus.json; sourceTree = "<group>"; };
-		984B84792498179C00C4F080 /* star.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star.json; sourceTree = "<group>"; };
 		984B847B249818E200C4F080 /* PlusOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlusOne.swift; path = "CID Gamified Training/PlusOne.swift"; sourceTree = SOURCE_ROOT; };
 		984B847D249818EF00C4F080 /* PlusZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlusZero.swift; path = "CID Gamified Training/PlusZero.swift"; sourceTree = SOURCE_ROOT; };
 		984B847F249818FC00C4F080 /* MinusZero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MinusZero.swift; path = "CID Gamified Training/MinusZero.swift"; sourceTree = SOURCE_ROOT; };
 		984B84812498190400C4F080 /* MinusOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MinusOne.swift; path = "CID Gamified Training/MinusOne.swift"; sourceTree = SOURCE_ROOT; };
-		984B848324981B9100C4F080 /* star3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star3.json; sourceTree = "<group>"; };
-		984B848424981B9100C4F080 /* star2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star2.json; sourceTree = "<group>"; };
-		984B848524981B9100C4F080 /* star1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star1.json; sourceTree = "<group>"; };
-		984B848624981B9100C4F080 /* star4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star4.json; sourceTree = "<group>"; };
-		984B848724981B9100C4F080 /* star5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star5.json; sourceTree = "<group>"; };
 		984B848D249821F300C4F080 /* minus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minus.json; sourceTree = "<group>"; };
 		985F5708249184140087D44B /* Switch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Switch.json; sourceTree = "<group>"; };
 		985F5709249184140087D44B /* TwitterHeart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TwitterHeart.json; sourceTree = "<group>"; };
@@ -225,6 +210,11 @@
 		985F577F24918E630087D44B /* sad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sad.json; sourceTree = "<group>"; };
 		98A031E4248ED60900239274 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		98E7F60F2499898B0034E912 /* x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = x.json; sourceTree = "<group>"; };
+		98E7F611249AB1400034E912 /* star.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star.json; sourceTree = "<group>"; };
+		98E7F613249AB4B00034E912 /* one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = one.json; sourceTree = "<group>"; };
+		98E7F614249AB4B00034E912 /* zero.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = zero.json; sourceTree = "<group>"; };
+		98E7F617249ABE490034E912 /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
+		98E7F621249AC6EA0034E912 /* countdown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countdown.json; sourceTree = "<group>"; };
 		AC257A6E2836F63691C0FAE8 /* Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training.release.xcconfig"; sourceTree = "<group>"; };
 		C545761F2497486B0053C09D /* calculation.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = calculation.py; sourceTree = "<group>"; };
@@ -327,20 +317,14 @@
 		985F5707249184140087D44B /* TestAnimations */ = {
 			isa = PBXGroup;
 			children = (
+				98E7F621249AC6EA0034E912 /* countdown.json */,
+				98E7F613249AB4B00034E912 /* one.json */,
+				98E7F614249AB4B00034E912 /* zero.json */,
+				98E7F611249AB1400034E912 /* star.json */,
 				98E7F60F2499898B0034E912 /* x.json */,
 				984B848D249821F300C4F080 /* minus.json */,
-				984B84792498179C00C4F080 /* star.json */,
-				984B848524981B9100C4F080 /* star1.json */,
-				984B848424981B9100C4F080 /* star2.json */,
-				984B848324981B9100C4F080 /* star3.json */,
-				984B848624981B9100C4F080 /* star4.json */,
-				984B848724981B9100C4F080 /* star5.json */,
 				FA3503AA2493BB6A00DD4207 /* happy.json */,
 				981E89252492BBDF001A2B1A /* blackplus.json */,
-				981E891A2492B94D001A2B1A /* 0.json */,
-				981E89172492B94D001A2B1A /* 1.json */,
-				981E89192492B94D001A2B1A /* greenplus.json */,
-				981E891B2492B94D001A2B1A /* plus-one.json */,
 				FA33666F2492A800004D96DB /* correct.json */,
 				FA33666E2492A800004D96DB /* incorrect.json */,
 				985F577F24918E630087D44B /* sad.json */,
@@ -461,6 +445,7 @@
 				984B84812498190400C4F080 /* MinusOne.swift */,
 				FAEFD8C8249914B8004FA58B /* CheckMark.swift */,
 				FAEFD8CA249914C3004FA58B /* XMark.swift */,
+				98E7F617249ABE490034E912 /* Transition.swift */,
 				FAF40B152493F3CB006CF82A /* Answer.swift */,
 				FAEFD8CC249916FA004FA58B /* Focus.swift */,
 				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
@@ -621,14 +606,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				981E891D2492B94D001A2B1A /* 1.json in Resources */,
 				985F577A24918A7C0087D44B /* check.json in Resources */,
 				FA3503AB2493BB6A00DD4207 /* happy.json in Resources */,
-				981E89202492B94D001A2B1A /* 0.json in Resources */,
 				985F5764249184150087D44B /* vcTransition1.json in Resources */,
-				984B848C24981B9100C4F080 /* star5.json in Resources */,
 				985F5762249184150087D44B /* B.json in Resources */,
-				981E891F2492B94D001A2B1A /* greenplus.json in Resources */,
 				985F575F249184150087D44B /* Z.json in Resources */,
 				985F5774249184150087D44B /* DisableNodesTest.json in Resources */,
 				985F5745249184150087D44B /* T.json in Resources */,
@@ -638,6 +619,7 @@
 				985F5773249184150087D44B /* PinJump.json in Resources */,
 				985F576F249184150087D44B /* FirstText.json in Resources */,
 				985F5758249184150087D44B /* D.json in Resources */,
+				98E7F616249AB4B00034E912 /* zero.json in Resources */,
 				985F574E249184150087D44B /* R.json in Resources */,
 				985F5760249184150087D44B /* N.json in Resources */,
 				985F574D249184150087D44B /* K.json in Resources */,
@@ -645,7 +627,6 @@
 				985F5763249184150087D44B /* HamburgerArrow.json in Resources */,
 				985F5771249184150087D44B /* Zoom.json in Resources */,
 				985F574F249184150087D44B /* G.json in Resources */,
-				984B848A24981B9100C4F080 /* star1.json in Resources */,
 				FA3366702492A800004D96DB /* incorrect.json in Resources */,
 				985F5753249184150087D44B /* I.json in Resources */,
 				985F576C249184150087D44B /* LottieLogo1.json in Resources */,
@@ -670,34 +651,32 @@
 				FA3366712492A800004D96DB /* correct.json in Resources */,
 				985F575B249184150087D44B /* C.json in Resources */,
 				FA360E82248E7B9500F77C7B /* LaunchScreen.storyboard in Resources */,
+				98E7F615249AB4B00034E912 /* one.json in Resources */,
 				FAF922C92497BC1700F3EA80 /* foe.txt in Resources */,
 				FA360E7F248E7B9500F77C7B /* Preview Assets.xcassets in Resources */,
 				985F5772249184150087D44B /* keypathTest.json in Resources */,
-				984B848824981B9100C4F080 /* star3.json in Resources */,
 				985F576A249184150087D44B /* IconTransitions.json in Resources */,
 				985F5752249184150087D44B /* J.json in Resources */,
 				C54576202497486B0053C09D /* calculation.py in Resources */,
+				98E7F612249AB1400034E912 /* star.json in Resources */,
 				985F5776249184150087D44B /* timeremap.json in Resources */,
 				985F575A249184150087D44B /* H.json in Resources */,
+				98E7F622249AC6EA0034E912 /* countdown.json in Resources */,
 				985F5755249184150087D44B /* Apostrophe.json in Resources */,
-				984B848924981B9100C4F080 /* star2.json in Resources */,
 				FA360E7C248E7B9500F77C7B /* Assets.xcassets in Resources */,
 				985F575D249184150087D44B /* Comma.json in Resources */,
 				985F574A249184150087D44B /* L.json in Resources */,
 				981E89262492BBE0001A2B1A /* blackplus.json in Resources */,
 				985F5770249184150087D44B /* setValueTest.json in Resources */,
 				FAEFD8CF24991D98004FA58B /* GoogleService-Info.plist in Resources */,
-				984B847A2498179C00C4F080 /* star.json in Resources */,
 				985F5765249184150087D44B /* LottieLogo2.json in Resources */,
 				98E7F6102499898B0034E912 /* x.json in Resources */,
 				985F5759249184150087D44B /* Colon.json in Resources */,
-				981E89212492B94D001A2B1A /* plus-one.json in Resources */,
 				985F577E24918DA80087D44B /* heart.json in Resources */,
 				985F5748249184150087D44B /* BlinkingCursor.json in Resources */,
 				985F5744249184150087D44B /* TwitterHeartButton.json in Resources */,
 				985F5756249184150087D44B /* P.json in Resources */,
 				985F5768249184150087D44B /* Watermelon.json in Resources */,
-				984B848B24981B9100C4F080 /* star4.json in Resources */,
 				985F5747249184150087D44B /* X.json in Resources */,
 				985F5750249184150087D44B /* F.json in Resources */,
 				985F5767249184150087D44B /* GeometryTransformTest.json in Resources */,
@@ -841,6 +820,7 @@
 				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,
 				984B8480249818FC00C4F080 /* MinusZero.swift in Sources */,
 				FAF40B162493F3CB006CF82A /* Answer.swift in Sources */,
+				98E7F618249ABE490034E912 /* Transition.swift in Sources */,
 				FAEFD8D324993097004FA58B /* Signin.swift in Sources */,
 				FAEFD8C5249911F6004FA58B /* TrainingNeutral.swift in Sources */,
 				FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */,

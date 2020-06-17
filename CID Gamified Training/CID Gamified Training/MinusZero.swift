@@ -13,25 +13,15 @@ struct MinusZero: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Correct! Nice job!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-                .offset(y: 40)
-                LottieView(fileName: "happy", playing: $playing)
-                .frame(width: 50, height: 50)
-                .offset(y: 40)
-            }
-            HStack {
              LottieView(fileName: "minus", playing: $playing)
              .frame(width: 80, height: 80)
-             .offset(x: 140)
-             LottieView(fileName: "0", playing: $playing)
-             .frame(width: 160, height: 150)
-             .offset(x: 120)
-             LottieView(fileName: "star1", playing: $playing)
-             .frame(width: 400, height: 400)
-             .offset(x: -30)
+             .offset(x: 30)
+             LottieView(fileName: "zero", playing: $playing)
+             .frame(width: 160, height: 160)
+             .offset(x: 0)
+             LottieView(fileName: "star", playing: $playing, isLoop: true)
+             .frame(width: 180, height: 180)
+             .offset(x: -20, y: -10)
             }
         }
     }
