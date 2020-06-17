@@ -13,7 +13,7 @@ struct Summary: View {
     
     @Binding var back: Bool
     
-    let regular = focus(defaults: UserDefaults.standard)
+    var regular: String
 
     var body: some View {
         VStack {
@@ -69,6 +69,6 @@ func percentage(answer: [Answer]) -> Double {
 
 struct Summary_Previews: PreviewProvider {
     static var previews: some View {
-        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), Answer(id: 2, expected: "friend", received: "foe", image: "tank1")], back: Binding.constant(false))
+        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), Answer(id: 2, expected: "friend", received: "foe", image: "tank1")], back: Binding.constant(false), regular: "promotion")
     }
 }

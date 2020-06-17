@@ -21,7 +21,7 @@ struct Training: View {
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, back: $back)
+                Summary(answers: answers, back: $back, regular: "promotion")
             } else {
                 TrainingMain(summary: $summary, answers: $answers)
             }

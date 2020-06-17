@@ -12,8 +12,9 @@ import Firebase
 struct ContentView: View {
     
     let defaults = UserDefaults.standard
+    let db = Firestore.firestore().collection("users")
     
-    @State var regular = focus(defaults: UserDefaults.standard)
+    @State var regular = "None"
     
     @State var back = false
     
@@ -36,7 +37,7 @@ struct ContentView: View {
                     .cornerRadius(20)
                 Spacer()
                 
-                NavigationLink(destination: Question(curResponse: 0, regular: $regular)) {
+                NavigationLink(destination: Question(curResponse: 0, regular: $regular, uid: $uid)) {
                     Text("Questionairre")
                         .font(.largeTitle)
                         .fontWeight(.black)
@@ -99,7 +100,7 @@ struct ContentView: View {
                     .background(Color.white)
                     .cornerRadius(20)
                     Spacer()
-                    NavigationLink(destination: Focus(regular: $regular)) {
+                    NavigationLink(destination: Focus(regular: $regular, uid: $uid)) {
                         Text(self.regular)
                         .padding()
                         .background(Color.white)
@@ -109,12 +110,13 @@ struct ContentView: View {
                 }
             }
             .background(Image("background"))
-        .alert(isPresented: $invalid) {
-            Alert(title: Text("Error Signing Out"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
-            self.invalid = false
-        })
-        )
-        }
+            .alert(isPresented: $invalid) {
+                Alert(title: Text("Error Signing Out"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
+                        self.invalid = false
+                    }))
+            }
+        } .onAppear {
+            self.newFocus(db: self.db, uid: self.uid)
         }
     }
     
@@ -127,10 +129,18 @@ struct ContentView: View {
             self.invalid = true
         }
     }
-}
-
-func focus(defaults: UserDefaults) -> String {
-    return defaults.string(forKey: "focus") ?? "None"
+    
+    func newFocus(db: CollectionReference, uid: String) {
+        db.document(uid).getDocument { (document, error) in
+            if let document = document, document.exists {
+                if document.get("focus") != nil {
+                    self.regular = document.get("focus") as! String
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -21,7 +21,7 @@ struct Gonogo: View {
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, back: $back)
+                Summary(answers: answers, back: $back, regular: "promotion")
             } else {
                 GonogoMain(summary: $summary, answers: $answers)
             }

@@ -22,7 +22,7 @@ struct TrainingPrevention: View {
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, back: $back)
+                Summary(answers: answers, back: $back, regular: "prevention")
             } else {
                 TrainingPreventionMain(summary: $summary, answers: $answers)
             }

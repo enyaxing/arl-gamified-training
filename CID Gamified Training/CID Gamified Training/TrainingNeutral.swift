@@ -21,7 +21,7 @@ struct TrainingNeutral: View {
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, back: $back)
+                Summary(answers: answers, back: $back, regular: "equal")
             } else {
                 TrainingNeutralMain(summary: $summary, answers: $answers)
             }

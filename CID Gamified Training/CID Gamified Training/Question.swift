@@ -7,6 +7,7 @@
 //
 import SwiftUI
 import Surge
+import Firebase
 
 enum ActiveAlert {
     case showFinishedAlert, alreadyCompletedAlert, noAnswerSelectedAlert
@@ -14,7 +15,7 @@ enum ActiveAlert {
 
 struct Question: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
-    let defaults = UserDefaults.standard
+    let db = Firestore.firestore().collection("users")
 
     let questions = [
         "Compared to most people, are you typically unable to get what you want out of life?",
@@ -63,6 +64,8 @@ struct Question: View {
 
     /** Environment variable used to dismiss view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    @Binding var uid: String
 
     var body: some View {
         VStack {
@@ -102,7 +105,9 @@ struct Question: View {
 
         switch activeAlert {
             case .alreadyCompletedAlert:
-                return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.defaults.set(nil, forKey: "focus")}))
+                return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.db.document(self.uid).setData(["focus": "None"], merge: true)
+                    self.regular = "None"
+                }))
             case .showFinishedAlert:
                 return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your focus type is: \(self.regular)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
             case .noAnswerSelectedAlert:
@@ -197,9 +202,8 @@ struct Question: View {
         } else {
             selected = "equal"
         }
-        
-        defaults.set(selected, forKey: "focus")
-        self.regular = focus(defaults: defaults)
+        db.document(uid).setData(["focus": selected], merge: true)
+        self.regular = selected
         
         return selected
     }
@@ -314,6 +318,6 @@ struct RadioButtons: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        Question(curResponse: 0, regular: Binding.constant(""))
+        Question(curResponse: 0, regular: Binding.constant(""), uid: Binding.constant(""))
     }
 }

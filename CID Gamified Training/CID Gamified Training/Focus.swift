@@ -7,15 +7,18 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct Focus: View {
-    
-    let defaults = UserDefaults.standard
     
     /** Used to pass regulatory focus type to other views. */
     @Binding var regular: String
     
-    @State var selection = focus(defaults: UserDefaults.standard)
+    @State var selection = "equal"
+    
+    @Binding var uid: String
+    
+    let db = Firestore.firestore().collection("users")
     
     var body: some View {
         VStack {
@@ -26,14 +29,16 @@ struct Focus: View {
                 Text("equal").tag("equal")
             } .pickerStyle(SegmentedPickerStyle())
         } .onDisappear {
-            self.defaults.set(self.selection, forKey: "focus")
-            self.regular = focus(defaults: self.defaults)
+            self.db.document(self.uid).setData(["focus": self.selection], merge: true)
+            self.regular = self.selection
+        } .onAppear {
+            self.selection = self.regular
         }
     }
 }
 
 struct Focus_Previews: PreviewProvider {
     static var previews: some View {
-        Focus(regular: Binding.constant("equal"))
+        Focus(regular: Binding.constant("equal"), uid: Binding.constant(""))
     }
 }
