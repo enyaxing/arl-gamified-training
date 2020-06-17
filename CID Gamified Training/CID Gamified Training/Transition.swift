@@ -13,6 +13,7 @@ struct Transition: View {
     var body: some View {
         LottieView(fileName: "countdown", playing: $playing)
         .frame(width: 700, height: 700)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

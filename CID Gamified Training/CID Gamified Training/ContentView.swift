@@ -28,7 +28,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-
                 Text("ARL Gamified Training")
                     .font(.largeTitle)
                     .fontWeight(.black)
@@ -38,20 +37,19 @@ struct ContentView: View {
                 Spacer()
                 
                 NavigationLink(destination: Question(curResponse: 0, regular: $regular, uid: $uid)) {
-                    Group {
                     Text("Questionairre")
                         .font(.largeTitle)
                         .fontWeight(.black)
                         .padding()
                         .background(Color.white)
                         .cornerRadius(20)
-                    }
+                    
                 }
-                
                 Spacer()
                 
                 NavigationLink(destination:
                     Group {
+//                        Transition(playing: $transition)
                         if self.regular == "promotion" {
                             Training(back: $back)
                         } else if self.regular == "prevention" {
@@ -72,6 +70,7 @@ struct ContentView: View {
                 Spacer()
                 NavigationLink(destination:
                     Group {
+//                        Transition(playing: $transition))
                         if self.regular == "promotion" {
                             Gonogo(back: $back)
                         } else if self.regular == "prevention" {
