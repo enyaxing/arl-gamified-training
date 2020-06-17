@@ -314,6 +314,6 @@ struct RadioButtons: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        Question(curResponse: 0, regular: ContentView().$regular)
+        Question(curResponse: 0, regular: ContentView(show: Binding.constant(true)).$regular)
     }
 }

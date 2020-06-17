@@ -69,6 +69,6 @@ func percentage(answer: [Answer]) -> Double {
 
 struct Summary_Previews: PreviewProvider {
     static var previews: some View {
-        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), Answer(id: 2, expected: "friend", received: "foe", image: "tank1")], back: ContentView().$back)
+        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), Answer(id: 2, expected: "friend", received: "foe", image: "tank1")], back: ContentView(show: Binding.constant(true)).$back)
     }
 }

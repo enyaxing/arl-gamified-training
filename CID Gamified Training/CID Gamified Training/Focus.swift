@@ -23,7 +23,7 @@ struct Focus: View {
             Picker(selection: $selection, label: Text("Picker")) {
                 Text("promotion").tag("promotion")
                 Text("prevention").tag("prevention")
-                Text("neutral").tag("neutral")
+                Text("equal").tag("equal")
             } .pickerStyle(SegmentedPickerStyle())
         } .onDisappear {
             self.defaults.set(self.selection, forKey: "focus")
@@ -34,6 +34,6 @@ struct Focus: View {
 
 struct Focus_Previews: PreviewProvider {
     static var previews: some View {
-        Focus(regular: ContentView().$regular)
+        Focus(regular: ContentView(show: Binding.constant(true)).$regular)
     }
 }

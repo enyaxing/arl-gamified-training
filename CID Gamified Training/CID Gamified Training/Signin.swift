@@ -22,7 +22,7 @@ struct Signin: View {
         
         Group {
             if show {
-                ContentView()
+                ContentView(show: $show)
             } else if signup {
                 Signup(show: $show)
             } else {

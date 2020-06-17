@@ -161,6 +161,6 @@ struct GonogoNeutralMain: View {
 
 struct GonogoNeutral_Previews: PreviewProvider {
     static var previews: some View {
-        GonogoNeutral(back: ContentView().$back)
+        GonogoNeutral(back: ContentView(show: Binding.constant(true)).$back)
     }
 }

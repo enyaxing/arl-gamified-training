@@ -179,6 +179,6 @@ struct GonogoPreventionMain: View {
 
 struct GonogoPrevention_Previews: PreviewProvider {
     static var previews: some View {
-        GonogoPrevention(back: ContentView().$back)
+        GonogoPrevention(back: ContentView(show: Binding.constant(true)).$back)
     }
 }

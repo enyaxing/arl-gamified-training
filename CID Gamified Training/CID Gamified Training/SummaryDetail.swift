@@ -71,6 +71,6 @@ struct SummaryDetail: View {
 
 struct SummaryDetail_Previews: PreviewProvider {
     static var previews: some View {
-        SummaryDetail(answer: Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), back: ContentView().$back)
+        SummaryDetail(answer: Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), back: ContentView(show: Binding.constant(true)).$back)
     }
 }
