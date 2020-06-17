@@ -176,7 +176,7 @@ struct GonogoMain: View {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-        Gonogo(back: ContentView(show: Binding.constant(true)).$back)
+        Gonogo(back: Binding.constant(false))
     }
 }
 

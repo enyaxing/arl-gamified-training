@@ -17,14 +17,15 @@ struct Signin: View {
     @State var signup = false
     @State var invalid = false
     @State var error = ""
+    @State var uid = ""
     
     var body: some View {
         
         Group {
             if show {
-                ContentView(show: $show)
+                ContentView(show: $show, uid: $uid)
             } else if signup {
-                Signup(show: $show)
+                Signup(show: $show, signup: $signup, uid: $uid)
             } else {
                 NavigationView {
                     VStack {
@@ -61,8 +62,8 @@ struct Signin: View {
                 self.show = false
                 self.error = error?.localizedDescription ?? ""
                 self.invalid = true
-                
             } else {
+                self.uid = result!.user.uid
                 self.show = true
             }
         }

@@ -34,6 +34,6 @@ struct Focus: View {
 
 struct Focus_Previews: PreviewProvider {
     static var previews: some View {
-        Focus(regular: ContentView(show: Binding.constant(true)).$regular)
+        Focus(regular: Binding.constant("equal"))
     }
 }

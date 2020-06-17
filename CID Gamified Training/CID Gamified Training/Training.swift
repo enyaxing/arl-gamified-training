@@ -173,6 +173,6 @@ struct TrainingMain: View {
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training(back: ContentView(show: Binding.constant(true)).$back)
+        Training(back: Binding.constant(false))
     }
 }

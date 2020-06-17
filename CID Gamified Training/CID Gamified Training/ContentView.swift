@@ -23,6 +23,8 @@ struct ContentView: View {
     
     @State var invalid = false
     
+    @Binding var uid: String
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -133,6 +135,6 @@ func focus(defaults: UserDefaults) -> String {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(show: Binding.constant(true))
+        ContentView(show: Binding.constant(true), uid: Binding.constant(""))
     }
 }

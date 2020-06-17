@@ -158,6 +158,6 @@ struct TrainingNeutralMain: View {
 
 struct TrainingNeutral_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingNeutral(back: ContentView(show: Binding.constant(true)).$back)
+        TrainingNeutral(back: Binding.constant(false))
     }
 }
