@@ -31,7 +31,8 @@ def calc(response_values,response):
         pro = ((6-response_values[1]) + (6-response_values[3]) + response_values[4] + (6-response_values[5]) + (6-response_values[7])) / (5 - pro_cnt)
 
     MSE = 0.953010
-    print(pre, pro)
+    print("prevention: ", pre)
+    print("promotion: ", pro)
 
     iCovX = np.array([
     [    0.8873,   -0.0740,   -0.1814,   -0.8873,   -0.8873,    0.0740,    0.1814,    0.0740,    0.1814],

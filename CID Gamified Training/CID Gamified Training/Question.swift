@@ -109,7 +109,8 @@ struct Question: View {
                     self.regular = "None"
                 }))
             case .showFinishedAlert:
-                return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your focus type is: \(self.regular)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
+                let (pre, pro) = calculateScore()
+                return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your prevention score is: \(String(format: "%.3f", pre)).\nYour promotion score is \(String(format: "%.3f", pro)).\nWe have determined your best focus type is \(self.regular)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
             case .noAnswerSelectedAlert:
                 return Alert(title: Text("Error"), message: Text("Please select an answer choice to continue"), dismissButton: .default(Text("Okay")))
 
@@ -185,27 +186,25 @@ struct Question: View {
     }
 
     /** Calculates which regulatory focus type will be most beneficial to the user. Returns the type as either preventino, promotion, or equal. */
-    func analyzeScore() -> String {
+    func analyzeScore() -> () {
         let (pre, pro) = calculateScore()
         let scores: [[Double]] = calculateIntervals(pre, pro)
         
-        let promotion = abs(scores[0][0])
-        let prevention = abs(scores[1][0])
-        let control = abs(scores[2][0])
+        let promotion = scores[0][0]
+        let prevention = scores[1][0]
+        let control = scores[2][0]
         
-        let minVal = min(prevention, promotion, control)
+        let maxVal = max(prevention, promotion, control)
         var selected: String
-        if  minVal == prevention {
+        if  maxVal == prevention {
             selected = "prevention"
-        } else if minVal == promotion {
+        } else if maxVal == promotion {
             selected = "promotion"
         } else {
             selected = "equal"
         }
         db.document(uid).setData(["focus": selected], merge: true)
         self.regular = selected
-        
-        return selected
     }
     
     /** Heuristic from Dr. Benjamin Files. Modified from Python to Swift.
