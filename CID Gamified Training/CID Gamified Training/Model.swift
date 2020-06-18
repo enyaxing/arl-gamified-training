@@ -15,7 +15,7 @@ struct Model: Identifiable {
     
     static let friendly = dirLoad(name: "Friendly")
     
-    static let foe = dirLoad(name: "Friendly")
+    static let foe = dirLoad(name: "Foe")
 }
 
 func load(name: String) -> [Model] {
