@@ -18,7 +18,7 @@ struct GonogoNeutral: View {
     /** Back bar. */
     @Binding var back: Bool
     
-    /** Type. */
+   /** Promotion, Prevention, or Neutral. */
     @Binding var type: String
     
     var body: some View {
@@ -166,6 +166,6 @@ struct GonogoNeutralMain: View {
 
 struct GonogoNeutral_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello World")
+        GonogoNeutral(back: Binding.constant(true), type: Binding.constant("neutral"))
     }
 }

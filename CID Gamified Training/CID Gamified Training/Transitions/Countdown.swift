@@ -18,28 +18,24 @@ struct Countdown: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        
-        Text("\(timeRemaining)")
-                .foregroundColor(Color.green)
-                .font(.title)
-                .fontWeight(.bold)
-                   .onReceive(timer) { _ in
-                       if self.timeRemaining > 0 {
-                           self.timeRemaining -= 1
-                       } else {
-                         //        LottieView(fileName: "countdown", playing: $playing)
-                         //        .frame(width: 700, height: 700)
-                         //        .background(Color.clear)
-                         //        .offset(y: -50)
-                         //        .onDisappear(perform: {print("Root is disappearing")})
+        VStack {
+            Text("\(timeRemaining)")
+            .foregroundColor(Color.blue)
+            .font(.title)
+            .fontWeight(.bold)
+            .onReceive(timer) { _ in
+                if self.timeRemaining > 0 {
+                    self.timeRemaining -= 1
                     }
-                }
-//        
-//        LottieView(fileName: "countdown", playing: $playing)
-//        .frame(width: 700, height: 700)
-//        .background(Color.clear)
-//        .offset(y: -50)
-//        .onDisappear(perform: {print("Root is disappearing")})
+            }
+            if self.timeRemaining == 0 {
+                LottieView(fileName: "countdown", playing: $playing)
+                    .frame(width: 700, height: 700)
+                    .background(Color.clear)
+                    .offset(y: -50)
+                    .onDisappear(perform: {print("Root is disappearing")})
+            }
+        }
     }
 }
 

@@ -21,7 +21,7 @@ struct Training: View {
     /** Back bar. */
     @Binding var back: Bool
     
-    /** Type. */
+    /** Promotion, Prevention, or Neutral. */
     @Binding var type: String
     
 
@@ -197,7 +197,7 @@ struct TrainingMain: View {
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-       Text("Hello World")
+        Training(stars: 20, back: Binding.constant(true), type: Binding.constant("promotion"))
     }
 }
 

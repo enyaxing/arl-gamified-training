@@ -21,7 +21,7 @@ struct Gonogo: View {
     /** Back bar. */
     @Binding var back: Bool
     
-    /** Type. */
+    /** Promotion, Prevention, or Neutral. */
     @Binding var type: String
     
     var body: some View {
@@ -197,7 +197,7 @@ struct GonogoMain: View {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-       Text("Hello World")
+       Gonogo(stars: 20, back: Binding.constant(true), type: Binding.constant("promotion"))
     }
 }
 
