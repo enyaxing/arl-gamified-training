@@ -258,7 +258,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		984D669A249C060900903431 /* LottieView */ = {
+		984D669A249C060900903431 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
 				985F5777249184AA0087D44B /* LottieView.swift */,
@@ -270,7 +270,7 @@
 				FAEFD8CA249914C3004FA58B /* XMark.swift */,
 				98E7F617249ABE490034E912 /* Countdown.swift */,
 			);
-			path = LottieView;
+			path = Transitions;
 			sourceTree = "<group>";
 		};
 		984D669B249C076D00903431 /* Training */ = {
@@ -406,7 +406,7 @@
 				FAF922C82497BC1700F3EA80 /* foe.txt */,
 				FAEFD8D024992B0E004FA58B /* Signup.swift */,
 				FAEFD8D224993097004FA58B /* Signin.swift */,
-				984D669A249C060900903431 /* LottieView */,
+				984D669A249C060900903431 /* Transitions */,
 				985F5707249184140087D44B /* TestAnimations */,
 				FA360E7D248E7B9500F77C7B /* Preview Content */,
 			);
