@@ -53,7 +53,7 @@ struct ContentView: View {
                         } else if self.regular == "prevention" {
                             Training(stars: 20, back: $back, type: $regular)
                         } else if self.regular == "neutral" {
-                            TrainingNeutral(back: $back, type: $regular)
+                            Training(stars: 0, back: $back, type: $regular)
                         } else {
                             Rejection()
                         }
@@ -73,7 +73,7 @@ struct ContentView: View {
                         } else if self.regular == "prevention" {
                             Gonogo(stars: 20, back: $back, type: $regular)
                         } else if self.regular == "neutral" {
-                            GonogoNeutral(back: $back, type: $regular)
+                            Gonogo(stars: 0, back: $back, type: $regular)
                         }
                         else {
                             Rejection()

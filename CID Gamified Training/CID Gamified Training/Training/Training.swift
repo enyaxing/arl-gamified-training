@@ -91,14 +91,22 @@ struct TrainingMain: View {
 
             Group {
                 if self.feedback {
-                    if self.correct && self.type == "promotion" {
-                        PlusOne(playing: $feedback)
-                    } else if self.type == "promotion" {
-                        PlusZero(playing: $feedback)
-                    } else if self.correct && self.type == "prevention" {
-                        MinusZero(playing: $feedback)
+                    if self.correct {
+                        if self.type == "promotion" {
+                            PlusOne(playing: $feedback)
+                        } else if self.type == "prevention" {
+                            MinusZero(playing: $feedback)
+                        } else {
+                            CheckMark(playing: $feedback)
+                        }
                     } else {
-                        MinusOne(playing: $feedback)
+                        if self.type == "promotion" {
+                            PlusZero(playing: $feedback)
+                        } else if self.type == "prevention" {
+                            MinusOne(playing: $feedback)
+                        } else {
+                            XMark(playing: $feedback)
+                        }
                     }
                 } else {
                     Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
@@ -110,31 +118,7 @@ struct TrainingMain: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    if !self.stopped && !self.feedback {
-                        if self.folder == 0 {
-                            if self.type == "promotion" {
-                                self.stars += 1
-                            }
-                            self.correct = true
-                            self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
-                        } else {
-                            if self.type == "prevention" {
-                                self.stars -= 1
-                            }
-                            self.correct = false
-                            self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
-                            
-                        }
-                        self.folder = Int.random(in: 0...1)
-                        self.index = Int.random(in: 0..<self.models[self.folder].count)
-                        self.feedback = true
-                        if self.sessionTime == 1 {
-                            self.stopped = true
-                            self.alert = true
-                        }
-                        self.sessionTime -= 1
-                        
-                    }
+                    self.friendlyButtonAction()
                 }) {
                     Text("Friendly")
                         .font(.largeTitle)
@@ -142,29 +126,7 @@ struct TrainingMain: View {
                 }
                 Spacer()
                 Button(action: {
-                    if !self.stopped && !self.feedback {
-                        if self.folder == 1 {
-                            if self.type == "promotion" {
-                                self.stars += 1
-                            }
-                            self.correct = true
-                            self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
-                        } else {
-                            if self.type == "prevention" {
-                                self.stars -= 1
-                            }
-                            self.correct = false
-                            self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
-                        }
-                        self.folder = Int.random(in: 0...1)
-                        self.index = Int.random(in: 0..<self.models[self.folder].count)
-                        self.feedback = true
-                        if self.sessionTime == 1 {
-                            self.stopped = true
-                            self.alert = true
-                        }
-                        self.sessionTime -= 1
-                    }
+                    self.foeActionButton()
                 }) {
                     Text("Enemy")
                         .font(.largeTitle)
@@ -173,27 +135,94 @@ struct TrainingMain: View {
                 Spacer()
             }
             Spacer()
-             HStack {
-                Text("Stars Collected    ")
-                .fontWeight(.black)
-                .font(.largeTitle)
-                Text("\(self.stars)")
-                .fontWeight(.black)
-                .font(.largeTitle)
-                Image("star").resizable().frame(width: 40, height: 40)
-                .aspectRatio(contentMode: .fit)
-                .offset(y: -2)
+            if self.type != "neutral" {
+                HStack {
+                    Text("Stars Collected    ")
+                    .fontWeight(.black)
+                    .font(.largeTitle)
+                    Text("\(self.stars)")
+                    .fontWeight(.black)
+                    .font(.largeTitle)
+                    Image("star").resizable().frame(width: 40, height: 40)
+                    .aspectRatio(contentMode: .fit)
+                    .offset(y: -2)
                 }
+            }
         }
         .alert(isPresented: $alert) {
-            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
+            getCorrectFinishedAlert()
+        }
+    }
+    
+    func friendlyButtonAction() -> () {
+        if !self.stopped && !self.feedback {
+            if self.folder == 0 {
+                if self.type == "promotion" {
+                    self.stars += 1
+                }
+                self.correct = true
+                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
+            } else {
+                if self.type == "prevention" {
+                    self.stars -= 1
+                }
+                self.correct = false
+                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
+                
+            }
+            self.folder = Int.random(in: 0...1)
+            self.index = Int.random(in: 0..<self.models[self.folder].count)
+            self.feedback = true
+            if self.sessionTime == 1 {
+                self.stopped = true
+                self.alert = true
+            }
+            self.sessionTime -= 1
+            
+        }
+    }
+    
+    func foeActionButton() -> () {
+        if !self.stopped && !self.feedback {
+            if self.folder == 1 {
+                if self.type == "promotion" {
+                    self.stars += 1
+                }
+                self.correct = true
+                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
+            } else {
+                if self.type == "prevention" {
+                    self.stars -= 1
+                }
+                self.correct = false
+                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
+            }
+            self.folder = Int.random(in: 0...1)
+            self.index = Int.random(in: 0..<self.models[self.folder].count)
+            self.feedback = true
+            if self.sessionTime == 1 {
+                self.stopped = true
+                self.alert = true
+            }
+            self.sessionTime -= 1
+        }
+    }
+    
+    func getCorrectFinishedAlert() -> Alert {
+        if self.type == "neutral" {
+            return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
                 self.summary = true
-            })
-            )
+            }))
+        } else {
+            return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
+                self.alert = false
+                self.summary = true
+            }))
         }
     }
 }
+
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
