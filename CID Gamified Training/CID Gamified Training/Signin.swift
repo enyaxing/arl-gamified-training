@@ -13,19 +13,19 @@ struct Signin: View {
     
     @State var email: String = ""
     @State var password: String = ""
-    @State var show = false
     @State var signup = false
     @State var invalid = false
     @State var error = ""
-    @State var uid = ""
+    @State var uid = UserDefaults.standard.string(forKey: "uid") ?? ""
+    let defaults = UserDefaults.standard
     
     var body: some View {
         
         Group {
-            if show {
-                ContentView(show: $show, uid: $uid)
+            if uid != "" {
+                ContentView(uid: $uid)
             } else if signup {
-                Signup(show: $show, signup: $signup, uid: $uid)
+                Signup(signup: $signup, uid: $uid)
             } else {
                 NavigationView {
                     VStack {
@@ -53,18 +53,20 @@ struct Signin: View {
             self.invalid = false
         })
         )
+        }.onAppear {
+            self.email = ""
+            self.password = ""
         }
     }
     
     func login(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
-                self.show = false
                 self.error = error?.localizedDescription ?? ""
                 self.invalid = true
             } else {
                 self.uid = result!.user.uid
-                self.show = true
+                self.defaults.set(self.uid, forKey: "uid")
             }
         }
     }

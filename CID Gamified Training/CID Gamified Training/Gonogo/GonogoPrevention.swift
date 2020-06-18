@@ -124,7 +124,9 @@ struct GonogoPreventionMain: View {
                         MinusOne(playing: $feedback)
                     }
                 } else {
-                    ImageView(withURL: models[self.folder][self.index].imageURL)
+                    Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
+                        .resizable()
+                    .aspectRatio(contentMode: .fit)
                 }
             }.frame(width: 400, height: 400)
             Spacer()

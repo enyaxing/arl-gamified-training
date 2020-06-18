@@ -72,6 +72,8 @@
 		FA360EAE248E807000F77C7B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EAD248E807000F77C7B /* Question.swift */; };
 		FA360EB0248E809200F77C7B /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EAF248E809200F77C7B /* Training.swift */; };
 		FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EB7248ED74900F77C7B /* Gonogo.swift */; };
+		FAB677E3249BBB150053933D /* Friendly in Resources */ = {isa = PBXBuildFile; fileRef = FAB677E2249BBB140053933D /* Friendly */; };
+		FAB677E5249BC2260053933D /* Foe in Resources */ = {isa = PBXBuildFile; fileRef = FAB677E4249BC2260053933D /* Foe */; };
 		FAEFD8C5249911F6004FA58B /* TrainingNeutral.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8C4249911F6004FA58B /* TrainingNeutral.swift */; };
 		FAEFD8C724991208004FA58B /* GonogoNeutral.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8C624991208004FA58B /* GonogoNeutral.swift */; };
 		FAEFD8C9249914B8004FA58B /* CheckMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8C8249914B8004FA58B /* CheckMark.swift */; };
@@ -184,6 +186,8 @@
 		FA360EAD248E807000F77C7B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		FA360EAF248E809200F77C7B /* Training.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
 		FA360EB7248ED74900F77C7B /* Gonogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gonogo.swift; sourceTree = "<group>"; };
+		FAB677E2249BBB140053933D /* Friendly */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Friendly; sourceTree = "<group>"; };
+		FAB677E4249BC2260053933D /* Foe */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Foe; sourceTree = "<group>"; };
 		FAEFD8C4249911F6004FA58B /* TrainingNeutral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingNeutral.swift; sourceTree = "<group>"; };
 		FAEFD8C624991208004FA58B /* GonogoNeutral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GonogoNeutral.swift; sourceTree = "<group>"; };
 		FAEFD8C8249914B8004FA58B /* CheckMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMark.swift; sourceTree = "<group>"; };
@@ -378,6 +382,8 @@
 		FA360E74248E7B9300F77C7B /* CID Gamified Training */ = {
 			isa = PBXGroup;
 			children = (
+				FAB677E4249BC2260053933D /* Foe */,
+				FAB677E2249BBB140053933D /* Friendly */,
 				C545761F2497486B0053C09D /* calculation.py */,
 				FA360E75248E7B9300F77C7B /* AppDelegate.swift */,
 				FA360E77248E7B9300F77C7B /* SceneDelegate.swift */,
@@ -573,11 +579,13 @@
 				985F5757249184150087D44B /* Q.json in Resources */,
 				FA3366712492A800004D96DB /* correct.json in Resources */,
 				985F575B249184150087D44B /* C.json in Resources */,
+				FAB677E3249BBB150053933D /* Friendly in Resources */,
 				FA360E82248E7B9500F77C7B /* LaunchScreen.storyboard in Resources */,
 				98E7F615249AB4B00034E912 /* one.json in Resources */,
 				FAF922C92497BC1700F3EA80 /* foe.txt in Resources */,
 				FA360E7F248E7B9500F77C7B /* Preview Assets.xcassets in Resources */,
 				985F5752249184150087D44B /* J.json in Resources */,
+				FAB677E5249BC2260053933D /* Foe in Resources */,
 				C54576202497486B0053C09D /* calculation.py in Resources */,
 				98E7F612249AB1400034E912 /* star.json in Resources */,
 				985F575A249184150087D44B /* H.json in Resources */,
@@ -917,7 +925,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
-				DEVELOPMENT_TEAM = NT6WD95XKF;
+				DEVELOPMENT_TEAM = BD9H74X3L8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -925,7 +933,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -939,7 +947,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
-				DEVELOPMENT_TEAM = NT6WD95XKF;
+				DEVELOPMENT_TEAM = BD9H74X3L8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -947,7 +955,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

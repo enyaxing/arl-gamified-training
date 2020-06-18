@@ -17,8 +17,6 @@ struct ContentView: View {
     
     @State var back = false
     
-    @Binding var show: Bool
-    
     @State var error = ""
     
     @State var invalid = false
@@ -126,7 +124,8 @@ struct ContentView: View {
     func logout() {
         do {
             try Auth.auth().signOut()
-            self.show = false
+            self.uid = ""
+            defaults.set("", forKey: "uid")
         } catch let error as NSError {
             self.error = error.localizedDescription
             self.invalid = true
@@ -148,6 +147,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(show: Binding.constant(true), uid: Binding.constant(""))
+        ContentView(uid: Binding.constant(""))
     }
 }

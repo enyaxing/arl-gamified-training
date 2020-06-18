@@ -16,7 +16,9 @@ struct SummaryDetail: View {
     
     var body: some View {
         VStack {
-            ImageView(withURL: self.answer.image)
+            Image(uiImage: UIImage(imageLiteralResourceName: self.answer.image))
+                .resizable()
+            .aspectRatio(contentMode: .fit)
             if self.answer.expected == self.answer.received {
                 HStack {
                     VStack {

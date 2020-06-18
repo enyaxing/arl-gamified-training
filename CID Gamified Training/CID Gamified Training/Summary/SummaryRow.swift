@@ -13,7 +13,9 @@ struct SummaryRow: View {
     
     var body: some View {
         HStack {
-            ImageView(withURL: answer.image)
+            Image(uiImage: UIImage(imageLiteralResourceName: answer.image))
+                .resizable()
+            .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 50)
             Group {
                 if correct(answer: self.answer) {

@@ -13,9 +13,9 @@ struct Model: Identifiable {
     var id = UUID()
     var imageURL: String
     
-    static let friendly = load(name: "friendly")
+    static let friendly = dirLoad(name: "Friendly")
     
-    static let foe = load(name: "foe")
+    static let foe = dirLoad(name: "Foe")
 }
 
 func load(name: String) -> [Model] {
@@ -39,4 +39,21 @@ func load(name: String) -> [Model] {
         // example.txt not found!
         return []
     }
+}
+
+func dirLoad(name: String) -> [Model] {
+    let fm = FileManager.default
+    let path = Bundle.main.resourcePath! + "/" + name
+    print(path)
+    var ret: [Model] = []
+    do {
+        let items = try fm.contentsOfDirectory(atPath: path)
+        for item in items {
+            print("Found \(item)")
+            ret.append(Model(imageURL: path + "/\(item)"))
+        }
+    } catch {
+        print("error")
+    }
+    return ret
 }
