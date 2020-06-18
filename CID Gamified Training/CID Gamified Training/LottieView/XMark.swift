@@ -10,11 +10,9 @@ import SwiftUI
 struct XMark: View {
     @Binding var playing: Bool
     var body: some View {
-        VStack {
-            HStack {
-             LottieView(fileName: "incorrect", playing: $playing)
-             .frame(width: 1000, height: 1000)
-            }
+        ZStack {
+            LottieView(fileName: "incorrect", playing: $playing)
+                .frame(width: 1000, height: 1000)
         }
     }
 }

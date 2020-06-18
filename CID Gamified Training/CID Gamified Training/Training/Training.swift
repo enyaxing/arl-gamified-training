@@ -54,7 +54,7 @@ struct TrainingMain: View {
 
     /** Number of stars. */
     @State var stars = 0
-
+    
     /** Show summary. */
     @Binding var summary: Bool
 
@@ -75,6 +75,7 @@ struct TrainingMain: View {
             Text("Training")
                 .font(.largeTitle)
                 .fontWeight(.black)
+                
             Spacer()
             Text("Questions Remaining: \(sessionTime)")
                 .font(.largeTitle)

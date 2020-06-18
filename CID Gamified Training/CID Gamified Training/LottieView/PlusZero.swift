@@ -1,5 +1,5 @@
 //
-//  PlusOne.swift
+//  PlusZero.swift
 //  CID Gamified Training
 //
 //  Created by Christine Lou on 6/15/20.
@@ -8,15 +8,15 @@
 
 import SwiftUI
 
-struct PlusOne: View {
-    @Binding var playing: Bool
+struct PlusZero: View {
+      @Binding var playing: Bool
     var body: some View {
-         VStack {
+        VStack {
             HStack {
-             LottieView(fileName: "blackplus", playing: $playing)
+             LottieView(fileName: "plus", playing: $playing)
              .frame(width: 200, height: 200)
              .offset(x: 30)
-             LottieView(fileName: "one", playing: $playing)
+             LottieView(fileName: "zero", playing: $playing)
              .frame(width: 160, height: 160)
              .offset(x: -50)
              LottieView(fileName: "star", playing: $playing, isLoop: true)
@@ -27,8 +27,8 @@ struct PlusOne: View {
     }
 }
 
-struct PlusOne_Previews: PreviewProvider {
+struct PlusZero_Previews: PreviewProvider {
     static var previews: some View {
-        PlusOne(playing: Binding.constant(true))
+        PlusZero(playing: Binding.constant(true))
     }
 }

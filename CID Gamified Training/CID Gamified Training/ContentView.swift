@@ -47,19 +47,22 @@ struct ContentView: View {
                 }
                 Spacer()
                 
+                
                 NavigationLink(destination:
                     Group {
-//                        Transition(playing: $transition)
                         if self.regular == "promotion" {
-                            Training(back: $back)
+                            Countdown(back: $back, playing: Binding.constant(true))
+//                            Training(back: $back)
                         } else if self.regular == "prevention" {
-                            TrainingPrevention(back: $back)
+                             Countdown(back: $back, playing: Binding.constant(true))
+//                            TrainingPrevention(back: $back)
                         } else if self.regular == "equal" {
-                            TrainingNeutral(back: $back)
+                            Countdown(back: $back, playing: Binding.constant(true))
+//                            TrainingNeutral(back: $back)
                         } else {
                             Rejection()
                         }
-                    }) {
+                }) {
                     Text("Training")
                         .font(.largeTitle)
                         .fontWeight(.black)
@@ -69,8 +72,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 NavigationLink(destination:
-                    Group {
-//                        Transition(playing: $transition))
+                    Group { 
                         if self.regular == "promotion" {
                             Gonogo(back: $back)
                         } else if self.regular == "prevention" {
