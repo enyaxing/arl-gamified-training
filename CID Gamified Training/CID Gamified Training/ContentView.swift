@@ -49,11 +49,11 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group {
                         if self.regular == "promotion" {
-                            Training(back: $back)
+                            Training(stars: 0, back: $back, type: $regular)
                         } else if self.regular == "prevention" {
-                            TrainingPrevention(back: $back)
+                            Training(stars: 20, back: $back, type: $regular)
                         } else if self.regular == "equal" {
-                            TrainingNeutral(back: $back)
+                            TrainingNeutral(back: $back, type: $regular)
                         } else {
                             Rejection()
                         }
@@ -69,11 +69,11 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group { 
                         if self.regular == "promotion" {
-                            Gonogo(back: $back)
+                            Gonogo(stars: 0, back: $back, type: $regular)
                         } else if self.regular == "prevention" {
-                            GonogoPrevention(back: $back)
+                            Gonogo(stars: 20, back: $back, type: $regular)
                         } else if self.regular == "equal" {
-                            GonogoNeutral(back: $back)
+                            GonogoNeutral(back: $back, type: $regular)
                         }
                         else {
                             Rejection()

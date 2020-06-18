@@ -17,11 +17,15 @@ struct TrainingNeutral: View {
 
     /** Back bar. */
     @Binding var back: Bool
+    
+    /** Type. */
+    @Binding var type: String
+    
 
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, back: $back, regular: "equal")
+                Summary(answers: answers, back: $back, regular: $type)
             } else {
                 TrainingNeutralMain(summary: $summary, answers: $answers)
             }
@@ -160,6 +164,6 @@ struct TrainingNeutralMain: View {
 
 struct TrainingNeutral_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingNeutral(back: Binding.constant(false))
+        Text("Hello World")
     }
 }

@@ -11,19 +11,26 @@ struct Training: View {
 
     /** Show summary view. */
     @State var summary = false
+    
+    /** Stars. */
+    @State var stars: Int
 
     /** List of answers. */
     @State var answers: [Answer] = []
 
     /** Back bar. */
     @Binding var back: Bool
+    
+    /** Type. */
+    @Binding var type: String
+    
 
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, back: $back, regular: "promotion")
+                Summary(answers: answers, back: $back, regular: $type)
             } else {
-                TrainingMain(summary: $summary, answers: $answers)
+                TrainingMain(summary: $summary, answers: $answers, type: $type, stars: $stars)
             }
             } .navigationBarBackButtonHidden(back)
     }
@@ -33,9 +40,6 @@ struct TrainingMain: View {
 
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = 0
-
-    /** Points gained from session. */
-    @State var points = 0
 
     /** Session time remaining. */
     @State var sessionTime = 20
@@ -51,15 +55,18 @@ struct TrainingMain: View {
 
     /** Is question correct? */
     @State var correct = true
-
-    /** Number of stars. */
-    @State var stars = 0
     
     /** Show summary. */
     @Binding var summary: Bool
 
     /** List of answers. */
     @Binding var answers: [Answer]
+    
+    /** Type. */
+    @Binding var type: String
+    
+    /** Stars. */
+    @Binding var stars: Int
 
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
@@ -84,10 +91,14 @@ struct TrainingMain: View {
 
             Group {
                 if self.feedback {
-                    if self.correct {
+                    if self.correct && self.type == "promotion" {
                         PlusOne(playing: $feedback)
-                    } else {
+                    } else if self.type == "promotion" {
                         PlusZero(playing: $feedback)
+                    } else if self.correct && self.type == "prevention" {
+                        MinusZero(playing: $feedback)
+                    } else {
+                        MinusOne(playing: $feedback)
                     }
                 } else {
                     Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
@@ -101,13 +112,18 @@ struct TrainingMain: View {
                 Button(action: {
                     if !self.stopped && !self.feedback {
                         if self.folder == 0 {
-                            self.points += 1
-                            self.stars += 1
+                            if self.type == "promotion" {
+                                self.stars += 1
+                            }
                             self.correct = true
                             self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                         } else {
+                            if self.type == "prevention" {
+                                self.stars -= 1
+                            }
                             self.correct = false
                             self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
+                            
                         }
                         self.folder = Int.random(in: 0...1)
                         self.index = Int.random(in: 0..<self.models[self.folder].count)
@@ -128,11 +144,15 @@ struct TrainingMain: View {
                 Button(action: {
                     if !self.stopped && !self.feedback {
                         if self.folder == 1 {
-                            self.points += 1
-                            self.stars += 1
+                            if self.type == "promotion" {
+                                self.stars += 1
+                            }
                             self.correct = true
                             self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
                         } else {
+                            if self.type == "prevention" {
+                                self.stars -= 1
+                            }
                             self.correct = false
                             self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
                         }
@@ -166,17 +186,18 @@ struct TrainingMain: View {
                 }
         }
         .alert(isPresented: $alert) {
-            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
+            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
                 self.summary = true
             })
             )
-            }
+        }
     }
 }
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training(back: Binding.constant(false))
+       Text("Hello World")
     }
 }
+

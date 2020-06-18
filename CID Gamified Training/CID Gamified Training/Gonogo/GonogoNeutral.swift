@@ -18,10 +18,13 @@ struct GonogoNeutral: View {
     /** Back bar. */
     @Binding var back: Bool
     
+    /** Type. */
+    @Binding var type: String
+    
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, back: $back, regular: "equal")
+                Summary(answers: answers, back: $back, regular: $type)
             } else {
                 GonogoNeutralMain(summary: $summary, answers: $answers)
             }
@@ -163,6 +166,6 @@ struct GonogoNeutralMain: View {
 
 struct GonogoNeutral_Previews: PreviewProvider {
     static var previews: some View {
-        GonogoNeutral(back: Binding.constant(false))
+        Text("Hello World")
     }
 }
