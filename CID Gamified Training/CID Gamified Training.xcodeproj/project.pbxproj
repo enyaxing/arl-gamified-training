@@ -254,6 +254,34 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9820861B249C1D94007D6F78 /* Questionnaire */ = {
+			isa = PBXGroup;
+			children = (
+				FA360EAD248E807000F77C7B /* Question.swift */,
+				FA33666C24926F74004D96DB /* Rejection.swift */,
+			);
+			path = Questionnaire;
+			sourceTree = "<group>";
+		};
+		9820861C249C1DCD007D6F78 /* Home Page */ = {
+			isa = PBXGroup;
+			children = (
+				FAEFD8CC249916FA004FA58B /* Focus.swift */,
+				FAEFD8D224993097004FA58B /* Signin.swift */,
+				FAEFD8D024992B0E004FA58B /* Signup.swift */,
+			);
+			path = "Home Page";
+			sourceTree = "<group>";
+		};
+		9820861D249C1E34007D6F78 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FAF922C22497BBC400F3EA80 /* ImageLoader.swift */,
+				FAF922CA2497BCA000F3EA80 /* ImageView.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		984D669A249C060900903431 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,24 +410,20 @@
 				FA360E75248E7B9300F77C7B /* AppDelegate.swift */,
 				FA360E77248E7B9300F77C7B /* SceneDelegate.swift */,
 				FA360E79248E7B9300F77C7B /* ContentView.swift */,
-				FA360EAD248E807000F77C7B /* Question.swift */,
+				FAF40B152493F3CB006CF82A /* Answer.swift */,
+				FAF922C42497BBD500F3EA80 /* Model.swift */,
 				984D669B249C076D00903431 /* Training */,
 				984D669C249C077900903431 /* Gonogo */,
+				9820861C249C1DCD007D6F78 /* Home Page */,
+				9820861B249C1D94007D6F78 /* Questionnaire */,
 				984D669D249C078600903431 /* Summary */,
-				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
-				FA33666C24926F74004D96DB /* Rejection.swift */,
-				FAF40B152493F3CB006CF82A /* Answer.swift */,
-				FAEFD8CC249916FA004FA58B /* Focus.swift */,
+				9820861D249C1E34007D6F78 /* Images */,
 				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
+				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
 				FA360E83248E7B9500F77C7B /* Info.plist */,
 				FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */,
-				FAF922C22497BBC400F3EA80 /* ImageLoader.swift */,
-				FAF922C42497BBD500F3EA80 /* Model.swift */,
-				FAF922CA2497BCA000F3EA80 /* ImageView.swift */,
 				FAF922C62497BC0A00F3EA80 /* friendly.txt */,
 				FAF922C82497BC1700F3EA80 /* foe.txt */,
-				FAEFD8D024992B0E004FA58B /* Signup.swift */,
-				FAEFD8D224993097004FA58B /* Signin.swift */,
 				984D669A249C060900903431 /* Transitions */,
 				985F5707249184140087D44B /* TestAnimations */,
 				FA360E7D248E7B9500F77C7B /* Preview Content */,
