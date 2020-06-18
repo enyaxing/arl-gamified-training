@@ -31,19 +31,6 @@ struct Question: View {
         "I have found very few hobbies or activities in my life that capture my interest or motivate me to put effort into them."
         ]
 
-    let responseDescription = [["never or seldom", "sometimes", "very often"],
-                               ["never or seldom", "sometimes", "very often"],
-                               ["never or seldom", "a few times", "many times"],
-                               ["never or seldom", "sometimes", "very often"],
-                               ["never or seldom", "sometimes", "always"],
-                               ["never or seldom", "sometimes", "very often"],
-                               ["never or seldom", "sometimes", "very often"],
-                               ["never or seldom", "sometimes", "very often"],
-                               ["never true", "sometimes true", "very often true"],
-                               ["certainly false", " ", "certainly true"],
-                               ["certainly false", " ", "certainly true"]
-    ]
-
     /** Dictionary mapping of responses. Key = question number, value = response value. */
     @State private var responses: [Int: Int] = [:]
 
@@ -73,8 +60,9 @@ struct Question: View {
             Text(questions[questionCount])
                 .font(.title)
                 .padding([.leading, .bottom, .trailing])
+                .frame(height: 250.0)
             Spacer()
-            RadioButtons(curResponse: $curResponse)
+            RadioButtons(curResponse: $curResponse, questionCount: $questionCount)
             Spacer()
 
             HStack {
@@ -93,7 +81,8 @@ struct Question: View {
                 Spacer()
             }
             .padding(.bottom)
-
+            
+            Spacer()
             Text("\(questionCount + 1) out of \(questions.count)")
             Spacer()
     }
@@ -151,19 +140,6 @@ struct Question: View {
             questionCount -= 1
             curResponse = responses[questionCount]!
         }
-    }
-
-    /** Returns the correct response description based on current response. Based on responseDescription values.*/
-    func getResponseDescription() -> String {
-        if curResponse == 1 {
-            return responseDescription[questionCount][0]
-        } else if curResponse == 3 {
-            return responseDescription[questionCount][1]
-        } else if curResponse ==  5 {
-            return responseDescription[questionCount][2]
-        }
-
-        return " "
     }
 
     /** Checks whether the quiz has already been completed. */
@@ -290,30 +266,78 @@ struct Question: View {
 
 struct RadioButtons: View {
     @Binding var curResponse: Int
+    @Binding var questionCount: Int
+    
+    let responseDescription = [["never or seldom", "sometimes", "very often"],
+                                ["never or seldom", "sometimes", "very often"],
+                                ["never or seldom", "a few times", "many times"],
+                                ["never or seldom", "sometimes", "very often"],
+                                ["never or seldom", "sometimes", "always"],
+                                ["never or seldom", "sometimes", "very often"],
+                                ["never or seldom", "sometimes", "very often"],
+                                ["never or seldom", "sometimes", "very often"],
+                                ["never true", "sometimes true", "very often true"],
+                                ["certainly false", " ", "certainly true"],
+                                ["certainly false", " ", "certainly true"]
+     ]
+    
     var body: some View {
-        HStack {
-            ForEach(1...5, id: \.self) {i in
-                Button(action: {
-                    self.curResponse = i
-                }) {
-                    VStack {
-                        ZStack{
-                            Circle().fill(self.curResponse == i ? Color.blue : Color.black.opacity(0.2)).frame(width: 20, height: 25)
-                            if self.curResponse == i{
-                                Circle().stroke(Color.blue, lineWidth: 4).frame(width: 32, height: 25)
+        VStack {
+            HStack {
+                ForEach(1...5, id: \.self) {i in
+                    Button(action: {
+                        self.curResponse = i
+                    }) {
+                        VStack {
+                            ZStack{
+                                Circle().fill(self.curResponse == i ? Color.blue : Color.black.opacity(0.2)).frame(width: 20, height: 25)
+                                if self.curResponse == i{
+                                    Circle().stroke(Color.blue, lineWidth: 4).frame(width: 32, height: 25)
+                                }
                             }
+                            Text("\(i)")
+                                .fontWeight(.semibold)
                         }
-                        Text("\(i)")
+                        .frame(width: 50.0, height: 50)
                     }
+    //                .padding(.horizontal, 8.0)
+                    .foregroundColor(.black)
                 }
-                .padding(.horizontal, 8.0)
-                .foregroundColor(.black)
+                .padding(.top)
+            }
+            
+            HStack {
+                Text(getResponseDescription(1))
+                    .multilineTextAlignment(.center)
+                    .padding(.trailing, 20.0)
+                    .frame(width: 100.0)
+                Text(getResponseDescription(3))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 100.0)
+                Text(getResponseDescription(5))
+                    .multilineTextAlignment(.center)
+                    .padding(.leading)
+                    .frame(width: 100.0)
             }
             .padding(.top)
+            
         }
-    .cornerRadius(30)
+    }
+    
+    /** Returns the correct response description based on current response. Based on responseDescription values.*/
+    func getResponseDescription(_ num: Int) -> String {
+        if num == 1 {
+            return responseDescription[questionCount][0]
+        } else if num == 3 {
+            return responseDescription[questionCount][1]
+        } else if num ==  5 {
+            return responseDescription[questionCount][2]
+        }
+
+        return " "
     }
 }
+
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
