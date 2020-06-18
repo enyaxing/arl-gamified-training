@@ -43,6 +43,9 @@ struct TrainingMain: View {
 
     /** Session time remaining. */
     @State var sessionTime = 20
+    
+    /** Has countdown played?. */
+    @State var countdown = false
 
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
@@ -55,6 +58,9 @@ struct TrainingMain: View {
 
     /** Is question correct? */
     @State var correct = true
+    
+    /** Time remaining for the turn. */
+    @State var timeRemaining = 3
     
     /** Show summary. */
     @Binding var summary: Bool
@@ -79,6 +85,17 @@ struct TrainingMain: View {
 
     var body: some View {
         VStack {
+            if !self.countdown {
+                Countdown(playing: Binding.constant(true))
+                .foregroundColor(Color.clear)
+                .onReceive(timer) { _ in
+                    if self.timeRemaining > 0 && !self.stopped {
+                         self.timeRemaining -= 1
+                    } else {
+                        self.countdown.toggle()
+                    }
+                }
+            }
             Text("Training")
                 .font(.largeTitle)
                 .fontWeight(.black)
@@ -197,7 +214,7 @@ struct TrainingMain: View {
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training(stars: 20, back: Binding.constant(true), type: Binding.constant("promotion"))
+        Training(stars: 0, back: Binding.constant(true), type: Binding.constant("promotion"))
     }
 }
 

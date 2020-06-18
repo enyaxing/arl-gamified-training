@@ -45,6 +45,12 @@ struct GonogoNeutralMain: View {
     /** Session time remaining. */
     @State var sessionTime = 20
     
+    /** Has countdown played?. */
+    @State var countdown = false
+    
+    /** Transition time. */
+    @State var time = 3
+    
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
     
@@ -74,6 +80,17 @@ struct GonogoNeutralMain: View {
     
     var body: some View {
         VStack {
+            if !self.countdown {
+                Countdown(playing: Binding.constant(true))
+                .foregroundColor(Color.clear)
+                .onReceive(timer) { _ in
+                if self.time > 0 && !self.stopped {
+                    self.time -= 1
+                } else {
+                    self.countdown.toggle()
+                    }
+                }
+            }
             Text("Go/NoGo")
             .font(.largeTitle)
             .fontWeight(.black)
@@ -88,7 +105,7 @@ struct GonogoNeutralMain: View {
                     .fontWeight(.bold)
                     .onReceive(timer) { _ in
                         if self.timeRemaining > 0 && !self.stopped {
-                            if !self.feedback{
+                            if !self.feedback {
                                 self.timeRemaining -= 1
                             }
                         } else if !self.stopped {

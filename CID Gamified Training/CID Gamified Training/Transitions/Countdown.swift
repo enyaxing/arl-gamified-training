@@ -9,38 +9,24 @@
 import SwiftUI
 
 struct Countdown: View {
-    /** Time remaining for the turn. */
+//    * Time remaining for the turn.
     @State var timeRemaining = 3
-    /** Back bar. */
-    @Binding var back: Bool
     @Binding var playing: Bool
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+   
     var body: some View {
-        VStack {
-            Text("\(timeRemaining)")
-            .foregroundColor(Color.blue)
-            .font(.title)
-            .fontWeight(.bold)
-            .onReceive(timer) { _ in
-                if self.timeRemaining > 0 {
-                    self.timeRemaining -= 1
-                    }
-            }
-            if self.timeRemaining == 0 {
-                LottieView(fileName: "countdown", playing: $playing)
-                    .frame(width: 700, height: 700)
-                    .background(Color.clear)
-                    .offset(y: -50)
-                    .onDisappear(perform: {print("Root is disappearing")})
-            }
+        ZStack {
+            LottieView(fileName: "countdown", playing: $playing)
+                .frame(width: 700, height: 700)
+                .edgesIgnoringSafeArea(.all)
+                .background(Color.clear)
+                .offset(y: 300)
         }
     }
 }
 
 struct Countdown_Previews: PreviewProvider {
     static var previews: some View {
-        Countdown(back: Binding.constant(true),  playing: Binding.constant(true))
+        Countdown(playing: Binding.constant(true))
     }
 }

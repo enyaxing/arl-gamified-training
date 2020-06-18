@@ -45,6 +45,12 @@ struct GonogoMain: View {
     /** Session time remaining. */
     @State var sessionTime = 20
     
+    /** Has countdown played?. */
+    @State var countdown = false
+    
+    /** Transition time. */
+    @State var time = 3
+    
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
     
@@ -80,6 +86,17 @@ struct GonogoMain: View {
     
     var body: some View {
         VStack {
+            if !self.countdown {
+                Countdown(playing: Binding.constant(true))
+                .foregroundColor(Color.clear)
+                .onReceive(timer) { _ in
+                if self.time > 0 && !self.stopped {
+                    self.time -= 1
+                } else {
+                    self.countdown.toggle()
+                    }
+                }
+            }
             Text("Go/NoGo")
             .font(.largeTitle)
             .fontWeight(.black)
@@ -197,7 +214,7 @@ struct GonogoMain: View {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-       Gonogo(stars: 20, back: Binding.constant(true), type: Binding.constant("promotion"))
+       Gonogo(stars: 0, back: Binding.constant(true), type: Binding.constant("promotion"))
     }
 }
 
