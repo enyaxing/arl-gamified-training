@@ -285,6 +285,7 @@
 		984D669A249C060900903431 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
+				985F5707249184140087D44B /* TestAnimations */,
 				985F5777249184AA0087D44B /* LottieView.swift */,
 				984B847B249818E200C4F080 /* PlusOne.swift */,
 				984B847D249818EF00C4F080 /* PlusZero.swift */,
@@ -418,14 +419,13 @@
 				9820861B249C1D94007D6F78 /* Questionnaire */,
 				984D669D249C078600903431 /* Summary */,
 				9820861D249C1E34007D6F78 /* Images */,
-				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
+				984D669A249C060900903431 /* Transitions */,
 				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
+				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
 				FA360E83248E7B9500F77C7B /* Info.plist */,
 				FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */,
 				FAF922C62497BC0A00F3EA80 /* friendly.txt */,
 				FAF922C82497BC1700F3EA80 /* foe.txt */,
-				984D669A249C060900903431 /* Transitions */,
-				985F5707249184140087D44B /* TestAnimations */,
 				FA360E7D248E7B9500F77C7B /* Preview Content */,
 			);
 			path = "CID Gamified Training";
