@@ -49,14 +49,11 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group {
                         if self.regular == "promotion" {
-                            Countdown(back: $back, playing: Binding.constant(true))
-//                            Training(back: $back)
+                            Training(back: $back)
                         } else if self.regular == "prevention" {
-                             Countdown(back: $back, playing: Binding.constant(true))
-//                            TrainingPrevention(back: $back)
+                            TrainingPrevention(back: $back)
                         } else if self.regular == "equal" {
-                            Countdown(back: $back, playing: Binding.constant(true))
-//                            TrainingNeutral(back: $back)
+                            TrainingNeutral(back: $back)
                         } else {
                             Rejection()
                         }
