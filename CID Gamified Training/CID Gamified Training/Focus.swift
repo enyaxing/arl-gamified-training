@@ -14,7 +14,7 @@ struct Focus: View {
     /** Used to pass regulatory focus type to other views. */
     @Binding var regular: String
     
-    @State var selection = "equal"
+    @State var selection = "neutral"
     
     @Binding var uid: String
     
@@ -26,7 +26,7 @@ struct Focus: View {
             Picker(selection: $selection, label: Text("Picker")) {
                 Text("promotion").tag("promotion")
                 Text("prevention").tag("prevention")
-                Text("equal").tag("equal")
+                Text("neutral").tag("neutral")
             } .pickerStyle(SegmentedPickerStyle())
         } .onDisappear {
             self.db.document(self.uid).setData(["focus": self.selection], merge: true)
@@ -39,6 +39,6 @@ struct Focus: View {
 
 struct Focus_Previews: PreviewProvider {
     static var previews: some View {
-        Focus(regular: Binding.constant("equal"), uid: Binding.constant(""))
+        Focus(regular: Binding.constant("neutral"), uid: Binding.constant(""))
     }
 }

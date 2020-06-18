@@ -12,7 +12,8 @@ struct XMark: View {
     var body: some View {
         ZStack {
             LottieView(fileName: "incorrect", playing: $playing)
-                .frame(width: 1000, height: 1000)
+            .frame(width: 900, height: 900)
+            .background(Color.clear)
         }
     }
 }

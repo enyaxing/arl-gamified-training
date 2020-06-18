@@ -161,7 +161,7 @@ struct Question: View {
            return false
     }
 
-    /** Calculates which regulatory focus type will be most beneficial to the user. Returns the type as either preventino, promotion, or equal. */
+    /** Calculates which regulatory focus type will be most beneficial to the user. Returns the type as either preventino, promotion, or neutral. */
     func analyzeScore() -> () {
         let (pre, pro) = calculateScore()
         let scores: [[Double]] = calculateIntervals(pre, pro)
@@ -177,7 +177,7 @@ struct Question: View {
         } else if maxVal == promotion {
             selected = "promotion"
         } else {
-            selected = "equal"
+            selected = "neutral"
         }
         db.document(uid).setData(["focus": selected], merge: true)
         self.regular = selected
