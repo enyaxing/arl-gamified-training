@@ -211,20 +211,6 @@ struct GonogoMain: View {
             self.sessionTime -= 1
         }
     }
-    
-    func getCorrectFinishedAlert() -> Alert {
-        if self.user.regular == "neutral" {
-            return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
-                self.alert = false
-                self.summary = true
-            }))
-        } else {
-            return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
-                self.alert = false
-                self.summary = true
-            }))
-        }
-    }
 }
 
 struct Gonogo_Previews: PreviewProvider {
