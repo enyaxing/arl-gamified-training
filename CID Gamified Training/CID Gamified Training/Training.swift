@@ -121,7 +121,7 @@ struct TrainingMain: View {
                 }
                 Spacer()
                 Button(action: {
-                    self.foeActionButton()
+                    self.enemyActionButton()
                 }) {
                     Text("Enemy")
                     .font(.largeTitle)
@@ -164,13 +164,13 @@ struct TrainingMain: View {
                     self.stars += 1
                 }
                 self.correct = true
-                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
+                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
                     self.stars -= 1
                 }
                 self.correct = false
-                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
+                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             }
             self.folder = Int.random(in: 0...1)
             self.index = Int.random(in: 0..<self.models[self.folder].count)
@@ -183,21 +183,21 @@ struct TrainingMain: View {
         }
     }
     
-    /** Action performed when foe button clicked. */
-    func foeActionButton() -> () {
+    /** Action performed when enemy button clicked. */
+    func enemyActionButton() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
                 if self.user.regular == "promotion" {
                     self.stars += 1
                 }
                 self.correct = true
-                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
+                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
                     self.stars -= 1
                 }
                 self.correct = false
-                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
+                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             }
             self.folder = Int.random(in: 0...1)
             self.index = Int.random(in: 0..<self.models[self.folder].count)

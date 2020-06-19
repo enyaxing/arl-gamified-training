@@ -66,6 +66,7 @@ struct SummaryDetail: View {
                  .fontWeight(.semibold)
                 }
             }
+            Text("(This is a \(self.answer.vehicleName))")
         }.onAppear {
             self.back = true
         }.onDisappear {
@@ -76,6 +77,6 @@ struct SummaryDetail: View {
 
 struct SummaryDetail_Previews: PreviewProvider {
     static var previews: some View {
-        SummaryDetail(answer: Answer(id: 1, expected: "foe", received: "foe", image: "tank1"), back: Binding.constant(true))
+        SummaryDetail(answer: Answer(id: 1, expected: "foe", received: "foe", image: "tank1", vehicleName: "tank1"), back: Binding.constant(true))
     }
 }

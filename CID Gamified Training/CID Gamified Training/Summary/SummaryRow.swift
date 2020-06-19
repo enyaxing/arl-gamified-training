@@ -54,6 +54,6 @@ func color(answer: Answer) -> Color {
 
 struct SummaryRow_Previews: PreviewProvider {
     static var previews: some View {
-        SummaryRow(answer: Answer(id: 1, expected: "foe", received: "foe", image: "tank1"))
+        SummaryRow(answer: Answer(id: 1, expected: "foe", received: "foe", image: "tank1", vehicleName: "tank1"))
     }
 }

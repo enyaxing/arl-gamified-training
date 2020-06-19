@@ -23,4 +23,7 @@ struct Answer {
     
     /**Image to display. */
     var image: String
+    
+    /** Vehicle name. */
+    var vehicleName: String
 }
