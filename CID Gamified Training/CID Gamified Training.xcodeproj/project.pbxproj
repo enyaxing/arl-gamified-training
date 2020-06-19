@@ -47,11 +47,11 @@
 		985F5762249184150087D44B /* B.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572B249184140087D44B /* B.json */; };
 		985F5778249184AA0087D44B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985F5777249184AA0087D44B /* LottieView.swift */; };
 		98A031E5248ED60900239274 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 98A031E4248ED60900239274 /* .swiftlint.yml */; };
+		98DF7ABE249D4CDF00EF8A42 /* countdown.json in Resources */ = {isa = PBXBuildFile; fileRef = 98DF7ABD249D4CDF00EF8A42 /* countdown.json */; };
 		98E7F612249AB1400034E912 /* star.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F611249AB1400034E912 /* star.json */; };
 		98E7F615249AB4B00034E912 /* one.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F613249AB4B00034E912 /* one.json */; };
 		98E7F616249AB4B00034E912 /* zero.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F614249AB4B00034E912 /* zero.json */; };
 		98E7F618249ABE490034E912 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E7F617249ABE490034E912 /* Countdown.swift */; };
-		98E7F622249AC6EA0034E912 /* countdown.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F621249AC6EA0034E912 /* countdown.json */; };
 		C54576202497486B0053C09D /* calculation.py in Resources */ = {isa = PBXBuildFile; fileRef = C545761F2497486B0053C09D /* calculation.py */; };
 		D663760F1D1D0ABC58CC2D16 /* Pods_CID_Gamified_Training.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */; };
 		D83DA4B420C1CCB6F1F8311D /* Pods_CID_Gamified_TrainingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */; };
@@ -151,11 +151,11 @@
 		985F572B249184140087D44B /* B.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = B.json; sourceTree = "<group>"; };
 		985F5777249184AA0087D44B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		98A031E4248ED60900239274 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		98DF7ABD249D4CDF00EF8A42 /* countdown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countdown.json; sourceTree = "<group>"; };
 		98E7F611249AB1400034E912 /* star.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star.json; sourceTree = "<group>"; };
 		98E7F613249AB4B00034E912 /* one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = one.json; sourceTree = "<group>"; };
 		98E7F614249AB4B00034E912 /* zero.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = zero.json; sourceTree = "<group>"; };
 		98E7F617249ABE490034E912 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
-		98E7F621249AC6EA0034E912 /* countdown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countdown.json; sourceTree = "<group>"; };
 		AC257A6E2836F63691C0FAE8 /* Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training.release.xcconfig"; sourceTree = "<group>"; };
 		C545761F2497486B0053C09D /* calculation.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = calculation.py; sourceTree = "<group>"; };
@@ -302,7 +302,7 @@
 		985F5707249184140087D44B /* TestAnimations */ = {
 			isa = PBXGroup;
 			children = (
-				98E7F621249AC6EA0034E912 /* countdown.json */,
+				98DF7ABD249D4CDF00EF8A42 /* countdown.json */,
 				FA33666E2492A800004D96DB /* incorrect.json */,
 				FA33666F2492A800004D96DB /* correct.json */,
 				984B848D249821F300C4F080 /* minus.json */,
@@ -571,6 +571,7 @@
 				985F5749249184150087D44B /* M.json in Resources */,
 				98A031E5248ED60900239274 /* .swiftlint.yml in Resources */,
 				985F574B249184150087D44B /* Y.json in Resources */,
+				98DF7ABE249D4CDF00EF8A42 /* countdown.json in Resources */,
 				985F5757249184150087D44B /* Q.json in Resources */,
 				FA3366712492A800004D96DB /* correct.json in Resources */,
 				985F575B249184150087D44B /* C.json in Resources */,
@@ -584,7 +585,6 @@
 				C54576202497486B0053C09D /* calculation.py in Resources */,
 				98E7F612249AB1400034E912 /* star.json in Resources */,
 				985F575A249184150087D44B /* H.json in Resources */,
-				98E7F622249AC6EA0034E912 /* countdown.json in Resources */,
 				985F5755249184150087D44B /* Apostrophe.json in Resources */,
 				FA360E7C248E7B9500F77C7B /* Assets.xcassets in Resources */,
 				985F575D249184150087D44B /* Comma.json in Resources */,

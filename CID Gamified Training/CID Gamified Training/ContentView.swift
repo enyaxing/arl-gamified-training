@@ -35,6 +35,7 @@ struct ContentView: View {
     /** Reference to global user variable. */
     @EnvironmentObject var user: User
     
+    /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
