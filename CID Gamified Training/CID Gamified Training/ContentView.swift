@@ -26,8 +26,10 @@ struct ContentView: View {
     /** Is logout invalid. */
     @State var invalid = false
     
+    /** Should countdown play?  */
     @State var countdown = true
-       
+     
+    /** Three second transition. */
     @State var time = 3
     
     /** Reference to global user variable. */

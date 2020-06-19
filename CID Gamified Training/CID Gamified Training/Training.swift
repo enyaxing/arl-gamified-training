@@ -76,9 +76,6 @@ struct TrainingMain: View {
     /** Friendly or foe folder selector.  0=friendly, 1=foe*/
     @State var folder = Int.random(in: 0...1)
 
-    /** Timer that pings the app every second. */
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
     var body: some View {
         VStack {
             Text("Training")

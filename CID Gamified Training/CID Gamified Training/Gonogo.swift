@@ -66,9 +66,6 @@ struct GonogoMain: View {
     /** List of answers. */
     @Binding var answers: [Answer]
     
-    /** Type. */
-    //@Binding var type: String
-    
     /** Stars. */
     @Binding var stars: Int
     
