@@ -82,11 +82,9 @@
 		FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B112493F386006CF82A /* SummaryRow.swift */; };
 		FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B132493F3B9006CF82A /* SummaryDetail.swift */; };
 		FAF40B162493F3CB006CF82A /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B152493F3CB006CF82A /* Answer.swift */; };
-		FAF922C32497BBC400F3EA80 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF922C22497BBC400F3EA80 /* ImageLoader.swift */; };
 		FAF922C52497BBD500F3EA80 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF922C42497BBD500F3EA80 /* Model.swift */; };
 		FAF922C72497BC0A00F3EA80 /* friendly.txt in Resources */ = {isa = PBXBuildFile; fileRef = FAF922C62497BC0A00F3EA80 /* friendly.txt */; };
 		FAF922C92497BC1700F3EA80 /* foe.txt in Resources */ = {isa = PBXBuildFile; fileRef = FAF922C82497BC1700F3EA80 /* foe.txt */; };
-		FAF922CB2497BCA000F3EA80 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF922CA2497BCA000F3EA80 /* ImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,11 +191,9 @@
 		FAF40B112493F386006CF82A /* SummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRow.swift; sourceTree = "<group>"; };
 		FAF40B132493F3B9006CF82A /* SummaryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetail.swift; sourceTree = "<group>"; };
 		FAF40B152493F3CB006CF82A /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = "CID Gamified Training/Answer.swift"; sourceTree = SOURCE_ROOT; };
-		FAF922C22497BBC400F3EA80 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		FAF922C42497BBD500F3EA80 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		FAF922C62497BC0A00F3EA80 /* friendly.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = friendly.txt; sourceTree = "<group>"; };
 		FAF922C82497BC1700F3EA80 /* foe.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = foe.txt; sourceTree = "<group>"; };
-		FAF922CA2497BCA000F3EA80 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,15 +265,6 @@
 				FAEFD8D024992B0E004FA58B /* Signup.swift */,
 			);
 			path = "Home Page";
-			sourceTree = "<group>";
-		};
-		9820861D249C1E34007D6F78 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				FAF922C22497BBC400F3EA80 /* ImageLoader.swift */,
-				FAF922CA2497BCA000F3EA80 /* ImageView.swift */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		984D669A249C060900903431 /* Transitions */ = {
@@ -398,7 +385,6 @@
 				9820861C249C1DCD007D6F78 /* Home Page */,
 				9820861B249C1D94007D6F78 /* Questionnaire */,
 				984D669D249C078600903431 /* Summary */,
-				9820861D249C1E34007D6F78 /* Images */,
 				984D669A249C060900903431 /* Transitions */,
 				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
 				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
@@ -731,10 +717,8 @@
 				FACECD41249CFF570069125A /* User.swift in Sources */,
 				FAF922C52497BBD500F3EA80 /* Model.swift in Sources */,
 				984B8491249860CB00C4F080 /* PlusOne.swift in Sources */,
-				FAF922C32497BBC400F3EA80 /* ImageLoader.swift in Sources */,
 				FAEFD8C9249914B8004FA58B /* CheckMark.swift in Sources */,
 				984B84922498615700C4F080 /* MinusOne.swift in Sources */,
-				FAF922CB2497BCA000F3EA80 /* ImageView.swift in Sources */,
 				FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */,
 				FAEFD8CB249914C3004FA58B /* XMark.swift in Sources */,
 				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,
