@@ -39,9 +39,6 @@ struct TrainingMain: View {
 
     /** Reference to global user variable. */
     @EnvironmentObject var user: User
-    
-    /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
-    @State var index = 0
 
     /** Session time remaining. */
     @State var sessionTime = 20
@@ -75,6 +72,10 @@ struct TrainingMain: View {
 
     /** Friendly or foe folder selector.  0=friendly, 1=foe*/
     @State var folder = Int.random(in: 0...1)
+    
+    /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
+    @State var index = 0
+
 
     var body: some View {
         VStack {
@@ -152,6 +153,9 @@ struct TrainingMain: View {
                 self.summary = true
             })
             )
+        }
+        .onAppear() {
+            self.index = Int.random(in: 0..<self.models[self.folder].count)
         }
     }
     

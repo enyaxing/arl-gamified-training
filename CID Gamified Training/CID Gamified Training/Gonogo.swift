@@ -179,6 +179,9 @@ struct GonogoMain: View {
             })
             )
         }
+        .onAppear() {
+            self.index = Int.random(in: 0..<self.models[self.folder].count)
+        }
     }
     
     /** Action performed when enemy button clicked. */
