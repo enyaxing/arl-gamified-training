@@ -42,9 +42,6 @@ struct TrainingMain: View {
 
     /** Session time remaining. */
     @State var sessionTime = 20
-    
-    /** Has countdown played?. */
-    @State var countdown = false
 
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
