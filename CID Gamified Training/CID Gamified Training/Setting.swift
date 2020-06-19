@@ -98,12 +98,10 @@ struct Setting: View {
             Model.enemyFolder = self.enemy
             Model.friendly = Model.settingLoad(name: "friendly")
             Model.foe = Model.settingLoad(name: "enemy")
-            print(Model.unselectedFolder)
         } .onAppear {
             self.library = Model.unselectedFolder
             self.friendly = Model.friendlyFolder
             self.enemy = Model.enemyFolder
-            print(Model.unselectedFolder)
         }
     }
 }

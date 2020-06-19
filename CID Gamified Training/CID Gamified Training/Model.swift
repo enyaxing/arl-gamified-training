@@ -27,7 +27,7 @@ struct Model: Identifiable {
     
     static var friendlyFolder: [Card] = [Card(name: "AAV")]
     static var enemyFolder: [Card] = [Card(name: "AH-1 Cobra")]
-    static var unselectedFolder: [Card] = [Card(name: "AH-64 Apache")]
+    static var unselectedFolder: [Card] = dirLoad()
     
     static func settingLoad(name: String) -> [Model] {
         let fm = FileManager.default
@@ -39,7 +39,6 @@ struct Model: Identifiable {
                 do {
                     let items = try fm.contentsOfDirectory(atPath: path + "/" + card.name)
                     for item in items {
-                        print("Found \(item)")
                         ret.append(Model(imageURL: path + "/" + card.name + "/\(item)"))
                     }
                 } catch {
@@ -51,7 +50,6 @@ struct Model: Identifiable {
                 do {
                     let items = try fm.contentsOfDirectory(atPath: path + "/" + card.name)
                     for item in items {
-                        print("Found \(item)")
                         ret.append(Model(imageURL: path + "/" + card.name + "/\(item)"))
                     }
                 } catch {
@@ -88,21 +86,21 @@ func load(name: String) -> [Model] {
 }
 
 /** How to read file names in directory. */
-func dirLoad(name: String) -> [Model] {
+func dirLoad() -> [Card] {
     let fm = FileManager.default
-    let path = Bundle.main.resourcePath! + "/" + name
+    let path = Bundle.main.resourcePath! + "/CID Images"
     print(path)
-    var ret: [Model] = []
+    var ret: [Card] = []
     do {
         let items = try fm.contentsOfDirectory(atPath: path)
         for item in items {
             print("Found \(item)")
-            ret.append(Model(imageURL: path + "/\(item)"))
+            if item != "AAV" && item != "AH-1 Cobra"{
+                ret.append(Card(name: "\(item)"))
+            }
         }
     } catch {
         print("error")
     }
     return ret
 }
-
-
