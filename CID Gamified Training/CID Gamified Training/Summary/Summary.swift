@@ -75,6 +75,6 @@ func percentage(answer: [Answer]) -> Double {
 
 struct Summary_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello World")
+        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1")], back: Binding.constant(false)).environmentObject(User())
     }
 }

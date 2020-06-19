@@ -229,7 +229,7 @@ struct GonogoMain: View {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-       Gonogo(stars: 0, back: Binding.constant(true))
+       Gonogo(stars: 0, back: Binding.constant(true)).environmentObject(User())
     }
 }
 

@@ -88,6 +88,6 @@ struct Signin: View {
 
 struct Signin_Previews: PreviewProvider {
     static var previews: some View {
-        Signin()
+        Signin().environmentObject(User())
     }
 }

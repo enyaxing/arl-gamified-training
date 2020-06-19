@@ -225,6 +225,6 @@ struct TrainingMain: View {
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training(stars: 0, back: Binding.constant(true))
+        Training(stars: 0, back: Binding.constant(true)).environmentObject(User())
     }
 }

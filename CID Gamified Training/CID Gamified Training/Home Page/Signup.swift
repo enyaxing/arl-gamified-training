@@ -94,6 +94,6 @@ struct Signup: View {
 
 struct Signup_Previews: PreviewProvider {
     static var previews: some View {
-        Signup(signup: Binding.constant(true))
+        Signup(signup: Binding.constant(true)).environmentObject(User())
     }
 }

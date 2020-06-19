@@ -40,6 +40,6 @@ struct Focus: View {
 
 struct Focus_Previews: PreviewProvider {
     static var previews: some View {
-        Focus()
+        Focus().environmentObject(User())
     }
 }
