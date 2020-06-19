@@ -25,8 +25,13 @@ struct Model: Identifiable {
     /** List of foe vehicles. */
     static var foe = settingLoad(name: "enemy")
     
+    /** List of friendly photo folders. */
     static var friendlyFolder: [Card] = [Card(name: "AAV")]
+    
+    /** List of enemy photo folders. */
     static var enemyFolder: [Card] = [Card(name: "AH-1 Cobra")]
+    
+    /** List of unselected photo folders. */
     static var unselectedFolder: [Card] = dirLoad()
     
     static func settingLoad(name: String) -> [Model] {
@@ -58,30 +63,6 @@ struct Model: Identifiable {
             }
         }
         return ret
-    }
-}
-
-/** How to read a text file. */
-func load(name: String) -> [Model] {
-    if let filepath = Bundle.main.path(forResource: name, ofType: "txt") {
-        do {
-            let contents = try String(contentsOfFile: filepath)
-            print(contents)
-            let list = contents.components(separatedBy: "\n")
-            var url: [Model] = []
-            for (link) in list {
-                if !link.isEmpty {
-                    url.append(.init(imageURL: link))
-                }
-            }
-            return url
-        } catch {
-            // contents could not be loaded
-            return []
-        }
-    } else {
-        // example.txt not found!
-        return []
     }
 }
 
