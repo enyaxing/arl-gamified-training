@@ -78,9 +78,6 @@ struct TrainingMain: View {
 
     var body: some View {
         VStack {
-            Text("Training")
-                .font(.largeTitle)
-                .fontWeight(.black)
             Spacer()
             Text("Questions Remaining: \(sessionTime)")
                 .font(.largeTitle)
