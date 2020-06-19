@@ -80,7 +80,7 @@ struct Question: View {
                 }
                 Spacer()
             }
-            .padding(.bottom)]
+            .padding(.bottom)
             Spacer()
             Text("\(questionCount + 1) out of \(questions.count)")
             Spacer()
