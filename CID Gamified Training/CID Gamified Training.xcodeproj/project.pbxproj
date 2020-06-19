@@ -178,8 +178,8 @@
 		FA360E97248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CID_Gamified_TrainingUITests.swift; sourceTree = "<group>"; };
 		FA360E99248E7B9600F77C7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA360EAD248E807000F77C7B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
-		FA360EAF248E809200F77C7B /* Training.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
-		FA360EB7248ED74900F77C7B /* Gonogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gonogo.swift; sourceTree = "<group>"; };
+		FA360EAF248E809200F77C7B /* Training.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Training.swift; path = "CID Gamified Training/Training.swift"; sourceTree = SOURCE_ROOT; };
+		FA360EB7248ED74900F77C7B /* Gonogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Gonogo.swift; path = "CID Gamified Training/Gonogo.swift"; sourceTree = SOURCE_ROOT; };
 		FAB677E2249BBB140053933D /* Friendly */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Friendly; sourceTree = "<group>"; };
 		FAB677E4249BC2260053933D /* Foe */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Foe; sourceTree = "<group>"; };
 		FAEFD8C8249914B8004FA58B /* CheckMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMark.swift; sourceTree = "<group>"; };
@@ -294,22 +294,6 @@
 			path = Transitions;
 			sourceTree = "<group>";
 		};
-		984D669B249C076D00903431 /* Training */ = {
-			isa = PBXGroup;
-			children = (
-				FA360EAF248E809200F77C7B /* Training.swift */,
-			);
-			path = Training;
-			sourceTree = "<group>";
-		};
-		984D669C249C077900903431 /* Gonogo */ = {
-			isa = PBXGroup;
-			children = (
-				FA360EB7248ED74900F77C7B /* Gonogo.swift */,
-			);
-			path = Gonogo;
-			sourceTree = "<group>";
-		};
 		984D669D249C078600903431 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,8 +391,8 @@
 				FA360E79248E7B9300F77C7B /* ContentView.swift */,
 				FAF40B152493F3CB006CF82A /* Answer.swift */,
 				FAF922C42497BBD500F3EA80 /* Model.swift */,
-				984D669B249C076D00903431 /* Training */,
-				984D669C249C077900903431 /* Gonogo */,
+				FA360EAF248E809200F77C7B /* Training.swift */,
+				FA360EB7248ED74900F77C7B /* Gonogo.swift */,
 				9820861C249C1DCD007D6F78 /* Home Page */,
 				9820861B249C1D94007D6F78 /* Questionnaire */,
 				984D669D249C078600903431 /* Summary */,
