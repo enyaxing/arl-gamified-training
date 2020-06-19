@@ -10,9 +10,9 @@ import SwiftUI
 
 struct Setting: View {
     
-    @State var library: [Card] = [Card(name: "1"), Card(name: "2"), Card(name: "3")]
-    @State var friendly: [Card] = [Card(name: "4"), Card(name: "5"), Card(name: "6")]
-    @State var enemy: [Card] = [Card(name: "7"), Card(name: "8"), Card(name: "9")]
+    @State var library: [Card] = Model.unselectedFolder
+    @State var friendly: [Card] = Model.friendlyFolder
+    @State var enemy: [Card] = Model.enemyFolder
     
     var body: some View {
         HStack {
@@ -92,6 +92,18 @@ struct Setting: View {
                     }
                 }
             }
+        }.onDisappear {
+            Model.unselectedFolder = self.library
+            Model.friendlyFolder = self.friendly
+            Model.enemyFolder = self.enemy
+            Model.friendly = Model.settingLoad(name: "friendly")
+            Model.foe = Model.settingLoad(name: "enemy")
+            print(Model.unselectedFolder)
+        } .onAppear {
+            self.library = Model.unselectedFolder
+            self.friendly = Model.friendlyFolder
+            self.enemy = Model.enemyFolder
+            print(Model.unselectedFolder)
         }
     }
 }
