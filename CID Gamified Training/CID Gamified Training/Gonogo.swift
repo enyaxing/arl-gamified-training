@@ -80,49 +80,8 @@ struct GonogoMain: View {
     
     var body: some View {
         VStack {
-            Text("Go/NoGo")
-            .font(.largeTitle)
-            .fontWeight(.black)
             Spacer()
-            VStack {
-                Text("Questions Remaining: \(sessionTime)")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                
-                Text("Time Remaining: \(timeRemaining)")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .onReceive(timer) { _ in
-                        if self.timeRemaining > 0 && !self.stopped {
-                            if !self.feedback {
-                                self.timeRemaining -= 1
-                            }
-                            } else if !self.stopped{
-                                self.timeRemaining = 3
-                                if self.folder == 0 {
-                                    if self.user.regular == "promotion" {
-                                        self.stars += 1
-                                    }
-                                    self.correct = true
-                                    self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
-                                } else {
-                                    if self.user.regular == "prevention" {
-                                        self.stars -= 1
-                                    }
-                                    self.correct = false
-                                    self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
-                            }
-                            self.folder = Int.random(in: 0...1)
-                            self.index = Int.random(in: 0..<self.models[self.folder].count)
-                            self.feedback = true
-                            if self.sessionTime == 1 {
-                                self.stopped = true
-                                self.alert = true
-                            }
-                            self.sessionTime -= 1
-                        }
-                }
-            }
+            self.headline()
             Spacer()
             Group {
                 if self.feedback {
@@ -211,6 +170,50 @@ struct GonogoMain: View {
             self.sessionTime -= 1
         }
     }
+    
+     /** Questions remaining and time remaining. */
+    func headline() -> some View {
+        return VStack {
+            Text("Questions Remaining: \(sessionTime)")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            Text("Time Remaining: \(timeRemaining)")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .onReceive(timer) { _ in
+                    if self.timeRemaining > 0 && !self.stopped {
+                        if !self.feedback {
+                            self.timeRemaining -= 1
+                        }
+                        } else if !self.stopped{
+                            self.timeRemaining = 3
+                            if self.folder == 0 {
+                                if self.user.regular == "promotion" {
+                                    self.stars += 1
+                                }
+                                self.correct = true
+                                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
+                            } else {
+                                if self.user.regular == "prevention" {
+                                    self.stars -= 1
+                                }
+                                self.correct = false
+                                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
+                        }
+                        self.folder = Int.random(in: 0...1)
+                        self.index = Int.random(in: 0..<self.models[self.folder].count)
+                        self.feedback = true
+                        if self.sessionTime == 1 {
+                            self.stopped = true
+                            self.alert = true
+                        }
+                        self.sessionTime -= 1
+                    }
+            }
+        }
+    }
+    
+    
 }
 
 struct Gonogo_Previews: PreviewProvider {
