@@ -28,15 +28,18 @@ struct Setting: View {
                                 let index = self.library.firstIndex(of: card) ?? 0
                                 self.library[index].offset = gesture.translation
                             }.onEnded { _ in
+                                let index = self.library.firstIndex(of: card) ?? 0
                                 if location(geo: geo, card: card) == "friendly" {
                                     self.friendly.append(card)
                                     self.friendly[self.friendly.count - 1].offset = CGSize.zero
+                                    self.library.remove(at: index)
                                 } else if location(geo: geo, card: card) == "enemy" {
                                     self.enemy.append(card)
                                     self.enemy[self.enemy.count - 1].offset = CGSize.zero
+                                    self.library.remove(at: index)
+                                } else {
+                                    self.library[index].offset = CGSize.zero
                                 }
-                                let index = self.library.firstIndex(of: card) ?? 0
-                                self.library.remove(at: index)
                             })
                         }
                     }
@@ -54,15 +57,18 @@ struct Setting: View {
                                 let index = self.friendly.firstIndex(of: card) ?? 0
                                 self.friendly[index].offset = gesture.translation
                             }.onEnded { _ in
+                                let index = self.friendly.firstIndex(of: card) ?? 0
                                 if location(geo: geo, card: card) == "library" {
                                     self.library.append(card)
                                     self.library[self.library.count - 1].offset = CGSize.zero
+                                    self.friendly.remove(at: index)
                                 } else if location(geo: geo, card: card) == "enemy" {
                                     self.enemy.append(card)
                                     self.enemy[self.enemy.count - 1].offset = CGSize.zero
+                                    self.friendly.remove(at: index)
+                                } else {
+                                    self.friendly[index].offset = CGSize.zero
                                 }
-                                let index = self.friendly.firstIndex(of: card) ?? 0
-                                self.friendly.remove(at: index)
                             })
                         }
                     }
@@ -78,15 +84,18 @@ struct Setting: View {
                                 let index = self.enemy.firstIndex(of: card) ?? 0
                                 self.enemy[index].offset = gesture.translation
                             }.onEnded { _ in
+                                let index = self.enemy.firstIndex(of: card) ?? 0
                                 if location(geo: geo, card: card) == "friendly" {
                                     self.friendly.append(card)
                                     self.friendly[self.friendly.count - 1].offset = CGSize.zero
+                                    self.enemy.remove(at: index)
                                 } else if location(geo: geo, card: card) == "library" {
                                     self.library.append(card)
                                     self.library[self.library.count - 1].offset = CGSize.zero
+                                    self.enemy.remove(at: index)
+                                } else {
+                                    self.enemy[index].offset = CGSize.zero
                                 }
-                                let index = self.enemy.firstIndex(of: card) ?? 0
-                                self.enemy.remove(at: index)
                             })
                         }
                     }
