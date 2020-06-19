@@ -137,6 +137,13 @@ struct ContentView: View {
                         .cornerRadius(20)
                     }
                     Spacer()
+                    NavigationLink(destination: Setting()) {
+                        Text("Settings")
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(20)
+                    }
+                    Spacer()
                 }
             }
             .background(Image("background"))
