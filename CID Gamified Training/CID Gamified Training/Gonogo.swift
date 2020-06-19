@@ -7,6 +7,7 @@
 //
 import SwiftUI
 
+/** Gonogo game. */
 struct Gonogo: View {
     
     /** Show summary view. */
@@ -32,7 +33,10 @@ struct Gonogo: View {
     }
 }
 
+/** Main gonogo game view. */
 struct GonogoMain: View {
+    
+    /** Reference to global user variable. */
     @EnvironmentObject var user: User
     
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
@@ -144,7 +148,7 @@ struct GonogoMain: View {
                     }
                 } else {
                     Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
-                        .resizable()
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
                 }
             }.frame(width: 400, height: 400)
@@ -153,8 +157,8 @@ struct GonogoMain: View {
                 self.enemyButtonAction()
             }) {
                 Text("Enemy")
-                    .font(.largeTitle)
-                    .fontWeight(.black)
+                .font(.largeTitle)
+                .fontWeight(.black)
             }
             Spacer()
             if self.user.regular != "neutral" {
@@ -180,6 +184,7 @@ struct GonogoMain: View {
         }
     }
     
+    /** Action performed when enemy button clicked. */
     func enemyButtonAction() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {

@@ -9,15 +9,24 @@
 import Foundation
 import Combine
 
+/** Model represents photo to be displayed during training.
+    Also has reference to list of friendly and foe vehicles for training. */
 struct Model: Identifiable {
+    
+    /** Id variable for loops. */
     var id = UUID()
+    
+    /** File name in directory. */
     var imageURL: String
     
+    /** List of friendly vehicles. */
     static let friendly = dirLoad(name: "Friendly")
     
+    /** List of foe vehicles. */
     static let foe = dirLoad(name: "Foe")
 }
 
+/** How to read a text file. */
 func load(name: String) -> [Model] {
     if let filepath = Bundle.main.path(forResource: name, ofType: "txt") {
         do {
@@ -41,6 +50,7 @@ func load(name: String) -> [Model] {
     }
 }
 
+/** How to read file names in directory. */
 func dirLoad(name: String) -> [Model] {
     let fm = FileManager.default
     let path = Bundle.main.resourcePath! + "/" + name

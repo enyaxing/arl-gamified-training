@@ -7,38 +7,39 @@
 //
 import SwiftUI
 
+/** The summary view after session completed. */
 struct Summary: View {
     
+    /** List of answers from completed training session. */
     var answers: [Answer]
     
+    /** Hide navigation back button. */
     @Binding var back: Bool
     
-    //@Binding var regular: String
-    
+    /** Reference to global user variable. */
     @EnvironmentObject var user: User
 
     var body: some View {
         VStack {
             Text("Summary")
-                .font(.largeTitle)
-                .fontWeight(.black)
-            
+            .font(.largeTitle)
+            .fontWeight(.black)
             Group {
                 if self.user.regular == "promotion" {
                     Text("Correct: \(countCorrect(answer: answers))/\(answers.count)")
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.green)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.green)
                 } else if self.user.regular == "prevention" {
                     Text("Incorrect: \(incorrect(answer: answers))/\(answers.count)")
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.red)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.red)
                 } else {
                     Text("Correct: \(countCorrect(answer: answers))")
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.green)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.green)
                     Text("Incorrect: \(incorrect(answer: answers))")
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.red)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.red)
                 }
             }
             List(self.answers, id: \.id) { answer in
@@ -51,6 +52,7 @@ struct Summary: View {
     }
 }
 
+/** Count the number of correct answers. */
 func countCorrect(answer: [Answer]) -> Int {
     var count = 0
     for ans in answer {
@@ -61,10 +63,12 @@ func countCorrect(answer: [Answer]) -> Int {
     return count
 }
 
+/** Count the number of incorrect answers. */
 func incorrect(answer: [Answer]) -> Int {
     return answer.count - countCorrect(answer: answer)
 }
 
+/** Calculate percentage of correct answers. */
 func percentage(answer: [Answer]) -> Double {
     return ((Double(countCorrect(answer: answer)) / Double(answer.count)) * 100.0)
 }

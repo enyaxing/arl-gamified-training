@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/** Rejection page shown when questionaiire has not been filled out. */
 struct Rejection: View {
     var body: some View {
         Text("Please take the questionairre to determine your regulatory focus.        You cannot play any training games until you are classified as either Prevention, Promotion, or Neutral.")

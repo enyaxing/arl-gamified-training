@@ -8,6 +8,7 @@
 //
 import SwiftUI
 
+/** Training game. */
 struct Training: View {
 
     /** Show summary view. */
@@ -22,9 +23,6 @@ struct Training: View {
     /** Back bar. */
     @Binding var back: Bool
     
-    /** Promotion, Prevention, or Neutral. */
-    //@Binding var type: String
-    
     var body: some View {
         Group {
             if self.summary {
@@ -32,12 +30,14 @@ struct Training: View {
             } else {
                 TrainingMain(summary: $summary, answers: $answers, stars: $stars)
             }
-            } .navigationBarBackButtonHidden(back)
+        } .navigationBarBackButtonHidden(back)
     }
 }
 
+/** Main training game view. */
 struct TrainingMain: View {
 
+    /** Reference to global user variable. */
     @EnvironmentObject var user: User
     
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
@@ -67,9 +67,6 @@ struct TrainingMain: View {
     /** List of answers. */
     @Binding var answers: [Answer]
     
-    /** Type. */
-    //@Binding var type: String
-    
     /** Stars. */
     @Binding var stars: Int
 
@@ -92,7 +89,6 @@ struct TrainingMain: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
             Spacer()
-
             Group {
                 if self.feedback {
                     if self.correct {
@@ -114,7 +110,7 @@ struct TrainingMain: View {
                     }
                 } else {
                     Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
-                        .resizable()
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
                 }
             }.frame(width: 400, height: 400)
@@ -125,16 +121,16 @@ struct TrainingMain: View {
                     self.friendlyButtonAction()
                 }) {
                     Text("Friendly")
-                        .font(.largeTitle)
-                        .fontWeight(.black)
+                    .font(.largeTitle)
+                    .fontWeight(.black)
                 }
                 Spacer()
                 Button(action: {
                     self.foeActionButton()
                 }) {
                     Text("Enemy")
-                        .font(.largeTitle)
-                        .fontWeight(.black)
+                    .font(.largeTitle)
+                    .fontWeight(.black)
                 }
                 Spacer()
             }
@@ -158,6 +154,7 @@ struct TrainingMain: View {
         }
     }
     
+    /** Action performed when friendly button clicked. */
     func friendlyButtonAction() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 0 {
@@ -172,7 +169,6 @@ struct TrainingMain: View {
                 }
                 self.correct = false
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL))
-                
             }
             self.folder = Int.random(in: 0...1)
             self.index = Int.random(in: 0..<self.models[self.folder].count)
@@ -182,10 +178,10 @@ struct TrainingMain: View {
                 self.alert = true
             }
             self.sessionTime -= 1
-            
         }
     }
     
+    /** Action performed when foe button clicked. */
     func foeActionButton() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
@@ -215,23 +211,20 @@ struct TrainingMain: View {
     func getCorrectFinishedAlert() -> Alert {
         if self.user.regular == "neutral" {
             return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
-                self.alert = false
-                self.summary = true
+                    self.alert = false
+                    self.summary = true
             }))
         } else {
             return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
-                self.alert = false
-                self.summary = true
+                    self.alert = false
+                    self.summary = true
             }))
         }
     }
 }
-
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
         Training(stars: 0, back: Binding.constant(true))
     }
 }
-
-

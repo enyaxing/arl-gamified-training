@@ -8,33 +8,36 @@
 
 import SwiftUI
 
+/** Detailed description of a single answer. */
 struct SummaryDetail: View {
     
+    /** A single answer to be displayed. */
     var answer: Answer
     
+    /** Hide navigation back button. */
     @Binding var back: Bool
     
     var body: some View {
         VStack {
             Image(uiImage: UIImage(imageLiteralResourceName: self.answer.image))
-                .resizable()
+            .resizable()
             .aspectRatio(contentMode: .fit)
             if self.answer.expected == self.answer.received {
                 HStack {
                     VStack {
                  Text("You chose ")
-                     .font(.title)
-                     .fontWeight(.semibold)
+                 .font(.title)
+                 .fontWeight(.semibold)
                 + Text(self.answer.expected)
-                     .font(.title)
-                     .fontWeight(.semibold)
-                     .foregroundColor(Color.green)
+                 .font(.title)
+                 .fontWeight(.semibold)
+                 .foregroundColor(Color.green)
                 + Text(",")
-                    .font(.title)
-                    .fontWeight(.semibold)
+                .font(.title)
+                .fontWeight(.semibold)
                  Text("the correct answer.")
-                    .font(.title)
-                    .fontWeight(.semibold)
+                .font(.title)
+                .fontWeight(.semibold)
                 }
               }
             } else {

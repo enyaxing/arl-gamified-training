@@ -9,16 +9,34 @@
 import SwiftUI
 import Firebase
 
+/** Sign up page. */
 struct Signup: View {
     
+    /** Text in name field. */
     @State var name: String = ""
+    
+    /** Text in email field. */
     @State var email: String = ""
+    
+    /** Text in password field. */
     @State var password: String = ""
+    
+    /** Is signup page shown. */
     @Binding var signup: Bool
+    
+    /** Credentials invalid and show alert.  */
     @State var invalid = false
+    
+    /** Error message for alert. */
     @State var error = ""
+    
+    /** Connection to firebase users collection. */
     let db = Firestore.firestore().collection("users")
+    
+    /** Reference to global users object. */
     @EnvironmentObject var user: User
+    
+    /** Save who is signed in locally. */
     let defaults = UserDefaults.standard
     
     var body: some View {
@@ -43,7 +61,7 @@ struct Signup: View {
                 }.navigationBarTitle("Sign Up")
             }.alert(isPresented: $invalid) {
                 Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
-                self.invalid = false
+                        self.invalid = false
             })
             )
             }
@@ -54,6 +72,7 @@ struct Signup: View {
         }
     }
     
+    /** Create user function. */
     func createUser(email: String, password: String, name: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error != nil {

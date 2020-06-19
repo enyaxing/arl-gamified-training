@@ -7,21 +7,23 @@
 //
 import SwiftUI
 
+/** The individual rows in the summary view. */
 struct SummaryRow: View {
     
+    /** One individual answer to be displayed. */
     var answer: Answer
     
     var body: some View {
         HStack {
             Image(uiImage: UIImage(imageLiteralResourceName: answer.image))
-                .resizable()
+            .resizable()
             .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50)
+            .frame(width: 50, height: 50)
             Group {
                 if correct(answer: self.answer) {
                     Text("Correct!")
-                        .font(.title)
-                        .fontWeight(.semibold)
+                    .font(.title)
+                    .fontWeight(.semibold)
                 } else {
                     Text("Incorrect!")
                     .font(.title)
@@ -33,6 +35,7 @@ struct SummaryRow: View {
     }
 }
 
+/** Is the answer correct. */
 func correct(answer: Answer) -> Bool {
     if answer.expected == answer.received {
         return true
@@ -40,6 +43,7 @@ func correct(answer: Answer) -> Bool {
     return false
 }
 
+/** Background green if correct and red if incorrect. */
 func color(answer: Answer) -> Color {
     if correct(answer: answer) {
         return Color.green

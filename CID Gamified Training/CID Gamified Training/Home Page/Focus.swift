@@ -9,15 +9,16 @@
 import SwiftUI
 import Firebase
 
+/** Change focus page. */
 struct Focus: View {
     
-    /** Used to pass regulatory focus type to other views. */
-    //@Binding var regular: String
-    
+    /** Which option is currently selected from picker. */
     @State var selection = "neutral"
     
+    /** Reference to global user variable. */
     @EnvironmentObject var user: User
     
+    /** Reference to firebase users collection. */
     let db = Firestore.firestore().collection("users")
     
     var body: some View {

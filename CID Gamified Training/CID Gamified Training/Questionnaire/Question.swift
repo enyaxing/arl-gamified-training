@@ -15,9 +15,14 @@ enum ActiveAlert {
 
 struct Question: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
+    
+    /** Connection to firebase users collection. */
     let db = Firestore.firestore().collection("users")
+    
+    /** Reference to global user variable. */
     @EnvironmentObject var user: User
 
+    /** List of questions. */
     let questions = [
         "Compared to most people, are you typically unable to get what you want out of life?",
         "Growing up, would you ever “cross the line” by doing things that your parents would not tolerate?",
@@ -47,9 +52,6 @@ struct Question: View {
     /** Sets the default activeAlert. */
     @State private var activeAlert: ActiveAlert = .alreadyCompletedAlert
 
-    /** Used to pass regulatory focus type to other views. */
-    //@Binding var regular: String
-
     /** Environment variable used to dismiss view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -63,7 +65,6 @@ struct Question: View {
             Spacer()
             RadioButtons(curResponse: $curResponse, questionCount: $questionCount)
             Spacer()
-
             HStack {
                 Spacer()
                 Button(action: {
@@ -79,8 +80,7 @@ struct Question: View {
                 }
                 Spacer()
             }
-            .padding(.bottom)
-            
+            .padding(.bottom)]
             Spacer()
             Text("\(questionCount + 1) out of \(questions.count)")
             Spacer()
@@ -90,7 +90,6 @@ struct Question: View {
     .padding()
 
     .alert(isPresented: $showAlert) {
-
         switch activeAlert {
             case .alreadyCompletedAlert:
                 return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.db.document(self.user.uid).setData(["focus": "None"], merge: true)
@@ -101,13 +100,11 @@ struct Question: View {
                 return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your prevention score is: \(String(format: "%.3f", pre)).\nYour promotion score is \(String(format: "%.3f", pro)).\nWe have determined your best focus type is \(self.user.regular)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
             case .noAnswerSelectedAlert:
                 return Alert(title: Text("Error"), message: Text("Please select an answer choice to continue"), dismissButton: .default(Text("Okay")))
-
             }
         }
         .onAppear() {
             self.isAlreadyCompleted()
         }
-
     }
 
     /** When we receive an answer, record the response and give the user the next question. */
@@ -183,8 +180,7 @@ struct Question: View {
     }
     
     /** Heuristic from Dr. Benjamin Files. Modified from Python to Swift.
-            Outputs: Prevention score, promotion score, confidence interval array
-     */
+            Outputs: Prevention score, promotion score, confidence interval array*/
     func calculateScore() -> (Double, Double) {
         /** Response for prevention: 1.0, promotion: 5.0 score: [5, 1, 1, 1, 5, 1, 1, 1, 5, 1, 5]*/
         /** Response for prevention: 5.0, promotion: 1.0 score: [1, 5, 5, 5, 1, 5, 5, 5, 1, 5, 1]*/
@@ -332,11 +328,9 @@ struct RadioButtons: View {
         } else if num ==  5 {
             return responseDescription[questionCount][2]
         }
-
         return " "
     }
 }
-
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {

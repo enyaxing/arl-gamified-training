@@ -8,6 +8,7 @@
 
 import Foundation
 
+/** Global user class to store user uid and regular focus type. */
 class User: ObservableObject {
     @Published var uid = UserDefaults.standard.string(forKey: "uid") ?? ""
     @Published var regular = "None"

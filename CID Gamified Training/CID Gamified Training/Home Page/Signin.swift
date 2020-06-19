@@ -9,18 +9,31 @@
 import SwiftUI
 import Firebase
 
+/** Sign in page. */
 struct Signin: View {
     
+    /** Text in the email field. */
     @State var email: String = ""
+    
+    /** Text in the password field. */
     @State var password: String = ""
+    
+    /** Switch to signup view. */
     @State var signup = false
+    
+    /** Credentials invalid and show alert. */
     @State var invalid = false
+    
+    /** Error message for alert. */
     @State var error = ""
+    
+    /** Refernce to global user variable. */
     @EnvironmentObject var user: User
+    
+    /** Save who is logged in locally. */
     let defaults = UserDefaults.standard
     
     var body: some View {
-        
         Group {
             if user.uid != "" {
                 ContentView()
@@ -59,13 +72,13 @@ struct Signin: View {
         }
     }
     
+    /** Login function*/
     func login(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
                 self.error = error?.localizedDescription ?? ""
                 self.invalid = true
             } else {
-                //self.uid = result!.user.uid
                 self.user.uid = result!.user.uid
                 self.defaults.set(result!.user.uid, forKey: "uid")
             }

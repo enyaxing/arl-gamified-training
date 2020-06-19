@@ -8,23 +8,29 @@
 import SwiftUI
 import Firebase
 
+/** Main menu view. */
 struct ContentView: View {
     
+    /** Save defaults locally (ie. who is signed in). */
     let defaults = UserDefaults.standard
+    
+    /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
-    //@State var regular = "None"
-    
+    /** Hide navigation back bar. */
     @State var back = false
     
+    /** Error message for alerts. */
     @State var error = ""
     
+    /** Is logout invalid. */
     @State var invalid = false
     
     @State var countdown = true
        
     @State var time = 3
     
+    /** Reference to global user variable. */
     @EnvironmentObject var user: User
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -39,7 +45,6 @@ struct ContentView: View {
                     .background(Color.white)
                     .cornerRadius(20)
                 Spacer()
-                
                 NavigationLink(destination: Question(curResponse: 0)) {
                     Text("Questionairre")
                         .font(.largeTitle)
@@ -47,11 +52,8 @@ struct ContentView: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(20)
-                    
                 }
                 Spacer()
-                
-                
                 NavigationLink(destination:
                     Group {
                         if self.countdown {
@@ -66,11 +68,11 @@ struct ContentView: View {
                             }
                         } else {
                             if self.user.regular == "promotion" {
-                            Training(stars: 0, back: $back)
+                                Training(stars: 0, back: $back)
                             } else if self.user.regular == "prevention" {
-                            Training(stars: 20, back: $back)
+                                Training(stars: 20, back: $back)
                             } else if self.user.regular == "neutral" {
-                            Training(stars: 0, back: $back)
+                                Training(stars: 0, back: $back)
                         } else {
                             Rejection()
                         }
@@ -98,14 +100,14 @@ struct ContentView: View {
                             }
                         } else {
                             if self.user.regular == "promotion" {
-                            Gonogo(stars: 0, back: $back)
+                                Gonogo(stars: 0, back: $back)
                             } else if self.user.regular == "prevention" {
-                            Gonogo(stars: 20, back: $back)
+                                Gonogo(stars: 20, back: $back)
                             } else if self.user.regular == "neutral" {
-                            Gonogo(stars: 0, back: $back)
-                        }
-                        else {
-                            Rejection()
+                                Gonogo(stars: 0, back: $back)
+                            }
+                            else {
+                                Rejection()
                             }
                         }
                     }) {
@@ -148,6 +150,7 @@ struct ContentView: View {
         }
     }
     
+    /** Logout function. */
     func logout() {
         do {
             try Auth.auth().signOut()
@@ -159,6 +162,7 @@ struct ContentView: View {
         }
     }
     
+    /** Obtain focus value from firebase user. */
     func newFocus(db: CollectionReference, uid: String) {
         db.document(uid).getDocument { (document, error) in
             if let document = document, document.exists {
