@@ -209,6 +209,7 @@ struct Question: View {
         return (pre, pro)
     }
     
+    /** Adpated from Dr. Files, calculates confidence intervals given user questionnaire responses. */
     func calculateIntervals(_ pre: Double, _ pro: Double) -> [[Double]] {
         let B: Matrix<Double> = [[1.565563, -0.502494, -0.112472, -6.720915, -2.630483, 1.413550, 0.676953, 0.641702, 0.282040]]
         let T = 0.677422
@@ -260,7 +261,10 @@ struct Question: View {
 }
 
 struct RadioButtons: View {
+    /** Stores the user's current selected response. */
     @Binding var curResponse: Int
+    
+    /** References the question that the user is currently on. */
     @Binding var questionCount: Int
     
     let responseDescription = [["never or seldom", "sometimes", "very often"],
