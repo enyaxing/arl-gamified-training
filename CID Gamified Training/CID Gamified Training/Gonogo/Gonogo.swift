@@ -188,7 +188,6 @@ struct GonogoMain: View {
                     .offset(y: -2)
                  }
             }
-            Spacer()
         }
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
