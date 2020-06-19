@@ -14,7 +14,7 @@ struct ContentView: View {
     let db = Firestore.firestore().collection("users")
     
     @State var regular = "None"
-       
+    
     @State var back = false
     
     @State var error = ""
@@ -64,13 +64,13 @@ struct ContentView: View {
                                     self.countdown.toggle()
                                 }
                             }
-                       } else {
+                        } else {
                         if self.regular == "promotion" {
                             Training(stars: 0, back: $back, type: $regular)
                         } else if self.regular == "prevention" {
                             Training(stars: 20, back: $back, type: $regular)
                         } else if self.regular == "neutral" {
-                            TrainingNeutral(back: $back, type: $regular)
+                            Training(stars: 0, back: $back, type: $regular)
                         } else {
                             Rejection()
                         }
@@ -97,15 +97,15 @@ struct ContentView: View {
                                 }
                             }
                         } else {
-                            if self.regular == "promotion" {
-                                Gonogo(stars: 0, back: $back, type: $regular)
-                            } else if self.regular == "prevention" {
-                                Gonogo(stars: 20, back: $back, type: $regular)
-                            } else if self.regular == "neutral" {
-                                GonogoNeutral(back: $back, type: $regular)
-                            }
-                            else {
-                                Rejection()
+                        if self.regular == "promotion" {
+                            Gonogo(stars: 0, back: $back, type: $regular)
+                        } else if self.regular == "prevention" {
+                            Gonogo(stars: 20, back: $back, type: $regular)
+                        } else if self.regular == "neutral" {
+                            Gonogo(stars: 0, back: $back, type: $regular)
+                        }
+                        else {
+                            Rejection()
                             }
                         }
                     }) {

@@ -132,14 +132,22 @@ struct GonogoMain: View {
             Spacer()
             Group {
                 if self.feedback {
-                    if self.correct && self.type == "promotion" {
-                        PlusOne(playing: $feedback)
-                    } else if self.type == "promotion" {
-                        PlusZero(playing: $feedback)
-                    } else if self.correct && self.type == "prevention" {
-                        MinusZero(playing: $feedback)
+                    if self.correct {
+                        if self.type == "promotion" {
+                            PlusOne(playing: $feedback)
+                        } else if self.type == "prevention" {
+                            MinusZero(playing: $feedback)
+                        } else {
+                            CheckMark(playing: $feedback)
+                        }
                     } else {
-                        MinusOne(playing: $feedback)
+                        if self.type == "promotion" {
+                            PlusZero(playing: $feedback)
+                        } else if self.type == "prevention" {
+                            MinusOne(playing: $feedback)
+                        } else {
+                            XMark(playing: $feedback)
+                        }
                     }
                 } else {
                     Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
@@ -149,47 +157,26 @@ struct GonogoMain: View {
             }.frame(width: 400, height: 400)
             Spacer()
             Button(action: {
-                if !self.stopped && !self.feedback {
-                    if self.folder == 1 {
-                        if self.type == "promotion" {
-                            self.stars += 1
-                        }
-                        self.correct = true
-                        self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
-                    } else {
-                        if self.type == "prevention" {
-                            self.stars -= 1
-                        }
-                        self.correct = false
-                        self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
-                    }
-                    self.folder = Int.random(in: 0...1)
-                    self.index = Int.random(in: 0..<self.models[self.folder].count)
-                    self.feedback = true
-                    self.timeRemaining = 3
-                    if self.sessionTime == 1 {
-                        self.stopped = true
-                        self.alert = true
-                    }
-                    self.sessionTime -= 1
-                }
+                self.enemyButtonAction()
             }) {
                 Text("Enemy")
                     .font(.largeTitle)
                     .fontWeight(.black)
             }
             Spacer()
-            HStack {
-                Text("Stars Collected    ")
-                .fontWeight(.black)
-                .font(.largeTitle)
-                Text("\(self.stars)")
-                .fontWeight(.black)
-                .font(.largeTitle)
-                Image("star").resizable().frame(width: 40, height: 40)
-                .aspectRatio(contentMode: .fit)
-                .offset(y: -2)
+            if self.type != "neutral" {
+                HStack {
+                    Text("Stars Collected    ")
+                    .fontWeight(.black)
+                    .font(.largeTitle)
+                    Text("\(self.stars)")
+                    .fontWeight(.black)
+                    .font(.largeTitle)
+                    Image("star").resizable().frame(width: 40, height: 40)
+                    .aspectRatio(contentMode: .fit)
+                    .offset(y: -2)
                  }
+            }
         }
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
@@ -197,6 +184,47 @@ struct GonogoMain: View {
                 self.summary = true
             })
             )
+        }
+    }
+    
+    func enemyButtonAction() -> () {
+        if !self.stopped && !self.feedback {
+            if self.folder == 1 {
+                if self.type == "promotion" {
+                    self.stars += 1
+                }
+                self.correct = true
+                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
+            } else {
+                if self.type == "prevention" {
+                    self.stars -= 1
+                }
+                self.correct = false
+                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL))
+            }
+            self.folder = Int.random(in: 0...1)
+            self.index = Int.random(in: 0..<self.models[self.folder].count)
+            self.feedback = true
+            self.timeRemaining = 3
+            if self.sessionTime == 1 {
+                self.stopped = true
+                self.alert = true
+            }
+            self.sessionTime -= 1
+        }
+    }
+    
+    func getCorrectFinishedAlert() -> Alert {
+        if self.type == "neutral" {
+            return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
+                self.alert = false
+                self.summary = true
+            }))
+        } else {
+            return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
+                self.alert = false
+                self.summary = true
+            }))
         }
     }
 }
