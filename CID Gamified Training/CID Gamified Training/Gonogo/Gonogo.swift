@@ -45,12 +45,6 @@ struct GonogoMain: View {
     /** Session time remaining. */
     @State var sessionTime = 20
     
-    /** Has countdown played?. */
-    @State var countdown = false
-    
-    /** Transition time. */
-    @State var time = 3
-    
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
     

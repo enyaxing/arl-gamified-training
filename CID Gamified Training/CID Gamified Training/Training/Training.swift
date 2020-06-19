@@ -1,3 +1,4 @@
+  
 //
 //  Training.swift
 //  CID Gamified Training
@@ -32,7 +33,7 @@ struct Training: View {
             } else {
                 TrainingMain(summary: $summary, answers: $answers, type: $type, stars: $stars)
             }
-        } .navigationBarBackButtonHidden(back)
+            } .navigationBarBackButtonHidden(back)
     }
 }
 
@@ -59,9 +60,6 @@ struct TrainingMain: View {
     /** Is question correct? */
     @State var correct = true
     
-    /** Time remaining for the turn. */
-    @State var time = 3
-    
     /** Show summary. */
     @Binding var summary: Bool
 
@@ -85,11 +83,9 @@ struct TrainingMain: View {
 
     var body: some View {
         VStack {
-            VStack {
-                Text("Training")
+            Text("Training")
                 .font(.largeTitle)
                 .fontWeight(.black)
-                
             Spacer()
             Text("Questions Remaining: \(sessionTime)")
                 .font(.largeTitle)
@@ -117,11 +113,10 @@ struct TrainingMain: View {
                     }
                 } else {
                     Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
-                    .resizable()
+                        .resizable()
                     .aspectRatio(contentMode: .fit)
                 }
             }.frame(width: 400, height: 400)
-            
             Spacer()
             HStack {
                 Spacer()
@@ -237,4 +232,5 @@ struct Training_Previews: PreviewProvider {
         Training(stars: 0, back: Binding.constant(true), type: Binding.constant("promotion"))
     }
 }
+
 
