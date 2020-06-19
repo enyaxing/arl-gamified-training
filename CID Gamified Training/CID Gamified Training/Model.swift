@@ -20,14 +20,47 @@ struct Model: Identifiable {
     var imageURL: String
     
     /** List of friendly vehicles. */
-    static var friendly = dirLoad(name: "Friendly")
+    static var friendly = settingLoad(name: "friendly")
     
     /** List of foe vehicles. */
-    static var foe = dirLoad(name: "Foe")
+    static var foe = settingLoad(name: "enemy")
     
-    static var friendlyFolder: [Card] = []
-    static var enemyFolder: [Card] = []
-    static var unselectedFolder: [Card] = []
+    static var friendlyFolder: [Card] = [Card(name: "AAV")]
+    static var enemyFolder: [Card] = [Card(name: "AH-1 Cobra")]
+    static var unselectedFolder: [Card] = [Card(name: "AH-64 Apache")]
+    
+    static func settingLoad(name: String) -> [Model] {
+        let fm = FileManager.default
+        let path = Bundle.main.resourcePath! + "/CID Images"
+        
+        var ret: [Model] = []
+        if name == "friendly" {
+            for card in self.friendlyFolder {
+                do {
+                    let items = try fm.contentsOfDirectory(atPath: path + "/" + card.name)
+                    for item in items {
+                        print("Found \(item)")
+                        ret.append(Model(imageURL: path + "/" + card.name + "/\(item)"))
+                    }
+                } catch {
+                    print("error")
+                }
+            }
+        } else if name == "enemy" {
+            for card in self.enemyFolder {
+                do {
+                    let items = try fm.contentsOfDirectory(atPath: path + "/" + card.name)
+                    for item in items {
+                        print("Found \(item)")
+                        ret.append(Model(imageURL: path + "/" + card.name + "/\(item)"))
+                    }
+                } catch {
+                    print("error")
+                }
+            }
+        }
+        return ret
+    }
 }
 
 /** How to read a text file. */
@@ -71,3 +104,5 @@ func dirLoad(name: String) -> [Model] {
     }
     return ret
 }
+
+
