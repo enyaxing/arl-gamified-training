@@ -18,7 +18,7 @@ struct Signup: View {
     @State var invalid = false
     @State var error = ""
     let db = Firestore.firestore().collection("users")
-    @Binding var uid: String
+    @EnvironmentObject var user: User
     let defaults = UserDefaults.standard
     
     var body: some View {
@@ -60,9 +60,9 @@ struct Signup: View {
                 self.error = error?.localizedDescription ?? ""
                 self.invalid = true
             } else {
-                self.uid = result!.user.uid
-                self.defaults.set(self.uid, forKey: "uid")
-                self.db.document(self.uid).setData([
+                self.user.uid = result!.user.uid
+                self.defaults.set(result!.user.uid, forKey: "uid")
+                self.db.document(result!.user.uid).setData([
                 "name": name,
                 "user": email,
                 "pass": password,
@@ -75,6 +75,6 @@ struct Signup: View {
 
 struct Signup_Previews: PreviewProvider {
     static var previews: some View {
-        Signup(signup: Binding.constant(true), uid: Binding.constant(""))
+        Signup(signup: Binding.constant(true))
     }
 }

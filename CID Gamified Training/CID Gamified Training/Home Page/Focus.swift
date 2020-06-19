@@ -16,7 +16,7 @@ struct Focus: View {
     
     @State var selection = "neutral"
     
-    @Binding var uid: String
+    @EnvironmentObject var user: User
     
     let db = Firestore.firestore().collection("users")
     
@@ -29,7 +29,7 @@ struct Focus: View {
                 Text("neutral").tag("neutral")
             } .pickerStyle(SegmentedPickerStyle())
         } .onDisappear {
-            self.db.document(self.uid).setData(["focus": self.selection], merge: true)
+            self.db.document(self.user.uid).setData(["focus": self.selection], merge: true)
             self.regular = self.selection
         } .onAppear {
             self.selection = self.regular
@@ -39,6 +39,6 @@ struct Focus: View {
 
 struct Focus_Previews: PreviewProvider {
     static var previews: some View {
-        Focus(regular: Binding.constant("neutral"), uid: Binding.constant(""))
+        Focus(regular: Binding.constant("neutral"))
     }
 }

@@ -16,6 +16,7 @@ enum ActiveAlert {
 struct Question: View {
     // From: https://higginsweb.psych.columbia.edu/wp-content/uploads/2018/07/RFQ.pdf
     let db = Firestore.firestore().collection("users")
+    @EnvironmentObject var user: User
 
     let questions = [
         "Compared to most people, are you typically unable to get what you want out of life?",
@@ -51,8 +52,6 @@ struct Question: View {
 
     /** Environment variable used to dismiss view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
-    @Binding var uid: String
 
     var body: some View {
         VStack {
@@ -94,7 +93,7 @@ struct Question: View {
 
         switch activeAlert {
             case .alreadyCompletedAlert:
-                return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.db.document(self.uid).setData(["focus": "None"], merge: true)
+                return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.db.document(self.user.uid).setData(["focus": "None"], merge: true)
                     self.regular = "None"
                 }))
             case .showFinishedAlert:
@@ -179,7 +178,7 @@ struct Question: View {
         } else {
             selected = "neutral"
         }
-        db.document(uid).setData(["focus": selected], merge: true)
+        db.document(self.user.uid).setData(["focus": selected], merge: true)
         self.regular = selected
     }
     
@@ -341,6 +340,6 @@ struct RadioButtons: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        Question(curResponse: 0, regular: Binding.constant(""), uid: Binding.constant(""))
+        Question(curResponse: 0, regular: Binding.constant(""))
     }
 }

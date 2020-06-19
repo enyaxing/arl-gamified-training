@@ -72,6 +72,7 @@
 		FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EB7248ED74900F77C7B /* Gonogo.swift */; };
 		FAB677E3249BBB150053933D /* Friendly in Resources */ = {isa = PBXBuildFile; fileRef = FAB677E2249BBB140053933D /* Friendly */; };
 		FAB677E5249BC2260053933D /* Foe in Resources */ = {isa = PBXBuildFile; fileRef = FAB677E4249BC2260053933D /* Foe */; };
+		FACECD41249CFF570069125A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACECD40249CFF570069125A /* User.swift */; };
 		FAEFD8C9249914B8004FA58B /* CheckMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8C8249914B8004FA58B /* CheckMark.swift */; };
 		FAEFD8CB249914C3004FA58B /* XMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8CA249914C3004FA58B /* XMark.swift */; };
 		FAEFD8CD249916FA004FA58B /* Focus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8CC249916FA004FA58B /* Focus.swift */; };
@@ -182,6 +183,7 @@
 		FA360EB7248ED74900F77C7B /* Gonogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Gonogo.swift; path = "CID Gamified Training/Gonogo.swift"; sourceTree = SOURCE_ROOT; };
 		FAB677E2249BBB140053933D /* Friendly */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Friendly; sourceTree = "<group>"; };
 		FAB677E4249BC2260053933D /* Foe */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Foe; sourceTree = "<group>"; };
+		FACECD40249CFF570069125A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FAEFD8C8249914B8004FA58B /* CheckMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMark.swift; sourceTree = "<group>"; };
 		FAEFD8CA249914C3004FA58B /* XMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMark.swift; sourceTree = "<group>"; };
 		FAEFD8CC249916FA004FA58B /* Focus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focus.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				FAF922C62497BC0A00F3EA80 /* friendly.txt */,
 				FAF922C82497BC1700F3EA80 /* foe.txt */,
 				FA360E7D248E7B9500F77C7B /* Preview Content */,
+				FACECD40249CFF570069125A /* User.swift */,
 			);
 			path = "CID Gamified Training";
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACECD41249CFF570069125A /* User.swift in Sources */,
 				FAF922C52497BBD500F3EA80 /* Model.swift in Sources */,
 				984B8491249860CB00C4F080 /* PlusOne.swift in Sources */,
 				FAF922C32497BBC400F3EA80 /* ImageLoader.swift in Sources */,

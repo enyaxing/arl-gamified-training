@@ -16,16 +16,16 @@ struct Signin: View {
     @State var signup = false
     @State var invalid = false
     @State var error = ""
-    @State var uid = UserDefaults.standard.string(forKey: "uid") ?? ""
+    @EnvironmentObject var user: User
     let defaults = UserDefaults.standard
     
     var body: some View {
         
         Group {
-            if uid != "" {
-                ContentView(uid: $uid)
+            if user.uid != "" {
+                ContentView()
             } else if signup {
-                Signup(signup: $signup, uid: $uid)
+                Signup(signup: $signup)
             } else {
                 NavigationView {
                     VStack {
@@ -65,8 +65,9 @@ struct Signin: View {
                 self.error = error?.localizedDescription ?? ""
                 self.invalid = true
             } else {
-                self.uid = result!.user.uid
-                self.defaults.set(self.uid, forKey: "uid")
+                //self.uid = result!.user.uid
+                self.user.uid = result!.user.uid
+                self.defaults.set(result!.user.uid, forKey: "uid")
             }
         }
     }

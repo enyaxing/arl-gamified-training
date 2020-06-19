@@ -25,7 +25,7 @@ struct ContentView: View {
        
     @State var time = 3
     
-    @Binding var uid: String
+    @EnvironmentObject var user: User
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -40,7 +40,7 @@ struct ContentView: View {
                     .cornerRadius(20)
                 Spacer()
                 
-                NavigationLink(destination: Question(curResponse: 0, regular: $regular, uid: $uid)) {
+                NavigationLink(destination: Question(curResponse: 0, regular: $regular)) {
                     Text("Questionairre")
                         .font(.largeTitle)
                         .fontWeight(.black)
@@ -128,7 +128,7 @@ struct ContentView: View {
                     .background(Color.white)
                     .cornerRadius(20)
                     Spacer()
-                    NavigationLink(destination: Focus(regular: $regular, uid: $uid)) {
+                    NavigationLink(destination: Focus(regular: $regular)) {
                         Text(self.regular)
                         .padding()
                         .background(Color.white)
@@ -144,14 +144,14 @@ struct ContentView: View {
                     }))
             }
         } .onAppear {
-            self.newFocus(db: self.db, uid: self.uid)
+            self.newFocus(db: self.db, uid: self.user.uid)
         }
     }
     
     func logout() {
         do {
             try Auth.auth().signOut()
-            self.uid = ""
+            self.user.uid = ""
             defaults.set("", forKey: "uid")
         } catch let error as NSError {
             self.error = error.localizedDescription
@@ -174,6 +174,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(uid: Binding.constant(""))
+        ContentView()
     }
 }
