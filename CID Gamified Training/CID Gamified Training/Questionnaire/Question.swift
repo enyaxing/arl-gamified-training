@@ -48,7 +48,7 @@ struct Question: View {
     @State private var activeAlert: ActiveAlert = .alreadyCompletedAlert
 
     /** Used to pass regulatory focus type to other views. */
-    @Binding var regular: String
+    //@Binding var regular: String
 
     /** Environment variable used to dismiss view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -94,11 +94,11 @@ struct Question: View {
         switch activeAlert {
             case .alreadyCompletedAlert:
                 return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.db.document(self.user.uid).setData(["focus": "None"], merge: true)
-                    self.regular = "None"
+                    self.user.regular = "None"
                 }))
             case .showFinishedAlert:
                 let (pre, pro) = calculateScore()
-                return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your prevention score is: \(String(format: "%.3f", pre)).\nYour promotion score is \(String(format: "%.3f", pro)).\nWe have determined your best focus type is \(self.regular)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
+                return Alert(title: Text("Congratulations on finishing the quiz!"), message: Text("Your prevention score is: \(String(format: "%.3f", pre)).\nYour promotion score is \(String(format: "%.3f", pro)).\nWe have determined your best focus type is \(self.user.regular)."), dismissButton: .default(Text("Quit"), action: {self.presentationMode.wrappedValue.dismiss()}))
             case .noAnswerSelectedAlert:
                 return Alert(title: Text("Error"), message: Text("Please select an answer choice to continue"), dismissButton: .default(Text("Okay")))
 
@@ -144,7 +144,7 @@ struct Question: View {
     /** Checks whether the quiz has already been completed. */
     func isAlreadyCompleted() {
         if questionCount == 0 {
-            if self.regular != "None" {
+            if self.user.regular != "None" {
                 activeAlert = .alreadyCompletedAlert
                 showAlert = true
             }
@@ -179,7 +179,7 @@ struct Question: View {
             selected = "neutral"
         }
         db.document(self.user.uid).setData(["focus": selected], merge: true)
-        self.regular = selected
+        self.user.regular = selected
     }
     
     /** Heuristic from Dr. Benjamin Files. Modified from Python to Swift.
@@ -340,6 +340,6 @@ struct RadioButtons: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        Question(curResponse: 0, regular: Binding.constant(""))
+        Question(curResponse: 0)
     }
 }

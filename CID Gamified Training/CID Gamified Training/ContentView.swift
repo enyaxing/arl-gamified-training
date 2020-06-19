@@ -13,7 +13,7 @@ struct ContentView: View {
     let defaults = UserDefaults.standard
     let db = Firestore.firestore().collection("users")
     
-    @State var regular = "None"
+    //@State var regular = "None"
     
     @State var back = false
     
@@ -40,7 +40,7 @@ struct ContentView: View {
                     .cornerRadius(20)
                 Spacer()
                 
-                NavigationLink(destination: Question(curResponse: 0, regular: $regular)) {
+                NavigationLink(destination: Question(curResponse: 0)) {
                     Text("Questionairre")
                         .font(.largeTitle)
                         .fontWeight(.black)
@@ -65,12 +65,12 @@ struct ContentView: View {
                                 }
                             }
                         } else {
-                        if self.regular == "promotion" {
-                            Training(stars: 0, back: $back, type: $regular)
-                        } else if self.regular == "prevention" {
-                            Training(stars: 20, back: $back, type: $regular)
-                        } else if self.regular == "neutral" {
-                            Training(stars: 0, back: $back, type: $regular)
+                            if self.user.regular == "promotion" {
+                            Training(stars: 0, back: $back)
+                            } else if self.user.regular == "prevention" {
+                            Training(stars: 20, back: $back)
+                            } else if self.user.regular == "neutral" {
+                            Training(stars: 0, back: $back)
                         } else {
                             Rejection()
                         }
@@ -97,12 +97,12 @@ struct ContentView: View {
                                 }
                             }
                         } else {
-                        if self.regular == "promotion" {
-                            Gonogo(stars: 0, back: $back, type: $regular)
-                        } else if self.regular == "prevention" {
-                            Gonogo(stars: 20, back: $back, type: $regular)
-                        } else if self.regular == "neutral" {
-                            Gonogo(stars: 0, back: $back, type: $regular)
+                            if self.user.regular == "promotion" {
+                            Gonogo(stars: 0, back: $back)
+                            } else if self.user.regular == "prevention" {
+                            Gonogo(stars: 20, back: $back)
+                            } else if self.user.regular == "neutral" {
+                            Gonogo(stars: 0, back: $back)
                         }
                         else {
                             Rejection()
@@ -128,8 +128,8 @@ struct ContentView: View {
                     .background(Color.white)
                     .cornerRadius(20)
                     Spacer()
-                    NavigationLink(destination: Focus(regular: $regular)) {
-                        Text(self.regular)
+                    NavigationLink(destination: Focus()) {
+                        Text(self.user.regular)
                         .padding()
                         .background(Color.white)
                         .cornerRadius(20)
@@ -163,7 +163,7 @@ struct ContentView: View {
         db.document(uid).getDocument { (document, error) in
             if let document = document, document.exists {
                 if document.get("focus") != nil {
-                    self.regular = document.get("focus") as! String
+                    self.user.regular = document.get("focus") as! String
                 }
             } else {
                 print("Document does not exist")

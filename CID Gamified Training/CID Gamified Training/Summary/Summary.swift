@@ -13,7 +13,9 @@ struct Summary: View {
     
     @Binding var back: Bool
     
-    @Binding var regular: String
+    //@Binding var regular: String
+    
+    @EnvironmentObject var user: User
 
     var body: some View {
         VStack {
@@ -22,11 +24,11 @@ struct Summary: View {
                 .fontWeight(.black)
             
             Group {
-                if regular == "promotion" {
+                if self.user.regular == "promotion" {
                     Text("Correct: \(countCorrect(answer: answers))/\(answers.count)")
                         .fontWeight(.bold)
                         .foregroundColor(Color.green)
-                } else if regular == "prevention" {
+                } else if self.user.regular == "prevention" {
                     Text("Incorrect: \(incorrect(answer: answers))/\(answers.count)")
                         .fontWeight(.bold)
                         .foregroundColor(Color.red)

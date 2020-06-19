@@ -21,21 +21,20 @@ struct Gonogo: View {
     /** Back bar. */
     @Binding var back: Bool
     
-    /** Promotion, Prevention, or Neutral. */
-    @Binding var type: String
-    
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, back: $back, regular: $type)
+                Summary(answers: answers, back: $back)
             } else {
-                GonogoMain(summary: $summary, answers: $answers, type: $type, stars: $stars)
+                GonogoMain(summary: $summary, answers: $answers, stars: $stars)
             }
         }.navigationBarBackButtonHidden(back)
     }
 }
 
 struct GonogoMain: View {
+    @EnvironmentObject var user: User
+    
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = 0
     
@@ -64,7 +63,7 @@ struct GonogoMain: View {
     @Binding var answers: [Answer]
     
     /** Type. */
-    @Binding var type: String
+    //@Binding var type: String
     
     /** Stars. */
     @Binding var stars: Int
@@ -100,13 +99,13 @@ struct GonogoMain: View {
                             } else if !self.stopped{
                                 self.timeRemaining = 3
                                 if self.folder == 0 {
-                                    if self.type == "promotion" {
+                                    if self.user.regular == "promotion" {
                                         self.stars += 1
                                     }
                                     self.correct = true
                                     self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL))
                                 } else {
-                                    if self.type == "prevention" {
+                                    if self.user.regular == "prevention" {
                                         self.stars -= 1
                                     }
                                     self.correct = false
@@ -127,17 +126,17 @@ struct GonogoMain: View {
             Group {
                 if self.feedback {
                     if self.correct {
-                        if self.type == "promotion" {
+                        if self.user.regular == "promotion" {
                             PlusOne(playing: $feedback)
-                        } else if self.type == "prevention" {
+                        } else if self.user.regular == "prevention" {
                             MinusZero(playing: $feedback)
                         } else {
                             CheckMark(playing: $feedback)
                         }
                     } else {
-                        if self.type == "promotion" {
+                        if self.user.regular == "promotion" {
                             PlusZero(playing: $feedback)
-                        } else if self.type == "prevention" {
+                        } else if self.user.regular == "prevention" {
                             MinusOne(playing: $feedback)
                         } else {
                             XMark(playing: $feedback)
@@ -158,7 +157,7 @@ struct GonogoMain: View {
                     .fontWeight(.black)
             }
             Spacer()
-            if self.type != "neutral" {
+            if self.user.regular != "neutral" {
                 HStack {
                     Text("Stars Collected    ")
                     .fontWeight(.black)
@@ -184,13 +183,13 @@ struct GonogoMain: View {
     func enemyButtonAction() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
-                if self.type == "promotion" {
+                if self.user.regular == "promotion" {
                     self.stars += 1
                 }
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL))
             } else {
-                if self.type == "prevention" {
+                if self.user.regular == "prevention" {
                     self.stars -= 1
                 }
                 self.correct = false
@@ -209,7 +208,7 @@ struct GonogoMain: View {
     }
     
     func getCorrectFinishedAlert() -> Alert {
-        if self.type == "neutral" {
+        if self.user.regular == "neutral" {
             return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
                 self.summary = true
@@ -225,7 +224,7 @@ struct GonogoMain: View {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-       Gonogo(stars: 0, back: Binding.constant(true), type: Binding.constant("promotion"))
+       Gonogo(stars: 0, back: Binding.constant(true))
     }
 }
 

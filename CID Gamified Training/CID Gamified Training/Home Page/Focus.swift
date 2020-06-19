@@ -12,7 +12,7 @@ import Firebase
 struct Focus: View {
     
     /** Used to pass regulatory focus type to other views. */
-    @Binding var regular: String
+    //@Binding var regular: String
     
     @State var selection = "neutral"
     
@@ -30,15 +30,15 @@ struct Focus: View {
             } .pickerStyle(SegmentedPickerStyle())
         } .onDisappear {
             self.db.document(self.user.uid).setData(["focus": self.selection], merge: true)
-            self.regular = self.selection
+            self.user.regular = self.selection
         } .onAppear {
-            self.selection = self.regular
+            self.selection = self.user.regular
         }
     }
 }
 
 struct Focus_Previews: PreviewProvider {
     static var previews: some View {
-        Focus(regular: Binding.constant("neutral"))
+        Focus()
     }
 }

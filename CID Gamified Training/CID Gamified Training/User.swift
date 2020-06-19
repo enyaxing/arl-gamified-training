@@ -10,5 +10,5 @@ import Foundation
 
 class User: ObservableObject {
     @Published var uid = UserDefaults.standard.string(forKey: "uid") ?? ""
-    @Published var focus = "None"
+    @Published var regular = "None"
 }
