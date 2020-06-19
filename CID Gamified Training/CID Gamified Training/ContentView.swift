@@ -30,7 +30,7 @@ struct ContentView: View {
     @State var countdown = true
      
     /** Three second transition. */
-    @State var time = 3
+    @State var time = 2
     
     /** Reference to global user variable. */
     @EnvironmentObject var user: User
@@ -65,7 +65,7 @@ struct ContentView: View {
                                 if self.time > 0 {
                                     self.time -= 1
                                 } else {
-                                    self.time = 3
+                                    self.time = 2
                                     self.countdown.toggle()
                                 }
                             }
