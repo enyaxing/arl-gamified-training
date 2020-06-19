@@ -20,10 +20,14 @@ struct Model: Identifiable {
     var imageURL: String
     
     /** List of friendly vehicles. */
-    static let friendly = dirLoad(name: "Friendly")
+    static var friendly = dirLoad(name: "Friendly")
     
     /** List of foe vehicles. */
-    static let foe = dirLoad(name: "Foe")
+    static var foe = dirLoad(name: "Foe")
+    
+    static var friendlyFolder: [Card] = []
+    static var enemyFolder: [Card] = []
+    static var unselectedFolder: [Card] = []
 }
 
 /** How to read a text file. */
