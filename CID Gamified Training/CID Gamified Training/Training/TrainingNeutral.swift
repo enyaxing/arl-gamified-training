@@ -60,7 +60,7 @@ struct TrainingNeutralMain: View {
     @State var correct = true
     
     /** Time remaining for the turn. */
-    @State var timeRemaining = 3
+    @State var time = 3
 
     /** Show summary. */
     @Binding var summary: Bool
@@ -79,17 +79,6 @@ struct TrainingNeutralMain: View {
 
     var body: some View {
         VStack {
-            if !self.countdown {
-                Countdown(playing: Binding.constant(true))
-                .foregroundColor(Color.clear)
-                .onReceive(timer) { _ in
-                    if self.timeRemaining > 0 && !self.stopped {
-                         self.timeRemaining -= 1
-                    } else {
-                        self.countdown.toggle()
-                    }
-                }
-            }
             Text("Training")
                 .font(.largeTitle)
                 .fontWeight(.black)

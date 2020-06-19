@@ -80,17 +80,6 @@ struct GonogoNeutralMain: View {
     
     var body: some View {
         VStack {
-            if !self.countdown {
-                Countdown(playing: Binding.constant(true))
-                .foregroundColor(Color.clear)
-                .onReceive(timer) { _ in
-                if self.time > 0 && !self.stopped {
-                    self.time -= 1
-                } else {
-                    self.countdown.toggle()
-                    }
-                }
-            }
             Text("Go/NoGo")
             .font(.largeTitle)
             .fontWeight(.black)

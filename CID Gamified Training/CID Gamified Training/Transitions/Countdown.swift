@@ -9,18 +9,18 @@
 import SwiftUI
 
 struct Countdown: View {
-//    * Time remaining for the turn.
-    @State var timeRemaining = 3
     @Binding var playing: Bool
     
    
     var body: some View {
         ZStack {
             LottieView(fileName: "countdown", playing: $playing)
-                .frame(width: 700, height: 700)
-                .edgesIgnoringSafeArea(.all)
+                .frame(width: 800, height: 800)
                 .background(Color.clear)
-                .offset(y: 300)
+                .scaledToFit()
+                .offset(y: 50)
+                .aspectRatio(contentMode: .fit)
+                .edgesIgnoringSafeArea(.all)
         }
     }
 }

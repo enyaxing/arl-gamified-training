@@ -32,7 +32,7 @@ struct Training: View {
             } else {
                 TrainingMain(summary: $summary, answers: $answers, type: $type, stars: $stars)
             }
-            } .navigationBarBackButtonHidden(back)
+        } .navigationBarBackButtonHidden(back)
     }
 }
 
@@ -60,7 +60,7 @@ struct TrainingMain: View {
     @State var correct = true
     
     /** Time remaining for the turn. */
-    @State var timeRemaining = 3
+    @State var time = 3
     
     /** Show summary. */
     @Binding var summary: Bool
@@ -85,18 +85,8 @@ struct TrainingMain: View {
 
     var body: some View {
         VStack {
-            if !self.countdown {
-                Countdown(playing: Binding.constant(true))
-                .foregroundColor(Color.clear)
-                .onReceive(timer) { _ in
-                    if self.timeRemaining > 0 && !self.stopped {
-                         self.timeRemaining -= 1
-                    } else {
-                        self.countdown.toggle()
-                    }
-                }
-            }
-            Text("Training")
+            VStack {
+                Text("Training")
                 .font(.largeTitle)
                 .fontWeight(.black)
                 
@@ -119,10 +109,11 @@ struct TrainingMain: View {
                     }
                 } else {
                     Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
-                        .resizable()
+                    .resizable()
                     .aspectRatio(contentMode: .fit)
                 }
             }.frame(width: 400, height: 400)
+            
             Spacer()
             HStack {
                 Spacer()
@@ -201,6 +192,7 @@ struct TrainingMain: View {
                 .aspectRatio(contentMode: .fit)
                 .offset(y: -2)
                 }
+            }
         }
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {

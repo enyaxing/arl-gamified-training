@@ -14,14 +14,20 @@ struct ContentView: View {
     let db = Firestore.firestore().collection("users")
     
     @State var regular = "None"
-    
+       
     @State var back = false
     
     @State var error = ""
     
     @State var invalid = false
     
+    @State var countdown = true
+       
+    @State var time = 3
+    
     @Binding var uid: String
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         NavigationView {
@@ -48,6 +54,17 @@ struct ContentView: View {
                 
                 NavigationLink(destination:
                     Group {
+                        if self.countdown {
+                            Countdown(playing: Binding.constant(true))
+                            .onReceive(timer) { _ in
+                                if self.time > 0 {
+                                    self.time -= 1
+                                } else {
+                                    self.time = 3
+                                    self.countdown.toggle()
+                                }
+                            }
+                       } else {
                         if self.regular == "promotion" {
                             Training(stars: 0, back: $back, type: $regular)
                         } else if self.regular == "prevention" {
@@ -57,6 +74,7 @@ struct ContentView: View {
                         } else {
                             Rejection()
                         }
+                    }
                 }) {
                     Text("Training")
                         .font(.largeTitle)
@@ -67,16 +85,28 @@ struct ContentView: View {
                 }
                 Spacer()
                 NavigationLink(destination:
-                    Group { 
-                        if self.regular == "promotion" {
-                            Gonogo(stars: 0, back: $back, type: $regular)
-                        } else if self.regular == "prevention" {
-                            Gonogo(stars: 20, back: $back, type: $regular)
-                        } else if self.regular == "neutral" {
-                            GonogoNeutral(back: $back, type: $regular)
-                        }
-                        else {
-                            Rejection()
+                    Group {
+                        if self.countdown {
+                            Countdown(playing: Binding.constant(true))
+                            .onReceive(timer) { _ in
+                                if self.time > 0 {
+                                    self.time -= 1
+                                } else {
+                                    self.time = 3
+                                    self.countdown.toggle()
+                                }
+                            }
+                        } else {
+                            if self.regular == "promotion" {
+                                Gonogo(stars: 0, back: $back, type: $regular)
+                            } else if self.regular == "prevention" {
+                                Gonogo(stars: 20, back: $back, type: $regular)
+                            } else if self.regular == "neutral" {
+                                GonogoNeutral(back: $back, type: $regular)
+                            }
+                            else {
+                                Rejection()
+                            }
                         }
                     }) {
                     Text("Go/NoGo")
