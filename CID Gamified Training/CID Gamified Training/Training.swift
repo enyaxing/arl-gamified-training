@@ -40,9 +40,11 @@ struct TrainingMain: View {
     /** Reference to global user variable. */
     @EnvironmentObject var user: User
 
-    /** Session time remaining. */
-    @State var sessionTime = 20
+    /** Keeps track of which question we are on.. */
+    @State var questionCount: Int = 0
 
+    
+    @State var q: Float = 0.2
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
 
@@ -73,13 +75,47 @@ struct TrainingMain: View {
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = 0
 
+    /** To close the view. */
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var btnBack : some View {
+        Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+            Image("close")
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.black)
+            }
+        }
+    }
 
     var body: some View {
         VStack {
-            Spacer()
-            Text("Questions Remaining: \(sessionTime)")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+            HStack {
+                btnBack
+                ZStack {
+                    ProgressBar(value: $questionCount)
+                        .padding(.horizontal)
+                        .padding(.vertical, 10.0)
+                    Text("\(questionCount) / 20")
+                        .font(.headline)
+                        .foregroundColor(Color.white)
+                }
+                
+                if self.user.regular != "neutral" {
+                    Text("\(self.stars)")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Image("star").resizable().frame(width: 40, height: 40)
+                        .aspectRatio(contentMode: .fit)
+                        .offset(y: -2)
+                }
+            }
+            .padding(.top, 30.0)
+            .padding(.horizontal, 30.0)
+            .frame(height: 50.0)
+
             Spacer()
             Group {
                 if self.feedback {
@@ -102,8 +138,9 @@ struct TrainingMain: View {
                     }
                 } else {
                     Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.horizontal, 30.0)
                 }
             }.frame(width: 400, height: 400)
             Spacer()
@@ -112,41 +149,29 @@ struct TrainingMain: View {
                 Button(action: {
                     self.friendlyButtonAction()
                 }) {
-                    Text("Friendly")
-                    .font(.largeTitle)
-                    .fontWeight(.black)
+                    Text("FRIENDLY")
                 }
+                .buttonStyle(FriendlyButtonStyle())
                 Spacer()
                 Button(action: {
                     self.enemyActionButton()
                 }) {
-                    Text("Enemy")
-                    .font(.largeTitle)
-                    .fontWeight(.black)
+                    Text("ENEMY")
                 }
+                .buttonStyle(EnemyButtonStyle())
+                
                 Spacer()
             }
             Spacer()
-            if self.user.regular != "neutral" {
-                HStack {
-                    Text("Stars Collected    ")
-                    .fontWeight(.black)
-                    .font(.largeTitle)
-                    Text("\(self.stars)")
-                    .fontWeight(.black)
-                    .font(.largeTitle)
-                    Image("star").resizable().frame(width: 40, height: 40)
-                    .aspectRatio(contentMode: .fit)
-                    .offset(y: -2)
-                }
-            }
         }
+        .padding(.horizontal)
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
                 self.summary = true
-            })
-            )
+            }))
         }
         .onAppear() {
             self.index = Int.random(in: 0..<self.models[self.folder].count)
@@ -157,7 +182,7 @@ struct TrainingMain: View {
     func friendlyButtonAction() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 0 {
-                if self.user.regular == "promotion" {
+                if self.user.regular == "promotion" || self.user.regular == "neutral"{
                     self.stars += 1
                 }
                 self.correct = true
@@ -172,11 +197,11 @@ struct TrainingMain: View {
             self.folder = Int.random(in: 0...1)
             self.index = Int.random(in: 0..<self.models[self.folder].count)
             self.feedback = true
-            if self.sessionTime == 1 {
+            if self.questionCount == 19 {
                 self.stopped = true
                 self.alert = true
             }
-            self.sessionTime -= 1
+            self.questionCount += 1
         }
     }
     
@@ -184,7 +209,7 @@ struct TrainingMain: View {
     func enemyActionButton() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
-                if self.user.regular == "promotion" {
+                if self.user.regular == "promotion" || self.user.regular == "neutral" {
                     self.stars += 1
                 }
                 self.correct = true
@@ -199,11 +224,11 @@ struct TrainingMain: View {
             self.folder = Int.random(in: 0...1)
             self.index = Int.random(in: 0..<self.models[self.folder].count)
             self.feedback = true
-            if self.sessionTime == 1 {
+            if self.questionCount == 19 {
                 self.stopped = true
                 self.alert = true
             }
-            self.sessionTime -= 1
+            self.questionCount += 1
         }
     }
 }
