@@ -15,7 +15,6 @@ struct Countdown: View {
     var body: some View {
         ZStack {
             LottieView(fileName: "countdown", playing: $playing)
-                .frame(width: 800, height: 800)
                 .background(Color.clear)
                 .scaledToFit()
                 .offset(y: 50)

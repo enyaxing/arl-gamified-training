@@ -13,8 +13,8 @@ struct CheckMark: View {
     var body: some View {
          VStack {
             HStack {
-            LottieView(fileName: "correct", playing: $playing)
-            .frame(width: 900, height: 900)
+            LottieView(fileName: "blue", playing: $playing)
+            .frame(width: 300, height: 300)
             .background(Color.clear)
             }
         }

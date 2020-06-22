@@ -28,7 +28,7 @@ struct Summary: View {
                 if self.user.regular == "promotion" {
                     Text("Correct: \(countCorrect(answer: answers))/\(answers.count)")
                     .fontWeight(.bold)
-                    .foregroundColor(Color.green)
+                    .foregroundColor(Color.blue)
                 } else if self.user.regular == "prevention" {
                     Text("Incorrect: \(incorrect(answer: answers))/\(answers.count)")
                     .fontWeight(.bold)
@@ -36,7 +36,7 @@ struct Summary: View {
                 } else {
                     Text("Correct: \(countCorrect(answer: answers))")
                     .fontWeight(.bold)
-                    .foregroundColor(Color.green)
+                    .foregroundColor(Color.blue)
                     Text("Incorrect: \(incorrect(answer: answers))")
                     .fontWeight(.bold)
                     .foregroundColor(Color.red)

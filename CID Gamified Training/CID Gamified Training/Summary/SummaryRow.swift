@@ -46,7 +46,7 @@ func correct(answer: Answer) -> Bool {
 /** Background green if correct and red if incorrect. */
 func color(answer: Answer) -> Color {
     if correct(answer: answer) {
-        return Color.green
+        return Color.blue
     } else {
         return Color.red
     }
