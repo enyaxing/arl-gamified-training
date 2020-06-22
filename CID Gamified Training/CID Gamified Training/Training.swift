@@ -46,9 +46,9 @@ struct TrainingMain: View {
 
     /** Keeps track of which question we are on.. */
     @State var questionCount: Int = 0
-
     
     @State var q: Float = 0.2
+    
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
 

@@ -27,7 +27,6 @@ struct Gonogo: View {
                 Summary(answers: answers, countdown: $countdown)
             } else {
                 GonogoMain(summary: $summary, answers: $answers, stars: $stars)
-                .navigationBarBackButtonHidden(false)
                 .onDisappear{
                     if !self.summary {
                         self.countdown = true
