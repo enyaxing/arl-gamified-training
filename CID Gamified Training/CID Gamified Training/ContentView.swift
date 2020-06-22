@@ -51,6 +51,7 @@ struct ContentView: View {
                         .cornerRadius(20)
                 }
                 Spacer()
+                HStack {
                 NavigationLink(destination:
                     Group {
                         if self.countdown {
@@ -74,6 +75,15 @@ struct ContentView: View {
                         .background(Color.white)
                         .cornerRadius(20)
                 }
+                 NavigationLink(destination: Text("first view")) {
+                    Image("info")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                }
+            }
+            HStack {
                 Spacer()
                 NavigationLink(destination:
                     Group {
@@ -99,6 +109,15 @@ struct ContentView: View {
                         .background(Color.white)
                         .cornerRadius(20)
                 }
+                NavigationLink(destination: Text("second view")) {
+                    Image("info")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                }
+                Spacer()
+                } 
                 Spacer()
                 HStack {
                     Spacer()
