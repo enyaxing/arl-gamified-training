@@ -50,7 +50,7 @@ struct GonogoMain: View {
     @State var timeRemaining = 3
     
     /** Session time remaining. */
-    @State var sessionTime = 20
+    @State var questionCount: Int = 0
     
     /** Boolean to show if the training game has ended. */
     @State var stopped = false
@@ -82,9 +82,23 @@ struct GonogoMain: View {
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
+    /** To close the view. */
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var btnBack : some View {
+        Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+            Image("close")
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.black)
+            }
+        }
+    }
+    
     var body: some View {
         VStack {
-            Spacer()
             self.headline()
             Spacer()
             Group {
@@ -114,27 +128,29 @@ struct GonogoMain: View {
             }.frame(width: 400, height: 400)
             Spacer()
             Button(action: {
-                self.enemyButtonAction()
+                self.enemyActionButton()
             }) {
-                Text("Enemy")
-                .font(.largeTitle)
-                .fontWeight(.black)
+                Text("ENEMY")
             }
+            .buttonStyle(EnemyButtonStyle())
+            
             Spacer()
-            if self.user.regular != "neutral" {
-                HStack {
-                    Text("Stars Collected    ")
-                    .fontWeight(.black)
-                    .font(.largeTitle)
-                    Text("\(self.stars)")
-                    .fontWeight(.black)
-                    .font(.largeTitle)
-                    Image("star").resizable().frame(width: 40, height: 40)
-                    .aspectRatio(contentMode: .fit)
-                    .offset(y: -2)
-                 }
-            }
+//            if self.user.regular != "neutral" {
+//                HStack {
+//                    Text("Stars Collected    ")
+//                    .fontWeight(.black)
+//                    .font(.largeTitle)
+//                    Text("\(self.stars)")
+//                    .fontWeight(.black)
+//                    .font(.largeTitle)
+//                    Image("star").resizable().frame(width: 40, height: 40)
+//                    .aspectRatio(contentMode: .fit)
+//                    .offset(y: -2)
+//                 }
+//            }
         }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
@@ -148,7 +164,7 @@ struct GonogoMain: View {
     }
     
     /** Action performed when enemy button clicked. */
-    func enemyButtonAction() -> () {
+    func enemyActionButton() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
                 if self.user.regular == "promotion" {
@@ -167,23 +183,45 @@ struct GonogoMain: View {
             self.index = Int.random(in: 0..<self.models[self.folder].count)
             self.feedback = true
             self.timeRemaining = 3
-            if self.sessionTime == 1 {
+            if self.questionCount == 19 {
                 self.stopped = true
                 self.alert = true
             }
-            self.sessionTime -= 1
+            self.questionCount += 1
         }
     }
     
      /** Questions remaining and time remaining. */
     func headline() -> some View {
         return VStack {
-            Text("Questions Remaining: \(sessionTime)")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+            HStack {
+                btnBack
+                ZStack {
+                    ProgressBar(value: $questionCount)
+                        .padding(.horizontal)
+                        .padding(.vertical, 10.0)
+                    Text("\(questionCount) / 20")
+                        .font(.headline)
+                        .foregroundColor(Color.white)
+                }
+                
+                if self.user.regular != "neutral" {
+                    Text("\(self.stars)")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Image("star").resizable().frame(width: 40, height: 40)
+                        .aspectRatio(contentMode: .fit)
+                        .offset(y: -2)
+                }
+            }
+            .padding(.top, 30.0)
+            .padding(.horizontal, 30.0)
+            .frame(height: 50.0)
+            
             Text("Time Remaining: \(timeRemaining)")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+                .font(.title)
+                .fontWeight(.semibold)
+                .padding(.top)
                 .onReceive(timer) { _ in
                     if self.timeRemaining > 0 && !self.stopped {
                         if !self.feedback {
@@ -207,11 +245,11 @@ struct GonogoMain: View {
                         self.folder = Int.random(in: 0...1)
                         self.index = Int.random(in: 0..<self.models[self.folder].count)
                         self.feedback = true
-                        if self.sessionTime == 1 {
+                        if self.questionCount == 19 {
                             self.stopped = true
                             self.alert = true
                         }
-                        self.sessionTime -= 1
+                        self.questionCount += 1
                     }
             }
         }
