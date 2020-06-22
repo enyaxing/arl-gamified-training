@@ -28,15 +28,9 @@ struct ContentView: View {
     
     /** Should countdown play?  */
     @State var countdown = true
-     
-    /** Three second transition. */
-    @State var time = 2
     
     /** Reference to global user variable. */
     @EnvironmentObject var user: User
-    
-    /** Timer that pings the app every second. */
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         NavigationView {
@@ -60,22 +54,14 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group {
                         if self.countdown {
-                            Countdown(playing: Binding.constant(true))
-                            .onReceive(timer) { _ in
-                                if self.time > 0 {
-                                    self.time -= 1
-                                } else {
-                                    self.time = 2
-                                    self.countdown.toggle()
-                                }
-                            }
+                            Countdown(playing: self.$countdown)
                         } else {
                             if self.user.regular == "promotion" {
-                                Training(stars: 0)
+                                Training(stars: 0, countdown: $countdown)
                             } else if self.user.regular == "prevention" {
-                                Training(stars: 20)
+                                Training(stars: 20, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
-                                Training(stars: 0)
+                                Training(stars: 0, countdown: $countdown)
                         } else {
                             Rejection()
                         }
@@ -92,22 +78,14 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group {
                         if self.countdown {
-                            Countdown(playing: Binding.constant(true))
-                            .onReceive(timer) { _ in
-                                if self.time > 0 {
-                                    self.time -= 1
-                                } else {
-                                    self.time = 3
-                                    self.countdown.toggle()
-                                }
-                            }
+                            Countdown(playing: self.$countdown)
                         } else {
                             if self.user.regular == "promotion" {
-                                Gonogo(stars: 0)
+                                Gonogo(stars: 0, countdown: $countdown)
                             } else if self.user.regular == "prevention" {
-                                Gonogo(stars: 20)
+                                Gonogo(stars: 20, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
-                                Gonogo(stars: 0)
+                                Gonogo(stars: 0, countdown: $countdown)
                             }
                             else {
                                 Rejection()

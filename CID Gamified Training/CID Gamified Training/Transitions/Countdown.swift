@@ -11,7 +11,6 @@ import SwiftUI
 struct Countdown: View {
     @Binding var playing: Bool
     
-   
     var body: some View {
         ZStack {
             LottieView(fileName: "countdown", playing: $playing)
@@ -21,7 +20,7 @@ struct Countdown: View {
                 .offset(y: 50)
                 .aspectRatio(contentMode: .fit)
                 .edgesIgnoringSafeArea(.all)
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
 

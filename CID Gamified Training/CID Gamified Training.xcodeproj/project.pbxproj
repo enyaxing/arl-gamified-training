@@ -90,8 +90,6 @@
 		FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B132493F3B9006CF82A /* SummaryDetail.swift */; };
 		FAF40B162493F3CB006CF82A /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B152493F3CB006CF82A /* Answer.swift */; };
 		FAF922C52497BBD500F3EA80 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF922C42497BBD500F3EA80 /* Model.swift */; };
-		FAF922C72497BC0A00F3EA80 /* friendly.txt in Resources */ = {isa = PBXBuildFile; fileRef = FAF922C62497BC0A00F3EA80 /* friendly.txt */; };
-		FAF922C92497BC1700F3EA80 /* foe.txt in Resources */ = {isa = PBXBuildFile; fileRef = FAF922C82497BC1700F3EA80 /* foe.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,8 +204,6 @@
 		FAF40B132493F3B9006CF82A /* SummaryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetail.swift; sourceTree = "<group>"; };
 		FAF40B152493F3CB006CF82A /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = "CID Gamified Training/Answer.swift"; sourceTree = SOURCE_ROOT; };
 		FAF922C42497BBD500F3EA80 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		FAF922C62497BC0A00F3EA80 /* friendly.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = friendly.txt; sourceTree = "<group>"; };
-		FAF922C82497BC1700F3EA80 /* foe.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = foe.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,8 +409,6 @@
 				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
 				FA360E83248E7B9500F77C7B /* Info.plist */,
 				FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */,
-				FAF922C62497BC0A00F3EA80 /* friendly.txt */,
-				FAF922C82497BC1700F3EA80 /* foe.txt */,
 				FA360E7D248E7B9500F77C7B /* Preview Content */,
 				FACECD40249CFF570069125A /* User.swift */,
 				FABF3EBE249D255B00B96FC9 /* Setting.swift */,
@@ -583,7 +577,6 @@
 				FA3366702492A800004D96DB /* incorrect.json in Resources */,
 				985F5753249184150087D44B /* I.json in Resources */,
 				985F574C249184150087D44B /* U.json in Resources */,
-				FAF922C72497BC0A00F3EA80 /* friendly.txt in Resources */,
 				985F575E249184150087D44B /* O.json in Resources */,
 				984B848E249821F300C4F080 /* minus.json in Resources */,
 				985F575C249184150087D44B /* V.json in Resources */,
@@ -597,7 +590,6 @@
 				985F575B249184150087D44B /* C.json in Resources */,
 				FA360E82248E7B9500F77C7B /* LaunchScreen.storyboard in Resources */,
 				98E7F615249AB4B00034E912 /* one.json in Resources */,
-				FAF922C92497BC1700F3EA80 /* foe.txt in Resources */,
 				FA360E7F248E7B9500F77C7B /* Preview Assets.xcassets in Resources */,
 				985F5752249184150087D44B /* J.json in Resources */,
 				C54576202497486B0053C09D /* calculation.py in Resources */,

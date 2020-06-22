@@ -20,12 +20,19 @@ struct Training: View {
     /** List of answers. */
     @State var answers: [Answer] = []
     
+    @Binding var countdown: Bool
+    
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers)
+                Summary(answers: answers, countdown: $countdown)
             } else {
                 TrainingMain(summary: $summary, answers: $answers, stars: $stars)
+                .onDisappear{
+                    if !self.summary {
+                        self.countdown = true
+                    }
+                }
             }
         }
     }
@@ -232,6 +239,6 @@ struct TrainingMain: View {
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training(stars: 0).environmentObject(User())
+        Training(stars: 0, countdown: Binding.constant(false)).environmentObject(User()).environmentObject(User())
     }
 }
