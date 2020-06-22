@@ -163,7 +163,7 @@ struct ContentView: View {
                     }))
             }
             } .onAppear {
-            self.newFocus(db: self.db, uid: self.user.uid)
+                newFocus(db: self.db, user: self.user, defaults: self.defaults)
         }
     }
     
@@ -180,17 +180,22 @@ struct ContentView: View {
             self.invalid = true
         }
     }
-    
-    /** Obtain focus value from firebase user. */
-    func newFocus(db: CollectionReference, uid: String) {
-        db.document(uid).getDocument { (document, error) in
-            if let document = document, document.exists {
-                if document.get("focus") != nil {
-                    self.user.regular = document.get("focus") as! String
-                }
-            } else {
-                print("Document does not exist")
+}
+
+/** Obtain focus value from firebase user. */
+func newFocus(db: CollectionReference, user: User, defaults: UserDefaults) {
+    db.document(user.uid).getDocument { (document, error) in
+        if let document = document, document.exists {
+            if document.get("focus") != nil {
+                user.regular = document.get("focus") as! String
+                defaults.set(user.regular, forKey: "focus")
             }
+            if document.get("userType") != nil {
+                user.userType = document.get("userType") as! String
+                defaults.set(user.userType, forKey: "userType")
+            }
+        } else {
+            print("Document does not exist")
         }
     }
 }

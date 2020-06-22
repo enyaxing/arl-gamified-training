@@ -86,15 +86,15 @@ struct Signup: View {
                 self.invalid = true
             } else {
                 self.user.uid = result!.user.uid
-                self.user.userType = selection
                 self.defaults.set(result!.user.uid, forKey: "uid")
-                self.defaults.set(selection, forKey: "userType")
                 self.db.document(result!.user.uid).setData([
                 "name": name,
                 "user": email,
                 "pass": password,
                 "uid": result!.user.uid,
-                "userType": selection])
+                "userType": selection,
+                "focus": "None"])
+                newFocus(db: self.db, user: self.user, defaults: self.defaults)
                 self.signup = false
             }
         }

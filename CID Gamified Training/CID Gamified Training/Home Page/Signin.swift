@@ -33,6 +33,9 @@ struct Signin: View {
     /** Save who is logged in locally. */
     let defaults = UserDefaults.standard
     
+    /** Connection to firebase user collection. */
+    let db = Firestore.firestore().collection("users")
+    
     var body: some View {
         Group {
             if user.uid != "" {
@@ -85,6 +88,7 @@ struct Signin: View {
             } else {
                 self.user.uid = result!.user.uid
                 self.defaults.set(result!.user.uid, forKey: "uid")
+                newFocus(db: self.db, user: self.user, defaults: self.defaults)
             }
         }
     }
