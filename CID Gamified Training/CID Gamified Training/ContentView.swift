@@ -129,22 +129,29 @@ struct ContentView: View {
                     }) {
                         Text("Sign out")
                     }
-                    .padding()
+                    .padding(10)
                     .background(Color.white)
                     .cornerRadius(20)
                     Spacer()
                     NavigationLink(destination: Focus()) {
                         Text(self.user.regular)
-                        .padding()
+                        .padding(10)
                         .background(Color.white)
                         .cornerRadius(20)
                     }
                     Spacer()
                     NavigationLink(destination: Setting()) {
                         Text("Settings")
-                        .padding()
+                        .padding(10)
                         .background(Color.white)
                         .cornerRadius(20)
+                    }
+                    Spacer()
+                    NavigationLink(destination: Profile()) {
+                    Text("Profile")
+                    .padding(10)
+                    .background(Color.white)
+                    .cornerRadius(20)
                     }
                     Spacer()
                 }
@@ -155,7 +162,7 @@ struct ContentView: View {
                         self.invalid = false
                     }))
             }
-        } .onAppear {
+            } .onAppear {
             self.newFocus(db: self.db, uid: self.user.uid)
         }
     }
@@ -165,7 +172,9 @@ struct ContentView: View {
         do {
             try Auth.auth().signOut()
             self.user.uid = ""
+            self.user.userType = "student"
             defaults.set("", forKey: "uid")
+            defaults.set("student", forKey: "userType")
         } catch let error as NSError {
             self.error = error.localizedDescription
             self.invalid = true

@@ -73,12 +73,10 @@ struct Model: Identifiable {
 func dirLoad() -> [Card] {
     let fm = FileManager.default
     let path = Bundle.main.resourcePath! + "/CID Images"
-    print(path)
     var ret: [Card] = []
     do {
         let items = try fm.contentsOfDirectory(atPath: path)
         for item in items {
-            print("Found \(item)")
             if item != "AAV" && item != "AH-1 Cobra"{
                 ret.append(Card(name: "\(item)"))
             }

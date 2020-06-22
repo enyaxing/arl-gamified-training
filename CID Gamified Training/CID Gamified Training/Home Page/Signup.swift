@@ -39,6 +39,8 @@ struct Signup: View {
     /** Save who is signed in locally. */
     let defaults = UserDefaults.standard
     
+    @State var selection = "student"
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -47,9 +49,13 @@ struct Signup: View {
                         TextField("Name", text: $name)
                         TextField("Email", text: $email)
                         SecureField("Password", text: $password)
+                        Picker(selection: $selection, label: Text("Picker")) {
+                            Text("student").tag("student").id(UUID())
+                            Text("instructor").tag("instructor").id(UUID())
+                        } .pickerStyle(SegmentedPickerStyle())
                     }
                     Button(action: {
-                        self.createUser(email: self.email, password: self.password, name: self.name)
+                        self.createUser(email: self.email, password: self.password, name: self.name, selection: self.selection)
                     }) {
                         Text("Create Account")
                     }
@@ -73,19 +79,22 @@ struct Signup: View {
     }
     
     /** Create user function. */
-    func createUser(email: String, password: String, name: String) {
+    func createUser(email: String, password: String, name: String, selection: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if error != nil {
                 self.error = error?.localizedDescription ?? ""
                 self.invalid = true
             } else {
                 self.user.uid = result!.user.uid
+                self.user.userType = selection
                 self.defaults.set(result!.user.uid, forKey: "uid")
+                self.defaults.set(selection, forKey: "userType")
                 self.db.document(result!.user.uid).setData([
                 "name": name,
                 "user": email,
                 "pass": password,
-                "uid": result!.user.uid])
+                "uid": result!.user.uid,
+                "userType": selection])
                 self.signup = false
             }
         }

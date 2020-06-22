@@ -36,7 +36,11 @@ struct Signin: View {
     var body: some View {
         Group {
             if user.uid != "" {
-                ContentView()
+                if user.userType == "student" {
+                    ContentView()
+                } else {
+                    Instructor()
+                }
             } else if signup {
                 Signup(signup: $signup)
             } else {
