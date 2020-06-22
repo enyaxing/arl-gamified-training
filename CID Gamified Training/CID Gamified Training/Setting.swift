@@ -18,10 +18,12 @@ struct Setting: View {
         HStack {
             VStack {
                 Text("Library")
+                    .font(.title)
+                    .fontWeight(.heavy)
                 List {
                     ForEach(self.library, id: \.id) {card in
                         GeometryReader { geo in
-                            Text(card.name)
+                            CardView(folder: card.name)
                             .offset(card.offset)
                             .gesture(DragGesture()
                             .onChanged { gesture in
@@ -47,10 +49,12 @@ struct Setting: View {
             }
             VStack {
                 Text("Friendly")
+                .font(.title)
+                .fontWeight(.heavy)
                 List {
                     ForEach(self.friendly, id: \.id) {card in
                         GeometryReader { geo in
-                            Text(card.name)
+                            CardView(folder: card.name)
                             .offset(card.offset)
                             .gesture(DragGesture()
                             .onChanged { gesture in
@@ -74,10 +78,12 @@ struct Setting: View {
                     }
                 }
                 Text("Enemy")
+                .font(.title)
+                .fontWeight(.heavy)
                 List {
                     ForEach(self.enemy, id: \.id) {card in
                         GeometryReader { geo in
-                            Text(card.name)
+                            CardView(folder: card.name)
                             .offset(card.offset)
                             .gesture(DragGesture()
                             .onChanged { gesture in
