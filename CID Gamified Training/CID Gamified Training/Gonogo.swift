@@ -19,17 +19,14 @@ struct Gonogo: View {
     /** List of answers. */
     @State var answers: [Answer] = []
     
-    /** Back bar. */
-    @Binding var back: Bool
-    
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, back: $back)
+                Summary(answers: answers)
             } else {
                 GonogoMain(summary: $summary, answers: $answers, stars: $stars)
             }
-        }.navigationBarBackButtonHidden(back)
+        }
     }
 }
 
@@ -218,7 +215,7 @@ struct GonogoMain: View {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-       Gonogo(stars: 0, back: Binding.constant(true)).environmentObject(User())
+       Gonogo(stars: 0).environmentObject(User())
     }
 }
 

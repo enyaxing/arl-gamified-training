@@ -19,18 +19,15 @@ struct Training: View {
 
     /** List of answers. */
     @State var answers: [Answer] = []
-
-    /** Back bar. */
-    @Binding var back: Bool
     
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, back: $back)
+                Summary(answers: answers)
             } else {
                 TrainingMain(summary: $summary, answers: $answers, stars: $stars)
             }
-        } .navigationBarBackButtonHidden(back)
+        }
     }
 }
 
@@ -235,6 +232,6 @@ struct TrainingMain: View {
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training(stars: 0, back: Binding.constant(true)).environmentObject(User())
+        Training(stars: 0).environmentObject(User())
     }
 }

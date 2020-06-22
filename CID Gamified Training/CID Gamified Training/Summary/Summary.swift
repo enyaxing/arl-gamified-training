@@ -13,8 +13,7 @@ struct Summary: View {
     /** List of answers from completed training session. */
     var answers: [Answer]
     
-    /** Hide navigation back button. */
-    @Binding var back: Bool
+    @State var hideback = false
     
     /** Reference to global user variable. */
     @EnvironmentObject var user: User
@@ -43,12 +42,11 @@ struct Summary: View {
                 }
             }
             List(self.answers, id: \.id) { answer in
-                NavigationLink(destination: SummaryDetail(answer: answer, back: self.$back)) {
+                NavigationLink(destination: SummaryDetail(answer: answer, back: self.$hideback)) {
                     SummaryRow(answer: answer)
                 }
             }
-        }
-        .navigationBarTitle("")
+            } .navigationBarBackButtonHidden(hideback)
     }
 }
 
@@ -75,6 +73,6 @@ func percentage(answer: [Answer]) -> Double {
 
 struct Summary_Previews: PreviewProvider {
     static var previews: some View {
-        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1", vehicleName: "tank1")], back: Binding.constant(false)).environmentObject(User())
+        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1", vehicleName: "tank1")]).environmentObject(User())
     }
 }

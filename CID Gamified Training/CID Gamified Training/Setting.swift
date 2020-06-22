@@ -13,6 +13,7 @@ struct Setting: View {
     @State var library: [Card] = Model.unselectedFolder
     @State var friendly: [Card] = Model.friendlyFolder
     @State var enemy: [Card] = Model.enemyFolder
+    @State var alert = false
     
     var body: some View {
         HStack {
@@ -63,13 +64,23 @@ struct Setting: View {
                             }.onEnded { _ in
                                 let index = self.friendly.firstIndex(of: card) ?? 0
                                 if location(geo: geo, card: card) == "library" {
-                                    self.library.append(card)
-                                    self.library[self.library.count - 1].offset = CGSize.zero
-                                    self.friendly.remove(at: index)
+                                    if self.friendly.count == 1 {
+                                        self.alert = true
+                                        self.friendly[index].offset = CGSize.zero
+                                    } else {
+                                        self.library.append(card)
+                                        self.library[self.library.count - 1].offset = CGSize.zero
+                                        self.friendly.remove(at: index)
+                                    }
                                 } else if location(geo: geo, card: card) == "enemy" {
-                                    self.enemy.append(card)
-                                    self.enemy[self.enemy.count - 1].offset = CGSize.zero
-                                    self.friendly.remove(at: index)
+                                    if self.friendly.count == 1 {
+                                        self.alert = true
+                                        self.friendly[index].offset = CGSize.zero
+                                    } else {
+                                        self.enemy.append(card)
+                                        self.enemy[self.enemy.count - 1].offset = CGSize.zero
+                                        self.friendly.remove(at: index)
+                                    }
                                 } else {
                                     self.friendly[index].offset = CGSize.zero
                                 }
@@ -92,13 +103,23 @@ struct Setting: View {
                             }.onEnded { _ in
                                 let index = self.enemy.firstIndex(of: card) ?? 0
                                 if location(geo: geo, card: card) == "friendly" {
-                                    self.friendly.append(card)
-                                    self.friendly[self.friendly.count - 1].offset = CGSize.zero
-                                    self.enemy.remove(at: index)
+                                    if self.enemy.count == 1 {
+                                        self.alert = true
+                                        self.enemy[index].offset = CGSize.zero
+                                    } else {
+                                        self.friendly.append(card)
+                                        self.friendly[self.friendly.count - 1].offset = CGSize.zero
+                                        self.enemy.remove(at: index)
+                                    }
                                 } else if location(geo: geo, card: card) == "library" {
-                                    self.library.append(card)
-                                    self.library[self.library.count - 1].offset = CGSize.zero
-                                    self.enemy.remove(at: index)
+                                    if self.enemy.count == 1 {
+                                        self.alert = true
+                                        self.enemy[index].offset = CGSize.zero
+                                    } else {
+                                        self.library.append(card)
+                                        self.library[self.library.count - 1].offset = CGSize.zero
+                                        self.enemy.remove(at: index)
+                                    }
                                 } else {
                                     self.enemy[index].offset = CGSize.zero
                                 }
@@ -107,7 +128,12 @@ struct Setting: View {
                     }
                 }
             }
-        }.onDisappear {
+        }.alert(isPresented: $alert) {
+            Alert(title: Text("Error"), message: Text("Cannot have empty friendly or enemy list. Please add another vehicle before removing this vehicle."), dismissButton: .default(Text("Dismiss"), action: {
+                self.alert = false
+            }))
+        }
+        .onDisappear {
             Model.unselectedFolder = self.library
             Model.friendlyFolder = self.friendly
             Model.enemyFolder = self.enemy

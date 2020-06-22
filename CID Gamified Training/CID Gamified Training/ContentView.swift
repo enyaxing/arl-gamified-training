@@ -71,11 +71,11 @@ struct ContentView: View {
                             }
                         } else {
                             if self.user.regular == "promotion" {
-                                Training(stars: 0, back: $back)
+                                Training(stars: 0)
                             } else if self.user.regular == "prevention" {
-                                Training(stars: 20, back: $back)
+                                Training(stars: 20)
                             } else if self.user.regular == "neutral" {
-                                Training(stars: 0, back: $back)
+                                Training(stars: 0)
                         } else {
                             Rejection()
                         }
@@ -103,11 +103,11 @@ struct ContentView: View {
                             }
                         } else {
                             if self.user.regular == "promotion" {
-                                Gonogo(stars: 0, back: $back)
+                                Gonogo(stars: 0)
                             } else if self.user.regular == "prevention" {
-                                Gonogo(stars: 20, back: $back)
+                                Gonogo(stars: 20)
                             } else if self.user.regular == "neutral" {
-                                Gonogo(stars: 0, back: $back)
+                                Gonogo(stars: 0)
                             }
                             else {
                                 Rejection()
