@@ -12,4 +12,6 @@ import Foundation
 class User: ObservableObject {
     @Published var uid = UserDefaults.standard.string(forKey: "uid") ?? ""
     @Published var regular = "None"
+    @Published var userType = UserDefaults.standard.string(forKey: "userType") ?? "student"
+    @Published var countdown = true
 }

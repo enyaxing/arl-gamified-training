@@ -13,4 +13,5 @@ struct Card : Identifiable, Equatable {
     var id = UUID()
     var name: String
     var offset = CGSize.zero
+    var zdex = 0.0
 }

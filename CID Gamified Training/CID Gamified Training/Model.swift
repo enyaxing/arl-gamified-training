@@ -19,6 +19,9 @@ struct Model: Identifiable {
     /** File name in directory. */
     var imageURL: String
     
+    /** Photo vehicle name. */
+    var vehicleName: String
+    
     /** List of friendly vehicles. */
     static var friendly = settingLoad(name: "friendly")
     
@@ -44,7 +47,7 @@ struct Model: Identifiable {
                 do {
                     let items = try fm.contentsOfDirectory(atPath: path + "/" + card.name)
                     for item in items {
-                        ret.append(Model(imageURL: path + "/" + card.name + "/\(item)"))
+                        ret.append(Model(imageURL: path + "/" + card.name + "/\(item)", vehicleName: card.name))
                     }
                 } catch {
                     print("error")
@@ -55,7 +58,7 @@ struct Model: Identifiable {
                 do {
                     let items = try fm.contentsOfDirectory(atPath: path + "/" + card.name)
                     for item in items {
-                        ret.append(Model(imageURL: path + "/" + card.name + "/\(item)"))
+                        ret.append(Model(imageURL: path + "/" + card.name + "/\(item)", vehicleName: card.name))
                     }
                 } catch {
                     print("error")
@@ -70,12 +73,10 @@ struct Model: Identifiable {
 func dirLoad() -> [Card] {
     let fm = FileManager.default
     let path = Bundle.main.resourcePath! + "/CID Images"
-    print(path)
     var ret: [Card] = []
     do {
         let items = try fm.contentsOfDirectory(atPath: path)
         for item in items {
-            print("Found \(item)")
             if item != "AAV" && item != "AH-1 Cobra"{
                 ret.append(Card(name: "\(item)"))
             }

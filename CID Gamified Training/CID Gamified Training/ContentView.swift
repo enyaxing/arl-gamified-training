@@ -28,15 +28,9 @@ struct ContentView: View {
     
     /** Should countdown play?  */
     @State var countdown = true
-     
-    /** Three second transition. */
-    @State var time = 2
     
     /** Reference to global user variable. */
     @EnvironmentObject var user: User
-    
-    /** Timer that pings the app every second. */
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         NavigationView {
@@ -60,22 +54,14 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group {
                         if self.countdown {
-                            Countdown(playing: Binding.constant(true))
-                            .onReceive(timer) { _ in
-                                if self.time > 0 {
-                                    self.time -= 1
-                                } else {
-                                    self.time = 2
-                                    self.countdown.toggle()
-                                }
-                            }
+                            Countdown(playing: self.$countdown)
                         } else {
                             if self.user.regular == "promotion" {
-                                Training(stars: 0, back: $back)
+                                Training(stars: 0, countdown: $countdown)
                             } else if self.user.regular == "prevention" {
-                                Training(stars: 20, back: $back)
+                                Training(stars: 20, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
-                                Training(stars: 0, back: $back)
+                                Training(stars: 0, countdown: $countdown)
                         } else {
                             Rejection()
                         }
@@ -92,22 +78,14 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group {
                         if self.countdown {
-                            Countdown(playing: Binding.constant(true))
-                            .onReceive(timer) { _ in
-                                if self.time > 0 {
-                                    self.time -= 1
-                                } else {
-                                    self.time = 3
-                                    self.countdown.toggle()
-                                }
-                            }
+                            Countdown(playing: self.$countdown)
                         } else {
                             if self.user.regular == "promotion" {
-                                Gonogo(stars: 0, back: $back)
+                                Gonogo(stars: 0, countdown: $countdown)
                             } else if self.user.regular == "prevention" {
-                                Gonogo(stars: 20, back: $back)
+                                Gonogo(stars: 20, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
-                                Gonogo(stars: 0, back: $back)
+                                Gonogo(stars: 0, countdown: $countdown)
                             }
                             else {
                                 Rejection()
@@ -129,22 +107,29 @@ struct ContentView: View {
                     }) {
                         Text("Sign out")
                     }
-                    .padding()
+                    .padding(10)
                     .background(Color.white)
                     .cornerRadius(20)
                     Spacer()
                     NavigationLink(destination: Focus()) {
                         Text(self.user.regular)
-                        .padding()
+                        .padding(10)
                         .background(Color.white)
                         .cornerRadius(20)
                     }
                     Spacer()
                     NavigationLink(destination: Setting()) {
                         Text("Settings")
-                        .padding()
+                        .padding(10)
                         .background(Color.white)
                         .cornerRadius(20)
+                    }
+                    Spacer()
+                    NavigationLink(destination: Profile()) {
+                    Text("Profile")
+                    .padding(10)
+                    .background(Color.white)
+                    .cornerRadius(20)
                     }
                     Spacer()
                 }
@@ -155,8 +140,8 @@ struct ContentView: View {
                         self.invalid = false
                     }))
             }
-        } .onAppear {
-            self.newFocus(db: self.db, uid: self.user.uid)
+            } .onAppear {
+                newFocus(db: self.db, user: self.user, defaults: self.defaults)
         }
     }
     
@@ -165,23 +150,30 @@ struct ContentView: View {
         do {
             try Auth.auth().signOut()
             self.user.uid = ""
+            self.user.userType = "student"
             defaults.set("", forKey: "uid")
+            defaults.set("student", forKey: "userType")
         } catch let error as NSError {
             self.error = error.localizedDescription
             self.invalid = true
         }
     }
-    
-    /** Obtain focus value from firebase user. */
-    func newFocus(db: CollectionReference, uid: String) {
-        db.document(uid).getDocument { (document, error) in
-            if let document = document, document.exists {
-                if document.get("focus") != nil {
-                    self.user.regular = document.get("focus") as! String
-                }
-            } else {
-                print("Document does not exist")
+}
+
+/** Obtain focus value from firebase user. */
+func newFocus(db: CollectionReference, user: User, defaults: UserDefaults) {
+    db.document(user.uid).getDocument { (document, error) in
+        if let document = document, document.exists {
+            if document.get("focus") != nil {
+                user.regular = document.get("focus") as! String
+                defaults.set(user.regular, forKey: "focus")
             }
+            if document.get("userType") != nil {
+                user.userType = document.get("userType") as! String
+                defaults.set(user.userType, forKey: "userType")
+            }
+        } else {
+            print("Document does not exist")
         }
     }
 }
