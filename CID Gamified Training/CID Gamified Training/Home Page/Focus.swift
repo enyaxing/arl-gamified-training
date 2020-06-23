@@ -21,6 +21,9 @@ struct Focus: View {
     /** Reference to firebase users collection. */
     let db = Firestore.firestore().collection("users")
     
+    /** Save defaults locally (ie. who is signed in). */
+    let defaults = UserDefaults.standard
+    
     var body: some View {
         VStack {
             Text("Please select your focus style.")
@@ -31,7 +34,7 @@ struct Focus: View {
             } .pickerStyle(SegmentedPickerStyle())
         } .onDisappear {
             self.db.document(self.user.uid).setData(["focus": self.selection], merge: true)
-            self.user.regular = self.selection
+            newFocus(db: self.db, user: self.user, defaults: self.defaults)
         }.onAppear {
             self.selection = self.user.regular
         }

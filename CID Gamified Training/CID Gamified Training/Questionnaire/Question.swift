@@ -21,6 +21,9 @@ struct Question: View {
     
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
+    
+    /** Save defaults locally (ie. who is signed in). */
+    let defaults = UserDefaults.standard
 
     /** List of questions. */
     let questions = [
@@ -93,7 +96,7 @@ struct Question: View {
         switch activeAlert {
             case .alreadyCompletedAlert:
                 return Alert(title: Text("Warning"), message: Text("You've already completed the quiz. Would you like to retake it?"), primaryButton: .default(Text("No"), action: {self.presentationMode.wrappedValue.dismiss()}),secondaryButton: .default(Text("Yes"), action: {self.db.document(self.user.uid).setData(["focus": "None"], merge: true)
-                    self.user.regular = "None"
+                    newFocus(db: self.db, user: self.user, defaults: self.defaults)
                 }))
             case .showFinishedAlert:
                 let (pre, pro) = calculateScore()
@@ -176,7 +179,7 @@ struct Question: View {
             selected = "neutral"
         }
         db.document(self.user.uid).setData(["focus": selected], merge: true)
-        self.user.regular = selected
+        newFocus(db: self.db, user: self.user, defaults: self.defaults)
     }
     
     /** Heuristic from Dr. Benjamin Files. Modified from Python to Swift.

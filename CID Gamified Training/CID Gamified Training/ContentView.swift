@@ -63,7 +63,7 @@ struct ContentView: View {
                             if self.instructions {
                                 Instructions(type: 1, instructions: $instructions)
                             } else {
-                                Countdown(playing: self.$countdown, instructions: $instructions).navigationBarBackButtonHidden(true)
+                                Countdown(playing: self.$countdown, instructions: $instructions)
                             }
                         } else {
                             if self.user.regular == "promotion" {
@@ -101,7 +101,7 @@ struct ContentView: View {
                             if self.instructions {
                                 Instructions(type: 1, instructions: $instructions)
                             } else {
-                                Countdown(playing: self.$countdown, instructions: $instructions).navigationBarBackButtonHidden(true)
+                                Countdown(playing: self.$countdown, instructions: $instructions)
                             }
                         } else {
                             if self.user.regular == "promotion" {
