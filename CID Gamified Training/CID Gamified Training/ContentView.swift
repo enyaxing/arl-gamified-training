@@ -50,7 +50,6 @@ struct ContentView: View {
                         .background(Color.white)
                         .cornerRadius(20)
                 }
-                Spacer()
                 HStack {
                 NavigationLink(destination:
                     Group {
@@ -159,8 +158,6 @@ struct ContentView: View {
                         self.invalid = false
                     }))
             }
-            } .onAppear {
-                //newFocus(db: self.db, user: self.user, defaults: self.defaults)
         }
     }
     
