@@ -29,6 +29,9 @@ struct ContentView: View {
     /** Should countdown play?  */
     @State var countdown = true
     
+    /** Show instructions. */
+    @State var instructions = true
+    
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
     
@@ -53,8 +56,15 @@ struct ContentView: View {
                 HStack {
                 NavigationLink(destination:
                     Group {
-                        if self.countdown {
-                            Countdown(playing: self.$countdown)
+                        if self.user.regular != "promotion" && self.user.regular != "prevention" && self.user.regular != "neutral" {
+                            Rejection()
+                        }
+                        else if self.countdown {
+                            if self.instructions {
+                                Instructions(type: 1, instructions: $instructions)
+                            } else {
+                                Countdown(playing: self.$countdown, instructions: $instructions).navigationBarBackButtonHidden(true)
+                            }
                         } else {
                             if self.user.regular == "promotion" {
                                 Training(stars: 0, countdown: $countdown)
@@ -62,8 +72,6 @@ struct ContentView: View {
                                 Training(stars: 20, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
                                 Training(stars: 0, countdown: $countdown)
-                        } else {
-                            Rejection()
                         }
                     }
                 }) {
@@ -86,8 +94,15 @@ struct ContentView: View {
                 Spacer()
                 NavigationLink(destination:
                     Group {
-                        if self.countdown {
-                            Countdown(playing: self.$countdown)
+                        if self.user.regular != "promotion" && self.user.regular != "prevention" && self.user.regular != "neutral" {
+                            Rejection()
+                        }
+                        else if self.countdown {
+                            if self.instructions {
+                                Instructions(type: 1, instructions: $instructions)
+                            } else {
+                                Countdown(playing: self.$countdown, instructions: $instructions).navigationBarBackButtonHidden(true)
+                            }
                         } else {
                             if self.user.regular == "promotion" {
                                 Gonogo(stars: 0, countdown: $countdown)
@@ -95,9 +110,6 @@ struct ContentView: View {
                                 Gonogo(stars: 20, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
                                 Gonogo(stars: 0, countdown: $countdown)
-                            }
-                            else {
-                                Rejection()
                             }
                         }
                     }) {

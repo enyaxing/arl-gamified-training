@@ -10,6 +10,7 @@ import SwiftUI
 
 struct Countdown: View {
     @Binding var playing: Bool
+    @Binding var instructions: Bool
     
     var body: some View {
         ZStack {
@@ -19,12 +20,14 @@ struct Countdown: View {
                 .offset(y: 100)
                 .aspectRatio(contentMode: .fit)
                 .edgesIgnoringSafeArea(.all)
-        }.navigationBarBackButtonHidden(true)
+        } .onDisappear{
+            self.instructions = true
+        }
     }
 }
 
 struct Countdown_Previews: PreviewProvider {
     static var previews: some View {
-        Countdown(playing: Binding.constant(true))
+        Countdown(playing: Binding.constant(true), instructions: Binding.constant(false))
     }
 }

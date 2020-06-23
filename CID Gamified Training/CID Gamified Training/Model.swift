@@ -29,10 +29,10 @@ struct Model: Identifiable {
     static var foe = settingLoad(name: "enemy")
     
     /** List of friendly photo folders. */
-    static var friendlyFolder: [Card] = [Card(name: "AAV")]
+    static var friendlyFolder: [Card] = [Card(name: "BRDM-2 Sagger")]
     
     /** List of enemy photo folders. */
-    static var enemyFolder: [Card] = [Card(name: "AH-1 Cobra")]
+    static var enemyFolder: [Card] = [Card(name: "BRDM-2 Spandrel")]
     
     /** List of unselected photo folders. */
     static var unselectedFolder: [Card] = dirLoad()
@@ -77,7 +77,7 @@ func dirLoad() -> [Card] {
     do {
         let items = try fm.contentsOfDirectory(atPath: path)
         for item in items {
-            if item != "AAV" && item != "AH-1 Cobra"{
+            if item != "BRDM-2 Sagger" && item != "BRDM-2 Spandrel"{
                 ret.append(Card(name: "\(item)"))
             }
         }
