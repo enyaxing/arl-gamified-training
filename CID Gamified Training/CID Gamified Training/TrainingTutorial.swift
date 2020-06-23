@@ -28,6 +28,8 @@ struct TrainingTutorial: View {
                 Summary(answers: answers, countdown: $countdown)
             } else {
                 ZStack {
+                    MaskedView()
+                        .zIndex(1)
                     TrainingMain(summary: $summary, answers: $answers, stars: $stars)
                     .onDisappear{
                         if !self.summary {
@@ -44,7 +46,7 @@ struct TrainingTutorial: View {
 struct TrainingTutorialMain: View {
 
     /** Reference to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
 
     /** Keeps track of which question we are on.. */
     @State var questionCount: Int = 0
@@ -250,24 +252,26 @@ struct MaskedView: View {
                     .padding(.bottom)
                 Text("Every question answered correctly grants you one star.")
                     .font(Font.bodyFont)
-                Button(action: {}) {
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
                     Text("KEEP GOING")
                 }
                 .padding(.top)
                 .buttonStyle(FriendlyButtonStyle())
             }
             .padding()
-            .frame(width: geo.size.width, height: geo.size.height * 0.35)
+            .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.35)
             .background(Color.white)
             .position(x: geo.size.width * 0.5, y: geo.size.height * 0.825)
         }
         .background(Color.black.opacity(0.5))
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.top)
     }
 }
 
 struct TrainingTutorial_Previews: PreviewProvider {
     static var previews: some View {
-        MaskedView()
+        TrainingTutorial(stars: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }
