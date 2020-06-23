@@ -81,10 +81,14 @@ struct Signup: View {
     /** Create user function. */
     func createUser(email: String, password: String, name: String, selection: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-            if error != nil {
+            if name.isEmpty {
+                self.error = "Please enter a valid name to continue."
+                self.invalid = true
+            } else if error != nil {
                 self.error = error?.localizedDescription ?? ""
                 self.invalid = true
-            } else {
+            }
+            else {
                 self.user.uid = result!.user.uid
                 self.defaults.set(result!.user.uid, forKey: "uid")
                 self.db.document(result!.user.uid).setData([
