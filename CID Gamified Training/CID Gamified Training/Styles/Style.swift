@@ -33,8 +33,16 @@ extension Color {
 }
 
 extension Font {
-    static var actionButtonFont: Font {
+    static var bodyFontBold: Font {
         return Font.custom("Helvetica-Bold", size: 18.0)
+    }
+    
+    static var headingFont: Font {
+        return Font.custom("Helvetica-Bold", size: 24.0)
+    }
+    
+    static var bodyFont: Font {
+        return Font.custom("Helvetica", size: 18.0)
     }
 }
 

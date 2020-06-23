@@ -13,7 +13,7 @@ struct FriendlyButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
           .frame(width: 150, height: 55, alignment: .center)
-          .font(Font.actionButtonFont)
+          .font(Font.bodyFontBold)
           .foregroundColor(.white)
           .background(Color.friendlyGreen)
           .cornerRadius(10.0)
@@ -26,7 +26,7 @@ struct EnemyButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
           .frame(width: 150, height: 55, alignment: .center)
-          .font(Font.actionButtonFont)
+          .font(Font.bodyFontBold)
           .foregroundColor(.white)
           .background(Color.enemyRed)
           .cornerRadius(10.0)
@@ -34,3 +34,14 @@ struct EnemyButtonStyle: ButtonStyle {
   }
 }
 
+struct CustomDefaultButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+          .font(Font.bodyFontBold)
+          .foregroundColor(.white)
+          .background(Color.enemyRed)
+          .cornerRadius(10.0)
+          .shadow(color: Color.enemyRedShadow, radius: 0, x: 0, y: 4)
+  }
+}

@@ -55,6 +55,7 @@
 		98E7F616249AB4B00034E912 /* zero.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F614249AB4B00034E912 /* zero.json */; };
 		98E7F618249ABE490034E912 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E7F617249ABE490034E912 /* Countdown.swift */; };
 		C54576202497486B0053C09D /* calculation.py in Resources */ = {isa = PBXBuildFile; fileRef = C545761F2497486B0053C09D /* calculation.py */; };
+		C5955CD324A18F8D0081AA44 /* TrainingTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */; };
 		C5CA7FC1249DB1E000F2BFD5 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CA7FC0249DB1E000F2BFD5 /* Style.swift */; };
 		C5CA7FC4249DCA9200F2BFD5 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CA7FC3249DCA9200F2BFD5 /* ButtonStyle.swift */; };
 		C5CA7FC6249DCB4200F2BFD5 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CA7FC5249DCB4200F2BFD5 /* ProgressBar.swift */; };
@@ -165,6 +166,7 @@
 		AC257A6E2836F63691C0FAE8 /* Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training.release.xcconfig"; sourceTree = "<group>"; };
 		C545761F2497486B0053C09D /* calculation.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = calculation.py; sourceTree = "<group>"; };
+		C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTutorial.swift; sourceTree = "<group>"; };
 		C5CA7FC0249DB1E000F2BFD5 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		C5CA7FC3249DCA9200F2BFD5 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		C5CA7FC5249DCB4200F2BFD5 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				FAF40B152493F3CB006CF82A /* Answer.swift */,
 				FAF922C42497BBD500F3EA80 /* Model.swift */,
 				FA360EAF248E809200F77C7B /* Training.swift */,
+				C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */,
 				FA360EB7248ED74900F77C7B /* Gonogo.swift */,
 				9820861C249C1DCD007D6F78 /* Home Page */,
 				9820861B249C1D94007D6F78 /* Questionnaire */,
@@ -756,6 +759,7 @@
 				983D181424A15CFE0011FF62 /* Butt.swift in Sources */,
 				984B8480249818FC00C4F080 /* MinusZero.swift in Sources */,
 				FAF40B162493F3CB006CF82A /* Answer.swift in Sources */,
+				C5955CD324A18F8D0081AA44 /* TrainingTutorial.swift in Sources */,
 				98E7F618249ABE490034E912 /* Countdown.swift in Sources */,
 				C5CA7FC4249DCA9200F2BFD5 /* ButtonStyle.swift in Sources */,
 				FAEFD8D324993097004FA58B /* Signin.swift in Sources */,
