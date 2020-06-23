@@ -16,7 +16,7 @@ struct Summary: View {
     @State var hideback = false
     
     /** Reference to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
     
     @Binding var countdown: Bool
 
@@ -80,6 +80,6 @@ func percentage(answer: [Answer]) -> Double {
 
 struct Summary_Previews: PreviewProvider {
     static var previews: some View {
-        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1", vehicleName: "tank1")], countdown: Binding.constant(false)).environmentObject(User())
+        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1", vehicleName: "tank1")], countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }

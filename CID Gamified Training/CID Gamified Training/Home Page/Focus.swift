@@ -16,7 +16,7 @@ struct Focus: View {
     @State var selection = "neutral"
     
     /** Reference to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
     
     /** Reference to firebase users collection. */
     let db = Firestore.firestore().collection("users")
@@ -40,6 +40,6 @@ struct Focus: View {
 
 struct Focus_Previews: PreviewProvider {
     static var previews: some View {
-        Focus().environmentObject(User())
+        Focus().environmentObject(GlobalUser())
     }
 }

@@ -42,7 +42,7 @@ struct Training: View {
 struct TrainingMain: View {
 
     /** Reference to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
 
     /** Keeps track of which question we are on.. */
     @State var questionCount: Int = 0
@@ -239,6 +239,6 @@ struct TrainingMain: View {
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training(stars: 0, countdown: Binding.constant(false)).environmentObject(User()).environmentObject(User())
+        Training(stars: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }

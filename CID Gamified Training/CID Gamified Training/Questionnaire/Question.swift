@@ -20,7 +20,7 @@ struct Question: View {
     let db = Firestore.firestore().collection("users")
     
     /** Reference to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
 
     /** List of questions. */
     let questions = [
@@ -338,6 +338,6 @@ struct RadioButtons: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        Question(curResponse: 0).environmentObject(User())
+        Question(curResponse: 0).environmentObject(GlobalUser())
     }
 }

@@ -41,7 +41,7 @@ struct Gonogo: View {
 struct GonogoMain: View {
     
     /** Reference to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
     
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = 0
@@ -258,7 +258,7 @@ struct GonogoMain: View {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-       Gonogo(stars: 0, countdown: Binding.constant(false)).environmentObject(User()).environmentObject(User())
+       Gonogo(stars: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }
 

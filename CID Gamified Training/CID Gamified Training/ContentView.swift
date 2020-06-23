@@ -30,7 +30,7 @@ struct ContentView: View {
     @State var countdown = true
     
     /** Reference to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
     
     var body: some View {
         NavigationView {
@@ -160,7 +160,7 @@ struct ContentView: View {
                     }))
             }
             } .onAppear {
-                newFocus(db: self.db, user: self.user, defaults: self.defaults)
+                //newFocus(db: self.db, user: self.user, defaults: self.defaults)
         }
     }
     
@@ -180,7 +180,7 @@ struct ContentView: View {
 }
 
 /** Obtain focus value from firebase user. */
-func newFocus(db: CollectionReference, user: User, defaults: UserDefaults) {
+func newFocus(db: CollectionReference, user: GlobalUser, defaults: UserDefaults) {
     db.document(user.uid).getDocument { (document, error) in
         if let document = document, document.exists {
             if document.get("focus") != nil {
@@ -199,6 +199,6 @@ func newFocus(db: CollectionReference, user: User, defaults: UserDefaults) {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(User())
+        ContentView().environmentObject(GlobalUser())
     }
 }
