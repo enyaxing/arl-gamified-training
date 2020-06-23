@@ -29,8 +29,11 @@ struct ContentView: View {
     /** Should countdown play?  */
     @State var countdown = true
     
+    /** Show instructions. */
+    @State var instructions = true
+    
     /** Reference to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
     
     var body: some View {
         NavigationView {
@@ -50,12 +53,18 @@ struct ContentView: View {
                         .background(Color.white)
                         .cornerRadius(20)
                 }
-                Spacer()
                 HStack {
                 NavigationLink(destination:
                     Group {
-                        if self.countdown {
-                            Countdown(playing: self.$countdown)
+                        if self.user.regular != "promotion" && self.user.regular != "prevention" && self.user.regular != "neutral" {
+                            Rejection()
+                        }
+                        else if self.countdown {
+                            if self.instructions {
+                                Instructions(type: 1, instructions: $instructions)
+                            } else {
+                                Countdown(playing: self.$countdown, instructions: $instructions)
+                            }
                         } else {
                             if self.user.regular == "promotion" {
                                 Training(stars: 0, countdown: $countdown)
@@ -63,8 +72,6 @@ struct ContentView: View {
                                 Training(stars: 20, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
                                 Training(stars: 0, countdown: $countdown)
-                        } else {
-                            Rejection()
                         }
                     }
                 }) {
@@ -87,8 +94,15 @@ struct ContentView: View {
                 Spacer()
                 NavigationLink(destination:
                     Group {
-                        if self.countdown {
-                            Countdown(playing: self.$countdown)
+                        if self.user.regular != "promotion" && self.user.regular != "prevention" && self.user.regular != "neutral" {
+                            Rejection()
+                        }
+                        else if self.countdown {
+                            if self.instructions {
+                                Instructions(type: 2, instructions: $instructions)
+                            } else {
+                                Countdown(playing: self.$countdown, instructions: $instructions)
+                            }
                         } else {
                             if self.user.regular == "promotion" {
                                 Gonogo(stars: 0, countdown: $countdown)
@@ -96,9 +110,6 @@ struct ContentView: View {
                                 Gonogo(stars: 20, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
                                 Gonogo(stars: 0, countdown: $countdown)
-                            }
-                            else {
-                                Rejection()
                             }
                         }
                     }) {
@@ -159,8 +170,6 @@ struct ContentView: View {
                         self.invalid = false
                     }))
             }
-            } .onAppear {
-                newFocus(db: self.db, user: self.user, defaults: self.defaults)
         }
     }
     
@@ -180,7 +189,7 @@ struct ContentView: View {
 }
 
 /** Obtain focus value from firebase user. */
-func newFocus(db: CollectionReference, user: User, defaults: UserDefaults) {
+func newFocus(db: CollectionReference, user: GlobalUser, defaults: UserDefaults) {
     db.document(user.uid).getDocument { (document, error) in
         if let document = document, document.exists {
             if document.get("focus") != nil {
@@ -199,6 +208,6 @@ func newFocus(db: CollectionReference, user: User, defaults: UserDefaults) {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(User())
+        ContentView().environmentObject(GlobalUser())
     }
 }

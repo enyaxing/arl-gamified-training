@@ -34,7 +34,7 @@ struct Signup: View {
     let db = Firestore.firestore().collection("users")
     
     /** Reference to global users object. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
     
     /** Save who is signed in locally. */
     let defaults = UserDefaults.standard
@@ -103,6 +103,6 @@ struct Signup: View {
 
 struct Signup_Previews: PreviewProvider {
     static var previews: some View {
-        Signup(signup: Binding.constant(true)).environmentObject(User())
+        Signup(signup: Binding.constant(true)).environmentObject(GlobalUser())
     }
 }

@@ -15,7 +15,6 @@ struct LottieView: UIViewRepresentable {
     @Binding var playing: Bool
     var isLoop = false
     
-    
     func makeUIView(context:   UIViewRepresentableContext<LottieView>) -> UIView{
             let view = UIView(frame: .zero)
             let animationView = AnimationView()
@@ -26,7 +25,6 @@ struct LottieView: UIViewRepresentable {
             animationView.animation = animation
             animationView.contentMode = .scaleAspectFit
             animationView.play { (finished) in
-            Thread.sleep(forTimeInterval: 0.5)
             self.playing = false
         }
             

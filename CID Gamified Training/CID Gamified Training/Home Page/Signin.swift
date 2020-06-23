@@ -28,7 +28,7 @@ struct Signin: View {
     @State var error = ""
     
     /** Refernce to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
     
     /** Save who is logged in locally. */
     let defaults = UserDefaults.standard
@@ -96,6 +96,6 @@ struct Signin: View {
 
 struct Signin_Previews: PreviewProvider {
     static var previews: some View {
-        Signin().environmentObject(User())
+        Signin().environmentObject(GlobalUser())
     }
 }

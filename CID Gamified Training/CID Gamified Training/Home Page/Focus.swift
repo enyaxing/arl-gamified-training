@@ -16,10 +16,13 @@ struct Focus: View {
     @State var selection = "neutral"
     
     /** Reference to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
     
     /** Reference to firebase users collection. */
     let db = Firestore.firestore().collection("users")
+    
+    /** Save defaults locally (ie. who is signed in). */
+    let defaults = UserDefaults.standard
     
     var body: some View {
         VStack {
@@ -31,7 +34,7 @@ struct Focus: View {
             } .pickerStyle(SegmentedPickerStyle())
         } .onDisappear {
             self.db.document(self.user.uid).setData(["focus": self.selection], merge: true)
-            self.user.regular = self.selection
+            newFocus(db: self.db, user: self.user, defaults: self.defaults)
         }.onAppear {
             self.selection = self.user.regular
         }
@@ -40,6 +43,6 @@ struct Focus: View {
 
 struct Focus_Previews: PreviewProvider {
     static var previews: some View {
-        Focus().environmentObject(User())
+        Focus().environmentObject(GlobalUser())
     }
 }

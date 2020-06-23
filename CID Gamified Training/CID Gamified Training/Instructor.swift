@@ -24,7 +24,7 @@ struct Instructor: View {
     @State var invalid = false
     
     /** Reference to global user variable. */
-    @EnvironmentObject var user: User
+    @EnvironmentObject var user: GlobalUser
     
     var body: some View {
         VStack {
@@ -55,6 +55,6 @@ struct Instructor: View {
 
 struct Instructor_Previews: PreviewProvider {
     static var previews: some View {
-        Instructor().environmentObject(User())
+        Instructor().environmentObject(GlobalUser())
     }
 }
