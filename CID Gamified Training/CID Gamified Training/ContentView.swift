@@ -62,6 +62,8 @@ struct ContentView: View {
                         else if self.countdown {
                             if self.instructions {
                                 Instructions(type: 1, instructions: $instructions)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
                             } else {
                                 Countdown(playing: self.$countdown, instructions: $instructions)
                             }
@@ -108,6 +110,8 @@ struct ContentView: View {
                         else if self.countdown {
                             if self.instructions {
                                 Instructions(type: 2, instructions: $instructions)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
                             } else {
                                 Countdown(playing: self.$countdown, instructions: $instructions)
                             }
