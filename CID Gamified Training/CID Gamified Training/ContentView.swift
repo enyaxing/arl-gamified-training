@@ -132,7 +132,15 @@ struct ContentView: View {
                         .background(Color.white)
                         .cornerRadius(20)
                 }
-                NavigationLink(destination: Text("second view")) {
+                NavigationLink(destination:
+                    Group {
+                        if self.user.regular == "promotion" {
+                            GonogoTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                        } else if self.user.regular == "prevention" {
+                            GonogoTutorial(stars: 20, countdown: $countdown, showAboutView: true)
+                        } else if self.user.regular == "neutral" {
+                            GonogoTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                    }}) {
                     Image("info")
                     .resizable()
                     .frame(width: 30, height: 30)
