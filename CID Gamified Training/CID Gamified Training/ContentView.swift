@@ -66,6 +66,8 @@ struct ContentView: View {
                                 .navigationBarHidden(true)
                             } else {
                                 Countdown(playing: self.$countdown, instructions: $instructions)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
                             }
                         } else {
                             if self.user.regular == "promotion" {
@@ -114,6 +116,8 @@ struct ContentView: View {
                                 .navigationBarHidden(true)
                             } else {
                                 Countdown(playing: self.$countdown, instructions: $instructions)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
                             }
                         } else {
                             if self.user.regular == "promotion" {
