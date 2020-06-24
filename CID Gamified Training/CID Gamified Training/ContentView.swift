@@ -107,7 +107,7 @@ struct ContentView: View {
                         }
                         else if self.countdown {
                             if self.instructions {
-                                Instructions(type: 1, instructions: $instructions)
+                                Instructions(type: 2, instructions: $instructions)
                             } else {
                                 Countdown(playing: self.$countdown, instructions: $instructions)
                             }
