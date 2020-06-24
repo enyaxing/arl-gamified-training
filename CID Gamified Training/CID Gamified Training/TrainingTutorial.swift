@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+enum AboutType {
+    case defaultNone, welcomeAbout, buttonAbout, correctPrevention, correctPromotion, correctNeutral, incorrectPrevention, incorrectPromotion, incorrectNeutral, progressBarAbout
+}
+
 /** Training game. */
 struct TrainingTutorial: View {
 
@@ -22,15 +26,32 @@ struct TrainingTutorial: View {
     
     @Binding var countdown: Bool
     
+    /** Whether we should show the about view. */
+    @State var showAboutView: Bool
+    
+    /** Which about descriptor is active*/
+    @State var activeAboutType: AboutType = .welcomeAbout
+    
+    /** Current description. */
+    @State var aboutDescription: String = "Here you'll work on recognizing whether vehicles are friendly or enemy."
+    
+    /** Current tite. */
+    @State var aboutTitle: String = "Welcome to training!"
+    
+    /** Whether the tutorial basics have already been completed. */
+    @State var tutorialFirstRound: Bool = true
+    
     var body: some View {
         Group {
             if self.summary {
                 Summary(answers: answers, countdown: $countdown)
             } else {
                 ZStack {
-                    MaskedView()
-                        .zIndex(1)
-                    TrainingMain(summary: $summary, answers: $answers, stars: $stars)
+                    if showAboutView {
+                        AboutView(aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, showAboutView: $showAboutView, activeAboutType: $activeAboutType, tutorialFirstRound: $tutorialFirstRound)
+                            .zIndex(1)
+                    }
+                    TrainingTutorialMain(summary: $summary, answers: $answers, stars: $stars, aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, activeAboutType: $activeAboutType, showAboutView: $showAboutView)
                     .onDisappear{
                         if !self.summary {
                             self.countdown = true
@@ -78,13 +99,18 @@ struct TrainingTutorialMain: View {
     let models = [Model.friendly, Model.foe]
 
     /** Friendly or foe folder selector.  0=friendly, 1=foe*/
-    @State var folder = Int.random(in: 0...1)
+    @State var folder = 0
     
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = 0
 
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    @Binding var aboutTitle: String
+    @Binding var aboutDescription: String
+    @Binding var activeAboutType: AboutType
+    @Binding var showAboutView: Bool
     
     var btnBack : some View {
         Button(action: {
@@ -102,27 +128,58 @@ struct TrainingTutorialMain: View {
         VStack {
             HStack {
                 btnBack
-                ZStack {
-                    ProgressBar(value: $questionCount)
-                        .padding(.horizontal)
-                        .padding(.vertical, 10.0)
-                    Text("\(questionCount) / 20")
-                        .font(.headline)
-                        .foregroundColor(Color.white)
+                if showAboutView == true && self.activeAboutType == .progressBarAbout {
+                    ZStack {
+                        ProgressBar(value: $questionCount)
+                        Text("\(questionCount) / 20")
+                            .font(.headline)
+                            .foregroundColor(Color.white)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 10.0)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.red, lineWidth: 3)
+                    )
+                } else {
+                    ZStack {
+                        ProgressBar(value: $questionCount)
+                            .padding(.horizontal)
+                            .padding(.vertical, 10.0)
+                        Text("\(questionCount) / 20")
+                            .font(.headline)
+                            .foregroundColor(Color.white)
+                    }
                 }
                 
                 if self.user.regular != "neutral" {
-                    Text("\(self.stars)")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Image("star").resizable().frame(width: 40, height: 40)
-                        .aspectRatio(contentMode: .fit)
-                        .offset(y: -2)
+                    if showAboutView == true && [.correctPrevention, .correctPromotion, .correctNeutral, .incorrectPrevention, .incorrectPromotion, .incorrectNeutral].contains(self.activeAboutType) {
+                        HStack {
+                            Text("\(self.stars)")
+                                .font(.title)
+                                .fontWeight(.bold)
+                            Image("star").resizable().frame(width: 40, height: 40)
+                                .aspectRatio(contentMode: .fit)
+                                .offset(y: -2)
+                        }
+                        .padding(.all, 5.0)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.red, lineWidth: 3)
+                        )
+                    } else {
+                        Text("\(self.stars)")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        Image("star").resizable().frame(width: 40, height: 40)
+                            .aspectRatio(contentMode: .fit)
+                            .offset(y: -2)
+                    }
                 }
             }
             .padding(.top, 30.0)
             .padding(.horizontal, 30.0)
-            .frame(height: 50.0)
+            .frame(height: 60.0)
 
             Spacer()
             Group {
@@ -190,15 +247,27 @@ struct TrainingTutorialMain: View {
     func friendlyButtonAction() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 0 {
-                if self.user.regular == "promotion" || self.user.regular == "neutral"{
+                if self.user.regular == "promotion" {
                     self.stars += 1
+                    changeAboutView(curAboutType: .correctPromotion)
+                } else if self.user.regular == "neutral" {
+                    self.stars += 1
+                    changeAboutView(curAboutType: .correctNeutral)
+                } else if self.user.regular == "prevention" {
+                    changeAboutView(curAboutType: .correctPrevention)
                 }
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
                     self.stars -= 1
+                    changeAboutView(curAboutType: .incorrectPrevention)
+                } else if self.user.regular == "neutral" {
+                    changeAboutView(curAboutType: .incorrectNeutral)
+                } else if self.user.regular == "promotion" {
+                    changeAboutView(curAboutType: .incorrectPromotion)
                 }
+                
                 self.correct = false
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             }
@@ -217,14 +286,26 @@ struct TrainingTutorialMain: View {
     func enemyActionButton() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
-                if self.user.regular == "promotion" || self.user.regular == "neutral" {
+                if self.user.regular == "promotion" {
                     self.stars += 1
+                    changeAboutView(curAboutType: .correctPromotion)
+                } else if self.user.regular == "neutral" {
+                    self.stars += 1
+                    changeAboutView(curAboutType: .correctNeutral)
+                } else if self.user.regular == "prevention" {
+                    changeAboutView(curAboutType: .correctPrevention)
                 }
+                
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
                     self.stars -= 1
+                    changeAboutView(curAboutType: .incorrectPrevention)
+                } else if self.user.regular == "promotion" {
+                    changeAboutView(curAboutType: .incorrectPromotion)
+                } else if self.user.regular == "neutral" {
+                    changeAboutView(curAboutType: .incorrectNeutral)
                 }
                 self.correct = false
                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
@@ -239,39 +320,107 @@ struct TrainingTutorialMain: View {
             self.questionCount += 1
         }
     }
+    
+    func setCorrectDescriptor() -> () {
+        switch activeAboutType {
+            case .welcomeAbout:
+                aboutTitle = "Welcome to training!"
+                aboutDescription = "Here you'll work on recognizing whether vehicles are friendly or enemy."
+            case .buttonAbout:
+                aboutTitle = "Make a decision."
+                aboutDescription = "Identify whether each vehicle is friendly or enemy, and tap the corresponding button."
+            case .correctPromotion:
+                aboutTitle = "You earned a star."
+                aboutDescription = "Every question answered correctly grants you one star."
+            case .correctPrevention:
+                aboutTitle = "Correct."
+                aboutDescription = "You did not lose a star. Answering questions incorrectly causes you to lose stars."
+            case .correctNeutral:
+                aboutTitle = "Correct."
+                aboutDescription = ""
+            case .progressBarAbout:
+                aboutTitle = "Here's the progress bar."
+                aboutDescription = "There are 20 questions per round."
+            case .incorrectPrevention:
+                aboutTitle = "You lost a star."
+                aboutDescription = "Every question answered incorrectly causes you to lose one star."
+            case .incorrectPromotion:
+                aboutTitle = "Incorrect."
+                aboutDescription = "You did not gain a star."
+            case .incorrectNeutral:
+                aboutTitle = "Incorrect."
+                aboutDescription = "Try again next time."
+            default:
+                aboutDescription = ""
+                aboutTitle = ""
+        }
+    }
+    
+    func changeAboutView(curAboutType: AboutType) -> () {
+        self.activeAboutType = curAboutType
+        self.setCorrectDescriptor()
+        self.showAboutView = true
+    }
 }
 
-struct MaskedView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+struct AboutView: View {
+    
+    @Binding var aboutTitle: String
+    @Binding var aboutDescription: String
+    @Binding var showAboutView: Bool
+    @Binding var activeAboutType: AboutType
+    @Binding var tutorialFirstRound: Bool
     
     var body: some View {
         GeometryReader { geo in
             VStack {
-                Text("You earned a star.")
+                Text(self.aboutTitle)
                     .font(Font.headingFont)
                     .padding(.bottom)
-                Text("Every question answered correctly grants you one star.")
+                Text(self.aboutDescription)
                     .font(Font.bodyFont)
                 Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
+                    if self.activeAboutType == .welcomeAbout {
+                        self.showButtonAction()
+                    } else if self.activeAboutType == .progressBarAbout {
+                        self.tutorialFirstRound = false
+                        self.showAboutView.toggle()
+                    } else if [.correctPrevention, .correctPromotion, .correctNeutral, .incorrectPrevention, .incorrectPromotion, .incorrectNeutral].contains(self.activeAboutType) && self.tutorialFirstRound == true {
+                        self.showProgressButtonAbout()
+                    } else {
+                        self.showAboutView.toggle()
+                    }
                 }) {
                     Text("KEEP GOING")
                 }
                 .padding(.top)
-                .buttonStyle(FriendlyButtonStyle())
+                .buttonStyle(CustomDefaultButtonStyle())
+                .frame(height: 65)
             }
-            .padding()
-            .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.35)
+            .padding(.horizontal, 50)
+            .frame(width: geo.size.width, height: geo.size.height * 0.35)
             .background(Color.white)
             .position(x: geo.size.width * 0.5, y: geo.size.height * 0.825)
         }
         .background(Color.black.opacity(0.5))
         .edgesIgnoringSafeArea(.top)
     }
+    
+    func showButtonAction() -> () {
+        aboutTitle = "Make a decision."
+        aboutDescription = "Identify whether each vehicle is friendly or enemy, and tap the corresponding button."
+        self.activeAboutType = .buttonAbout
+    }
+    
+    func showProgressButtonAbout() -> () {
+        aboutTitle = "Here's the progress bar."
+        aboutDescription = "There are 20 questions per round."
+        self.activeAboutType = .progressBarAbout
+    }
 }
 
 struct TrainingTutorial_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingTutorial(stars: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
+        TrainingTutorial(stars: 0, countdown: Binding.constant(false), showAboutView: true).environmentObject(GlobalUser())
     }
 }

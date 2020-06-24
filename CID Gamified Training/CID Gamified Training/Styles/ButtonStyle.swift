@@ -40,8 +40,8 @@ struct CustomDefaultButtonStyle: ButtonStyle {
            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
           .font(Font.bodyFontBold)
           .foregroundColor(.white)
-          .background(Color.enemyRed)
+          .background(Color.friendlyGreen)
           .cornerRadius(10.0)
-          .shadow(color: Color.enemyRedShadow, radius: 0, x: 0, y: 4)
+          .shadow(color: Color.friendlyGreenShadow, radius: 0, x: 0, y: 4)
   }
 }

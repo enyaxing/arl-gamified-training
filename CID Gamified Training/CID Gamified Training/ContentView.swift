@@ -82,7 +82,15 @@ struct ContentView: View {
                         .background(Color.white)
                         .cornerRadius(20)
                 }
-                 NavigationLink(destination: Text("first view")) {
+                 NavigationLink(destination:
+                    Group {
+                        if self.user.regular == "promotion" {
+                            TrainingTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                     } else if self.user.regular == "prevention" {
+                            TrainingTutorial(stars: 20, countdown: $countdown, showAboutView: true)
+                     } else if self.user.regular == "neutral" {
+                            TrainingTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                    }}) {
                     Image("info")
                     .resizable()
                     .frame(width: 30, height: 30)
