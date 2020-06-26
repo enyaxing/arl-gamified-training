@@ -15,7 +15,7 @@ struct Training: View {
     @State var summary = false
     
     /** Stars. */
-    @State var stars: Int
+    @State var points: Int
 
     /** List of answers. */
     @State var answers: [Answer] = []
@@ -27,7 +27,7 @@ struct Training: View {
             if self.summary {
                 Summary(answers: answers, countdown: $countdown)
             } else {
-                TrainingMain(summary: $summary, answers: $answers, stars: $stars)
+                TrainingMain(summary: $summary, answers: $answers, points: $points)
                 .onDisappear{
                     if !self.summary {
                         self.countdown = true
@@ -67,8 +67,8 @@ struct TrainingMain: View {
     /** List of answers. */
     @Binding var answers: [Answer]
     
-    /** Stars. */
-    @Binding var stars: Int
+    /** Points. */
+    @Binding var points: Int
 
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
@@ -81,6 +81,16 @@ struct TrainingMain: View {
 
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    
+    /** Keeps track of how much time has elapsed since beginning of question. */
+    @State var timeElapsed: Double = 0.0
+    
+    /** Timer that pings the app every tenth of a second. */
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    
+    /** How much is considered to be full score. */
+    let fullPointVal: Int = 50
     
     var btnBack : some View {
         Button(action: {
@@ -108,17 +118,24 @@ struct TrainingMain: View {
                 }
                 
                 if self.user.regular != "neutral" {
-                    Text("\(self.stars)")
+                    Text("\(self.points)")
                         .font(.title)
                         .fontWeight(.bold)
-                    Image("star").resizable().frame(width: 40, height: 40)
-                        .aspectRatio(contentMode: .fit)
-                        .offset(y: -2)
                 }
             }
             .padding(.top, 30.0)
             .padding(.horizontal, 30.0)
             .frame(height: 50.0)
+            Spacer()
+            Text("\(String(format: "%.1f", timeElapsed))")
+                .font(.headingFont)
+                .onReceive(timer) { _ in
+                    if !self.stopped {
+                        if !self.feedback {
+                            self.timeElapsed += 0.1
+                        }
+                    }
+                }
 
             Spacer()
             Group {
@@ -172,7 +189,7 @@ struct TrainingMain: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .alert(isPresented: $alert) {
-            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
+            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
                 self.summary = true
             }))
@@ -187,13 +204,15 @@ struct TrainingMain: View {
         if !self.stopped && !self.feedback {
             if self.folder == 0 {
                 if self.user.regular == "promotion" || self.user.regular == "neutral"{
-                    self.stars += 1
+                    self.points += fullPointVal
+                    self.points += calculateTimeScore()
                 }
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
-                    self.stars -= 1
+                    // Wait lol unsure what to do here
+                    self.points -= 2 * fullPointVal
                 }
                 self.correct = false
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
@@ -205,6 +224,7 @@ struct TrainingMain: View {
                 self.stopped = true
                 self.alert = true
             }
+            self.timeElapsed = 0.0
             self.questionCount += 1
         }
     }
@@ -214,13 +234,15 @@ struct TrainingMain: View {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
                 if self.user.regular == "promotion" || self.user.regular == "neutral" {
-                    self.stars += 1
+                    self.points += fullPointVal
+                    self.points += calculateTimeScore()
                 }
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
-                    self.stars -= 1
+                    // Wait lol unsure what to do here
+                    self.points -= 2 * fullPointVal
                 }
                 self.correct = false
                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
@@ -232,13 +254,21 @@ struct TrainingMain: View {
                 self.stopped = true
                 self.alert = true
             }
+            self.timeElapsed = 0.0
             self.questionCount += 1
         }
+    }
+    
+    /** Calculates the score, out of 50 based on response time. */
+    func calculateTimeScore() -> Int {
+        let b: Double = 1 / Double(fullPointVal)
+        let timeScore: Int = Int(Double(fullPointVal) * pow(pow(b, -1/5), -self.timeElapsed))
+        return timeScore
     }
 }
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training(stars: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
+        Training(points: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }

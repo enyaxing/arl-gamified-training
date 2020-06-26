@@ -71,11 +71,11 @@ struct ContentView: View {
                             }
                         } else {
                             if self.user.regular == "promotion" {
-                                Training(stars: 0, countdown: $countdown)
+                                Training(points: 0, countdown: $countdown)
                             } else if self.user.regular == "prevention" {
-                                Training(stars: 20, countdown: $countdown)
+                                Training(points: 2000, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
-                                Training(stars: 0, countdown: $countdown)
+                                Training(points: 0, countdown: $countdown)
                         }
                     }
                 }) {
