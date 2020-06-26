@@ -19,13 +19,32 @@ struct Instructions: View {
     /** Show instructions. */
     @Binding var instructions: Bool
     
+    /** To close the view. */
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+       
+   var btnBack : some View {
+       Button(action: {
+       self.presentationMode.wrappedValue.dismiss()
+       }) {
+           HStack {
+           Image("close")
+               .aspectRatio(contentMode: .fit)
+               .foregroundColor(.black)
+           }
+       }
+   }
+    
     var body: some View {
         
         VStack {
+            HStack {
+                btnBack
+                Spacer()
+            }
             Group {
                 if type == 1 {
                     Text("You are about to enter the Training game mode.  You must classify 20 vehicles as either friendly or enemy by clicking the corresponding buttons.  The list of friendly and enemy vehicles are shown below.  Good luck!")
-                        .font(.title)
+                        .font(.headline)
                         .fontWeight(.medium)
                 } else {
                     Text("You are about to enter the Gonogo game mode.  You must classify 20 vehicles as either friendly.  The default answer is friendly.  To select friendly, simply wait for the turn timer to expire.  To select enemy, click the enemy button at the bottom of the screen.  The list of friendly and enemy vehicles are shown below.  Good luck!")

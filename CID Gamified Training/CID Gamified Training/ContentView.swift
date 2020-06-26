@@ -62,8 +62,12 @@ struct ContentView: View {
                         else if self.countdown {
                             if self.instructions {
                                 Instructions(type: 1, instructions: $instructions)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
                             } else {
                                 Countdown(playing: self.$countdown, instructions: $instructions)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
                             }
                         } else {
                             if self.user.regular == "promotion" {
@@ -82,7 +86,15 @@ struct ContentView: View {
                         .background(Color.white)
                         .cornerRadius(20)
                 }
-                 NavigationLink(destination: Text("first view")) {
+                 NavigationLink(destination:
+                    Group {
+                        if self.user.regular == "promotion" {
+                            TrainingTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                     } else if self.user.regular == "prevention" {
+                            TrainingTutorial(stars: 20, countdown: $countdown, showAboutView: true)
+                     } else if self.user.regular == "neutral" {
+                            TrainingTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                    }}) {
                     Image("info")
                     .resizable()
                     .frame(width: 30, height: 30)
@@ -100,8 +112,12 @@ struct ContentView: View {
                         else if self.countdown {
                             if self.instructions {
                                 Instructions(type: 2, instructions: $instructions)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
                             } else {
                                 Countdown(playing: self.$countdown, instructions: $instructions)
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
                             }
                         } else {
                             if self.user.regular == "promotion" {
@@ -120,7 +136,15 @@ struct ContentView: View {
                         .background(Color.white)
                         .cornerRadius(20)
                 }
-                NavigationLink(destination: Text("second view")) {
+                NavigationLink(destination:
+                    Group {
+                        if self.user.regular == "promotion" {
+                            GonogoTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                        } else if self.user.regular == "prevention" {
+                            GonogoTutorial(stars: 20, countdown: $countdown, showAboutView: true)
+                        } else if self.user.regular == "neutral" {
+                            GonogoTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                    }}) {
                     Image("info")
                     .resizable()
                     .frame(width: 30, height: 30)

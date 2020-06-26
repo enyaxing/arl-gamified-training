@@ -1,46 +1,42 @@
 //
-//  TrainingTutorial.swift
+//  GonogoTutorial.swift
 //  CID Gamified Training
 //
-//  Created by Enya Xing on 6/22/20.
+//  Created by Enya Xing on 6/24/20.
 //  Copyright © 2020 Alex. All rights reserved.
 //
 
 import SwiftUI
 
-enum AboutType {
-    case defaultNone, welcomeAbout, buttonAbout, correctPrevention, correctPromotion, correctNeutral, incorrectPrevention, incorrectPromotion, incorrectNeutral, progressBarAbout
-}
-
-/** Training game. */
-struct TrainingTutorial: View {
-
+/** Gonogo game. */
+struct GonogoTutorial: View {
+    
     /** Show summary view. */
     @State var summary = false
-
+    
     /** Stars. */
-    @State var points: Int
-
+    @State var stars: Int
+    
     /** List of answers. */
     @State var answers: [Answer] = []
-
+    
     @Binding var countdown: Bool
-
+    
     /** Whether we should show the about view. */
     @State var showAboutView: Bool
-
+    
     /** Which about descriptor is active*/
     @State var activeAboutType: AboutType = .welcomeAbout
-
+    
     /** Current description. */
     @State var aboutDescription: String = "Here you'll work on recognizing whether vehicles are friendly or enemy."
-
+    
     /** Current tite. */
-    @State var aboutTitle: String = "Welcome to training!"
-
+    @State var aboutTitle: String = "Welcome to Go/NoGo!"
+    
     /** Whether the tutorial basics have already been completed. */
     @State var tutorialFirstRound: Bool = true
-
+    
     var body: some View {
         Group {
             if self.summary {
@@ -48,10 +44,11 @@ struct TrainingTutorial: View {
             } else {
                 ZStack {
                     if showAboutView {
-                        AboutViewTraining(aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, showAboutView: $showAboutView, activeAboutType: $activeAboutType, tutorialFirstRound: $tutorialFirstRound)
-                            .zIndex(1)
+                       AboutViewGoNoGo(aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, showAboutView: $showAboutView, activeAboutType: $activeAboutType, tutorialFirstRound: $tutorialFirstRound)
+                           .zIndex(1)
                     }
-                    TrainingTutorialMain(summary: $summary, answers: $answers, stars: $stars, aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, activeAboutType: $activeAboutType, showAboutView: $showAboutView)
+                    
+                    GonogoTutorialMain(summary: $summary, answers: $answers, stars: $stars, aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, activeAboutType: $activeAboutType, showAboutView: $showAboutView)
                     .onDisappear{
                         if !self.summary {
                             self.countdown = true
@@ -63,55 +60,59 @@ struct TrainingTutorial: View {
     }
 }
 
-/** Main training game view. */
-struct TrainingTutorialMain: View {
-
+/** Main gonogo game view. */
+struct GonogoTutorialMain: View {
+    
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
-
-    /** Keeps track of which question we are on.. */
-    @State var questionCount: Int = 0
-
-    @State var q: Float = 0.2
-
-    /** Boolean to show if the training game has ended. */
-    @State var stopped = false
-
-    /** Boolean to show ending alert. */
-    @State var alert = false
-
-    /** When to show feedback. */
-    @State var feedback = false
-
-    /** Is question correct? */
-    @State var correct = true
-
-    /** Show summary. */
-    @Binding var summary: Bool
-
-    /** List of answers. */
-    @Binding var answers: [Answer]
-
-    /** Stars. */
-    @Binding var stars: Int
-
-    /** List of pictures grouped by friendly or foe. */
-    let models = [Model.friendly, Model.foe]
-
-    /** Friendly or foe folder selector.  0=friendly, 1=foe*/
-    @State var folder = 0
-
+    
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = 0
-
+    
+    /** Time remaining for the turn. */
+    @State var timeRemaining = 3
+    
+    /** Session time remaining. */
+    @State var questionCount: Int = 0
+    
+    /** Boolean to show if the training game has ended. */
+    @State var stopped = false
+    
+    /** Boolean to show ending alert. */
+    @State var alert = false
+    
+    /** When to show feedback. */
+    @State var feedback = false
+    
+    /** Is question correct? */
+    @State var correct = true
+    
+    /** Show summary. */
+    @Binding var summary: Bool
+    
+    /** List of answers. */
+    @Binding var answers: [Answer]
+    
+    /** Stars. */
+    @Binding var stars: Int
+    
+    /** List of pictures grouped by friendly or foe. */
+    let models = [Model.friendly, Model.foe]
+    
+    /** Friendly or foe folder selector.  0=friendly, 1=foe*/
+    @State var folder = Int.random(in: 0...1)
+    
+    /** Timer that pings the app every second. */
+    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     @Binding var aboutTitle: String
     @Binding var aboutDescription: String
     @Binding var activeAboutType: AboutType
     @Binding var showAboutView: Bool
-
+    
     var btnBack : some View {
         Button(action: {
         self.presentationMode.wrappedValue.dismiss()
@@ -123,9 +124,144 @@ struct TrainingTutorialMain: View {
             }
         }
     }
-
+    
     var body: some View {
         VStack {
+            self.headline()
+            Spacer()
+            Group {
+                if self.feedback {
+                    if self.correct {
+                        if self.user.regular == "promotion" {
+                            PlusOne(playing: $feedback)
+                        } else if self.user.regular == "prevention" {
+                            MinusZero(playing: $feedback)
+                        } else {
+                            CheckMark(playing: $feedback)
+                        }
+                    } else {
+                        if self.user.regular == "promotion" {
+                            PlusZero(playing: $feedback)
+                        } else if self.user.regular == "prevention" {
+                            MinusOne(playing: $feedback)
+                        } else {
+                            XMark(playing: $feedback)
+                        }
+                    }
+                } else {
+                    Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                }
+            }.frame(width: 400, height: 400)
+            Spacer()
+            Button(action: {
+                self.enemyActionButton()
+            }) {
+                Text("ENEMY")
+            }
+            .buttonStyle(EnemyButtonStyle())
+            
+            Spacer()
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
+        .alert(isPresented: $alert) {
+            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
+                self.alert = false
+                self.summary = true
+            })
+            )
+        }
+        .onAppear() {
+            self.index = Int.random(in: 0..<self.models[self.folder].count)
+        }
+    }
+    }
+    
+    /** Action performed when enemy button clicked. */
+    func enemyActionButton() -> () {
+        if !self.stopped && !self.feedback {
+            if self.folder == 1 {
+                if self.user.regular == "promotion" {
+                    self.stars += 1
+                    changeAboutView(curAboutType: .correctPromotion)
+                } else if self.user.regular == "neutral" {
+                    self.stars += 1
+                    changeAboutView(curAboutType: .correctNeutral)
+                } else if self.user.regular == "prevention" {
+                    changeAboutView(curAboutType: .correctPrevention)
+                }
+                
+                self.correct = true
+                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
+            } else {
+                if self.user.regular == "prevention" {
+                    self.stars -= 1
+                    changeAboutView(curAboutType: .incorrectPrevention)
+                } else if self.user.regular == "promotion" {
+                    changeAboutView(curAboutType: .incorrectPromotion)
+                } else if self.user.regular == "neutral" {
+                    changeAboutView(curAboutType: .incorrectNeutral)
+                }
+                self.correct = false
+                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
+            }
+            self.folder = Int.random(in: 0...1)
+            self.index = Int.random(in: 0..<self.models[self.folder].count)
+            self.feedback = true
+            self.timeRemaining = 3
+            if self.questionCount == 19 {
+                self.stopped = true
+                self.alert = true
+            }
+            self.questionCount += 1
+        }
+    }
+    
+    func setCorrectDescriptor() -> () {
+        switch activeAboutType {
+            case .welcomeAbout:
+                aboutTitle = "Welcome to training!"
+                aboutDescription = "Here you'll work on recognizing whether vehicles are friendly or enemy."
+            case .buttonAbout:
+                aboutTitle = "Make a decision."
+                aboutDescription = "If the vehicle is an enemy, hit the enemy button. Otherwise, do nothing. You have three seconds per trial."
+            case .correctPromotion:
+                aboutTitle = "You earned a star."
+                aboutDescription = "Every question answered correctly grants you one star."
+            case .correctPrevention:
+                aboutTitle = "Correct."
+                aboutDescription = "You did not lose a star. Answering questions incorrectly causes you to lose stars."
+            case .correctNeutral:
+                aboutTitle = "Correct."
+                aboutDescription = ""
+            case .progressBarAbout:
+                aboutTitle = "Here's the progress bar."
+                aboutDescription = "There are 20 questions per round."
+            case .incorrectPrevention:
+                aboutTitle = "You lost a star."
+                aboutDescription = "Every question answered incorrectly causes you to lose one star."
+            case .incorrectPromotion:
+                aboutTitle = "Incorrect."
+                aboutDescription = "You did not gain a star."
+            case .incorrectNeutral:
+                aboutTitle = "Incorrect."
+                aboutDescription = "Try again next time."
+            default:
+                aboutDescription = ""
+                aboutTitle = ""
+        }
+    }
+    
+    func changeAboutView(curAboutType: AboutType) -> () {
+        self.activeAboutType = curAboutType
+        self.setCorrectDescriptor()
+        self.showAboutView = true
+    }
+    
+     /** Questions remaining and time remaining. */
+    func headline() -> some View {
+        return VStack {
             HStack {
                 btnBack
                 if showAboutView == true && self.activeAboutType == .progressBarAbout {
@@ -151,7 +287,7 @@ struct TrainingTutorialMain: View {
                             .foregroundColor(Color.white)
                     }
                 }
-
+                
                 if self.user.regular != "neutral" {
                     if showAboutView == true && [.correctPrevention, .correctPromotion, .correctNeutral, .incorrectPrevention, .incorrectPromotion, .incorrectNeutral].contains(self.activeAboutType) {
                         HStack {
@@ -179,198 +315,54 @@ struct TrainingTutorialMain: View {
             }
             .padding(.top, 30.0)
             .padding(.horizontal, 30.0)
-            .frame(height: 60.0)
-
-            Spacer()
-            Group {
-                if self.feedback {
-                    if self.correct {
-                        if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: 10, playing: $feedback)
-                        } else if self.user.regular == "prevention" {
-                            WrongPromotion(secondsElapsed: 10, playing: $feedback)
-                        } else {
-                            CheckMark(secondsElapsed: 10, playing: $feedback)
+            .frame(height: 50.0)
+            
+            Text("Time Remaining: \(timeRemaining)")
+                .font(.title)
+                .fontWeight(.semibold)
+                .padding(.top)
+                .onReceive(timer) { _ in
+                    if self.timeRemaining > 0 && !self.stopped && !self.showAboutView {
+                        if !self.feedback {
+                            self.timeRemaining -= 1
                         }
-                    } else {
-                        if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: 10, playing: $feedback)
-                        } else if self.user.regular == "prevention" {
-                            WrongPromotion(secondsElapsed: 10, playing: $feedback)
-                        } else {
-                            XMark(secondsElapsed: 10, playing: $feedback)
+                    } else if !self.stopped && !self.showAboutView {
+                            self.timeRemaining = 3
+                            if self.folder == 0 {
+                                if self.user.regular == "promotion" {
+                                    self.stars += 1
+                                }
+                                self.correct = true
+                                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
+                            } else {
+                                if self.user.regular == "prevention" {
+                                    self.stars -= 1
+                                }
+                                self.correct = false
+                                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
                         }
+                        self.folder = Int.random(in: 0...1)
+                        self.index = Int.random(in: 0..<self.models[self.folder].count)
+                        self.feedback = true
+                        if self.questionCount == 19 {
+                            self.stopped = true
+                            self.alert = true
+                        }
+                        self.questionCount += 1
                     }
-                } else {
-                    Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.horizontal, 30.0)
-                }
-            }.frame(width: 400, height: 400)
-            Spacer()
-            HStack {
-                Spacer()
-                Button(action: {
-                    self.friendlyButtonAction()
-                }) {
-                    Text("FRIENDLY")
-                }
-                .buttonStyle(FriendlyButtonStyle())
-                Spacer()
-                Button(action: {
-                    self.enemyActionButton()
-                }) {
-                    Text("ENEMY")
-                }
-                .buttonStyle(EnemyButtonStyle())
-
-                Spacer()
             }
-            Spacer()
         }
-        .padding(.horizontal)
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
-        .alert(isPresented: $alert) {
-            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
-                self.alert = false
-                self.summary = true
-            }))
-        }
-        .onAppear() {
-            self.index = Int.random(in: 0..<self.models[self.folder].count)
-        }
-    }
-
-    /** Action performed when friendly button clicked. */
-    func friendlyButtonAction() -> () {
-        if !self.stopped && !self.feedback {
-            if self.folder == 0 {
-                if self.user.regular == "promotion" {
-                    self.stars += 1
-                    changeAboutView(curAboutType: .correctPromotion)
-                } else if self.user.regular == "neutral" {
-                    self.stars += 1
-                    changeAboutView(curAboutType: .correctNeutral)
-                } else if self.user.regular == "prevention" {
-                    changeAboutView(curAboutType: .correctPrevention)
-                }
-                self.correct = true
-                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
-            } else {
-                if self.user.regular == "prevention" {
-                    self.stars -= 1
-                    changeAboutView(curAboutType: .incorrectPrevention)
-                } else if self.user.regular == "neutral" {
-                    changeAboutView(curAboutType: .incorrectNeutral)
-                } else if self.user.regular == "promotion" {
-                    changeAboutView(curAboutType: .incorrectPromotion)
-                }
-
-                self.correct = false
-                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
-            }
-            self.folder = Int.random(in: 0...1)
-            self.index = Int.random(in: 0..<self.models[self.folder].count)
-            self.feedback = true
-            if self.questionCount == 19 {
-                self.stopped = true
-                self.alert = true
-            }
-            self.questionCount += 1
-        }
-    }
-
-    /** Action performed when enemy button clicked. */
-    func enemyActionButton() -> () {
-        if !self.stopped && !self.feedback {
-            if self.folder == 1 {
-                if self.user.regular == "promotion" {
-                    self.stars += 1
-                    changeAboutView(curAboutType: .correctPromotion)
-                } else if self.user.regular == "neutral" {
-                    self.stars += 1
-                    changeAboutView(curAboutType: .correctNeutral)
-                } else if self.user.regular == "prevention" {
-                    changeAboutView(curAboutType: .correctPrevention)
-                }
-
-                self.correct = true
-                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
-            } else {
-                if self.user.regular == "prevention" {
-                    self.stars -= 1
-                    changeAboutView(curAboutType: .incorrectPrevention)
-                } else if self.user.regular == "promotion" {
-                    changeAboutView(curAboutType: .incorrectPromotion)
-                } else if self.user.regular == "neutral" {
-                    changeAboutView(curAboutType: .incorrectNeutral)
-                }
-                self.correct = false
-                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
-            }
-            self.folder = Int.random(in: 0...1)
-            self.index = Int.random(in: 0..<self.models[self.folder].count)
-            self.feedback = true
-            if self.questionCount == 19 {
-                self.stopped = true
-                self.alert = true
-            }
-            self.questionCount += 1
-        }
-    }
-
-    func setCorrectDescriptor() -> () {
-        switch activeAboutType {
-            case .welcomeAbout:
-                aboutTitle = "Welcome to training!"
-                aboutDescription = "Here you'll work on recognizing whether vehicles are friendly or enemy."
-            case .buttonAbout:
-                aboutTitle = "Make a decision."
-                aboutDescription = "Identify whether each vehicle is friendly or enemy, and tap the corresponding button."
-            case .correctPromotion:
-                aboutTitle = "You earned a star."
-                aboutDescription = "Every question answered correctly grants you one star."
-            case .correctPrevention:
-                aboutTitle = "Correct."
-                aboutDescription = "You did not lose a star. Answering questions incorrectly causes you to lose stars."
-            case .correctNeutral:
-                aboutTitle = "Correct."
-                aboutDescription = ""
-            case .progressBarAbout:
-                aboutTitle = "Here's the progress bar."
-                aboutDescription = "There are 20 questions per round."
-            case .incorrectPrevention:
-                aboutTitle = "You lost a star."
-                aboutDescription = "Every question answered incorrectly causes you to lose one star."
-            case .incorrectPromotion:
-                aboutTitle = "Incorrect."
-                aboutDescription = "You did not gain a star."
-            case .incorrectNeutral:
-                aboutTitle = "Incorrect."
-                aboutDescription = "Try again next time."
-            default:
-                aboutDescription = ""
-                aboutTitle = ""
-        }
-    }
-
-    func changeAboutView(curAboutType: AboutType) -> () {
-        self.activeAboutType = curAboutType
-        self.setCorrectDescriptor()
-        self.showAboutView = true
     }
 }
 
-struct AboutViewTraining: View {
-
+struct AboutViewGoNoGo: View {
+    
     @Binding var aboutTitle: String
     @Binding var aboutDescription: String
     @Binding var showAboutView: Bool
     @Binding var activeAboutType: AboutType
     @Binding var tutorialFirstRound: Bool
-
+    
     var body: some View {
         GeometryReader { geo in
             VStack {
@@ -405,13 +397,13 @@ struct AboutViewTraining: View {
         .background(Color.black.opacity(0.5))
         .edgesIgnoringSafeArea(.top)
     }
-
+    
     func showButtonAction() -> () {
         aboutTitle = "Make a decision."
-        aboutDescription = "Identify whether each vehicle is friendly or enemy, and tap the corresponding button."
+        aboutDescription = "If the vehicle is an enemy, hit the enemy button. Otherwise, do nothing. You have three seconds per trial."
         self.activeAboutType = .buttonAbout
     }
-
+    
     func showProgressButtonAbout() -> () {
         aboutTitle = "Here's the progress bar."
         aboutDescription = "There are 20 questions per round."
@@ -419,8 +411,9 @@ struct AboutViewTraining: View {
     }
 }
 
-struct TrainingTutorial_Previews: PreviewProvider {
+struct GonogoTutorial_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingTutorial(stars: 0, countdown: Binding.constant(false), showAboutView: true).environmentObject(GlobalUser())
+        GonogoTutorial(stars: 0, countdown: Binding.constant(false), showAboutView: true).environmentObject(GlobalUser())
     }
 }
+

@@ -44,6 +44,10 @@ extension Font {
     static var bodyFont: Font {
         return Font.custom("Helvetica", size: 18.0)
     }
+    
+    static var bodyFontSmall: Font {
+        return Font.custom("Helvetica", size: 13.0)
+    }
 }
 
 
