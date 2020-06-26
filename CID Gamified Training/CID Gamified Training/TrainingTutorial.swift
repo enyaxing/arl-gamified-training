@@ -48,7 +48,7 @@ struct TrainingTutorial: View {
             } else {
                 ZStack {
                     if showAboutView {
-                        AboutView(aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, showAboutView: $showAboutView, activeAboutType: $activeAboutType, tutorialFirstRound: $tutorialFirstRound)
+                        AboutViewTraining(aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, showAboutView: $showAboutView, activeAboutType: $activeAboutType, tutorialFirstRound: $tutorialFirstRound)
                             .zIndex(1)
                     }
                     TrainingTutorialMain(summary: $summary, answers: $answers, stars: $stars, aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, activeAboutType: $activeAboutType, showAboutView: $showAboutView)
@@ -363,7 +363,7 @@ struct TrainingTutorialMain: View {
     }
 }
 
-struct AboutView: View {
+struct AboutViewTraining: View {
     
     @Binding var aboutTitle: String
     @Binding var aboutDescription: String

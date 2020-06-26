@@ -44,7 +44,7 @@ struct GonogoTutorial: View {
             } else {
                 ZStack {
                     if showAboutView {
-                       AboutView(aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, showAboutView: $showAboutView, activeAboutType: $activeAboutType, tutorialFirstRound: $tutorialFirstRound)
+                       AboutViewGoNoGo(aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, showAboutView: $showAboutView, activeAboutType: $activeAboutType, tutorialFirstRound: $tutorialFirstRound)
                            .zIndex(1)
                     }
                     
@@ -264,22 +264,53 @@ struct GonogoTutorialMain: View {
         return VStack {
             HStack {
                 btnBack
-                ZStack {
-                    ProgressBar(value: $questionCount)
-                        .padding(.horizontal)
-                        .padding(.vertical, 10.0)
-                    Text("\(questionCount) / 20")
-                        .font(.headline)
-                        .foregroundColor(Color.white)
+                if showAboutView == true && self.activeAboutType == .progressBarAbout {
+                    ZStack {
+                        ProgressBar(value: $questionCount)
+                        Text("\(questionCount) / 20")
+                            .font(.headline)
+                            .foregroundColor(Color.white)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 10.0)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.red, lineWidth: 3)
+                    )
+                } else {
+                    ZStack {
+                        ProgressBar(value: $questionCount)
+                            .padding(.horizontal)
+                            .padding(.vertical, 10.0)
+                        Text("\(questionCount) / 20")
+                            .font(.headline)
+                            .foregroundColor(Color.white)
+                    }
                 }
                 
                 if self.user.regular != "neutral" {
-                    Text("\(self.stars)")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Image("star").resizable().frame(width: 40, height: 40)
-                        .aspectRatio(contentMode: .fit)
-                        .offset(y: -2)
+                    if showAboutView == true && [.correctPrevention, .correctPromotion, .correctNeutral, .incorrectPrevention, .incorrectPromotion, .incorrectNeutral].contains(self.activeAboutType) {
+                        HStack {
+                            Text("\(self.stars)")
+                                .font(.title)
+                                .fontWeight(.bold)
+                            Image("star").resizable().frame(width: 40, height: 40)
+                                .aspectRatio(contentMode: .fit)
+                                .offset(y: -2)
+                        }
+                        .padding(.all, 5.0)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.red, lineWidth: 3)
+                        )
+                    } else {
+                        Text("\(self.stars)")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        Image("star").resizable().frame(width: 40, height: 40)
+                            .aspectRatio(contentMode: .fit)
+                            .offset(y: -2)
+                    }
                 }
             }
             .padding(.top, 30.0)
@@ -321,6 +352,62 @@ struct GonogoTutorialMain: View {
                     }
             }
         }
+    }
+}
+
+struct AboutViewGoNoGo: View {
+    
+    @Binding var aboutTitle: String
+    @Binding var aboutDescription: String
+    @Binding var showAboutView: Bool
+    @Binding var activeAboutType: AboutType
+    @Binding var tutorialFirstRound: Bool
+    
+    var body: some View {
+        GeometryReader { geo in
+            VStack {
+                Text(self.aboutTitle)
+                    .font(Font.headingFont)
+                    .padding(.bottom)
+                Text(self.aboutDescription)
+                    .font(Font.bodyFont)
+                Button(action: {
+                    if self.activeAboutType == .welcomeAbout {
+                        self.showButtonAction()
+                    } else if self.activeAboutType == .progressBarAbout {
+                        self.tutorialFirstRound = false
+                        self.showAboutView.toggle()
+                    } else if [.correctPrevention, .correctPromotion, .correctNeutral, .incorrectPrevention, .incorrectPromotion, .incorrectNeutral].contains(self.activeAboutType) && self.tutorialFirstRound == true {
+                        self.showProgressButtonAbout()
+                    } else {
+                        self.showAboutView.toggle()
+                    }
+                }) {
+                    Text("KEEP GOING")
+                }
+                .padding(.top)
+                .buttonStyle(CustomDefaultButtonStyle())
+                .frame(height: 65)
+            }
+            .padding(.horizontal, 50)
+            .frame(width: geo.size.width, height: geo.size.height * 0.35)
+            .background(Color.white)
+            .position(x: geo.size.width * 0.5, y: geo.size.height * 0.825)
+        }
+        .background(Color.black.opacity(0.5))
+        .edgesIgnoringSafeArea(.top)
+    }
+    
+    func showButtonAction() -> () {
+        aboutTitle = "Make a decision."
+        aboutDescription = "If the vehicle is an enemy, hit the enemy button. Otherwise, do nothing. You have three seconds per trial."
+        self.activeAboutType = .buttonAbout
+    }
+    
+    func showProgressButtonAbout() -> () {
+        aboutTitle = "Here's the progress bar."
+        aboutDescription = "There are 20 questions per round."
+        self.activeAboutType = .progressBarAbout
     }
 }
 
