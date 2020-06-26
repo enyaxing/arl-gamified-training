@@ -9,20 +9,19 @@
 import SwiftUI
 
 struct CheckMark: View {
+    @State var secondsElapsed:Double
     @Binding var playing: Bool
+    
     var body: some View {
-         VStack {
-            HStack {
-            LottieView(fileName: "blue", playing: $playing)
+        LottieView(fileName: "blue", playing: $playing)
             .frame(width: 300, height: 300)
             .background(Color.clear)
-            }
-        }
+            .overlay(Text("\( String(format: "%.1f", secondsElapsed)) seconds").font(.largeTitle).fontWeight(.bold).offset(y:-150))
     }
 }
 
 struct CheckMark_Previews: PreviewProvider {
     static var previews: some View {
-        CheckMark(playing: Binding.constant(true))
+        CheckMark(secondsElapsed: 10, playing: Binding.constant(true))
     }
 }

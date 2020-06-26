@@ -13,8 +13,8 @@ struct Gonogo: View {
     /** Show summary view. */
     @State var summary = false
     
-    /** Stars. */
-    @State var stars: Int
+    /** Points. */
+    @State var points: Int
     
     /** List of answers. */
     @State var answers: [Answer] = []
@@ -26,7 +26,7 @@ struct Gonogo: View {
             if self.summary {
                 Summary(answers: answers, countdown: $countdown)
             } else {
-                GonogoMain(summary: $summary, answers: $answers, stars: $stars)
+                GonogoMain(summary: $summary, answers: $answers, points: $points)
                 .onDisappear{
                     if !self.summary {
                         self.countdown = true
@@ -70,8 +70,8 @@ struct GonogoMain: View {
     /** List of answers. */
     @Binding var answers: [Answer]
     
-    /** Stars. */
-    @Binding var stars: Int
+    /** Points. */
+    @Binding var points: Int
     
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
@@ -81,6 +81,9 @@ struct GonogoMain: View {
     
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    
+    /** Stopwatch. */
+    @ObservedObject var stopWatchManager = StopWatchManager() 
     
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -105,25 +108,46 @@ struct GonogoMain: View {
                 if self.feedback {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            PlusOne(playing: $feedback)
+                            RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         } else if self.user.regular == "prevention" {
-                            MinusZero(playing: $feedback)
+                            RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         } else {
-                            CheckMark(playing: $feedback)
+                            CheckMark(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            PlusZero(playing: $feedback)
+                            WrongPromotion(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         } else if self.user.regular == "prevention" {
-                            MinusOne(playing: $feedback)
+                            WrongPrevention(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         } else {
-                            XMark(playing: $feedback)
+                            XMark(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         }
                     }
                 } else {
                     Image(uiImage: UIImage(imageLiteralResourceName: models[self.folder][self.index].imageURL))
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .onAppear {
+                        self.stopWatchManager.start()
+                    }
                 }
             }.frame(width: 400, height: 400)
             Spacer()
@@ -152,7 +176,7 @@ struct GonogoMain: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .alert(isPresented: $alert) {
-            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
+            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
                 self.summary = true
             })
@@ -168,13 +192,13 @@ struct GonogoMain: View {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
                 if self.user.regular == "promotion" {
-                    self.stars += 1
+                    self.points += 50
                 }
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
-                    self.stars -= 1
+                    self.points -= 50
                 }
                 self.correct = false
                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
@@ -206,10 +230,10 @@ struct GonogoMain: View {
                 }
                 
                 if self.user.regular != "neutral" {
-                    Text("\(self.stars)")
+                    Text("\(self.points)")
                         .font(.title)
                         .fontWeight(.bold)
-                    Image("star").resizable().frame(width: 40, height: 40)
+                    Image("coin").resizable().frame(width: 40, height: 40)
                         .aspectRatio(contentMode: .fit)
                         .offset(y: -2)
                 }
@@ -231,13 +255,13 @@ struct GonogoMain: View {
                             self.timeRemaining = 3
                             if self.folder == 0 {
                                 if self.user.regular == "promotion" {
-                                    self.stars += 1
+                                    self.points += 50
                                 }
                                 self.correct = true
                                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
                             } else {
                                 if self.user.regular == "prevention" {
-                                    self.stars -= 1
+                                    self.points -= 50
                                 }
                                 self.correct = false
                                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
@@ -258,7 +282,7 @@ struct GonogoMain: View {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-       Gonogo(stars: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
+       Gonogo(points: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }
 

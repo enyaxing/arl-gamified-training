@@ -15,7 +15,7 @@ struct Training: View {
     @State var summary = false
     
     /** Stars. */
-    @State var stars: Int
+    @State var points: Int
 
     /** List of answers. */
     @State var answers: [Answer] = []
@@ -27,7 +27,7 @@ struct Training: View {
             if self.summary {
                 Summary(answers: answers, countdown: $countdown)
             } else {
-                TrainingMain(summary: $summary, answers: $answers, stars: $stars)
+                TrainingMain(summary: $summary, answers: $answers, points: $points)
                 .onDisappear{
                     if !self.summary {
                         self.countdown = true
@@ -67,17 +67,20 @@ struct TrainingMain: View {
     /** List of answers. */
     @Binding var answers: [Answer]
     
-    /** Stars. */
-    @Binding var stars: Int
+    /** Points. */
+    @Binding var points: Int
 
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
-
+    
     /** Friendly or foe folder selector.  0=friendly, 1=foe*/
     @State var folder = Int.random(in: 0...1)
     
     /** Index to keep track of which picture is shown. 1==friendly 2 == foe*/
     @State var index = 0
+    
+    /** Stopwatch. */
+    @ObservedObject var stopWatchManager = StopWatchManager() 
 
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -106,12 +109,12 @@ struct TrainingMain: View {
                         .font(.headline)
                         .foregroundColor(Color.white)
                 }
-                
+
                 if self.user.regular != "neutral" {
-                    Text("\(self.stars)")
+                    Text("\(self.points)")
                         .font(.title)
                         .fontWeight(.bold)
-                    Image("star").resizable().frame(width: 40, height: 40)
+                    Image("coin").resizable().frame(width: 40, height: 40)
                         .aspectRatio(contentMode: .fit)
                         .offset(y: -2)
                 }
@@ -119,25 +122,42 @@ struct TrainingMain: View {
             .padding(.top, 30.0)
             .padding(.horizontal, 30.0)
             .frame(height: 50.0)
-
             Spacer()
             Group {
                 if self.feedback {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            PlusOne(playing: $feedback)
+                            RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         } else if self.user.regular == "prevention" {
-                            MinusZero(playing: $feedback)
+                            RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         } else {
-                            CheckMark(playing: $feedback)
+                            CheckMark(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            PlusZero(playing: $feedback)
+                            WrongPromotion(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         } else if self.user.regular == "prevention" {
-                            MinusOne(playing: $feedback)
+                            WrongPrevention(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         } else {
-                            XMark(playing: $feedback)
+                            XMark(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
+                            }
                         }
                     }
                 } else {
@@ -145,6 +165,9 @@ struct TrainingMain: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .padding(.horizontal, 30.0)
+                        .onAppear {
+                            self.stopWatchManager.start()
+                        }
                 }
             }.frame(width: 400, height: 400)
             Spacer()
@@ -163,7 +186,6 @@ struct TrainingMain: View {
                     Text("ENEMY")
                 }
                 .buttonStyle(EnemyButtonStyle())
-                
                 Spacer()
             }
             Spacer()
@@ -172,7 +194,7 @@ struct TrainingMain: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .alert(isPresented: $alert) {
-            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
+            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
                 self.summary = true
             }))
@@ -181,19 +203,19 @@ struct TrainingMain: View {
             self.index = Int.random(in: 0..<self.models[self.folder].count)
         }
     }
-    
+
     /** Action performed when friendly button clicked. */
     func friendlyButtonAction() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 0 {
                 if self.user.regular == "promotion" || self.user.regular == "neutral"{
-                    self.stars += 1
+                    self.points += 50
                 }
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
-                    self.stars -= 1
+                    self.points -= 50
                 }
                 self.correct = false
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
@@ -208,19 +230,19 @@ struct TrainingMain: View {
             self.questionCount += 1
         }
     }
-    
+
     /** Action performed when enemy button clicked. */
     func enemyActionButton() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
                 if self.user.regular == "promotion" || self.user.regular == "neutral" {
-                    self.stars += 1
+                    self.points += 50
                 }
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
-                    self.stars -= 1
+                    self.points -= 50
                 }
                 self.correct = false
                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
@@ -239,6 +261,7 @@ struct TrainingMain: View {
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training(stars: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
+        Training(points: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }
+  

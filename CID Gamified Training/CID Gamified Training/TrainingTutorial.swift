@@ -15,7 +15,7 @@ struct TrainingTutorial: View {
     @State var summary = false
     
     /** Stars. */
-    @State var stars: Int
+    @State var points: Int
 
     /** List of answers. */
     @State var answers: [Answer] = []
@@ -30,7 +30,7 @@ struct TrainingTutorial: View {
                 ZStack {
                     MaskedView()
                         .zIndex(1)
-                    TrainingMain(summary: $summary, answers: $answers, stars: $stars)
+                    TrainingMain(summary: $summary, answers: $answers, points: $points)
                     .onDisappear{
                         if !self.summary {
                             self.countdown = true
@@ -129,19 +129,19 @@ struct TrainingTutorialMain: View {
                 if self.feedback {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            PlusOne(playing: $feedback)
+                            RightPromotion(secondsElapsed: 10, playing: $feedback)
                         } else if self.user.regular == "prevention" {
-                            MinusZero(playing: $feedback)
+                            WrongPromotion(secondsElapsed: 10, playing: $feedback)
                         } else {
-                            CheckMark(playing: $feedback)
+                            CheckMark(secondsElapsed: 10, playing: $feedback)
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            PlusZero(playing: $feedback)
+                            RightPromotion(secondsElapsed: 10, playing: $feedback)
                         } else if self.user.regular == "prevention" {
-                            MinusOne(playing: $feedback)
+                            WrongPromotion(secondsElapsed: 10, playing: $feedback)
                         } else {
-                            XMark(playing: $feedback)
+                            XMark(secondsElapsed: 10, playing: $feedback)
                         }
                     }
                 } else {
@@ -272,6 +272,6 @@ struct MaskedView: View {
 
 struct TrainingTutorial_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingTutorial(stars: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
+        TrainingTutorial(points: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }
