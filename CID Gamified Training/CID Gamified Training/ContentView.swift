@@ -89,11 +89,11 @@ struct ContentView: View {
                  NavigationLink(destination:
                     Group {
                         if self.user.regular == "promotion" {
-                            TrainingTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                            TrainingTutorial(points: 0, countdown: $countdown, showAboutView: true)
                      } else if self.user.regular == "prevention" {
-                            TrainingTutorial(stars: 20, countdown: $countdown, showAboutView: true)
+                            TrainingTutorial(points: 2000, countdown: $countdown, showAboutView: true)
                      } else if self.user.regular == "neutral" {
-                            TrainingTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                            TrainingTutorial(points: 0, countdown: $countdown, showAboutView: true)
                     }}) {
                     Image("info")
                     .resizable()
@@ -139,11 +139,11 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group {
                         if self.user.regular == "promotion" {
-                            GonogoTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                            GonogoTutorial(points: 0, countdown: $countdown, showAboutView: true)
                         } else if self.user.regular == "prevention" {
-                            GonogoTutorial(stars: 20, countdown: $countdown, showAboutView: true)
+                            GonogoTutorial(points: 2000, countdown: $countdown, showAboutView: true)
                         } else if self.user.regular == "neutral" {
-                            GonogoTutorial(stars: 0, countdown: $countdown, showAboutView: true)
+                            GonogoTutorial(points: 0, countdown: $countdown, showAboutView: true)
                     }}) {
                     Image("info")
                     .resizable()

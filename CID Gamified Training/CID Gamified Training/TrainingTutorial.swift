@@ -18,7 +18,7 @@ struct TrainingTutorial: View {
     /** Show summary view. */
     @State var summary = false
 
-    /** Stars. */
+    /** Points. */
     @State var points: Int
 
     /** List of answers. */
@@ -51,7 +51,7 @@ struct TrainingTutorial: View {
                         AboutViewTraining(aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, showAboutView: $showAboutView, activeAboutType: $activeAboutType, tutorialFirstRound: $tutorialFirstRound)
                             .zIndex(1)
                     }
-                    TrainingTutorialMain(summary: $summary, answers: $answers, stars: $stars, aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, activeAboutType: $activeAboutType, showAboutView: $showAboutView)
+                    TrainingTutorialMain(summary: $summary, answers: $answers, points: $points, aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, activeAboutType: $activeAboutType, showAboutView: $showAboutView)
                     .onDisappear{
                         if !self.summary {
                             self.countdown = true
@@ -92,8 +92,8 @@ struct TrainingTutorialMain: View {
     /** List of answers. */
     @Binding var answers: [Answer]
 
-    /** Stars. */
-    @Binding var stars: Int
+    /** Points. */
+    @Binding var points: Int
 
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
@@ -155,7 +155,7 @@ struct TrainingTutorialMain: View {
                 if self.user.regular != "neutral" {
                     if showAboutView == true && [.correctPrevention, .correctPromotion, .correctNeutral, .incorrectPrevention, .incorrectPromotion, .incorrectNeutral].contains(self.activeAboutType) {
                         HStack {
-                            Text("\(self.stars)")
+                            Text("\(self.points)")
                                 .font(.title)
                                 .fontWeight(.bold)
                             Image("star").resizable().frame(width: 40, height: 40)
@@ -168,10 +168,10 @@ struct TrainingTutorialMain: View {
                                 .stroke(Color.red, lineWidth: 3)
                         )
                     } else {
-                        Text("\(self.stars)")
+                        Text("\(self.points)")
                             .font(.title)
                             .fontWeight(.bold)
-                        Image("star").resizable().frame(width: 40, height: 40)
+                        Image("coin").resizable().frame(width: 40, height: 40)
                             .aspectRatio(contentMode: .fit)
                             .offset(y: -2)
                     }
@@ -186,19 +186,19 @@ struct TrainingTutorialMain: View {
                 if self.feedback {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: 10, playing: $feedback)
+                            RightPromotion(secondsElapsed: 10, points: 10, playing: $feedback)
                         } else if self.user.regular == "prevention" {
-                            WrongPromotion(secondsElapsed: 10, playing: $feedback)
+                            WrongPromotion(secondsElapsed: 10, points: 10, playing: $feedback)
                         } else {
-                            CheckMark(secondsElapsed: 10, playing: $feedback)
+                            CheckMark(secondsElapsed: 10, points: 10, playing: $feedback)
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: 10, playing: $feedback)
+                            RightPromotion(secondsElapsed: 10, points: 10, playing: $feedback)
                         } else if self.user.regular == "prevention" {
-                            WrongPromotion(secondsElapsed: 10, playing: $feedback)
+                            WrongPromotion(secondsElapsed: 10, points: 10, playing: $feedback)
                         } else {
-                            XMark(secondsElapsed: 10, playing: $feedback)
+                            XMark(secondsElapsed: 10, points: 10, playing: $feedback)
                         }
                     }
                 } else {
@@ -233,7 +233,7 @@ struct TrainingTutorialMain: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .alert(isPresented: $alert) {
-            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(stars)."), dismissButton: .default(Text("Session Summary"), action: {
+            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
                 self.alert = false
                 self.summary = true
             }))
@@ -248,10 +248,10 @@ struct TrainingTutorialMain: View {
         if !self.stopped && !self.feedback {
             if self.folder == 0 {
                 if self.user.regular == "promotion" {
-                    self.stars += 1
+                    self.points += 50
                     changeAboutView(curAboutType: .correctPromotion)
                 } else if self.user.regular == "neutral" {
-                    self.stars += 1
+                    self.points += 50
                     changeAboutView(curAboutType: .correctNeutral)
                 } else if self.user.regular == "prevention" {
                     changeAboutView(curAboutType: .correctPrevention)
@@ -260,7 +260,7 @@ struct TrainingTutorialMain: View {
                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
-                    self.stars -= 1
+                    self.points -= 50
                     changeAboutView(curAboutType: .incorrectPrevention)
                 } else if self.user.regular == "neutral" {
                     changeAboutView(curAboutType: .incorrectNeutral)
@@ -287,10 +287,10 @@ struct TrainingTutorialMain: View {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
                 if self.user.regular == "promotion" {
-                    self.stars += 1
+                    self.points += 50
                     changeAboutView(curAboutType: .correctPromotion)
                 } else if self.user.regular == "neutral" {
-                    self.stars += 1
+                    self.points += 50
                     changeAboutView(curAboutType: .correctNeutral)
                 } else if self.user.regular == "prevention" {
                     changeAboutView(curAboutType: .correctPrevention)
@@ -300,7 +300,7 @@ struct TrainingTutorialMain: View {
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
-                    self.stars -= 1
+                    self.points -= 1
                     changeAboutView(curAboutType: .incorrectPrevention)
                 } else if self.user.regular == "promotion" {
                     changeAboutView(curAboutType: .incorrectPromotion)
@@ -421,6 +421,6 @@ struct AboutViewTraining: View {
 
 struct TrainingTutorial_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingTutorial(stars: 0, countdown: Binding.constant(false), showAboutView: true).environmentObject(GlobalUser())
+        TrainingTutorial(points: 0, countdown: Binding.constant(false), showAboutView: true).environmentObject(GlobalUser())
     }
 }

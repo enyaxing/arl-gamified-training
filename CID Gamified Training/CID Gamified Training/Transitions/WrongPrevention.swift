@@ -10,6 +10,7 @@ import SwiftUI
 
 struct WrongPrevention: View {
     @State var secondsElapsed:Double
+    @State var points:Int
     @Binding var playing: Bool
     var body: some View {
         VStack {
@@ -20,7 +21,7 @@ struct WrongPrevention: View {
 
             LottieView(fileName: "stopwatch", playing: $playing)
             .frame(width: 300, height: 300)
-            Text("- 50 Points")
+            Text("You lost \(self.points) Points")
                 .font(.largeTitle)
                 .fontWeight(.bold)
             Spacer()
@@ -30,6 +31,6 @@ struct WrongPrevention: View {
 
 struct WrongPrevention_Previews: PreviewProvider {
     static var previews: some View {
-        WrongPrevention(secondsElapsed: 10, playing: Binding.constant(true))
+        WrongPrevention(secondsElapsed: 10, points: 10, playing: Binding.constant(true))
     }
 }

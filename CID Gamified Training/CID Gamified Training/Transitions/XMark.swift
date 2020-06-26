@@ -9,6 +9,7 @@ import SwiftUI
 
 struct XMark: View {
     @State var secondsElapsed:Double
+    @State var points:Int
     @Binding var playing: Bool
     var body: some View {
         LottieView(fileName: "incorrect", playing: $playing)
@@ -20,7 +21,7 @@ struct XMark: View {
 
 struct XMark_Previews: PreviewProvider {
     static var previews: some View {
-        XMark(secondsElapsed: 10, playing: Binding.constant(true))
+        XMark(secondsElapsed: 10, points: 10, playing: Binding.constant(true))
     }
 }
 

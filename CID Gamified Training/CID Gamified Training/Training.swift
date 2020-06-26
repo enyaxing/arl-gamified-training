@@ -137,34 +137,34 @@ struct TrainingMain: View {
                 if self.feedback {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal + calculateTimeScore(), playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else {
-                            CheckMark(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            CheckMark(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            WrongPromotion(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            WrongPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            WrongPrevention(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            WrongPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: 2 * fullPointVal, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else {
-                            XMark(secondsElapsed: stopWatchManager.secondsElapsed, playing: $feedback)
+                            XMark(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }

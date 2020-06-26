@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct WrongPromotion: View {
-     @State var secondsElapsed:Double
+    @State var secondsElapsed:Double
+    @State var points:Int
     @Binding var playing: Bool
     var body: some View {
         VStack {
@@ -20,7 +21,7 @@ struct WrongPromotion: View {
 
             LottieView(fileName: "stopwatch", playing: $playing)
             .frame(width: 300, height: 300)
-            Text("+ 0 Points")
+            Text("You earned 0 Points")
                 .font(.largeTitle)
                 .fontWeight(.bold)
             Spacer()
@@ -30,6 +31,6 @@ struct WrongPromotion: View {
 
 struct WrongPromotion_Previews: PreviewProvider {
     static var previews: some View {
-        WrongPromotion(secondsElapsed: 10, playing: Binding.constant(true))
+        WrongPromotion(secondsElapsed: 10, points: 10, playing: Binding.constant(true))
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CheckMark: View {
     @State var secondsElapsed:Double
+    @State var points:Int
     @Binding var playing: Bool
     
     var body: some View {
@@ -22,6 +23,6 @@ struct CheckMark: View {
 
 struct CheckMark_Previews: PreviewProvider {
     static var previews: some View {
-        CheckMark(secondsElapsed: 10, playing: Binding.constant(true))
+        CheckMark(secondsElapsed: 10, points:10, playing: Binding.constant(true))
     }
 }
