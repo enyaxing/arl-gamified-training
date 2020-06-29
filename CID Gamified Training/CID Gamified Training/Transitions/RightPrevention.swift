@@ -21,7 +21,7 @@ struct RightPrevention: View {
 
             LottieView(fileName: "stopwatch", playing: $playing)
             .frame(width: 300, height: 300)
-            Text("You lost 0 Points")
+            Text("You lost \(self.points) Points")
                 .font(.largeTitle)
                 .fontWeight(.bold)
             Spacer()

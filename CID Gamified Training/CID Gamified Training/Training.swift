@@ -7,6 +7,7 @@
 //  Copyright © 2020 Alex. All rights reserved.
 //
 import SwiftUI
+import Darwin
 
 /** Training game. */
 struct Training: View {
@@ -85,13 +86,6 @@ struct TrainingMain: View {
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-
-    /** Keeps track of how much time has elapsed since beginning of question. */
-    @State var timeElapsed: Double = 0.0
-
-    /** Timer that pings the app every tenth of a second. */
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-
     /** How much is considered to be full score. */
     let fullPointVal: Int = 50
 
@@ -134,15 +128,15 @@ struct TrainingMain: View {
             .frame(height: 50.0)
             Spacer()
             Group {
-                if self.feedback {
+                if self.feedback || self.stopped{
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal + calculateTimeScore(), playing: $feedback)
+                            RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, playing: $feedback)
+                            RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
@@ -205,6 +199,7 @@ struct TrainingMain: View {
         .navigationBarHidden(true)
         .alert(isPresented: $alert) {
             Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
+                print("dismissed")
                 self.alert = false
                 self.summary = true
             }))
@@ -220,13 +215,14 @@ struct TrainingMain: View {
             if self.folder == 0 {
                 if self.user.regular == "promotion" || self.user.regular == "neutral"{
                     self.points += fullPointVal
-                    self.points += calculateTimeScore()
+                    self.points += calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
+                } else if self.user.regular == "prevention" {
+                    self.points -= fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
                 }
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
-                    // Wait lol unsure what to do here
                     self.points -= 2 * fullPointVal
                 }
                 self.correct = false
@@ -239,7 +235,6 @@ struct TrainingMain: View {
                 self.stopped = true
                 self.alert = true
             }
-            self.timeElapsed = 0.0
             self.questionCount += 1
         }
     }
@@ -250,13 +245,14 @@ struct TrainingMain: View {
             if self.folder == 1 {
                 if self.user.regular == "promotion" || self.user.regular == "neutral" {
                     self.points += fullPointVal
-                    self.points += calculateTimeScore()
+                    self.points += calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
+                } else if self.user.regular == "prevention" {
+                    self.points -= fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
                 }
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
-                    // Wait lol unsure what to do here
                     self.points -= 2 * fullPointVal
                 }
                 self.correct = false
@@ -269,15 +265,14 @@ struct TrainingMain: View {
                 self.stopped = true
                 self.alert = true
             }
-            self.timeElapsed = 0.0
             self.questionCount += 1
         }
     }
 
     /** Calculates the score, out of 50 based on response time. */
-    func calculateTimeScore() -> Int {
-        let b: Double = 1 / Double(fullPointVal)
-        let timeScore: Int = Int(Double(fullPointVal) * pow(pow(b, -1/5), -self.timeElapsed))
+    func calculateTimeScore(timeElapsed: Double) -> Int {
+        let b: Double = log(1 / Double(fullPointVal)) / 5
+        let timeScore: Int = Int(Double(fullPointVal) * pow(Darwin.M_E, b * timeElapsed))
         return timeScore
     }
 }
