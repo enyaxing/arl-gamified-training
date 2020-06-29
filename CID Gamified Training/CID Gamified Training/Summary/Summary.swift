@@ -6,17 +6,23 @@
 //  Copyright © 2020 Alex. All rights reserved.
 //
 import SwiftUI
+import Firebase
 
 /** The summary view after session completed. */
 struct Summary: View {
     
     /** List of answers from completed training session. */
-    var answers: [Answer]
+    @State var answers: [Answer]
+    
+    var sess: String = ""
     
     @State var hideback = false
     
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
+    
+    /** Connection to firebase user collection. */
+    let db = Firestore.firestore().collection("users")
     
     @Binding var countdown: Bool
 
@@ -49,12 +55,54 @@ struct Summary: View {
                 }
             }
         } .navigationBarBackButtonHidden(hideback)
+            .onAppear{
+                if self.sess == "" {
+                    let session = self.db.document(self.user.uid).collection("sessions")
+                    let time = Timestamp()
+                    session.document(time.description).setData(["time": time])
+                    let answer = session.document(time.description).collection("answers")
+                    for ans in self.answers {
+                        answer.document("Question #\(ans.id)").setData([
+                            "id": ans.id,
+                            "expected": ans.expected,
+                            "received": ans.received,
+                            "image": "tank1",
+                            "vehicleName": ans.vehicleName,
+                            "time": ans.time
+                        ])
+                    }
+                } else {
+                    self.getAnswers(db: self.db.document(self.user.uid).collection("sessions").document(self.sess).collection("answers"))
+                }
+                
+        }
         .onDisappear{
             if !self.hideback {
                 self.countdown = true
             }
         }
     }
+    func getAnswers(db: CollectionReference) {
+        var ret: [Answer] = []
+        db.getDocuments() {(query, err) in
+            if err != nil {
+                print("Error getting docs.")
+            } else {
+                for document in query!.documents {
+                    ret.append(Answer(
+                        id: document.get("id") as! Int,
+                        expected: document.get("expected") as! String,
+                        received: document.get("received") as! String,
+                        image: document.get("image") as! String,
+                        vehicleName: document.get("vehicleName") as! String,
+                        time: document.get("time") as! Double
+                    ))
+                }
+                self.answers = ret
+            }
+        }
+    }
+    
 }
 
 /** Count the number of correct answers. */
