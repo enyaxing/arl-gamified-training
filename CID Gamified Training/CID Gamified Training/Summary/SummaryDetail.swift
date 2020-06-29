@@ -66,6 +66,7 @@ struct SummaryDetail: View {
                  .fontWeight(.semibold)
                 }
             }
+            Text("You answered in \(self.answer.time, specifier: "%.1f") seconds.")
             Text("(This is a \(self.answer.vehicleName))")
         }.onAppear {
             self.back = true

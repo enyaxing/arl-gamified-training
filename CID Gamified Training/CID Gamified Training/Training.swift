@@ -217,13 +217,23 @@ struct TrainingMain: View {
                     self.points -= fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
                 }
                 self.correct = true
-                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
+                self.answers.append(Answer(id: self.answers.count,
+                                           expected: "friendly",
+                                           received: "friendly",
+                                           image: self.models[self.folder][self.index].imageURL,
+                                           vehicleName: self.models[self.folder][self.index].vehicleName,
+                                           time: stopWatchManager.secondsElapsed))
             } else {
                 if self.user.regular == "prevention" {
                     self.points -= 2 * fullPointVal
                 }
                 self.correct = false
-                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
+                self.answers.append(Answer(id: self.answers.count,
+                                           expected: "foe",
+                                           received: "friendly",
+                                           image: self.models[self.folder][self.index].imageURL,
+                                           vehicleName: self.models[self.folder][self.index].vehicleName,
+                                           time: stopWatchManager.secondsElapsed))
             }
             self.folder = Int.random(in: 0...1)
             self.index = Int.random(in: 0..<self.models[self.folder].count)
@@ -247,13 +257,23 @@ struct TrainingMain: View {
                     self.points -= fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
                 }
                 self.correct = true
-                self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
+                self.answers.append(Answer(id: self.answers.count,
+                                           expected: "foe",
+                                           received: "foe",
+                                           image: self.models[self.folder][self.index].imageURL,
+                                           vehicleName: self.models[self.folder][self.index].vehicleName,
+                                           time: stopWatchManager.secondsElapsed))
             } else {
                 if self.user.regular == "prevention" {
                     self.points -= 2 * fullPointVal
                 }
                 self.correct = false
-                self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
+                self.answers.append(Answer(id: self.answers.count,
+                                           expected: "friendly",
+                                           received: "foe",
+                                           image: self.models[self.folder][self.index].imageURL,
+                                           vehicleName: self.models[self.folder][self.index].vehicleName,
+                                           time: stopWatchManager.secondsElapsed))
             }
             self.folder = Int.random(in: 0...1)
             self.index = Int.random(in: 0..<self.models[self.folder].count)
