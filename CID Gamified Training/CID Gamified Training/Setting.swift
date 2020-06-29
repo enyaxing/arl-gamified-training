@@ -16,119 +16,55 @@ struct Setting: View {
     @State var alert = false
     
     var body: some View {
-        HStack {
-            VStack {
-                Text("Library")
+        VStack {
+            Text("Directions: Click a vehicle to move it.  The order is Library -> Friendly -> Enemy -> Library")
+            HStack {
+                VStack {
+                    Text("Library")
+                        .font(.title)
+                        .fontWeight(.heavy)
+                    List {
+                        ForEach(self.library, id: \.id) {card in
+                            CardView(folder: card.name, back: Color.gray)
+                                .onTapGesture {
+                                    let index = self.library.firstIndex(of: card) ?? 0
+                                    self.friendly.append(card)
+                                    self.library.remove(at: index)
+                            }
+                        }
+                    }
+                }
+                VStack {
+                    Text("Friendly")
                     .font(.title)
                     .fontWeight(.heavy)
-                List {
-                    ForEach(self.library, id: \.id) {card in
-                        GeometryReader { geo in
-                            CardView(folder: card.name)
-                            .offset(card.offset)
-                            .gesture(DragGesture()
-                            .onChanged { gesture in
-                                let index = self.library.firstIndex(of: card) ?? 0
-                                self.library[index].offset = gesture.translation
-                            }.onEnded { _ in
-                                let index = self.library.firstIndex(of: card) ?? 0
-                                if location(geo: geo, card: card) == "friendly" {
-                                    self.friendly.append(card)
-                                    self.friendly[self.friendly.count - 1].offset = CGSize.zero
-                                    self.library.remove(at: index)
-                                } else if location(geo: geo, card: card) == "enemy" {
+                    List {
+                        ForEach(self.friendly, id: \.id) {card in
+                            CardView(folder: card.name, back: Color.blue)
+                                .onTapGesture {
+                                    let index = self.friendly.firstIndex(of: card) ?? 0
                                     self.enemy.append(card)
-                                    self.enemy[self.enemy.count - 1].offset = CGSize.zero
-                                    self.library.remove(at: index)
-                                } else {
-                                    self.library[index].offset = CGSize.zero
-                                }
-                            })
+                                    self.friendly.remove(at: index)
+                            }
+                        }
+                    }
+                    Text("Enemy")
+                    .font(.title)
+                    .fontWeight(.heavy)
+                    List {
+                        ForEach(self.enemy, id: \.id) {card in
+                            CardView(folder: card.name, back: Color.red)
+                                .onTapGesture {
+                                    let index = self.enemy.firstIndex(of: card) ?? 0
+                                    self.library.append(card)
+                                    self.enemy.remove(at: index)
+                            }
                         }
                     }
                 }
             }
-            VStack {
-                Text("Friendly")
-                .font(.title)
-                .fontWeight(.heavy)
-                List {
-                    ForEach(self.friendly, id: \.id) {card in
-                        GeometryReader { geo in
-                            CardView(folder: card.name)
-                            .offset(card.offset)
-                            .gesture(DragGesture()
-                            .onChanged { gesture in
-                                let index = self.friendly.firstIndex(of: card) ?? 0
-                                self.friendly[index].offset = gesture.translation
-                            }.onEnded { _ in
-                                let index = self.friendly.firstIndex(of: card) ?? 0
-                                if location(geo: geo, card: card) == "library" {
-                                    if self.friendly.count == 1 {
-                                        self.alert = true
-                                        self.friendly[index].offset = CGSize.zero
-                                    } else {
-                                        self.library.append(card)
-                                        self.library[self.library.count - 1].offset = CGSize.zero
-                                        self.friendly.remove(at: index)
-                                    }
-                                } else if location(geo: geo, card: card) == "enemy" {
-                                    if self.friendly.count == 1 {
-                                        self.alert = true
-                                        self.friendly[index].offset = CGSize.zero
-                                    } else {
-                                        self.enemy.append(card)
-                                        self.enemy[self.enemy.count - 1].offset = CGSize.zero
-                                        self.friendly.remove(at: index)
-                                    }
-                                } else {
-                                    self.friendly[index].offset = CGSize.zero
-                                }
-                            })
-                        }
-                    }
-                }
-                Text("Enemy")
-                .font(.title)
-                .fontWeight(.heavy)
-                List {
-                    ForEach(self.enemy, id: \.id) {card in
-                        GeometryReader { geo in
-                            CardView(folder: card.name)
-                            .offset(card.offset)
-                            .gesture(DragGesture()
-                            .onChanged { gesture in
-                                let index = self.enemy.firstIndex(of: card) ?? 0
-                                self.enemy[index].offset = gesture.translation
-                            }.onEnded { _ in
-                                let index = self.enemy.firstIndex(of: card) ?? 0
-                                if location(geo: geo, card: card) == "friendly" {
-                                    if self.enemy.count == 1 {
-                                        self.alert = true
-                                        self.enemy[index].offset = CGSize.zero
-                                    } else {
-                                        self.friendly.append(card)
-                                        self.friendly[self.friendly.count - 1].offset = CGSize.zero
-                                        self.enemy.remove(at: index)
-                                    }
-                                } else if location(geo: geo, card: card) == "library" {
-                                    if self.enemy.count == 1 {
-                                        self.alert = true
-                                        self.enemy[index].offset = CGSize.zero
-                                    } else {
-                                        self.library.append(card)
-                                        self.library[self.library.count - 1].offset = CGSize.zero
-                                        self.enemy.remove(at: index)
-                                    }
-                                } else {
-                                    self.enemy[index].offset = CGSize.zero
-                                }
-                            })
-                        }
-                    }
-                }
-            }
-        }.alert(isPresented: $alert) {
+        }
+        .alert(isPresented: $alert) {
             Alert(title: Text("Error"), message: Text("Cannot have empty friendly or enemy list. Please add another vehicle before removing this vehicle."), dismissButton: .default(Text("Dismiss"), action: {
                 self.alert = false
             }))

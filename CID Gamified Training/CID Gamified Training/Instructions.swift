@@ -58,7 +58,7 @@ struct Instructions: View {
                     .fontWeight(.heavy)
                     List {
                         ForEach(self.enemy, id: \.id) {card in
-                            CardView(folder: card.name)
+                            CardView(folder: card.name, back: Color.blue)
                         }
                     }
                 }
@@ -68,7 +68,7 @@ struct Instructions: View {
                     .fontWeight(.heavy)
                     List {
                         ForEach(self.friendly, id: \.id) {card in
-                            CardView(folder: card.name)
+                            CardView(folder: card.name, back: Color.red)
                         }
                     }
                 }

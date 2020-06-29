@@ -11,6 +11,7 @@ import SwiftUI
 struct CardView: View {
     
     var folder: String
+    var back: Color
     
     var body: some View {
         HStack {
@@ -21,7 +22,7 @@ struct CardView: View {
         Text(folder)
         Spacer()
         } .frame(width: 150, height: 40)
-        .background(Color.gray)
+        .background(back)
     }
     
     func getImage() -> String {
@@ -40,6 +41,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(folder: "AAV")
+        CardView(folder: "AAV", back: Color.gray)
     }
 }
