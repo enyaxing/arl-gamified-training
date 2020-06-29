@@ -6,6 +6,7 @@
 //  Copyright © 2020 Alex. All rights reserved.
 //
 import SwiftUI
+import Darwin
 
 /** Gonogo game. */
 struct Gonogo: View {
@@ -88,6 +89,9 @@ struct GonogoMain: View {
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    /** How much is considered to be full score. */
+    let fullPointVal: Int = 50
+    
     var btnBack : some View {
         Button(action: {
         self.presentationMode.wrappedValue.dismiss()
@@ -105,17 +109,31 @@ struct GonogoMain: View {
             self.headline()
             Spacer()
             Group {
-                if self.feedback {
+                if self.feedback || self.stopped {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: 10, playing: $feedback)
-                            .onAppear {
-                                self.stopWatchManager.stop()
+                            if stopWatchManager.secondsElapsed >= 3 {
+                                RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: 2 * fullPointVal, playing: $feedback)
+                                .onAppear {
+                                    self.stopWatchManager.stop()
+                                }
+                            } else {
+                                RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
+                                .onAppear {
+                                    self.stopWatchManager.stop()
+                                }
                             }
                         } else if self.user.regular == "prevention" {
-                            RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: 10, playing: $feedback)
-                            .onAppear {
-                                self.stopWatchManager.stop()
+                            if stopWatchManager.secondsElapsed >= 3 {
+                                RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, playing: $feedback)
+                                .onAppear {
+                                    self.stopWatchManager.stop()
+                                }
+                            } else {
+                                RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
+                                .onAppear {
+                                    self.stopWatchManager.stop()
+                                }
                             }
                         } else {
                             CheckMark(secondsElapsed: stopWatchManager.secondsElapsed, points: 10, playing: $feedback)
@@ -125,12 +143,12 @@ struct GonogoMain: View {
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            WrongPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points:10,  playing: $feedback)
+                            WrongPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points:0,  playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            WrongPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points:10, playing: $feedback)
+                            WrongPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points:2 * fullPointVal, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
@@ -191,14 +209,17 @@ struct GonogoMain: View {
     func enemyActionButton() -> () {
         if !self.stopped && !self.feedback {
             if self.folder == 1 {
-                if self.user.regular == "promotion" {
-                    self.points += 50
+                if self.user.regular == "promotion" || self.user.regular == "neutral" {
+                    self.points += fullPointVal
+                    self.points += calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
+                } else if self.user.regular == "prevention" {
+                    self.points -= fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
                 }
                 self.correct = true
                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
             } else {
                 if self.user.regular == "prevention" {
-                    self.points -= 50
+                    self.points -= 2 * fullPointVal
                 }
                 self.correct = false
                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "foe", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
@@ -206,12 +227,12 @@ struct GonogoMain: View {
             self.folder = Int.random(in: 0...1)
             self.index = Int.random(in: 0..<self.models[self.folder].count)
             self.feedback = true
-            self.timeRemaining = 3
             if self.questionCount == 19 {
                 self.stopped = true
                 self.alert = true
             }
             self.questionCount += 1
+            self.timeRemaining = 3
         }
     }
     
@@ -255,13 +276,13 @@ struct GonogoMain: View {
                             self.timeRemaining = 3
                             if self.folder == 0 {
                                 if self.user.regular == "promotion" {
-                                    self.points += 50
+                                    self.points += 2 * self.fullPointVal
                                 }
                                 self.correct = true
                                 self.answers.append(Answer(id: self.answers.count, expected: "friendly", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
                             } else {
                                 if self.user.regular == "prevention" {
-                                    self.points -= 50
+                                    self.points -= 2 * self.fullPointVal
                                 }
                                 self.correct = false
                                 self.answers.append(Answer(id: self.answers.count, expected: "foe", received: "friendly", image: self.models[self.folder][self.index].imageURL, vehicleName: self.models[self.folder][self.index].vehicleName))
@@ -277,6 +298,13 @@ struct GonogoMain: View {
                     }
             }
         }
+    }
+    
+    /** Calculates the score, out of 50 based on response time. */
+    func calculateTimeScore(timeElapsed: Double) -> Int {
+        let b: Double = log(1 / Double(fullPointVal)) / 5
+        let timeScore: Int = Int(Double(fullPointVal) * pow(Darwin.M_E, b * timeElapsed))
+        return timeScore
     }
 }
 
