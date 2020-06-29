@@ -9,9 +9,12 @@
 import Foundation
 import SwiftUI
 
-struct Card : Identifiable, Equatable {
+struct Card : Identifiable, Equatable, Comparable {
     var id = UUID()
     var name: String
     var offset = CGSize.zero
-    var zdex = 0.0
+    
+    static func < (lhs: Card, rhs: Card) -> Bool {
+        return lhs.name < rhs.name
+    }
 }

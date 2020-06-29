@@ -29,6 +29,7 @@ struct Setting: View {
                                 .onTapGesture {
                                     let index = self.library.firstIndex(of: card) ?? 0
                                     self.friendly.append(card)
+                                    self.friendly = self.friendly.sorted()
                                     self.library.remove(at: index)
                             }
                         }
@@ -44,6 +45,7 @@ struct Setting: View {
                                 .onTapGesture {
                                     let index = self.friendly.firstIndex(of: card) ?? 0
                                     self.enemy.append(card)
+                                    self.enemy = self.enemy.sorted()
                                     self.friendly.remove(at: index)
                             }
                         }
@@ -57,6 +59,7 @@ struct Setting: View {
                                 .onTapGesture {
                                     let index = self.enemy.firstIndex(of: card) ?? 0
                                     self.library.append(card)
+                                    self.library = self.library.sorted()
                                     self.enemy.remove(at: index)
                             }
                         }
@@ -76,9 +79,9 @@ struct Setting: View {
             Model.friendly = Model.settingLoad(name: "friendly")
             Model.foe = Model.settingLoad(name: "enemy")
         } .onAppear {
-            self.library = Model.unselectedFolder
-            self.friendly = Model.friendlyFolder
-            self.enemy = Model.enemyFolder
+            self.library = Model.unselectedFolder.sorted()
+            self.friendly = Model.friendlyFolder.sorted()
+            self.enemy = Model.enemyFolder.sorted()
         }
     }
 }
