@@ -15,8 +15,10 @@ struct WrongPromotion: View {
     var body: some View {
         VStack {
             Spacer()
+            LottieView(fileName: "incorrect", playing: $playing)
+                .frame(width: 200, height: 200)
+                .offset(y: 70)
             VStack {
-                Spacer()
                 HStack {
                     Spacer()
                     Text("Time    ")
@@ -29,7 +31,7 @@ struct WrongPromotion: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()
-                }
+                }.offset(y: 80)
                 Spacer()
                 HStack {
                     Spacer()
@@ -43,14 +45,12 @@ struct WrongPromotion: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()
-                }
-                Spacer()
             }.offset(y: 100)
             Spacer()
             Image("line")
             .resizable()
             .frame(width: 400, height: 400)
-            .offset(y: -110)
+            .offset(y: -50)
             Spacer()
             HStack {
                 Spacer()
@@ -64,8 +64,9 @@ struct WrongPromotion: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 Spacer()
-            }.offset(y: -300)
+            }.offset(y: -200)
             Spacer()
+            }.offset(y: -100)
         }
     }
 }
