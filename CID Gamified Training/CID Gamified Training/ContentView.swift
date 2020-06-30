@@ -179,7 +179,7 @@ struct ContentView: View {
                         .cornerRadius(20)
                     }
                     Spacer()
-                    NavigationLink(destination: Profile()) {
+                    NavigationLink(destination: Profile(uid: self.user.uid)) {
                     Text("Profile")
                     .padding(10)
                     .background(Color.white)

@@ -12,7 +12,9 @@ import Firebase
 struct Profile: View {
     
     /** Reference to global user variable. */
-    @EnvironmentObject var user: GlobalUser
+    //@EnvironmentObject var user: GlobalUser
+    
+    var uid: String
     
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
@@ -29,14 +31,14 @@ struct Profile: View {
             Text("Previous Sessions:")
             List {
                 ForEach(self.prevSessions, id: \.self) {sess in
-                    NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false))){
+                    NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false), uid: self.uid)){
                         Text(sess)
                     }
                 }
             }
         }.onAppear{
-            self.setHeader(doc: self.db.document(self.user.uid))
-            self.getSessions(db: self.db.document(self.user.uid).collection("sessions"))
+            self.setHeader(doc: self.db.document(self.uid))
+            self.getSessions(db: self.db.document(self.uid).collection("sessions"))
         }
     }
 
@@ -74,6 +76,6 @@ struct Profile: View {
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        Profile().environmentObject(GlobalUser())
+        Profile(uid: "").environmentObject(GlobalUser())
     }
 }

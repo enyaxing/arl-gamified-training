@@ -25,6 +25,8 @@ struct Summary: View {
     let db = Firestore.firestore().collection("users")
     
     @Binding var countdown: Bool
+    
+    @State var uid: String = ""
 
     var body: some View {
         VStack {
@@ -56,8 +58,11 @@ struct Summary: View {
             }
         } .navigationBarBackButtonHidden(hideback)
             .onAppear{
+                if self.uid == "" {
+                    self.uid = self.user.uid
+                }
                 if self.sess == "" {
-                    let session = self.db.document(self.user.uid).collection("sessions")
+                    let session = self.db.document(self.uid).collection("sessions")
                     // Fix this timestamp
                     let time = Timestamp()
                     session.document(time.description).setData(["time": time])
@@ -74,7 +79,7 @@ struct Summary: View {
                         ])
                     }
                 } else {
-                    self.getAnswers(db: self.db.document(self.user.uid).collection("sessions").document(self.sess).collection("answers"))
+                    self.getAnswers(db: self.db.document(self.uid).collection("sessions").document(self.sess).collection("answers"))
                 }
                 
         }
