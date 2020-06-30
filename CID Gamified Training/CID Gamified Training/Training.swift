@@ -8,6 +8,7 @@
 //
 import SwiftUI
 import Darwin
+import Firebase
 
 /** Training game. */
 struct Training: View {
@@ -23,10 +24,13 @@ struct Training: View {
 
     @Binding var countdown: Bool
 
+    /** Records the start of the session */
+    var startTimestamp = Timestamp()
+    
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, countdown: $countdown)
+                Summary(answers: answers, countdown: $countdown, session: Session(points: self.points, timestamp: self.startTimestamp))
             } else {
                 TrainingMain(summary: $summary, answers: $answers, points: $points)
                 .onDisappear{

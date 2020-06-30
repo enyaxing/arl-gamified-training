@@ -28,11 +28,18 @@ struct Summary: View {
     
     @State var uid: String = ""
 
+    /** Points earned from the session. */
+//    @Binding var points: Int
+    
+    @State var session: Session
+    
     var body: some View {
         VStack {
             Text("Summary")
             .font(.largeTitle)
             .fontWeight(.black)
+            Text("Points: \(session.points)")
+                .font(.headingFont)
             Group {
                 if self.user.regular == "promotion" {
                     Text("Correct: \(countCorrect(answer: answers))/\(answers.count)")
@@ -64,8 +71,8 @@ struct Summary: View {
                 if self.sess == "" {
                     let session = self.db.document(self.uid).collection("sessions")
                     // Fix this timestamp
-                    let time = Timestamp()
-                    session.document(time.description).setData(["time": time])
+                    let time = self.session.timestamp
+                    session.document(time.description).setData(["points": self.session.points, "time": time])
                     let answer = session.document(time.description).collection("answers")
                     for ans in self.answers {
                         let img = parseImage(location: ans.image)
@@ -160,6 +167,6 @@ func parseID(id: Int) -> String {
 
 struct Summary_Previews: PreviewProvider {
     static var previews: some View {
-        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1", vehicleName: "tank1")], countdown: Binding.constant(false)).environmentObject(GlobalUser())
+        Summary(answers: [Answer(id: 1, expected: "foe", received: "foe", image: "tank1", vehicleName: "tank1")], countdown: Binding.constant(false), session: Session(points: 0, timestamp: Timestamp())).environmentObject(GlobalUser())
     }
 }

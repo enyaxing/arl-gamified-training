@@ -19,8 +19,8 @@ struct Profile: View {
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
 
-    @State var prevSessions: [String] = []
-    @State var timestamps: [String: Date] = [:]
+    @State var prevSessionIds: [String] = []
+    @State var prevSessions: [String: Session] = [:]
     @State var answers: [Answer] = []
     @State var name = "test"
     @State var email = "test"
@@ -36,9 +36,9 @@ struct Profile: View {
             Text(email)
             Text("Previous Sessions:")
             List {
-                ForEach(self.prevSessions, id: \.self) {sess in
-                    NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false), uid: self.uid)){
-                        Text("\(self.dateFormatter.string(for: self.timestamps[sess]) ?? "Unknown date")")
+                ForEach(self.prevSessionIds, id: \.self) {sess in
+                    NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false), uid: self.uid, session: self.prevSessions[sess]!)){
+                        Text("\(self.dateFormatter.string(for: self.prevSessions[sess]?.timestamp.dateValue()) ?? "Unknown date")")
                     }
                 }
             }
@@ -57,9 +57,10 @@ struct Profile: View {
                 for document in query!.documents {
                     ret.append(document.documentID)
                     let t: Timestamp = document.get("time") as! Timestamp
-                    self.timestamps[document.documentID] = t.dateValue()
+                    let points: Int = document.get("points") as! Int
+                    self.prevSessions[document.documentID] = Session(points: points, timestamp: t)
                 }
-                self.prevSessions = ret
+                self.prevSessionIds = ret
             }
         }
     }

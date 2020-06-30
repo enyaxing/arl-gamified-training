@@ -10,8 +10,8 @@ import Foundation
 import Firebase
 
 struct Session {
-    /** Answers collected for this session. */
-    var ans: Answer
+    /** Points collected in a session */
+    var points: Int
     
     /** Timestamp of the session. */
     var timestamp: Timestamp

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 enum AboutType {
     case defaultNone, welcomeAbout, buttonAbout, correctPrevention, correctPromotion, correctNeutral, incorrectPrevention, incorrectPromotion, incorrectNeutral, progressBarAbout
@@ -40,11 +41,14 @@ struct TrainingTutorial: View {
 
     /** Whether the tutorial basics have already been completed. */
     @State var tutorialFirstRound: Bool = true
-
+    
+    /** Records the start of the session */
+    var startTimestamp = Timestamp()
+    
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, countdown: $countdown)
+                Summary(answers: answers, countdown: $countdown, session: Session(points: self.points, timestamp: self.startTimestamp))
             } else {
                 ZStack {
                     if showAboutView {
