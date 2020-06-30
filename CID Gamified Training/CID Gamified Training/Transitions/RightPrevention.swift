@@ -15,18 +15,60 @@ struct RightPrevention: View {
     var body: some View {
         VStack {
             Spacer()
-            Text("\( String(format: "%.1f", secondsElapsed)) seconds")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-
-            LottieView(fileName: "stopwatch", playing: $playing)
-            .frame(width: 300, height: 300)
-            Text("You lost \(self.points) Points")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Text("Time    ")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    Spacer()
+                    LottieView(fileName: "minus", playing: $playing)
+                    .frame(width: 20, height: 20)
+                    Text("\(self.points) Points")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                Spacer()
+                HStack {
+                    Spacer()
+                    Text("Accuracy")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    Spacer()
+                    LottieView(fileName: "minus", playing: $playing)
+                    .frame(width: 20, height: 20)
+                    Text("0 Points")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                Spacer()
+            }.offset(y: 100)
+            Spacer()
+            Image("line")
+            .resizable()
+            .frame(width: 400, height: 400)
+            .offset(y: -110)
+            Spacer()
+            HStack {
+                Spacer()
+                Text("Total   ")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                Spacer()
+                LottieView(fileName: "minus", playing: $playing)
+                .frame(width: 20, height: 20)
+                Text("\(self.points + 0) Points")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                Spacer()
+            }.offset(y: -300)
             Spacer()
         }
     }
+
 }
 
 struct RightPrevention_Previews: PreviewProvider {

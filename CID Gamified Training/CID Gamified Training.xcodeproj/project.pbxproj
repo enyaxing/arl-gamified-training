@@ -48,6 +48,7 @@
 		985F5761249184150087D44B /* W.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572A249184140087D44B /* W.json */; };
 		985F5762249184150087D44B /* B.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572B249184140087D44B /* B.json */; };
 		985F5778249184AA0087D44B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985F5777249184AA0087D44B /* LottieView.swift */; };
+		98898B4124AA8E6000DC754B /* line.json in Resources */ = {isa = PBXBuildFile; fileRef = 98898B4024AA8E6000DC754B /* line.json */; };
 		98A031E5248ED60900239274 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 98A031E4248ED60900239274 /* .swiftlint.yml */; };
 		98E7F612249AB1400034E912 /* star.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F611249AB1400034E912 /* star.json */; };
 		98E7F615249AB4B00034E912 /* one.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F613249AB4B00034E912 /* one.json */; };
@@ -160,6 +161,7 @@
 		985F572A249184140087D44B /* W.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = W.json; sourceTree = "<group>"; };
 		985F572B249184140087D44B /* B.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = B.json; sourceTree = "<group>"; };
 		985F5777249184AA0087D44B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		98898B4024AA8E6000DC754B /* line.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = line.json; sourceTree = "<group>"; };
 		98A031E4248ED60900239274 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		98E7F611249AB1400034E912 /* star.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star.json; sourceTree = "<group>"; };
 		98E7F613249AB4B00034E912 /* one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = one.json; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 		985F5707249184140087D44B /* TestAnimations */ = {
 			isa = PBXGroup;
 			children = (
+				98898B4024AA8E6000DC754B /* line.json */,
 				98E89E1724A6B08900E2DE9C /* stopwatch.json */,
 				983D181124A15B380011FF62 /* countdown.json */,
 				983D180F24A15A0A0011FF62 /* blue.json */,
@@ -621,6 +624,7 @@
 				FAEFD8CF24991D98004FA58B /* GoogleService-Info.plist in Resources */,
 				983D181024A15A0A0011FF62 /* blue.json in Resources */,
 				985F5759249184150087D44B /* Colon.json in Resources */,
+				98898B4124AA8E6000DC754B /* line.json in Resources */,
 				98E89E1824A6B08900E2DE9C /* stopwatch.json in Resources */,
 				985F5748249184150087D44B /* BlinkingCursor.json in Resources */,
 				985F5756249184150087D44B /* P.json in Resources */,

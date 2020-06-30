@@ -17,7 +17,7 @@ struct CheckMark: View {
         LottieView(fileName: "blue", playing: $playing)
             .frame(width: 300, height: 300)
             .background(Color.clear)
-            .overlay(Text("\( String(format: "%.1f", secondsElapsed)) seconds").font(.largeTitle).fontWeight(.bold).offset(y:-150))
+            .overlay(Text("\( String(format: "%.1f", secondsElapsed)) seconds").font(.largeTitle).fontWeight(.bold).offset(y:-200))
     }
 }
 

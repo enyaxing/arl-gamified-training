@@ -15,7 +15,7 @@ struct XMark: View {
         LottieView(fileName: "incorrect", playing: $playing)
             .frame(width: 900, height: 900)
             .background(Color.clear)
-            .overlay(Text("\( String(format: "%.1f", secondsElapsed)) seconds").font(.largeTitle).fontWeight(.bold).offset(y:-150))
+            .overlay(Text("\( String(format: "%.1f", secondsElapsed)) seconds").font(.largeTitle).fontWeight(.bold).offset(y:-200))
     }
 }
 
