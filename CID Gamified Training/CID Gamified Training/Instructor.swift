@@ -44,12 +44,28 @@ struct Instructor: View {
                     }
                 }
             }
-            Button(action: {
-                self.logout()
-            }) {
-                Text("Sign out")
+            
+            HStack {
+                Spacer()
+                Button(action: {
+                    self.logout()
+                }) {
+                    Text("Sign out")
+                }
+                Spacer()
+                NavigationLink(destination: Focus()) {
+                    Text(self.user.regular)
+                }
+                Spacer()
+                NavigationLink(destination: EditStudent()) {
+                    Text("Edit Students")
+                }
+                Spacer()
             }
+            
+            
         }.onAppear{
+            self.setHeader(doc: self.db.document(self.user.uid))
             self.getStudents(doc: self.db.document(self.user.uid))
         }
     }
@@ -78,6 +94,22 @@ struct Instructor: View {
                 }
                 if document.get("studentuid") != nil {
                     self.students = document.get("studentuid") as! [String]
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
+    /** Obtain field value from firebase user. */
+    func setHeader(doc: DocumentReference){
+        doc.getDocument { (document, error) in
+            if let document = document, document.exists {
+                if document.get("name") != nil {
+                    self.name = document.get("name") as! String
+                }
+                if document.get("user") != nil {
+                    self.email = document.get("user") as! String
                 }
             } else {
                 print("Document does not exist")
