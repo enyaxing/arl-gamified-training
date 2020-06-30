@@ -58,15 +58,17 @@ struct Summary: View {
             .onAppear{
                 if self.sess == "" {
                     let session = self.db.document(self.user.uid).collection("sessions")
+                    // Fix this timestamp
                     let time = Timestamp()
                     session.document(time.description).setData(["time": time])
                     let answer = session.document(time.description).collection("answers")
                     for ans in self.answers {
-                        answer.document("Question #\(ans.id)").setData([
+                        let img = parseImage(location: ans.image)
+                        answer.document("Question #\(parseID(id: ans.id))").setData([
                             "id": ans.id,
                             "expected": ans.expected,
                             "received": ans.received,
-                            "image": "tank1",
+                            "image": img,
                             "vehicleName": ans.vehicleName,
                             "time": ans.time
                         ])
@@ -88,12 +90,13 @@ struct Summary: View {
             if err != nil {
                 print("Error getting docs.")
             } else {
+                let path = Bundle.main.resourcePath!
                 for document in query!.documents {
                     ret.append(Answer(
                         id: document.get("id") as! Int,
                         expected: document.get("expected") as! String,
                         received: document.get("received") as! String,
-                        image: document.get("image") as! String,
+                        image: path + (document.get("image") as! String),
                         vehicleName: document.get("vehicleName") as! String,
                         time: document.get("time") as! Double
                     ))
@@ -124,6 +127,30 @@ func incorrect(answer: [Answer]) -> Int {
 /** Calculate percentage of correct answers. */
 func percentage(answer: [Answer]) -> Double {
     return ((Double(countCorrect(answer: answer)) / Double(answer.count)) * 100.0)
+}
+
+func parseImage(location: String) -> String {
+    var count = 3
+    var charCount = 0
+    for i in (0..<location.count).reversed() {
+        if Array(location)[i] == "/" {
+            count -= 1
+        }
+        charCount += 1
+        if count == 0 {
+            break
+        }
+    }
+    return String(location.suffix(charCount))
+}
+
+func parseID(id: Int) -> String {
+    let title = id + 1
+    if id < 10 {
+        return "0\(title)"
+    } else {
+        return "\(title)"
+    }
 }
 
 struct Summary_Previews: PreviewProvider {
