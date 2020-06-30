@@ -181,19 +181,6 @@ struct GonogoMain: View {
             .buttonStyle(EnemyButtonStyle())
             
             Spacer()
-//            if self.user.regular != "neutral" {
-//                HStack {
-//                    Text("Stars Collected    ")
-//                    .fontWeight(.black)
-//                    .font(.largeTitle)
-//                    Text("\(self.stars)")
-//                    .fontWeight(.black)
-//                    .font(.largeTitle)
-//                    Image("star").resizable().frame(width: 40, height: 40)
-//                    .aspectRatio(contentMode: .fit)
-//                    .offset(y: -2)
-//                 }
-//            }
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
