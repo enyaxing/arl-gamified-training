@@ -18,19 +18,25 @@ struct Profile: View {
     let db = Firestore.firestore().collection("users")
     
     @State var prevSessions: [String] = []
+    @State var timestamps: [String: Date] = [:]
     @State var answers: [Answer] = []
     @State var name = "test"
     @State var email = "test"
     
+    let dateFormatter = DateFormatter()
+    
+    
     var body: some View {
-        VStack {
+        dateFormatter.dateFormat = "HH:mm E, d MMM y"
+        
+        return VStack {
             Text(name)
             Text(email)
             Text("Previous Sessions:")
             List {
                 ForEach(self.prevSessions, id: \.self) {sess in
                     NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false))){
-                        Text(sess)
+                        Text("\(self.dateFormatter.string(for: self.timestamps[sess]) ?? "Unknown date")")
                     }
                 }
             }
@@ -48,6 +54,8 @@ struct Profile: View {
             } else {
                 for document in query!.documents {
                     ret.append(document.documentID)
+                    let t: Timestamp = document.get("time") as! Timestamp
+                    self.timestamps[document.documentID] = t.dateValue()
                 }
                 self.prevSessions = ret
             }
