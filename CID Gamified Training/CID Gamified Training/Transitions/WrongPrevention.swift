@@ -25,7 +25,7 @@ struct WrongPrevention: View {
                     Spacer()
                     LottieView(fileName: "minus", playing: $playing)
                     .frame(width: 20, height: 20)
-                    Text("\(self.points) Points")
+                    Text("\(self.points - 50) Points")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()

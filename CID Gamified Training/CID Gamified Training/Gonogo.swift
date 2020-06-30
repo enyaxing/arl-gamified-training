@@ -78,7 +78,7 @@ struct GonogoMain: View {
     let models = [Model.friendly, Model.foe]
     
     /** Friendly or foe folder selector.  0=friendly, 1=foe*/
-    @State var folder = Int.random(in: 0...1)
+    @State var folder = selectRandom()
     
     /** Timer that pings the app every second. */
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
@@ -234,7 +234,7 @@ struct GonogoMain: View {
                                            vehicleName: self.models[self.folder][self.index].vehicleName,
                                            time: stopWatchManager.secondsElapsed))
             }
-            self.folder = Int.random(in: 0...1)
+            self.folder = selectRandom()
             self.index = Int.random(in: 0..<self.models[self.folder].count)
             self.feedback = true
             if self.questionCount == 19 {
@@ -307,7 +307,7 @@ struct GonogoMain: View {
                                                            vehicleName: self.models[self.folder][self.index].vehicleName,
                                                            time: self.stopWatchManager.secondsElapsed))
                         }
-                        self.folder = Int.random(in: 0...1)
+                        self.folder = selectRandom()
                         self.index = Int.random(in: 0..<self.models[self.folder].count)
                         self.feedback = true
                         if self.questionCount == 19 {
@@ -325,6 +325,15 @@ struct GonogoMain: View {
         let b: Double = log(1 / Double(fullPointVal)) / 5
         let timeScore: Int = Int(Double(fullPointVal) * pow(Darwin.M_E, b * timeElapsed))
         return timeScore
+    }
+}
+
+func selectRandom() -> Int {
+    let rand = Int.random(in: 1...5)
+    if rand <= 4 {
+        return 1
+    } else {
+        return 0
     }
 }
 

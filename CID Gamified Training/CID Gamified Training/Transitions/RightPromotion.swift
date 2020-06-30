@@ -25,7 +25,7 @@ struct RightPromotion: View {
                     Spacer()
                     LottieView(fileName: "plus", playing: $playing)
                         .frame(width: 60, height: 60)
-                    Text("\(self.points) Points")
+                    Text("\(self.points - 50) Points")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()
