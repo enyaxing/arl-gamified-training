@@ -46,7 +46,6 @@ struct EditStudent: View {
                 print("Error getting docs.")
             } else {
                 for document in query!.documents {
-                    print((document.get("user") as! String).lowercased())
                     if email.lowercased() == (document.get("user") as! String).lowercased() {
                         instructor.updateData([
                             "studentname": FieldValue.arrayUnion([document.get("name") as! String]),
@@ -66,7 +65,7 @@ struct EditStudent: View {
                 print("Error getting docs.")
             } else {
                 for document in query!.documents {
-                    if email == document.get("user") as! String {
+                    if email.lowercased() == (document.get("user") as! String).lowercased() {
                         instructor.updateData([
                             "studentname": FieldValue.arrayRemove([document.get("name") as! String]),
                             "studentuid": FieldValue.arrayRemove([document.get("uid") as! String])
