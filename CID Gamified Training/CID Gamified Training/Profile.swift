@@ -29,22 +29,84 @@ struct Profile: View {
 
 
     var body: some View {
-        dateFormatter.dateFormat = "HH:mm E, d MMM y"
+        dateFormatter.dateFormat = "HH:mm dd MMM yy"
 
-        return VStack {
-            Text(name)
-            Text(email)
-            Text("Previous Sessions:")
-            List {
-                ForEach(self.prevSessionIds, id: \.self) {sess in
-                    NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false), uid: self.uid, session: self.prevSessions[sess]!)){
-                        Text("\(self.dateFormatter.string(for: self.prevSessions[sess]?.timestamp.dateValue()) ?? "Unknown date")")
+        return ScrollView {
+            VStack {
+                HStack(alignment: .center) {
+                    VStack(alignment: .leading) {
+                       Text(name)
+                           .font(.headingFont)
+                       HStack(alignment: .center){
+                           Image("mail").resizable().frame(width: 24, height: 24)
+                           Text(email)
+                               .font(.bodyFontSmall)
+                       }
+                    }
+                    Spacer()
+                    Image("pfp-default").resizable().frame(width: 50, height: 50)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+               
+                Divider()
+                
+                VStack(alignment: .leading){
+                    Text("Statistics")
+                        .font(.headingFont)
+                    HStack {
+                        // Placeholder stats for now
+                        StatBox(img_name: "coin", title: "1549", description: "avg points")
+                        StatBox(img_name: "time", title: "97", description: "minutes trained")
+                    }
+                    
+                    HStack {
+                        StatBox(img_name: "stopwatch", title: ".25s", description: "avg response time")
                     }
                 }
+                .padding(.top)
+                Text("Previous Sessions:")
+                    .font(.headingFont)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, 30)
+                    .padding(.horizontal)
+                ForEach(self.prevSessionIds, id: \.self) {sess in
+                    NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false), uid: self.uid, session: self.prevSessions[sess]!)){
+                        HStack {
+                            Text("\(self.dateFormatter.string(for: self.prevSessions[sess]?.timestamp.dateValue()) ?? "Unknown date")")
+                                
+                            Spacer()
+                            // Placeholder
+                            Text("TRAINING")
+                            Spacer()
+                            // Placeholder
+                            Text("1603 pts")
+                            Spacer()
+                            Image("navigate_next").resizable().frame(width: 24, height: 24)
+                        }
+                        .foregroundColor(.black)
+                        
+                    }
+                
+                    .frame(maxWidth: UIScreen.screenWidth)
+                    .frame(height: UIScreen.screenHeight / 20, alignment: .leading)
+                    .padding(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10.0)
+                            .stroke(Color.outlineGray, lineWidth: 2)
+                            .shadow(color: Color.outlineGray, radius: 0, x: 0, y: 2)
+                            
+                    )
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 5)
+                
+                
+                Spacer()
+            }.onAppear{
+                self.setHeader(doc: self.db.document(self.uid))
+                self.getSessions(db: self.db.document(self.uid).collection("sessions"))
             }
-        }.onAppear{
-            self.setHeader(doc: self.db.document(self.uid))
-            self.getSessions(db: self.db.document(self.uid).collection("sessions"))
         }
     }
 

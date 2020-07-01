@@ -60,6 +60,7 @@
 		98E89E1924A6B74D00E2DE9C /* GonogoTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C599691824A3CB6600B34A65 /* GonogoTutorial.swift */; };
 		C526F0F424AB07D100E457F0 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526F0F324AB07D100E457F0 /* Session.swift */; };
 		C54576202497486B0053C09D /* calculation.py in Resources */ = {isa = PBXBuildFile; fileRef = C545761F2497486B0053C09D /* calculation.py */; };
+		C5634EF724AD0BAA00A9D95E /* StatBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5634EF624AD0BAA00A9D95E /* StatBox.swift */; };
 		C5955CD324A18F8D0081AA44 /* TrainingTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */; };
 		C5CA7FC1249DB1E000F2BFD5 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CA7FC0249DB1E000F2BFD5 /* Style.swift */; };
 		C5CA7FC4249DCA9200F2BFD5 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CA7FC3249DCA9200F2BFD5 /* ButtonStyle.swift */; };
@@ -177,6 +178,7 @@
 		BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training.release.xcconfig"; sourceTree = "<group>"; };
 		C526F0F324AB07D100E457F0 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		C545761F2497486B0053C09D /* calculation.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = calculation.py; sourceTree = "<group>"; };
+		C5634EF624AD0BAA00A9D95E /* StatBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatBox.swift; sourceTree = "<group>"; };
 		C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTutorial.swift; sourceTree = "<group>"; };
 		C599691824A3CB6600B34A65 /* GonogoTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GonogoTutorial.swift; path = "CID Gamified Training/GonogoTutorial.swift"; sourceTree = SOURCE_ROOT; };
 		C5CA7FC0249DB1E000F2BFD5 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
@@ -381,6 +383,15 @@
 			path = TypeFace;
 			sourceTree = "<group>";
 		};
+		C5634EF524AD0B8000A9D95E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C5CA7FC5249DCB4200F2BFD5 /* ProgressBar.swift */,
+				C5634EF624AD0BAA00A9D95E /* StatBox.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		C5CA7FC2249DCA3000F2BFD5 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +438,7 @@
 				FA360EB7248ED74900F77C7B /* Gonogo.swift */,
 				C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */,
 				C599691824A3CB6600B34A65 /* GonogoTutorial.swift */,
+				C5634EF524AD0B8000A9D95E /* Components */,
 				9820861C249C1DCD007D6F78 /* Home Page */,
 				9820861B249C1D94007D6F78 /* Questionnaire */,
 				984D669D249C078600903431 /* Summary */,
@@ -440,7 +452,6 @@
 				FACECD40249CFF570069125A /* User.swift */,
 				FABF3EBE249D255B00B96FC9 /* Setting.swift */,
 				FABF3EC0249D256A00B96FC9 /* Card.swift */,
-				C5CA7FC5249DCB4200F2BFD5 /* ProgressBar.swift */,
 				FAD0D79E24A0F04F003F2BC3 /* CardView.swift */,
 				FAB9767024A0FF24004613B4 /* Instructor.swift */,
 				FAB9767224A100E8004613B4 /* Profile.swift */,
@@ -806,6 +817,7 @@
 				FA33666B24926C29004D96DB /* Summary.swift in Sources */,
 				FA33666D24926F74004D96DB /* Rejection.swift in Sources */,
 				985F5778249184AA0087D44B /* LottieView.swift in Sources */,
+				C5634EF724AD0BAA00A9D95E /* StatBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

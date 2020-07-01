@@ -30,6 +30,10 @@ extension Color {
     static var progressBarBackground: Color {
         return Color(red: 0.75, green: 0.75, blue: 0.75, opacity: 1)
     }
+    
+    static var outlineGray: Color {
+        return Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.1))
+    }
 }
 
 extension Font {
@@ -50,4 +54,8 @@ extension Font {
     }
 }
 
-
+extension UIScreen{
+   static let screenWidth = UIScreen.main.bounds.size.width
+   static let screenHeight = UIScreen.main.bounds.size.height
+   static let screenSize = UIScreen.main.bounds.size
+}
