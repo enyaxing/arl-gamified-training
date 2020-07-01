@@ -38,8 +38,12 @@ struct Summary: View {
             Text("Summary")
             .font(.largeTitle)
             .fontWeight(.black)
-            Text("Points: \(session.points)")
-                .font(.headingFont)
+            
+            if(self.user.regular != "neutral") {
+                Text("Points: \(session.points)")
+                    .font(.headingFont)
+            }
+            
             Group {
                 if self.user.regular == "promotion" {
                     Text("Correct: \(countCorrect(answer: answers))/\(answers.count)")
