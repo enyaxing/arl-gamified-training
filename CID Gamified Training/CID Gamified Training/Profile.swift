@@ -89,7 +89,7 @@ struct Profile: View {
                     }
                 
                     .frame(maxWidth: UIScreen.screenWidth)
-                    .frame(height: UIScreen.screenHeight / 20, alignment: .leading)
+                    .frame(height: UIScreen.screenHeight / 30, alignment: .leading)
                     .padding(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10.0)
@@ -99,7 +99,7 @@ struct Profile: View {
                     )
                 }
                 .padding(.horizontal)
-                .padding(.vertical, 5)
+                .padding(.vertical, 2)
                 
                 
                 Spacer()
@@ -122,7 +122,7 @@ struct Profile: View {
                     let points: Int = document.get("points") as! Int
                     self.prevSessions[document.documentID] = Session(points: points, timestamp: t)
                 }
-                self.prevSessionIds = ret
+                self.prevSessionIds = ret.reversed()
             }
         }
     }
