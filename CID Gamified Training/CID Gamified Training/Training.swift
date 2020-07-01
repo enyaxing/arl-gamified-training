@@ -200,10 +200,18 @@ struct TrainingMain: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .alert(isPresented: $alert) {
-            Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
-                self.alert = false
-                self.summary = true
-            }))
+            if (self.user.regular == "neutral") {
+                return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training."), dismissButton: .default(Text("Session Summary"), action: {
+                    self.alert = false
+                    self.summary = true
+                })
+                )
+            } else {
+                return Alert(title: Text("Congratulations!"), message: Text("You have made it to the end of the training. Your final score is \(points)."), dismissButton: .default(Text("Session Summary"), action: {
+                    self.alert = false
+                    self.summary = true
+                }))
+            }
         }
         .onAppear() {
             self.index = Int.random(in: 0..<self.models[self.folder].count)
