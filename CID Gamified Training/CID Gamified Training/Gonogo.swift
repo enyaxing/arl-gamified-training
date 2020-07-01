@@ -117,12 +117,12 @@ struct GonogoMain: View {
                     if self.correct {
                         if self.user.regular == "promotion" {
                             if stopWatchManager.secondsElapsed >= 3 {
-                                RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: 2 * fullPointVal, playing: $feedback)
+                                RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal, playing: $feedback)
                                 .onAppear {
                                     self.stopWatchManager.stop()
                                 }
                             } else {
-                                RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
+                                RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
                                 .onAppear {
                                     self.stopWatchManager.stop()
                                 }
@@ -134,30 +134,30 @@ struct GonogoMain: View {
                                     self.stopWatchManager.stop()
                                 }
                             } else {
-                                RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
+                                RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
                                 .onAppear {
                                     self.stopWatchManager.stop()
                                 }
                             }
                         } else {
-                            CheckMark(secondsElapsed: stopWatchManager.secondsElapsed, points: 10, playing: $feedback)
+                            CheckMark(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            WrongPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points:0,  playing: $feedback)
+                            WrongPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: 0,  playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            WrongPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points:2 * fullPointVal, playing: $feedback)
+                            WrongPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else {
-                            XMark(secondsElapsed: stopWatchManager.secondsElapsed, points: 10, playing: $feedback)
+                            XMark(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }

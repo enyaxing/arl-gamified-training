@@ -15,8 +15,10 @@ struct RightPromotion: View {
     var body: some View {
         VStack {
             Spacer()
-            VStack {
-                Spacer()
+                LottieView(fileName: "blue", playing: $playing)
+                .frame(width: 100, height: 100)
+                .background(Color.clear)
+                .offset(y: 90)
                 HStack {
                     Spacer()
                     Text("Time    ")
@@ -25,11 +27,11 @@ struct RightPromotion: View {
                     Spacer()
                     LottieView(fileName: "plus", playing: $playing)
                         .frame(width: 60, height: 60)
-                    Text("\(self.points - 50) Points")
+                    Text("\(self.points) Points")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()
-                }
+                }.offset(y: 80)
                 Spacer()
                 HStack {
                     Spacer()
@@ -43,14 +45,13 @@ struct RightPromotion: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()
-                }
-                Spacer()
             }.offset(y: 100)
             Spacer()
             Image("line")
             .resizable()
+            .foregroundColor(Color.clear)
             .frame(width: 400, height: 400)
-            .offset(y: -110)
+            .offset(y: -50)
             Spacer()
             HStack {
                 Spacer()
@@ -64,10 +65,10 @@ struct RightPromotion: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 Spacer()
-            }.offset(y: -300)
+            }.offset(y: -200)
             Spacer()
         }
-    }
+    } 
 }
 
 struct RightPromotion_Previews: PreviewProvider {
