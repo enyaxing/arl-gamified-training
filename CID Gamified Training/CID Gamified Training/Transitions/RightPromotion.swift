@@ -27,11 +27,13 @@ struct RightPromotion: View {
                     Spacer()
                     LottieView(fileName: "plus", playing: $playing)
                         .frame(width: 60, height: 60)
+                        .aspectRatio(contentMode: .fit)
                     Text("\(self.points) Points")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()
-                }.offset(y: 80)
+                }
+                .offset(x: 10, y: 80)
                 Spacer()
                 HStack {
                     Spacer()
@@ -41,11 +43,13 @@ struct RightPromotion: View {
                     Spacer()
                     LottieView(fileName: "plus", playing: $playing)
                         .frame(width: 60, height: 60)
+                        .aspectRatio(contentMode: .fit)
                     Text("50 Points")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()
-            }.offset(y: 100)
+            }
+          .offset(y: 100)
             Spacer()
             Image("line")
             .resizable()
@@ -61,11 +65,14 @@ struct RightPromotion: View {
                 Spacer()
                 LottieView(fileName: "plus", playing: $playing)
                     .frame(width: 60, height: 60)
+                    .aspectRatio(contentMode: .fit)
                 Text("\(self.points + 50) Points")
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                     .aspectRatio(contentMode: .fit)
                 Spacer()
-            }.offset(y: -200)
+            }
+            .offset(x: 20, y: -200)
             Spacer()
         }
     } 

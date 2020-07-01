@@ -15,10 +15,10 @@ struct WrongPrevention: View {
     var body: some View {
         VStack {
             Spacer()
-             LottieView(fileName: "incorrect", playing: $playing)
-                .frame(width: 200, height: 200)
+             LottieView(fileName: "xmark", playing: $playing)
+                .frame(width: 150, height: 150)
                 .background(Color.clear)
-                .offset(y: 70)
+                .offset(y: 120)
             VStack {
                 HStack {
                     Spacer()
@@ -28,9 +28,11 @@ struct WrongPrevention: View {
                     Spacer()
                     LottieView(fileName: "minus", playing: $playing)
                     .frame(width: 20, height: 20)
+                    .offset(x: 10)
                     Text("\(self.points) Points")
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .offset(x: 10)
                     Spacer()
                 }.offset(y: 80)
                 Spacer()
@@ -61,13 +63,15 @@ struct WrongPrevention: View {
                 Spacer()
                 LottieView(fileName: "minus", playing: $playing)
                 .frame(width: 20, height: 20)
+                .offset(x: 20)
                 Text("\(self.points + 50) Points")
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                 .offset(x: 20)
                 Spacer()
             }.offset(y: -200)
             Spacer()
-            }.offset(y: -100)
+            }.offset(y: 0)
         }
     }
 }

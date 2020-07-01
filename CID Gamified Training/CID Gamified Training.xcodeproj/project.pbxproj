@@ -48,7 +48,7 @@
 		985F5761249184150087D44B /* W.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572A249184140087D44B /* W.json */; };
 		985F5762249184150087D44B /* B.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572B249184140087D44B /* B.json */; };
 		985F5778249184AA0087D44B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985F5777249184AA0087D44B /* LottieView.swift */; };
-		987D94E124ABFC920045B245 /* x.json in Resources */ = {isa = PBXBuildFile; fileRef = 987D94E024ABFC910045B245 /* x.json */; };
+		987D94E124ABFC920045B245 /* xmark.json in Resources */ = {isa = PBXBuildFile; fileRef = 987D94E024ABFC910045B245 /* xmark.json */; };
 		98898B4124AA8E6000DC754B /* line.json in Resources */ = {isa = PBXBuildFile; fileRef = 98898B4024AA8E6000DC754B /* line.json */; };
 		98A031E5248ED60900239274 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 98A031E4248ED60900239274 /* .swiftlint.yml */; };
 		98E7F612249AB1400034E912 /* star.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F611249AB1400034E912 /* star.json */; };
@@ -164,7 +164,7 @@
 		985F572A249184140087D44B /* W.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = W.json; sourceTree = "<group>"; };
 		985F572B249184140087D44B /* B.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = B.json; sourceTree = "<group>"; };
 		985F5777249184AA0087D44B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		987D94E024ABFC910045B245 /* x.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = x.json; sourceTree = "<group>"; };
+		987D94E024ABFC910045B245 /* xmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xmark.json; sourceTree = "<group>"; };
 		98898B4024AA8E6000DC754B /* line.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = line.json; sourceTree = "<group>"; };
 		98A031E4248ED60900239274 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		98E7F611249AB1400034E912 /* star.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star.json; sourceTree = "<group>"; };
@@ -327,7 +327,7 @@
 		985F5707249184140087D44B /* TestAnimations */ = {
 			isa = PBXGroup;
 			children = (
-				987D94E024ABFC910045B245 /* x.json */,
+				987D94E024ABFC910045B245 /* xmark.json */,
 				98898B4024AA8E6000DC754B /* line.json */,
 				98E89E1724A6B08900E2DE9C /* stopwatch.json */,
 				983D181124A15B380011FF62 /* countdown.json */,
@@ -617,7 +617,7 @@
 				985F574B249184150087D44B /* Y.json in Resources */,
 				985F5757249184150087D44B /* Q.json in Resources */,
 				FA3366712492A800004D96DB /* correct.json in Resources */,
-				987D94E124ABFC920045B245 /* x.json in Resources */,
+				987D94E124ABFC920045B245 /* xmark.json in Resources */,
 				985F575B249184150087D44B /* C.json in Resources */,
 				FA360E82248E7B9500F77C7B /* LaunchScreen.storyboard in Resources */,
 				98E7F615249AB4B00034E912 /* one.json in Resources */,
