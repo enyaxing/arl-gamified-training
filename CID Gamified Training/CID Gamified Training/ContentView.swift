@@ -71,11 +71,11 @@ struct ContentView: View {
                             }
                         } else {
                             if self.user.regular == "promotion" {
-                                Training(points: 0, countdown: $countdown)
+                                Training(points: 0, type: "Training", countdown: $countdown)
                             } else if self.user.regular == "prevention" {
-                                Training(points: 2000, countdown: $countdown)
+                                Training(points: 2000, type: "Training", countdown: $countdown)
                             } else if self.user.regular == "neutral" {
-                                Training(points: 0, countdown: $countdown)
+                                Training(points: 0, type: "Training", countdown: $countdown)
                         }
                     }
                 }) {
@@ -89,11 +89,11 @@ struct ContentView: View {
                  NavigationLink(destination:
                     Group {
                         if self.user.regular == "promotion" {
-                            TrainingTutorial(points: 0, countdown: $countdown, showAboutView: true)
+                            TrainingTutorial(points: 0, type: "Training", countdown: $countdown, showAboutView: true)
                      } else if self.user.regular == "prevention" {
-                            TrainingTutorial(points: 2000, countdown: $countdown, showAboutView: true)
+                            TrainingTutorial(points: 2000, type: "Training", countdown: $countdown, showAboutView: true)
                      } else if self.user.regular == "neutral" {
-                            TrainingTutorial(points: 0, countdown: $countdown, showAboutView: true)
+                            TrainingTutorial(points: 0, type: "Training", countdown: $countdown, showAboutView: true)
                     }}) {
                     Image("info")
                     .resizable()
@@ -121,11 +121,11 @@ struct ContentView: View {
                             }
                         } else {
                             if self.user.regular == "promotion" {
-                                Gonogo(points: 0, countdown: $countdown)
+                                Gonogo(points: 0, type: "Gonogo", countdown: $countdown)
                             } else if self.user.regular == "prevention" {
-                                Gonogo(points: 2000, countdown: $countdown)
+                                Gonogo(points: 3200, type: "Gonogo", countdown: $countdown)
                             } else if self.user.regular == "neutral" {
-                                Gonogo(points: 0, countdown: $countdown)
+                                Gonogo(points: 0, type: "Gonogo", countdown: $countdown)
                             }
                         }
                     }) {
@@ -139,11 +139,11 @@ struct ContentView: View {
                 NavigationLink(destination:
                     Group {
                         if self.user.regular == "promotion" {
-                            GonogoTutorial(points: 0, countdown: $countdown, showAboutView: true)
+                            GonogoTutorial(points: 0, type: "Gonogo", countdown: $countdown, showAboutView: true)
                         } else if self.user.regular == "prevention" {
-                            GonogoTutorial(points: 2000, countdown: $countdown, showAboutView: true)
+                            GonogoTutorial(points: 2000, type: "Gonogo", countdown: $countdown, showAboutView: true)
                         } else if self.user.regular == "neutral" {
-                            GonogoTutorial(points: 0, countdown: $countdown, showAboutView: true)
+                            GonogoTutorial(points: 0, type: "Gonogo", countdown: $countdown, showAboutView: true)
                     }}) {
                     Image("info")
                     .resizable()

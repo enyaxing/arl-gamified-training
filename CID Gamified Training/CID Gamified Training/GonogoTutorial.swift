@@ -18,6 +18,9 @@ struct GonogoTutorial: View {
     /** Points. */
     @State var points: Int
     
+    /** Type. */
+    @State var type:String
+    
     /** List of answers. */
     @State var answers: [Answer] = []
     
@@ -52,7 +55,7 @@ struct GonogoTutorial: View {
                            .zIndex(1)
                     }
                     
-                    GonogoTutorialMain(summary: $summary, answers: $answers, points: $points, aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, activeAboutType: $activeAboutType, showAboutView: $showAboutView)
+                    GonogoTutorialMain(summary: $summary, answers: $answers, points: $points, type: $type, aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, activeAboutType: $activeAboutType, showAboutView: $showAboutView)
                     .onDisappear{
                         if !self.summary {
                             self.countdown = true
@@ -100,6 +103,9 @@ struct GonogoTutorialMain: View {
     /** Points. */
     @Binding var points: Int
     
+     /** Points. */
+    @Binding var type: String
+
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
     
@@ -137,19 +143,19 @@ struct GonogoTutorialMain: View {
                 if self.feedback {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: 20, points: 10, playing: $feedback)
+                            Promotion(secondsElapsed: 20, points: 10, type:"correct", playing: $feedback)
                         } else if self.user.regular == "prevention" {
-                            RightPrevention(secondsElapsed: 20, points: 10, playing: $feedback)
+                            Prevention(secondsElapsed: 20, points: 10, type:"correct", playing: $feedback)
                         } else {
-                            CheckMark(secondsElapsed: 20, points: 10, playing: $feedback)
+                            Neutral(secondsElapsed: 20, points: 10, type: "correct", playing: $feedback)
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            WrongPromotion(secondsElapsed: 20, points: 10, playing: $feedback)
+                            Promotion(secondsElapsed: 20, points: 10, type: "incorrect", playing: $feedback)
                         } else if self.user.regular == "prevention" {
-                            WrongPrevention(secondsElapsed: 20, points: 10, playing: $feedback)
+                            Prevention(secondsElapsed: 20, points: 10, type: "incorrect", playing: $feedback)
                         } else {
-                            XMark(secondsElapsed: 20, points: 10, playing: $feedback)
+                            Neutral(secondsElapsed: 20, points: 10, type: "incorrect", playing: $feedback)
                         }
                     }
                 } else {
@@ -424,7 +430,7 @@ struct AboutViewGoNoGo: View {
 
 struct GonogoTutorial_Previews: PreviewProvider {
     static var previews: some View {
-        GonogoTutorial(points: 0, countdown: Binding.constant(false), showAboutView: true).environmentObject(GlobalUser())
+        GonogoTutorial(points: 0, type: "Gonogo", countdown: Binding.constant(false), showAboutView: true).environmentObject(GlobalUser())
     }
 }
 

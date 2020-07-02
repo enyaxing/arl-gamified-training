@@ -18,6 +18,9 @@ struct Training: View {
 
     /** Stars. */
     @State var points: Int
+    
+    /** Type */
+    @State var type: String
 
     /** List of answers. */
     @State var answers: [Answer] = []
@@ -32,7 +35,7 @@ struct Training: View {
             if self.summary {
                 Summary(answers: answers, countdown: $countdown, session: Session(points: self.points, timestamp: self.startTimestamp))
             } else {
-                TrainingMain(summary: $summary, answers: $answers, points: $points)
+                TrainingMain(summary: $summary, answers: $answers, points: $points, type: $type)
                 .onDisappear{
                     if !self.summary {
                         self.countdown = true
@@ -72,6 +75,9 @@ struct TrainingMain: View {
 
     /** Points. */
     @Binding var points: Int
+    
+    /** Type  */
+    @Binding var type: String
 
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
@@ -133,34 +139,34 @@ struct TrainingMain: View {
                 if self.feedback || self.stopped{
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
+                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "Training", playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            RightPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
+                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "Training", playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else {
-                            CheckMark(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, playing: $feedback)
+                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "correct", playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            WrongPromotion(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
+                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "incorrect", playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            WrongPrevention(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), playing: $feedback)
+                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "incorrect", playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else {
-                            XMark(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, playing: $feedback)
+                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "incorrect", playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
@@ -308,6 +314,6 @@ struct TrainingMain: View {
 
 struct Training_Previews: PreviewProvider {
     static var previews: some View {
-        Training(points: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
+        Training(points: 0, type: "Training", countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }

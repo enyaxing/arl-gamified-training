@@ -21,6 +21,9 @@ struct TrainingTutorial: View {
 
     /** Points. */
     @State var points: Int
+    
+    /** Type. */
+     @State var type:String
 
     /** List of answers. */
     @State var answers: [Answer] = []
@@ -55,7 +58,7 @@ struct TrainingTutorial: View {
                         AboutViewTraining(aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, showAboutView: $showAboutView, activeAboutType: $activeAboutType, tutorialFirstRound: $tutorialFirstRound)
                             .zIndex(1)
                     }
-                    TrainingTutorialMain(summary: $summary, answers: $answers, points: $points, aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, activeAboutType: $activeAboutType, showAboutView: $showAboutView)
+                    TrainingTutorialMain(summary: $summary, answers: $answers, points: $points, type: $type, aboutTitle: $aboutTitle, aboutDescription: $aboutDescription, activeAboutType: $activeAboutType, showAboutView: $showAboutView)
                     .onDisappear{
                         if !self.summary {
                             self.countdown = true
@@ -98,6 +101,9 @@ struct TrainingTutorialMain: View {
 
     /** Points. */
     @Binding var points: Int
+    
+    /** Type. */
+    @Binding var type: String
 
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
@@ -162,7 +168,7 @@ struct TrainingTutorialMain: View {
                             Text("\(self.points)")
                                 .font(.title)
                                 .fontWeight(.bold)
-                            Image("star").resizable().frame(width: 40, height: 40)
+                            Image("coin").resizable().frame(width: 40, height: 40)
                                 .aspectRatio(contentMode: .fit)
                                 .offset(y: -2)
                         }
@@ -190,19 +196,19 @@ struct TrainingTutorialMain: View {
                 if self.feedback {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: 10, points: 10, playing: $feedback)
+                            Promotion(secondsElapsed: 10, points: 10, type:"correct", playing: $feedback)
                         } else if self.user.regular == "prevention" {
-                            WrongPromotion(secondsElapsed: 10, points: 10, playing: $feedback)
+                            Prevention(secondsElapsed: 10, points: 10, type: "correct", playing: $feedback)
                         } else {
-                            CheckMark(secondsElapsed: 10, points: 10, playing: $feedback)
+                            Neutral(secondsElapsed: 10, points: 10, type: "correct", playing: $feedback)
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            RightPromotion(secondsElapsed: 10, points: 10, playing: $feedback)
+                            Promotion(secondsElapsed: 10, points: 10, type:"incorrect", playing: $feedback)
                         } else if self.user.regular == "prevention" {
-                            WrongPromotion(secondsElapsed: 10, points: 10, playing: $feedback)
+                            Prevention(secondsElapsed: 10, points: 10, type:"incorrect", playing: $feedback)
                         } else {
-                            XMark(secondsElapsed: 10, points: 10, playing: $feedback)
+                            Neutral(secondsElapsed: 10, points: 10, type: "incorrect", playing: $feedback)
                         }
                     }
                 } else {
@@ -433,6 +439,6 @@ struct AboutViewTraining: View {
 
 struct TrainingTutorial_Previews: PreviewProvider {
     static var previews: some View {
-        TrainingTutorial(points: 0, countdown: Binding.constant(false), showAboutView: true).environmentObject(GlobalUser())
+        TrainingTutorial(points: 0, type: "Training", countdown: Binding.constant(false), showAboutView: true).environmentObject(GlobalUser())
     }
 }
