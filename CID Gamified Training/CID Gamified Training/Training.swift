@@ -33,7 +33,7 @@ struct Training: View {
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, countdown: $countdown, session: Session(points: self.points, timestamp: self.startTimestamp))
+                Summary(answers: answers, countdown: $countdown, session: Session(points: self.points, timestamp: self.startTimestamp, type: "Forced Choice"))
             } else {
                 TrainingMain(summary: $summary, answers: $answers, points: $points, type: $type)
                 .onDisappear{

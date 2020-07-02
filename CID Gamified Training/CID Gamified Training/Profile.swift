@@ -77,10 +77,10 @@ struct Profile: View {
                                 
                             Spacer()
                             // Placeholder
-                            Text("TRAINING")
+                            Text("\(self.prevSessions[sess]!.type)")
                             Spacer()
                             // Placeholder
-                            Text("1603 pts")
+                            Text("\(self.prevSessions[sess]!.points)")
                             Spacer()
                             Image("navigate_next").resizable().frame(width: 24, height: 24)
                         }
@@ -120,7 +120,8 @@ struct Profile: View {
                     ret.append(document.documentID)
                     let t: Timestamp = document.get("time") as! Timestamp
                     let points: Int = document.get("points") as! Int
-                    self.prevSessions[document.documentID] = Session(points: points, timestamp: t)
+                    let type: String = document.get("type") as! String
+                    self.prevSessions[document.documentID] = Session(points: points, timestamp: t, type: type)
                 }
                 self.prevSessionIds = ret.reversed()
             }

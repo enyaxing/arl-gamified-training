@@ -16,4 +16,6 @@ struct Session {
     /** Timestamp of the session. */
     var timestamp: Timestamp
     
+    var type: String
+    
 }

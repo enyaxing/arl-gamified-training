@@ -31,7 +31,7 @@ struct Gonogo: View {
     var body: some View {
         Group {
             if self.summary {
-                Summary(answers: answers, countdown: $countdown, session: Session(points: self.points, timestamp: self.startTimestamp))
+                Summary(answers: answers, countdown: $countdown, session: Session(points: self.points, timestamp: self.startTimestamp, type: "Go/No-Go"))
             } else {
                 GonogoMain(summary: $summary, answers: $answers, points: $points, type: $type)
                 .onDisappear{
