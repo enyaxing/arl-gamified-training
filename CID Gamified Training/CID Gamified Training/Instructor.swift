@@ -28,8 +28,7 @@ struct Instructor: View {
     
     @State var name = "test"
     @State var email = "test"
-    @State var students: [String] = []
-    @State var studentNames: [String] = []
+    @State var students: [String:String] = [:]
     
     var body: some View {
         NavigationView{
@@ -38,9 +37,9 @@ struct Instructor: View {
             Text(email)
             Text("Students:")
             List {
-                ForEach(self.students, id: \.self) {stud in
-                    NavigationLink(destination: Profile(uid: self.students[self.students.firstIndex(of: stud) ?? 0])){
-                        Text(self.studentNames[self.students.firstIndex(of: stud) ?? 0])
+                ForEach(self.students.sorted(by: { $0.value < $1.value }), id: \.key) {key, value in
+                    NavigationLink(destination: Profile(uid: key)){
+                        Text(value)
                     }
                 }
             }
@@ -89,11 +88,8 @@ struct Instructor: View {
     func getStudents(doc: DocumentReference) {
         doc.getDocument { (document, error) in
             if let document = document, document.exists {
-                if document.get("studentname") != nil {
-                    self.studentNames = document.get("studentname") as! [String]
-                }
-                if document.get("studentuid") != nil {
-                    self.students = document.get("studentuid") as! [String]
+                if document.get("students") != nil {
+                    self.students = document.get("students") as! [String:String]
                 }
             } else {
                 print("Document does not exist")
