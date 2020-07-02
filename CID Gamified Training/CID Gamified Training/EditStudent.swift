@@ -37,30 +37,12 @@ struct EditStudent: View {
                 Spacer()
                 Button(action: {
                     self.add(email: self.email)
-                    if !self.found {
-                        self.error = "No user with that email found."
-                        self.invalid = true
-                    } else {
-                        self.error = "Adding student successful."
-                        self.success = true
-                    }
                 }) {
                     Text("Add Student")
                 }
                 Spacer()
                 Button(action: {
                     self.remove(email: self.email)
-                    if !self.found {
-                        self.error = "No user with that email found."
-                        self.invalid = true
-                    } else if !self.already {
-                        self.error = "No student with that email found."
-                        self.invalid = true
-                    } else {
-                        self.error = "Removing student successful."
-                        self.success = true
-                    }
-                    
                 }) {
                     Text("Remove Student")
                 }
@@ -84,12 +66,32 @@ struct EditStudent: View {
                 for document in query!.documents {
                     if email.lowercased() == (document.get("user") as! String).lowercased() {
                         self.found = true
-                        instructor.updateData([
-                            "students.\(document.get("uid") as! String)": document.get("name") as! String,
-                        ])
+                        instructor.getDocument { (docu, error) in
+                            if let docu = docu, docu.exists {
+                                if docu.get("students") != nil {
+                                    let students = docu.get("students") as! [String: String]
+                                    if students.index(forKey: document.get("uid") as! String) == nil {
+                                        instructor.updateData([
+                                            "students.\(document.get("uid") as! String)": document.get("name") as! String,
+                                        ])
+                                        self.error = "Adding student successful."
+                                        self.success = true
+                                    } else {
+                                        self.error = "You already have a student with that email."
+                                        self.invalid = true
+                                    }
+                                }
+                            } else {
+                                print("Document does not exist")
+                            }
+                        }
                         break
                     }
                 }
+            }
+            if !self.found {
+                self.error = "No user with that email found."
+                self.invalid = true
             }
         }
     }
@@ -108,14 +110,14 @@ struct EditStudent: View {
                                 if docu.get("students") != nil {
                                     let students = docu.get("students") as! [String: String]
                                     if students.index(forKey: document.get("uid") as! String) == nil {
-                                        print("No student")
-                                        self.already = false
+                                        self.error = "You do not have a student with that email."
+                                        self.invalid = true
                                     } else {
-                                        print("yes student")
-                                        self.already = true
                                         instructor.updateData([
                                             "students.\(document.get("uid") as! String)": FieldValue.delete()
                                         ])
+                                        self.error = "Removing student successful."
+                                        self.success = true
                                     }
                                 }
                             } else {
@@ -124,6 +126,10 @@ struct EditStudent: View {
                         }
                         break
                     }
+                }
+                if !self.found {
+                    self.error = "No user with that email found."
+                    self.invalid = true
                 }
             }
         }
