@@ -27,13 +27,6 @@ struct ProgressBar: View {
     }
 }
 
-//struct ProgressBarStyle: ViewModifier {
-//    func body(content: Content) -> some View {
-//        ProgressBar(value: Binding.constant(5))
-//
-//    }
-//}
-
 struct ProgressBar_Previews: PreviewProvider {
     static var previews: some View {
         ProgressBar(value: Binding.constant(5))

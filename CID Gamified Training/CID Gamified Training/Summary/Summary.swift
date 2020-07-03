@@ -27,6 +27,9 @@ struct Summary: View {
     @Binding var countdown: Bool
     
     @State var uid: String = ""
+    
+    /** Records timestamp of when  the session is finished*/
+    let endTime = Timestamp()
 
     /** Points earned from the session. */
 //    @Binding var points: Int
@@ -76,6 +79,7 @@ struct Summary: View {
                 }
                 if self.sess == "" {
                     let session = self.db.document(self.uid).collection("sessions")
+                    self.updateStats(doc: self.db.document(self.uid))
                     // Fix this timestamp
                     let time = self.session.timestamp
                     session.document(time.description).setData(["points": self.session.points, "time": time, "type": self.session.type])
@@ -91,6 +95,7 @@ struct Summary: View {
                             "time": ans.time
                         ])
                     }
+                    
                 } else {
                     self.getAnswers(db: self.db.document(self.uid).collection("sessions").document(self.sess).collection("answers"))
                 }
@@ -124,7 +129,52 @@ struct Summary: View {
         }
     }
     
+    func updateStats(doc: DocumentReference) {
+        doc.getDocument { (document, error) in
+            if let document = document, document.exists {
+                if document.get("totalTime") != nil {
+                    let prevTotalTime: TimeInterval = document.get("totalTime") as! TimeInterval
+                    let timeInterval = self.endTime.dateValue().timeIntervalSince(self.session.timestamp.dateValue())
+                    self.user.totalTime = prevTotalTime + timeInterval
+                    doc.updateData(["totalTime": self.user.totalTime])
+                }
+                
+                if document.get("totalSessions") != nil {
+                    let prevTotalSessions: Int = document.get("totalSessions") as! Int
+                    let updatedTotalSessions = prevTotalSessions + 1
+                    doc.updateData(["totalSessions": updatedTotalSessions])
+                    
+                    if document.get("avgResponseRate") != nil {
+                        let prevAvgResponseRate: Double = document.get("avgResponseRate") as! Double
+                        var curSumResponseTime: Double = 0.00
+                        for ans in self.answers {
+                            curSumResponseTime += ans.time
+                        }
+                        
+                        let curAvgResponseTime: Double = curSumResponseTime / 20
+                        
+                        let updatedResponseTime: Double = (prevAvgResponseRate * Double(prevTotalSessions) + curAvgResponseTime) / Double(updatedTotalSessions)
+                        
+                        doc.updateData(["avgResponseRate": updatedResponseTime])
+    
+                    } else {
+                        var curSumResponseTime: Double = 0.00
+                        for ans in self.answers {
+                            curSumResponseTime += ans.time
+                        }
+                        let curAvgResponseTime: Double = curSumResponseTime / 20
+                        doc.add(["avgResponseRate": curAvgResponseTime])
+                    }
+                }
+                
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+
 }
+
 
 /** Count the number of correct answers. */
 func countCorrect(answer: [Answer]) -> Int {

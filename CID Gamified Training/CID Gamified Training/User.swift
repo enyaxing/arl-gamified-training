@@ -13,4 +13,7 @@ class GlobalUser: ObservableObject {
     @Published var uid = UserDefaults.standard.string(forKey: "uid") ?? ""
     @Published var regular = UserDefaults.standard.string(forKey: "focus") ?? "None"
     @Published var userType = UserDefaults.standard.string(forKey: "userType") ?? "student"
+    
+    /** Total time played. */
+    @Published var totalTime: TimeInterval = 0.00
 }

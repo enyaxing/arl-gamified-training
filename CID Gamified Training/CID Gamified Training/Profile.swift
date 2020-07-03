@@ -18,6 +18,9 @@ struct Profile: View {
 
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
+    
+    /** Reference to global user variable. */
+    @EnvironmentObject var user: GlobalUser
 
     @State var prevSessionIds: [String] = []
     @State var prevSessions: [String: Session] = [:]
@@ -25,6 +28,7 @@ struct Profile: View {
     @State var name = "test"
     @State var email = "test"
 
+    let endTimestamp = Timestamp()
     let dateFormatter = DateFormatter()
 
 
@@ -57,7 +61,7 @@ struct Profile: View {
                     HStack {
                         // Placeholder stats for now
                         StatBox(img_name: "coin", title: "1549", description: "avg points")
-                        StatBox(img_name: "time", title: "97", description: "minutes trained")
+                        StatBox(img_name: "time", title: "\(String(format: "%.1f", self.user.totalTime))", description: "minutes trained")
                     }
                     
                     HStack {
@@ -137,6 +141,10 @@ struct Profile: View {
                 }
                 if document.get("user") != nil {
                     self.email = document.get("user") as! String
+                }
+                
+                if document.get("totalTime") != nil {
+                    self.user.totalTime = document.get("totalTime") as! TimeInterval
                 }
             } else {
                 print("Document does not exist")

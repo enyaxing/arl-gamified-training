@@ -97,7 +97,9 @@ struct Signup: View {
                 "pass": password,
                 "uid": result!.user.uid,
                 "userType": selection,
-                "focus": "None"])
+                "focus": "None",
+                "totalTime": 0.00,
+                ])
                 newFocus(db: self.db, user: self.user, defaults: self.defaults)
                 self.signup = false
             }
