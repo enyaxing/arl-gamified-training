@@ -9,11 +9,16 @@
 import Foundation
 import SwiftUI
 
+/** Card object that tracks vehicle name and lets cards be comparable. */
 struct Card : Identifiable, Equatable, Comparable {
-    var id = UUID()
-    var name: String
-    var offset = CGSize.zero
     
+    /** Id of the Card. */
+    var id = UUID()
+    
+    /** Name of vehicle on card. */
+    var name: String
+    
+    /** Card comparator function. */
     static func < (lhs: Card, rhs: Card) -> Bool {
         return lhs.name < rhs.name
     }

@@ -14,8 +14,10 @@ struct Summary: View {
     /** List of answers from completed training session. */
     @State var answers: [Answer]
     
+    /** Firebase sessino reference. */
     var sess: String = ""
     
+    /** Hide back button. */
     @State var hideback = false
     
     /** Reference to global user variable. */
@@ -24,16 +26,16 @@ struct Summary: View {
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
+    /** Show countdown. */
     @Binding var countdown: Bool
     
+    /** UID of the user. */
     @State var uid: String = ""
     
     /** Records timestamp of when  the session is finished*/
     let endTime = Timestamp()
-
-    /** Points earned from the session. */
-//    @Binding var points: Int
     
+    /** Session object to be summarized. */
     @State var session: Session
     
     var body: some View {
@@ -80,7 +82,6 @@ struct Summary: View {
                 if self.sess == "" {
                     let session = self.db.document(self.uid).collection("sessions")
                     self.updateStats(doc: self.db.document(self.uid))
-                    // Fix this timestamp
                     let time = self.session.timestamp
                     session.document(time.description).setData(["points": self.session.points, "time": time, "type": self.session.type])
                     let answer = session.document(time.description).collection("answers")
@@ -107,6 +108,8 @@ struct Summary: View {
             }
         }
     }
+    
+    /** Get the list of answers of session from Firebase. */
     func getAnswers(db: CollectionReference) {
         var ret: [Answer] = []
         db.getDocuments() {(query, err) in
@@ -129,6 +132,7 @@ struct Summary: View {
         }
     }
     
+    /** Update and save stats on Firebase. */
     func updateStats(doc: DocumentReference) {
         doc.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -175,7 +179,6 @@ struct Summary: View {
 
 }
 
-
 /** Count the number of correct answers. */
 func countCorrect(answer: [Answer]) -> Int {
     var count = 0
@@ -197,6 +200,7 @@ func percentage(answer: [Answer]) -> Double {
     return ((Double(countCorrect(answer: answer)) / Double(answer.count)) * 100.0)
 }
 
+/** Parse image reference to be saved on Firebase. */
 func parseImage(location: String) -> String {
     var count = 3
     var charCount = 0
@@ -212,6 +216,7 @@ func parseImage(location: String) -> String {
     return String(location.suffix(charCount))
 }
 
+/** Parse question id to be saved on Firebase. */
 func parseID(id: Int) -> String {
     let title = id + 1
     if id < 10 {

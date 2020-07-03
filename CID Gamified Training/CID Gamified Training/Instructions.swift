@@ -8,9 +8,13 @@
 
 import SwiftUI
 
+/** Instructions view dispalyed right before start of training session. */
 struct Instructions: View {
     
+    /** List of friendly vehicles. */
     let friendly: [Card] = Model.friendlyFolder
+    
+    /** List of enemy vehicles. */
     let enemy: [Card] = Model.enemyFolder
     
     /**1 == training, 2==gonogo*/
@@ -21,8 +25,9 @@ struct Instructions: View {
     
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-       
-   var btnBack : some View {
+    
+    /** Back button view. */
+    var btnBack : some View {
        Button(action: {
        self.presentationMode.wrappedValue.dismiss()
        }) {
@@ -32,10 +37,9 @@ struct Instructions: View {
                .foregroundColor(.black)
            }
        }
-   }
+    }
     
     var body: some View {
-        
         VStack {
             HStack {
                 btnBack

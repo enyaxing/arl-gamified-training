@@ -25,6 +25,7 @@ struct Training: View {
     /** List of answers. */
     @State var answers: [Answer] = []
 
+    /** Show countdown. */
     @Binding var countdown: Bool
 
     /** Records the start of the session */
@@ -97,6 +98,7 @@ struct TrainingMain: View {
     /** How much is considered to be full score. */
     let fullPointVal: Int = 50
 
+    /** Back button view. */
     var btnBack : some View {
         Button(action: {
         self.presentationMode.wrappedValue.dismiss()

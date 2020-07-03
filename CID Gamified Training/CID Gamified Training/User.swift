@@ -10,8 +10,14 @@ import Foundation
 
 /** Global user class to store user uid and regular focus type. */
 class GlobalUser: ObservableObject {
+    
+    /** UID of the user. */
     @Published var uid = UserDefaults.standard.string(forKey: "uid") ?? ""
+    
+    /** Regulatory focus value of the user. */
     @Published var regular = UserDefaults.standard.string(forKey: "focus") ?? "None"
+    
+    /** Is the user a student or an instructor. */
     @Published var userType = UserDefaults.standard.string(forKey: "userType") ?? "student"
     
     /** Total time played. */

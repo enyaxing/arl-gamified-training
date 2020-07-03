@@ -27,5 +27,6 @@ struct Answer {
     /** Vehicle name. */
     var vehicleName: String
     
+    /** Time to answer question. */
     var time: Double = 0.0
 }

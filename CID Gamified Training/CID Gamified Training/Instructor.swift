@@ -9,6 +9,7 @@
 import SwiftUI
 import Firebase
 
+/** Instructor view for signed in instructor. */
 struct Instructor: View {
     
     /** Save defaults locally (ie. who is signed in). */
@@ -26,8 +27,13 @@ struct Instructor: View {
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
     
+    /** Instructor name. */
     @State var name = "test"
+    
+    /** Instructor email. */
     @State var email = "test"
+    
+    /** Dictionary of student IDs to student names. */
     @State var students: [String:String] = [:]
     
     var body: some View {
@@ -43,7 +49,6 @@ struct Instructor: View {
                     }
                 }
             }
-            
             HStack {
                 Spacer()
                 Button(action: {
@@ -61,8 +66,6 @@ struct Instructor: View {
                 }
                 Spacer()
             }
-            
-            
         }.onAppear{
             self.setHeader(doc: self.db.document(self.user.uid))
             self.getStudents(doc: self.db.document(self.user.uid))
@@ -84,7 +87,7 @@ struct Instructor: View {
         }
     }
     
-    /** Obtain field value from firebase user. */
+    /** Obtain students from firebase*/
     func getStudents(doc: DocumentReference) {
         doc.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -97,7 +100,7 @@ struct Instructor: View {
         }
     }
     
-    /** Obtain field value from firebase user. */
+    /** Obtain name and email from firebase. */
     func setHeader(doc: DocumentReference){
         doc.getDocument { (document, error) in
             if let document = document, document.exists {

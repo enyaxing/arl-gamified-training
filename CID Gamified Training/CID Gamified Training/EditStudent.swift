@@ -9,7 +9,10 @@
 import SwiftUI
 import Firebase
 
+/** View that lets instructor add and remove students by email. */
 struct EditStudent: View {
+    
+    /** Email in the text input field. */
     @State var email = ""
     
     /** Reference to global user variable. */
@@ -27,8 +30,8 @@ struct EditStudent: View {
     /** Error message for alert. */
     @State var error = ""
     
+    /** Has the user been found.*/
     @State var found = false
-    @State var already = true
     
     var body: some View {
         VStack {
@@ -57,6 +60,7 @@ struct EditStudent: View {
         }))}
     }
     
+    /** Add a student to the list of students for this instructor. */
     func add(email: String) {
         let instructor = db.document(self.user.uid)
         db.getDocuments() {(query, err) in
@@ -96,6 +100,7 @@ struct EditStudent: View {
         }
     }
     
+    /** Remove student from the list of students for this instructor. */
     func remove(email: String) {
         let instructor = db.document(self.user.uid)
         db.getDocuments() {(query, err) in
@@ -135,8 +140,6 @@ struct EditStudent: View {
         }
     }
 }
-
-
 
 struct EditStudent_Previews: PreviewProvider {
     static var previews: some View {

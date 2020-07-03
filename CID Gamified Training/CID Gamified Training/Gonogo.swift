@@ -18,11 +18,13 @@ struct Gonogo: View {
     /** Points. */
     @State var points: Int
     
+    /** Focus type. */
     @State var type:String
     
     /** List of answers. */
     @State var answers: [Answer] = []
     
+    /** Show countdown. */
     @Binding var countdown: Bool
     
     /** Records the start of the session */
@@ -80,7 +82,8 @@ struct GonogoMain: View {
     /** Points. */
     @Binding var points: Int
     
-    @Binding var type:String
+    /** Focus type. */
+    @Binding var type: String
     
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
@@ -100,6 +103,7 @@ struct GonogoMain: View {
     /** How much is considered to be full score. */
     let fullPointVal: Int = 50
     
+    /** Back button view. */
     var btnBack : some View {
         Button(action: {
         self.presentationMode.wrappedValue.dismiss()
@@ -342,6 +346,7 @@ struct GonogoMain: View {
     }
 }
 
+/** Randomly select enemy:friendly at 4:1 ratio. */
 func selectRandom() -> Int {
     let rand = Int.random(in: 1...5)
     if rand <= 4 {

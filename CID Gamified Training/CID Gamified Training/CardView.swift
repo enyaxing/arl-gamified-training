@@ -8,9 +8,13 @@
 
 import SwiftUI
 
+/** View of individual cards in settings page. */
 struct CardView: View {
     
+    /** Name of vehicle folder. */
     var folder: String
+    
+    /** Background color. */
     var back: Color
     
     var body: some View {
@@ -25,6 +29,7 @@ struct CardView: View {
         .background(back)
     }
     
+    /** Retrieve image from folder name. */
     func getImage() -> String {
         let fm = FileManager.default
         let path = Bundle.main.resourcePath! + "/CID Images"

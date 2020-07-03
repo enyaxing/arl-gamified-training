@@ -9,11 +9,10 @@
 import SwiftUI
 import Firebase
 
+/** Profile view for signed in user. */
 struct Profile: View {
-
-    /** Reference to global user variable. */
-    //@EnvironmentObject var user: GlobalUser
-
+    
+    /** UID of the user. */
     var uid: String
 
     /** Connection to firebase user collection. */
@@ -25,13 +24,16 @@ struct Profile: View {
     @State var prevSessionIds: [String] = []
     @State var prevSessions: [String: Session] = [:]
     @State var answers: [Answer] = []
+    
+    /** Name of the user. */
     @State var name = "test"
+    
+    /** Email of the user. */
     @State var email = "test"
 
     let endTimestamp = Timestamp()
     let dateFormatter = DateFormatter()
-
-
+    
     var body: some View {
         dateFormatter.dateFormat = "HH:mm dd MMM yy"
 
@@ -114,6 +116,7 @@ struct Profile: View {
         }
     }
 
+    /** Gets list of sessions for this user from firebase. */
     func getSessions(db: CollectionReference) {
         var ret: [String] = []
         db.getDocuments() {(query, err) in
@@ -132,7 +135,7 @@ struct Profile: View {
         }
     }
 
-    /** Obtain field value from firebase user. */
+    /** Obtain user name and email from firebase. */
     func setHeader(doc: DocumentReference){
         doc.getDocument { (document, error) in
             if let document = document, document.exists {

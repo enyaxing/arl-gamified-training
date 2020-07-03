@@ -37,6 +37,7 @@ struct Model: Identifiable {
     /** List of unselected photo folders. */
     static var unselectedFolder: [Card] = dirLoad()
     
+    /** Load the friendly and foe model arrays with friendlyFolder and enemyFolder card arrays. */
     static func settingLoad(name: String) -> [Model] {
         let fm = FileManager.default
         let path = Bundle.main.resourcePath! + "/CID Images"
@@ -69,7 +70,8 @@ struct Model: Identifiable {
     }
 }
 
-/** How to read file names in directory. */
+/** How to read file names in directory.
+    Loads the unselected array. */
 func dirLoad() -> [Card] {
     let fm = FileManager.default
     let path = Bundle.main.resourcePath! + "/CID Images"

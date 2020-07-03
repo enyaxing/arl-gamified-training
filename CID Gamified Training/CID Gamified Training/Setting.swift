@@ -8,11 +8,19 @@
 
 import SwiftUI
 
+/** Settings page that lets user select enemy and friendly vehicles. */
 struct Setting: View {
     
+    /** Library of unselected folders. */
     @State var library: [Card] = Model.unselectedFolder
+    
+    /** List of friendly folders. */
     @State var friendly: [Card] = Model.friendlyFolder
+    
+    /** List of enemy folders. */
     @State var enemy: [Card] = Model.enemyFolder
+    
+    /** Show alert. */
     @State var alert = false
     
     var body: some View {
@@ -84,26 +92,6 @@ struct Setting: View {
             self.enemy = Model.enemyFolder.sorted()
         }
     }
-}
-
-func location(geo: GeometryProxy, card: Card) -> String {
-    let screenWidth = UIScreen.main.bounds.size.width
-    let screenHeight = UIScreen.main.bounds.size.height
-    
-    let x = geo.frame(in: .global).midX + card.offset.width
-    let y = geo.frame(in: .global).midY + card.offset.height
-    var ret = ""
-    
-    if x < screenWidth * 0.5 {
-        ret = "library"
-    } else {
-        if y < screenHeight * 0.5 {
-            ret = "friendly"
-        } else {
-            ret = "enemy"
-        }
-    }
-    return ret
 }
 
 struct Setting_Previews: PreviewProvider {
