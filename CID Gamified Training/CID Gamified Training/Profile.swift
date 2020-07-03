@@ -60,12 +60,12 @@ struct Profile: View {
                         .font(.headingFont)
                     HStack {
                         // Placeholder stats for now
-                        StatBox(img_name: "coin", title: "1549", description: "avg points")
+                        StatBox(img_name: "coin", title: "\(self.user.totalSessions)", description: "sessions completed")
                         StatBox(img_name: "time", title: "\(String(format: "%.1f", self.user.totalTime))", description: "minutes trained")
                     }
                     
                     HStack {
-                        StatBox(img_name: "stopwatch", title: ".25s", description: "avg response time")
+                        StatBox(img_name: "stopwatch", title: "\(String(format: "%.2f", self.user.avgResponseTime))s", description: "avg response time")
                     }
                 }
                 .padding(.top)
@@ -145,6 +145,14 @@ struct Profile: View {
                 
                 if document.get("totalTime") != nil {
                     self.user.totalTime = document.get("totalTime") as! TimeInterval
+                }
+                
+                if document.get("avgResponseRate") != nil {
+                    self.user.avgResponseTime = document.get("avgResponseRate") as! Double
+                }
+                
+                if document.get("totalSessions") != nil {
+                    self.user.totalSessions = document.get("totalSessions") as! Int
                 }
             } else {
                 print("Document does not exist")

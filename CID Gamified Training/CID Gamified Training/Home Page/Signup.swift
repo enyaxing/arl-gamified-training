@@ -99,8 +99,9 @@ struct Signup: View {
                 "userType": selection,
                 "focus": "None",
                 "totalTime": 0.00,
-                ])
+                "totalSessions": 0])
                 newFocus(db: self.db, user: self.user, defaults: self.defaults)
+                obtainFields(db: self.db, user: self.user, defaults: self.defaults)
                 self.signup = false
             }
         }

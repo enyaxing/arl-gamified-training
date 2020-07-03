@@ -16,4 +16,10 @@ class GlobalUser: ObservableObject {
     
     /** Total time played. */
     @Published var totalTime: TimeInterval = 0.00
+    
+    /** Average response time in seconds. */
+    @Published var avgResponseTime: Double = 0.00
+    
+    /** Total number of sessions completed*/
+    @Published var totalSessions: Int = 0
 }

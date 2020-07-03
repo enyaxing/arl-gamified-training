@@ -141,8 +141,8 @@ struct Summary: View {
                 
                 if document.get("totalSessions") != nil {
                     let prevTotalSessions: Int = document.get("totalSessions") as! Int
-                    let updatedTotalSessions = prevTotalSessions + 1
-                    doc.updateData(["totalSessions": updatedTotalSessions])
+                    self.user.totalSessions = prevTotalSessions + 1
+                    doc.updateData(["totalSessions": self.user.totalSessions])
                     
                     if document.get("avgResponseRate") != nil {
                         let prevAvgResponseRate: Double = document.get("avgResponseRate") as! Double
@@ -153,17 +153,17 @@ struct Summary: View {
                         
                         let curAvgResponseTime: Double = curSumResponseTime / 20
                         
-                        let updatedResponseTime: Double = (prevAvgResponseRate * Double(prevTotalSessions) + curAvgResponseTime) / Double(updatedTotalSessions)
+                        self.user.avgResponseTime = (prevAvgResponseRate * Double(prevTotalSessions) + curAvgResponseTime) / Double(self.user.totalSessions)
                         
-                        doc.updateData(["avgResponseRate": updatedResponseTime])
+                        doc.updateData(["avgResponseRate": self.user.avgResponseTime])
     
                     } else {
                         var curSumResponseTime: Double = 0.00
                         for ans in self.answers {
                             curSumResponseTime += ans.time
                         }
-                        let curAvgResponseTime: Double = curSumResponseTime / 20
-                        doc.add(["avgResponseRate": curAvgResponseTime])
+                        self.user.avgResponseTime = curSumResponseTime / 20
+                        doc.updateData(["avgResponseRate": self.user.avgResponseTime])
                     }
                 }
                 

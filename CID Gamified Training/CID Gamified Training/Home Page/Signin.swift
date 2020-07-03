@@ -89,6 +89,7 @@ struct Signin: View {
                 self.user.uid = result!.user.uid
                 self.defaults.set(result!.user.uid, forKey: "uid")
                 newFocus(db: self.db, user: self.user, defaults: self.defaults)
+                obtainFields(db: self.db, user: self.user, defaults: self.defaults)
             }
         }
     }

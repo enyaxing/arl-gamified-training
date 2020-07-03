@@ -202,6 +202,10 @@ struct ContentView: View {
         do {
             try Auth.auth().signOut()
             self.user.uid = ""
+            self.user.avgResponseTime = 0.00
+            self.user.totalSessions = 0
+            self.user.totalTime = 0
+            
             self.user.userType = "student"
             defaults.set("", forKey: "uid")
             defaults.set("student", forKey: "userType")
@@ -223,6 +227,26 @@ func newFocus(db: CollectionReference, user: GlobalUser, defaults: UserDefaults)
             if document.get("userType") != nil {
                 user.userType = document.get("userType") as! String
                 defaults.set(user.userType, forKey: "userType")
+            }
+        } else {
+            print("Document does not exist")
+        }
+    }
+}
+
+func obtainFields(db: CollectionReference, user: GlobalUser, defaults: UserDefaults) {
+    db.document(user.uid).getDocument { (document, error) in
+        if let document = document, document.exists {
+            if document.get("avgResponseTime") != nil {
+                user.avgResponseTime = document.get("avgResponseTime") as! Double
+            }
+            
+            if document.get("totalSessions") != nil {
+                user.totalSessions = document.get("totalSessions") as! Int
+            }
+            
+            if document.get("avgResponseTime") != nil {
+                user.avgResponseTime = document.get("avgResponesTime") as! Double
             }
         } else {
             print("Document does not exist")
