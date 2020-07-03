@@ -21,11 +21,11 @@ struct EditStudent: View {
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
-    /** Credentials invalid and show alert. */
-    @State var invalid = false
+    /** Show alert. */
+    @State var alert = false
     
-    /** Credentials invalid and show alert. */
-    @State var success = false
+    /** Alert title. */
+    @State var alertTitle = "Success"
     
     /** Error message for alert. */
     @State var error = ""
@@ -51,12 +51,9 @@ struct EditStudent: View {
                 }
                 Spacer()
             }
-        }.alert(isPresented: $invalid) {
-            Alert(title: Text("Error"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
-            self.invalid = false
-        }))}.alert(isPresented: $success) {
-            Alert(title: Text("Success"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
-            self.success = false
+        }.alert(isPresented: self.$alert) {
+            Alert(title: Text("\(self.alertTitle)"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
+            self.alert = false
         }))}
     }
     
@@ -67,6 +64,7 @@ struct EditStudent: View {
             if err != nil {
                 print("Error getting docs.")
             } else {
+                self.found = false
                 for document in query!.documents {
                     if email.lowercased() == (document.get("user") as! String).lowercased() {
                         self.found = true
@@ -79,11 +77,12 @@ struct EditStudent: View {
                                             "students.\(document.get("uid") as! String)": document.get("name") as! String,
                                         ])
                                         self.error = "Adding student successful."
-                                        self.success = true
+                                        self.alertTitle = "Success"
                                     } else {
                                         self.error = "You already have a student with that email."
-                                        self.invalid = true
+                                        self.alertTitle = "Error"
                                     }
+                                    self.alert = true
                                 }
                             } else {
                                 print("Document does not exist")
@@ -92,10 +91,11 @@ struct EditStudent: View {
                         break
                     }
                 }
-            }
-            if !self.found {
-                self.error = "No user with that email found."
-                self.invalid = true
+                if !self.found {
+                    self.error = "No user with that email found."
+                    self.alertTitle = "Error"
+                    self.alert = true
+                }
             }
         }
     }
@@ -107,6 +107,7 @@ struct EditStudent: View {
             if err != nil {
                 print("Error getting docs.")
             } else {
+                self.found = false
                 for document in query!.documents {
                     if email.lowercased() == (document.get("user") as! String).lowercased() {
                         self.found = true
@@ -116,14 +117,15 @@ struct EditStudent: View {
                                     let students = docu.get("students") as! [String: String]
                                     if students.index(forKey: document.get("uid") as! String) == nil {
                                         self.error = "You do not have a student with that email."
-                                        self.invalid = true
+                                        self.alertTitle = "Error"
                                     } else {
                                         instructor.updateData([
                                             "students.\(document.get("uid") as! String)": FieldValue.delete()
                                         ])
                                         self.error = "Removing student successful."
-                                        self.success = true
+                                        self.alertTitle = "Success"
                                     }
+                                    self.alert = true
                                 }
                             } else {
                                 print("Document does not exist")
@@ -134,7 +136,8 @@ struct EditStudent: View {
                 }
                 if !self.found {
                     self.error = "No user with that email found."
-                    self.invalid = true
+                    self.alertTitle = "Error"
+                    self.alert = true
                 }
             }
         }
