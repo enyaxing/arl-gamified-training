@@ -21,6 +21,9 @@ struct Gonogo: View {
     /** Focus type. */
     @State var type:String
     
+    /** Focus type. */
+    @State var four: Bool
+    
     /** List of answers. */
     @State var answers: [Answer] = []
     
@@ -35,7 +38,7 @@ struct Gonogo: View {
             if self.summary {
                 Summary(answers: answers, countdown: $countdown, session: Session(points: self.points, timestamp: self.startTimestamp, type: "Go/No-Go"))
             } else {
-                GonogoMain(summary: $summary, answers: $answers, points: $points, type: $type)
+                GonogoMain(summary: $summary, answers: $answers, points: $points, type: $type, four: $four)
                 .onDisappear{
                     if !self.summary {
                         self.countdown = true
@@ -85,6 +88,9 @@ struct GonogoMain: View {
     /** Focus type. */
     @Binding var type: String
     
+    /** Friendly or foe. */
+    @Binding var four: Bool
+    
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
     
@@ -125,47 +131,47 @@ struct GonogoMain: View {
                     if self.correct {
                         if self.user.regular == "promotion" {
                             if stopWatchManager.secondsElapsed >= 3 {
-                                Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: self.type, playing: $feedback)
+                                Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "correct", four: self.four, playing: $feedback)
                                 .onAppear {
                                     self.stopWatchManager.stop()
                                 }
                             } else {
-                                Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: self.type, playing: $feedback)
+                                Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "correct", four: self.four, playing: $feedback)
                                 .onAppear {
                                     self.stopWatchManager.stop()
                                 }
                             }
                         } else if self.user.regular == "prevention" {
                             if stopWatchManager.secondsElapsed >= 3 {
-                                Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: self.type, playing: $feedback)
+                                Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "correct", four: self.four, playing: $feedback)
                                 .onAppear {
                                     self.stopWatchManager.stop()
                                 }
                             } else {
-                                Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: self.type, playing: $feedback)
+                                Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "correct", four: self.four, playing: $feedback)
                                 .onAppear {
                                     self.stopWatchManager.stop()
                                 }
                             }
                         } else {
-                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "correct", playing: $feedback)
+                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "correct", four: self.four, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed),  type: self.type, playing: $feedback)
+                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed),  type: "incorrect", four: self.four, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: self.type, playing: $feedback)
+                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "incorrect", four: self.four, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else {
-                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "incorrect", playing: $feedback)
+                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "incorrect", four: self.four, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
@@ -230,7 +236,7 @@ struct GonogoMain: View {
                     }
                 }
                 self.correct = true
-                self.type = "foe"
+                self.four = false
                 self.answers.append(Answer(id: self.answers.count,
                                            expected: "foe",
                                            received: "foe",
@@ -242,7 +248,7 @@ struct GonogoMain: View {
                     self.points -= 2 * fullPointVal
                 }
                 self.correct = false
-                self.type = "friendly"
+                self.four = true
                 self.answers.append(Answer(id: self.answers.count,
                                            expected: "friendly",
                                            received: "foe",
@@ -305,7 +311,7 @@ struct GonogoMain: View {
                                     self.points += 2 * self.fullPointVal
                                 }
                                 self.correct = true
-                                self.type = "friendly"
+                                self.four = true
                                 self.answers.append(Answer(id: self.answers.count,
                                                            expected: "friendly",
                                                            received: "friendly",
@@ -317,7 +323,7 @@ struct GonogoMain: View {
                                     self.points -= 2 * self.fullPointVal
                                 }
                                 self.correct = false
-                                self.type = "foe"
+                                self.four = false
                                 self.answers.append(Answer(id: self.answers.count,
                                                            expected: "foe",
                                                            received: "friendly",
@@ -358,7 +364,7 @@ func selectRandom() -> Int {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-       Gonogo(points: 0, type: "Training", countdown: Binding.constant(false)).environmentObject(GlobalUser())
+        Gonogo(points: 0, type: "Training", four: false, countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }
 

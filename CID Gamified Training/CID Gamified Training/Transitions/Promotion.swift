@@ -12,10 +12,11 @@ struct Promotion: View {
     @State var secondsElapsed:Double
     @State var points:Int
     @State var type:String
+    @State var four:Bool
     @Binding var playing: Bool
     var body: some View {
         Group {
-        if (type == "correct") {
+            if (type == "correct") {
             VStack {
                 Spacer()
                     LottieView(fileName: "blue", playing: $playing)
@@ -67,7 +68,7 @@ struct Promotion: View {
                         .fontWeight(.bold)
                         .offset(y: -10)
                     Spacer()
-                    if (type == "foe") {
+                    if (!self.four) {
                         LottieView(fileName: "plus", playing: $playing)
                         .frame(width: 60, height: 60)
                         .aspectRatio(contentMode: .fit)
@@ -155,6 +156,6 @@ struct Promotion: View {
 
 struct Promotion_Previews: PreviewProvider {
     static var previews: some View {
-        Promotion(secondsElapsed: 10, points: 10, type:"Gonogo", playing: Binding.constant(true))
+        Promotion(secondsElapsed: 10, points: 10, type:"Gonogo", four: true, playing: Binding.constant(true))
     }
 }

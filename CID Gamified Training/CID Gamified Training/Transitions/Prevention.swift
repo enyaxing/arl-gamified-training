@@ -12,6 +12,7 @@ struct Prevention: View {
     @State var secondsElapsed:Double
     @State var points:Int
     @State var type:String
+    @State var four:Bool
     @Binding var playing: Bool
     var body: some View {
          Group {
@@ -63,7 +64,7 @@ struct Prevention: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                         Spacer()
-                        if (type == "foe") {
+                        if (!self.four) {
                             LottieView(fileName: "minus", playing: $playing)
                             .frame(width: 20, height: 20)
                             .offset(x: 30)
@@ -135,7 +136,7 @@ struct Prevention: View {
                                     .fontWeight(.bold)
                                     .offset(y: -20)
                                 Spacer()
-                                if (type == "foe") {
+                                if (type == "incorrectTraining") {
                                     LottieView(fileName: "minus", playing: $playing)
                                     .frame(width: 20, height: 20)
                                     .offset(x: 20)
@@ -166,6 +167,6 @@ struct Prevention: View {
 
 struct Prevention_Previews: PreviewProvider {
     static var previews: some View {
-        Prevention(secondsElapsed: 10, points:10, type: "incorrect", playing: Binding.constant(true))
+        Prevention(secondsElapsed: 10, points:10, type: "incorrect", four: true, playing: Binding.constant(true))
     }
 }
