@@ -93,6 +93,16 @@ struct Setting: View {
                     }
                 }
             }
+            Button(action: {
+                Model.friendlyFolder = [Card(name: "BRDM-2 Sagger")]
+                Model.enemyFolder = [Card(name: "BRDM-2 Spandrel")]
+                Model.unselectedFolder = dirLoad()
+                self.library = Model.unselectedFolder.sorted()
+                self.friendly = Model.friendlyFolder.sorted()
+                self.enemy = Model.enemyFolder.sorted()
+            }) {
+                Text("Reset")
+            }
         }
         .alert(isPresented: $alert) {
             Alert(title: Text("Error"), message: Text("Cannot have empty friendly or enemy list. Please add another vehicle before removing this vehicle."), dismissButton: .default(Text("Dismiss"), action: {
@@ -100,18 +110,6 @@ struct Setting: View {
             }))
         }
         .onDisappear {
-            Model.unselectedFolder = self.library
-            Model.friendlyFolder = self.friendly
-            Model.enemyFolder = self.enemy
-            Model.friendly = Model.settingLoad(name: "friendly")
-            Model.foe = Model.settingLoad(name: "enemy")
-            self.db.document(self.user.uid).setData(["friendly":[], "enemy":[]], merge: true)
-            for card in self.friendly {
-                self.db.document(self.user.uid).setData(["friendly": FieldValue.arrayUnion([card.name])], merge: true)
-            }
-            for card in self.enemy {
-                self.db.document(self.user.uid).setData(["enemy": FieldValue.arrayUnion([card.name])], merge: true)
-            }
             if self.user.userType == "instructor" {
                 let coll = self.db.document(self.user.uid).collection("assignments")
                 coll.document(self.name).setData(["friendly":[], "enemy":[]])
@@ -120,6 +118,19 @@ struct Setting: View {
                 }
                 for card in self.enemy {
                     coll.document(self.name).setData(["enemy": FieldValue.arrayUnion([card.name])], merge: true)
+                }
+            } else {
+                Model.unselectedFolder = self.library
+                Model.friendlyFolder = self.friendly
+                Model.enemyFolder = self.enemy
+                Model.friendly = Model.settingLoad(name: "friendly")
+                Model.foe = Model.settingLoad(name: "enemy")
+                self.db.document(self.user.uid).setData(["friendly":[], "enemy":[]], merge: true)
+                for card in self.friendly {
+                    self.db.document(self.user.uid).setData(["friendly": FieldValue.arrayUnion([card.name])], merge: true)
+                }
+                for card in self.enemy {
+                    self.db.document(self.user.uid).setData(["enemy": FieldValue.arrayUnion([card.name])], merge: true)
                 }
             }
             
