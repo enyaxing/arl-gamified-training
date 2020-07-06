@@ -31,7 +31,11 @@ struct Assignments: View {
                     }
                 }
             }
-            
+            HStack{
+                NavigationLink(destination: Setting()){
+                    Text("Create Assignment")
+                }
+            }
         } .onAppear{
             self.getassignments(db: self.db.document(self.user.uid).collection("assignments"))
         }

@@ -30,8 +30,20 @@ struct Setting: View {
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
     
+    @State var name = ""
+    
     var body: some View {
         VStack {
+            if self.user.userType == "instructor" {
+                Text("Create Assignment")
+                .font(.largeTitle)
+                .fontWeight(.black)
+                TextField("Assignment Name", text: $name)
+            } else {
+                Text("Settings")
+                    .font(.largeTitle)
+                    .fontWeight(.black)
+            }
             Text("Directions: Click a vehicle to move it.  The order is Library -> Friendly -> Enemy -> Library")
             HStack {
                 VStack {
@@ -100,6 +112,17 @@ struct Setting: View {
             for card in self.enemy {
                 self.db.document(self.user.uid).setData(["enemy": FieldValue.arrayUnion([card.name])], merge: true)
             }
+            if self.user.userType == "instructor" {
+                let coll = self.db.document(self.user.uid).collection("assignments")
+                coll.document(self.name).setData(["friendly":[], "enemy":[]])
+                for card in self.friendly {
+                    coll.document(self.name).setData(["friendly": FieldValue.arrayUnion([card.name])], merge: true)
+                }
+                for card in self.enemy {
+                    coll.document(self.name).setData(["enemy": FieldValue.arrayUnion([card.name])], merge: true)
+                }
+            }
+            
         } .onAppear {
             self.library = Model.unselectedFolder.sorted()
             self.friendly = Model.friendlyFolder.sorted()
