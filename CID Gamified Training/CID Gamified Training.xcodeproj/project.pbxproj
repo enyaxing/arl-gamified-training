@@ -91,6 +91,9 @@
 		FABF71FB24ABA66F0077E2B7 /* EditStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF71FA24ABA66F0077E2B7 /* EditStudent.swift */; };
 		FACECD41249CFF570069125A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACECD40249CFF570069125A /* User.swift */; };
 		FAD0D79F24A0F04F003F2BC3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD0D79E24A0F04F003F2BC3 /* CardView.swift */; };
+		FAEC7C5E24B39B59001D6A3C /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC7C5D24B39B59001D6A3C /* Assignments.swift */; };
+		FAEC7C6024B39F99001D6A3C /* AssignmentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC7C5F24B39F99001D6A3C /* AssignmentDetail.swift */; };
+		FAEC7C6224B3A0A2001D6A3C /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC7C6124B3A0A2001D6A3C /* Assignment.swift */; };
 		FAEFD8CD249916FA004FA58B /* Focus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8CC249916FA004FA58B /* Focus.swift */; };
 		FAEFD8CF24991D98004FA58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */; };
 		FAEFD8D124992B0E004FA58B /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8D024992B0E004FA58B /* Signup.swift */; };
@@ -214,6 +217,9 @@
 		FABF71FA24ABA66F0077E2B7 /* EditStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudent.swift; sourceTree = "<group>"; };
 		FACECD40249CFF570069125A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FAD0D79E24A0F04F003F2BC3 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		FAEC7C5D24B39B59001D6A3C /* Assignments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
+		FAEC7C5F24B39F99001D6A3C /* AssignmentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetail.swift; sourceTree = "<group>"; };
+		FAEC7C6124B3A0A2001D6A3C /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
 		FAEFD8CC249916FA004FA58B /* Focus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focus.swift; sourceTree = "<group>"; };
 		FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FAEFD8D024992B0E004FA58B /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
@@ -452,6 +458,9 @@
 				FA33A7FD24A2449E0042F390 /* Instructions.swift */,
 				C526F0F324AB07D100E457F0 /* Session.swift */,
 				FABF71FA24ABA66F0077E2B7 /* EditStudent.swift */,
+				FAEC7C5D24B39B59001D6A3C /* Assignments.swift */,
+				FAEC7C5F24B39F99001D6A3C /* AssignmentDetail.swift */,
+				FAEC7C6124B3A0A2001D6A3C /* Assignment.swift */,
 			);
 			path = "CID Gamified Training";
 			sourceTree = "<group>";
@@ -793,6 +802,8 @@
 				FAEFD8D324993097004FA58B /* Signin.swift in Sources */,
 				C5CA7FC6249DCB4200F2BFD5 /* ProgressBar.swift in Sources */,
 				FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */,
+				FAEC7C6024B39F99001D6A3C /* AssignmentDetail.swift in Sources */,
+				FAEC7C5E24B39B59001D6A3C /* Assignments.swift in Sources */,
 				FAEFD8D124992B0E004FA58B /* Signup.swift in Sources */,
 				FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */,
 				FABF3EC1249D256A00B96FC9 /* Card.swift in Sources */,
@@ -808,6 +819,7 @@
 				FA33666B24926C29004D96DB /* Summary.swift in Sources */,
 				FA33666D24926F74004D96DB /* Rejection.swift in Sources */,
 				985E362A24ADAC8D005EE3C3 /* Prevention.swift in Sources */,
+				FAEC7C6224B3A0A2001D6A3C /* Assignment.swift in Sources */,
 				985F5778249184AA0087D44B /* LottieView.swift in Sources */,
 				C5634EF724AD0BAA00A9D95E /* StatBox.swift in Sources */,
 			);

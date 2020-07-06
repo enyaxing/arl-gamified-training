@@ -51,18 +51,38 @@ struct Instructor: View {
             }
             HStack {
                 Spacer()
+                NavigationLink(destination: EditStudent()) {
+                    Text("Edit Students")
+                    .padding(10)
+                    .background(Color.gray)
+                    .cornerRadius(10)
+                }
+                Spacer()
+                NavigationLink(destination: Assignments()) {
+                    Text("Assignments")
+                    .padding(10)
+                    .background(Color.gray)
+                    .cornerRadius(10)
+                }
+                Spacer()
+            }
+            Spacer()
+            HStack {
+                Spacer()
                 Button(action: {
                     self.logout()
                 }) {
                     Text("Sign out")
+                    .padding(10)
+                    .background(Color.gray)
+                    .cornerRadius(10)
                 }
                 Spacer()
                 NavigationLink(destination: Focus()) {
                     Text(self.user.regular)
-                }
-                Spacer()
-                NavigationLink(destination: EditStudent()) {
-                    Text("Edit Students")
+                    .padding(10)
+                    .background(Color.gray)
+                    .cornerRadius(10)
                 }
                 Spacer()
             }
