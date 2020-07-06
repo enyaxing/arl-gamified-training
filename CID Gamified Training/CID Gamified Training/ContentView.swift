@@ -193,6 +193,8 @@ struct ContentView: View {
                 Alert(title: Text("Error Signing Out"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
                         self.invalid = false
                     }))
+            } .onAppear{
+                initial(uid: self.user.uid)
             }
         }
     }

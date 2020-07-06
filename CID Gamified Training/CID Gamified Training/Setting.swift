@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 /** Settings page that lets user select enemy and friendly vehicles. */
 struct Setting: View {
@@ -22,6 +23,12 @@ struct Setting: View {
     
     /** Show alert. */
     @State var alert = false
+    
+    /** Connection to firebase user collection. */
+    let db = Firestore.firestore().collection("users")
+    
+    /** Reference to global user variable. */
+    @EnvironmentObject var user: GlobalUser
     
     var body: some View {
         VStack {
@@ -86,6 +93,13 @@ struct Setting: View {
             Model.enemyFolder = self.enemy
             Model.friendly = Model.settingLoad(name: "friendly")
             Model.foe = Model.settingLoad(name: "enemy")
+            self.db.document(self.user.uid).setData(["friendly":[], "enemy":[]], merge: true)
+            for card in self.friendly {
+                self.db.document(self.user.uid).setData(["friendly": FieldValue.arrayUnion([card.name])], merge: true)
+            }
+            for card in self.enemy {
+                self.db.document(self.user.uid).setData(["enemy": FieldValue.arrayUnion([card.name])], merge: true)
+            }
         } .onAppear {
             self.library = Model.unselectedFolder.sorted()
             self.friendly = Model.friendlyFolder.sorted()
@@ -96,6 +110,6 @@ struct Setting: View {
 
 struct Setting_Previews: PreviewProvider {
     static var previews: some View {
-        Setting()
+        Setting().environmentObject(GlobalUser())
     }
 }

@@ -93,6 +93,8 @@ struct Instructor: View {
             if let document = document, document.exists {
                 if document.get("students") != nil {
                     self.students = document.get("students") as! [String:String]
+                } else {
+                    doc.setData(["students": [:]], merge: true)
                 }
             } else {
                 print("Document does not exist")

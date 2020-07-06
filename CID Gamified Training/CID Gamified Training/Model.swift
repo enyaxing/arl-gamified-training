@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import Firebase
 
 /** Model represents photo to be displayed during training.
     Also has reference to list of friendly and foe vehicles for training. */
@@ -68,6 +69,56 @@ struct Model: Identifiable {
         }
         return ret
     }
+}
+
+func initial(uid: String) {
+    let db = Firestore.firestore().collection("users").document(uid)
+    var friend: [Card] = []
+    var foe: [Card] = []
+    let fm = FileManager.default
+    let path = Bundle.main.resourcePath! + "/CID Images"
+    var ret: [Card] = []
+    db.getDocument { (docu, error) in
+        if let docu = docu, docu.exists {
+            if docu.get("friendly") != nil {
+                let vehicles = docu.get("friendly") as! [String]
+                for vehicle in vehicles {
+                    friend.append(Card(name: vehicle))
+                }
+                Model.friendlyFolder = friend.sorted()
+            }
+            if docu.get("enemy") != nil {
+                let vehicles = docu.get("enemy") as! [String]
+                for vehicle in vehicles {
+                    foe.append(Card(name: vehicle))
+                }
+                Model.enemyFolder = foe.sorted()
+            }
+        } else {
+            print("Document does not exist")
+        }
+        do {
+            let items = try fm.contentsOfDirectory(atPath: path)
+            for item in items {
+                if check(name: item, arr: Model.friendlyFolder) && check(name: item, arr: Model.enemyFolder) {
+                    ret.append(Card(name: "\(item)"))
+                }
+            }
+            Model.unselectedFolder = ret.sorted()
+        } catch {
+            print("error")
+        }
+    }
+    print("done initializing")
+}
+
+func check(name: String, arr: [Card]) -> Bool {
+    for card in arr {
+        if name == card.name {
+            return false
+        }
+    }
+    return true
 }
 
 /** How to read file names in directory.

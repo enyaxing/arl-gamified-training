@@ -12,16 +12,19 @@ import SwiftUI
 struct Instructions: View {
     
     /** List of friendly vehicles. */
-    let friendly: [Card] = Model.friendlyFolder
+    @State var friendly: [Card] = Model.friendlyFolder
     
     /** List of enemy vehicles. */
-    let enemy: [Card] = Model.enemyFolder
+    @State var enemy: [Card] = Model.enemyFolder
     
     /**1 == training, 2==gonogo*/
     var type: Int
     
     /** Show instructions. */
     @Binding var instructions: Bool
+    
+    /** Reference to global user variable. */
+    @EnvironmentObject var user: GlobalUser
     
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -84,12 +87,15 @@ struct Instructions: View {
                     .fontWeight(.black)
             }
             Spacer()
+        } .onAppear{
+            self.friendly = Model.friendlyFolder
+            self.enemy = Model.enemyFolder
         }
     }
 }
 
 struct Instructions_Previews: PreviewProvider {
     static var previews: some View {
-        Instructions(type: 1, instructions: Binding.constant(true))
+        Instructions(type: 1, instructions: Binding.constant(true)).environmentObject(GlobalUser())
     }
 }
