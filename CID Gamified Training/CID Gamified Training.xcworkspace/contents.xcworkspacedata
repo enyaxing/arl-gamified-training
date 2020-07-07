@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/christinelou/Desktop/arl-gamified-training/CID Gamified Training/CID Gamified Training/Preview Content/Achievement.swift">
-   </FileRef>
-   <FileRef
       location = "group:CID Gamified Training.xcodeproj">
    </FileRef>
    <FileRef

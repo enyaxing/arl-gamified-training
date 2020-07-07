@@ -141,34 +141,34 @@ struct TrainingMain: View {
                 if self.feedback || self.stopped {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "correct", divide: false, playing: $feedback)
+                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "correct", multiply: false, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "correct", divide: false, playing: $feedback)
+                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "correct", multiply: false, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else {
-                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "correct", divide: false, playing: $feedback)
+                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, type: "correct", playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "incorrect", divide: false, playing: $feedback)
+                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "incorrect", multiply: false, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: 2 * fullPointVal, type: "incorrect", divide: false, playing: $feedback)
+                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: 2 * fullPointVal, type: "incorrect", multiply: false, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else {
-                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "incorrect", divide: false, playing: $feedback)
+                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, type: "incorrect", playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }

@@ -12,7 +12,7 @@ struct Promotion: View {
     @State var secondsElapsed:Double
     @State var points:Int
     @State var type:String
-    @State var divide:Bool
+    @State var multiply:Bool
     @Binding var playing: Bool
     var body: some View {
         Group {
@@ -32,8 +32,8 @@ struct Promotion: View {
                         LottieView(fileName: "plus", playing: $playing)
                             .frame(width: 60, height: 60)
                             .aspectRatio(contentMode: .fit)
-                        if (self.divide) {
-                            Text("\((self.points - 50)/4) Points")
+                        if (self.multiply) {
+                            Text("200 Points")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                         } else {
@@ -52,11 +52,18 @@ struct Promotion: View {
                             .fontWeight(.bold)
                         Spacer()
                         LottieView(fileName: "plus", playing: $playing)
-                            .frame(width: 60, height: 60)
+                            .frame(width: 55, height: 60)
                             .aspectRatio(contentMode: .fit)
-                        Text("50 Points")
+                        if (self.multiply) {
+                            Text("200 Points")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .frame(width: 175, height: 60)
+                        } else {
+                            Text("50 Points")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                        }
                         Spacer()
                 }
               .offset(y: 100)
@@ -76,9 +83,15 @@ struct Promotion: View {
                     Spacer()
                         LottieView(fileName: "plus", playing: $playing)
                         .frame(width: 60, height: 60)
-                      Text("\(self.points) Points")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+                      if (self.multiply) {
+                        Text("400 Points")
+                          .font(.largeTitle)
+                          .fontWeight(.bold)
+                      } else {
+                        Text("\(self.points) Points")
+                          .font(.largeTitle)
+                          .fontWeight(.bold)
+                      }
                     Spacer()
                 }
                 .offset(x: 20, y: -200)
@@ -148,6 +161,6 @@ struct Promotion: View {
 
 struct Promotion_Previews: PreviewProvider {
     static var previews: some View {
-        Promotion(secondsElapsed: 10, points: 10, type: "incorrect", divide: false, playing: Binding.constant(true))
+        Promotion(secondsElapsed: 10, points: 100, type: "correct", multiply: true, playing: Binding.constant(true))
     }
 }

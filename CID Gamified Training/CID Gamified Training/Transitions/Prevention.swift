@@ -12,12 +12,11 @@ struct Prevention: View {
     @State var secondsElapsed:Double
     @State var points:Int
     @State var type:String
-    @State var divide: Bool
+    @State var multiply: Bool
     @Binding var playing: Bool
     var body: some View {
          Group {
                if (type == "correct") {
-                
                 VStack {
                  Spacer()
                  LottieView(fileName: "blue", playing: $playing)
@@ -34,8 +33,8 @@ struct Prevention: View {
                                  LottieView(fileName: "minus", playing: $playing)
                                  .frame(width: 20, height: 20)
                                  .offset(x: 10)
-                            if self.divide {
-                                 Text("\(self.points/4) Points")
+                            if self.multiply {
+                                 Text("0 Points")
                                      .font(.largeTitle)
                                      .fontWeight(.bold)
                                      .offset(x: 10)
@@ -76,19 +75,23 @@ struct Prevention: View {
                              Spacer()
                                  LottieView(fileName: "minus", playing: $playing)
                                  .frame(width: 20, height: 20)
-                                 .offset(x: 20, y: -20)
-                                Text("\(self.points) Points")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .offset(x: 20, y: -20)
+                                 .offset(x: 0, y: -20)
+                                if self.multiply {
+                                     Text("0 Points")
+                                         .font(.largeTitle)
+                                         .fontWeight(.bold)
+                                        .offset(x: 10, y: -20)
+                                } else {
+                                    Text("\(self.points) Points")
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                        .offset(x: 10, y: -20)
+                                }
                              Spacer()
                          }.offset(y: -200)
                          Spacer()
                          }.offset(y: 0)
                      }
-         
-                
-                
                } else {
                 VStack {
                     Spacer()
@@ -106,10 +109,17 @@ struct Prevention: View {
                                     LottieView(fileName: "minus", playing: $playing)
                                     .frame(width: 20, height: 20)
                                     .offset(x: 10)
-                                    Text("50 Points")
+                                    if self.multiply {
+                                         Text("200 Points")
+                                             .font(.largeTitle)
+                                             .fontWeight(.bold)
+                                             .offset(x: 10)
+                                    } else {
+                                        Text("50 Points")
                                         .font(.largeTitle)
                                         .fontWeight(.bold)
                                         .offset(x: 10)
+                                    }
                                     Spacer()
                                 }.offset(y: 80)
                                 Spacer()
@@ -121,9 +131,17 @@ struct Prevention: View {
                                     Spacer()
                                     LottieView(fileName: "minus", playing: $playing)
                                     .frame(width: 20, height: 20)
-                                    Text("50 Points")
+                                    if self.multiply {
+                                         Text("200 Points")
+                                             .font(.largeTitle)
+                                             .fontWeight(.bold)
+                                             .offset(x: 10)
+                                    } else {
+                                        Text("50 Points")
                                         .font(.largeTitle)
                                         .fontWeight(.bold)
+                                        .offset(x: 10)
+                                    }
                                     Spacer()
                             }.offset(y: 100)
                             Spacer()
@@ -141,11 +159,18 @@ struct Prevention: View {
                                 Spacer()
                                     LottieView(fileName: "minus", playing: $playing)
                                     .frame(width: 20, height: 20)
-                                        .offset(x: 20, y: -20)
-                                    Text("100 Points")
-                                    .font(.largeTitle)
-                                    .fontWeight(.bold)
-                                        .offset(x: 20, y: -20)
+                                        .offset(x: 10, y: -20)
+                                    if self.multiply {
+                                         Text("400 Points")
+                                             .font(.largeTitle)
+                                             .fontWeight(.bold)
+                                            .offset(x: 10, y: -20)
+                                    } else {
+                                        Text("100 Points")
+                                        .font(.largeTitle)
+                                        .fontWeight(.bold)
+                                            .offset(x: 10, y: -20)
+                                    }
                                 Spacer()
                             }.offset(y: -200)
                             Spacer()
@@ -158,6 +183,6 @@ struct Prevention: View {
 
 struct Prevention_Previews: PreviewProvider {
     static var previews: some View {
-        Prevention(secondsElapsed: 10, points:10, type: "correct", divide: false, playing: Binding.constant(true))
+        Prevention(secondsElapsed: 10, points: 100, type: "incorrect", multiply: false, playing: Binding.constant(true))
     }
 }

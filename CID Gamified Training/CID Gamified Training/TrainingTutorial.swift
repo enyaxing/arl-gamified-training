@@ -196,19 +196,19 @@ struct TrainingTutorialMain: View {
                 if self.feedback {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            Promotion(secondsElapsed: 10, points: 10, type:"correct", divide: false, playing: $feedback)
+                            Promotion(secondsElapsed: 10, points: 10, type:"correct", multiply: false, playing: $feedback)
                         } else if self.user.regular == "prevention" {
-                            Prevention(secondsElapsed: 10, points: 10, type: "correct", divide: false, playing: $feedback)
+                            Prevention(secondsElapsed: 10, points: 10, type: "correct", multiply: false, playing: $feedback)
                         } else {
-                            Neutral(secondsElapsed: 10, points: 10, type: "correct", divide: false, playing: $feedback)
+                            Neutral(secondsElapsed: 10, type: "correct", playing: $feedback)
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            Promotion(secondsElapsed: 10, points: 10, type:"incorrect", divide: false, playing: $feedback)
+                            Promotion(secondsElapsed: 10, points: 10, type:"incorrect", multiply: false, playing: $feedback)
                         } else if self.user.regular == "prevention" {
-                            Prevention(secondsElapsed: 10, points: 10, type:"incorrect", divide: false, playing: $feedback)
+                            Prevention(secondsElapsed: 10, points: 10, type:"incorrect", multiply: false, playing: $feedback)
                         } else {
-                            Neutral(secondsElapsed: 10, points: 10, type: "incorrect", divide: false, playing: $feedback)
+                            Neutral(secondsElapsed: 10, type: "incorrect", playing: $feedback)
                         }
                     }
                 } else {

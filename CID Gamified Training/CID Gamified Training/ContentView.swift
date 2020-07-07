@@ -121,11 +121,11 @@ struct ContentView: View {
                             }
                         } else {
                             if self.user.regular == "promotion" {
-                                Gonogo(points: 0, type: "Gonogo", four: 0, countdown: $countdown)
+                                Gonogo(points: 0, type: "Gonogo", countdown: $countdown)
                             } else if self.user.regular == "prevention" {
-                                Gonogo(points: 3200, type: "Gonogo", four: 0, countdown: $countdown)
+                                Gonogo(points: 3200, type: "Gonogo", countdown: $countdown)
                             } else if self.user.regular == "neutral" {
-                                Gonogo(points: 0, type: "Gonogo", four: 0, countdown: $countdown)
+                                Gonogo(points: 0, type: "Gonogo", countdown: $countdown)
                             }
                         }
                     }) {

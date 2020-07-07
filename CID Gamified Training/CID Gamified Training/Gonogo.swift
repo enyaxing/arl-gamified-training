@@ -21,9 +21,6 @@ struct Gonogo: View {
     /** Focus type. */
     @State var type:String
     
-    /** Focus type. */
-    @State var four: Int
-    
     /** List of answers. */
     @State var answers: [Answer] = []
     
@@ -38,7 +35,7 @@ struct Gonogo: View {
             if self.summary {
                 Summary(answers: answers, countdown: $countdown, session: Session(points: self.points, timestamp: self.startTimestamp, type: "Go/No-Go"))
             } else {
-                GonogoMain(summary: $summary, answers: $answers, points: $points, type: $type, four: $four)
+                GonogoMain(summary: $summary, answers: $answers, points: $points, type: $type)
                 .onDisappear{
                     if !self.summary {
                         self.countdown = true
@@ -88,8 +85,8 @@ struct GonogoMain: View {
     /** Focus type. */
     @Binding var type: String
     
-    /** Friendly or foe. */
-    @Binding var four: Int
+    /** To multiply by four. */
+    @State var four = false
     
     /** List of pictures grouped by friendly or foe. */
     let models = [Model.friendly, Model.foe]
@@ -130,48 +127,34 @@ struct GonogoMain: View {
                 if self.feedback || self.stopped {
                     if self.correct {
                         if self.user.regular == "promotion" {
-                            if stopWatchManager.secondsElapsed >= 3 {
-                                Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: self.four, type: "correct", divide: false, playing: $feedback)
-                                .onAppear {
-                                    self.stopWatchManager.stop()
-                                }
-                            } else {
-                                Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: self.four, type: "correct", divide: false, playing: $feedback)
-                                .onAppear {
-                                    self.stopWatchManager.stop()
-                                }
+                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "correct", multiply: self.four, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            if stopWatchManager.secondsElapsed >= 3 {
-                                Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: self.four, type: "correct", divide: false, playing: $feedback)
-                                .onAppear {
-                                    self.stopWatchManager.stop()
-                                }
-                            } else {
-                                Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: self.four, type: "correct", divide: false, playing: $feedback)
-                                .onAppear {
-                                    self.stopWatchManager.stop()
-                                }
+                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "correct", multiply: self.four, playing: $feedback)
+                            .onAppear {
+                                self.stopWatchManager.stop()
                             }
                         } else {
-                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "correct", divide: false, playing: $feedback)
+                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, type: "correct", playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         }
                     } else {
                         if self.user.regular == "promotion" {
-                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: self.four, type: "incorrect", divide: false, playing: $feedback)
+                            Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "incorrect", multiply: self.four, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else if self.user.regular == "prevention" {
-                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: self.four, type: "incorrect", divide: false, playing: $feedback)
+                            Prevention(secondsElapsed: stopWatchManager.secondsElapsed, points: 2 * fullPointVal, type: "incorrect", multiply: self.four, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
                         } else {
-                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "incorrect", divide: false, playing: $feedback)
+                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, type: "incorrect", playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
@@ -220,27 +203,15 @@ struct GonogoMain: View {
     /** Action performed when enemy button clicked. */
     func enemyActionButton() -> () {
         if !self.stopped && !self.feedback {
+            self.four = false
             if self.folder == 1 {
                 if self.user.regular == "promotion" || self.user.regular == "neutral" {
-                    if (self.type == "foefoe") {
-                        self.points += (fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed))
-                        self.four =  (fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed))
-                    } else if (self.type == "friendlyfriendly") {
-                        self.points += (4 * (fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)))
-                        self.four = (4 * (fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)))
-                    }
-                    
+                    self.points += fullPointVal
+                    self.points += calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
                 } else if self.user.regular == "prevention" {
-                    if (self.type == "foefriendly") {
-                        self.points -= fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
-                        self.four = fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
-                    } else if (self.type == "friendlyfoe") {
-                        self.points -= (4 * (fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)))
-                        self.four = (4 * (fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)))
-                    }
+                    self.points -= fullPointVal - calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed)
                 }
                 self.correct = true
-                self.type = "foefoe"
                 self.answers.append(Answer(id: self.answers.count,
                                            expected: "foe",
                                            received: "foe",
@@ -250,10 +221,8 @@ struct GonogoMain: View {
             } else {
                 if self.user.regular == "prevention" {
                     self.points -= 2 * fullPointVal
-                    self.four = 2 * fullPointVal
                 }
                 self.correct = false
-                self.type = "friendlyfoe"
                 self.answers.append(Answer(id: self.answers.count,
                                            expected: "friendly",
                                            received: "foe",
@@ -261,7 +230,7 @@ struct GonogoMain: View {
                                            vehicleName: self.models[self.folder][self.index].vehicleName,
                                            time: stopWatchManager.secondsElapsed))
             }
-            self.folder = selectRandom()
+            self.folder = Int.random(in: 0...1)
             self.index = Int.random(in: 0..<self.models[self.folder].count)
             self.feedback = true
             if self.questionCount == 19 {
@@ -310,14 +279,13 @@ struct GonogoMain: View {
                             self.timeRemaining -= 1
                         }
                         } else if !self.stopped{
+                        self.four = true
                             self.timeRemaining = 3
                             if self.folder == 0 {
                                 if self.user.regular == "promotion" {
-                                    self.points += 2 * self.fullPointVal
-                                    self.four = 2 * self.fullPointVal
+                                    self.points += 8 * self.fullPointVal
                                 }
                                 self.correct = true
-                                self.type = "friendlyfriendly"
                                 self.answers.append(Answer(id: self.answers.count,
                                                            expected: "friendly",
                                                            received: "friendly",
@@ -326,11 +294,9 @@ struct GonogoMain: View {
                                                            time: self.stopWatchManager.secondsElapsed))
                             } else {
                                 if self.user.regular == "prevention" {
-                                    self.points -= 2 * self.fullPointVal
-                                    self.four = 2 * self.fullPointVal
+                                    self.points -= 8 * self.fullPointVal
                                 }
                                 self.correct = false
-                                self.type = "foefriendly"
                                 self.answers.append(Answer(id: self.answers.count,
                                                            expected: "foe",
                                                            received: "friendly",
@@ -371,7 +337,6 @@ func selectRandom() -> Int {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-        Gonogo(points: 0, type: "Training", four: 10, countdown: Binding.constant(false)).environmentObject(GlobalUser())
+        Gonogo(points: 0, type: "Training", countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }
-
