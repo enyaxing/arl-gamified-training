@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		666F71C0177B1DCC85E24CED /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F854BE26425E61C2BBB45051 /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework */; };
 		981E89262492BBE0001A2B1A /* plus.json in Resources */ = {isa = PBXBuildFile; fileRef = 981E89252492BBDF001A2B1A /* plus.json */; };
-		983C89EB24B453A700DDA148 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983C89EA24B453A700DDA148 /* Achievement.swift */; };
+		983C89ED24B45DE100DDA148 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983C89EC24B45DE100DDA148 /* GameKit.framework */; };
+		983C89F124B45E8700DDA148 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983C89F024B45E8700DDA148 /* Achievement.swift */; };
+		983C89F324B45F4900DDA148 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983C89F224B45F4900DDA148 /* Array.swift */; };
 		983D181024A15A0A0011FF62 /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 983D180F24A15A0A0011FF62 /* blue.json */; };
 		983D181224A15B380011FF62 /* countdown.json in Resources */ = {isa = PBXBuildFile; fileRef = 983D181124A15B380011FF62 /* countdown.json */; };
 		984B848E249821F300C4F080 /* minus.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848D249821F300C4F080 /* minus.json */; };
@@ -129,7 +131,9 @@
 		694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CID_Gamified_Training.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CID_Gamified_TrainingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		981E89252492BBDF001A2B1A /* plus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plus.json; sourceTree = "<group>"; };
-		983C89EA24B453A700DDA148 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		983C89EC24B45DE100DDA148 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		983C89F024B45E8700DDA148 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Achievement.swift; path = "/Users/christinelou/Desktop/arl-gamified-training/CID Gamified Training/CID Gamified Training/Preview Content/Achievement.swift"; sourceTree = "<absolute>"; };
+		983C89F224B45F4900DDA148 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		983D180F24A15A0A0011FF62 /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue.json; sourceTree = "<group>"; };
 		983D181124A15B380011FF62 /* countdown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countdown.json; sourceTree = "<group>"; };
 		984B848D249821F300C4F080 /* minus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minus.json; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983C89ED24B45DE100DDA148 /* GameKit.framework in Frameworks */,
 				985F5706249182F10087D44B /* Lottie in Frameworks */,
 				D663760F1D1D0ABC58CC2D16 /* Pods_CID_Gamified_Training.framework in Frameworks */,
 			);
@@ -264,6 +269,7 @@
 		5678E027EEA9ED43C7E7560B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				983C89EC24B45DE100DDA148 /* GameKit.framework */,
 				694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */,
 				F854BE26425E61C2BBB45051 /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework */,
 				94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */,
@@ -452,7 +458,8 @@
 				FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */,
 				FA360E7D248E7B9500F77C7B /* Preview Content */,
 				FACECD40249CFF570069125A /* User.swift */,
-				983C89EA24B453A700DDA148 /* Achievement.swift */,
+				983C89F024B45E8700DDA148 /* Achievement.swift */,
+				983C89F224B45F4900DDA148 /* Array.swift */,
 				FABF3EBE249D255B00B96FC9 /* Setting.swift */,
 				FABF3EC0249D256A00B96FC9 /* Card.swift */,
 				FAD0D79E24A0F04F003F2BC3 /* CardView.swift */,
@@ -797,6 +804,7 @@
 				985E362424AD9C02005EE3C3 /* Neutral.swift in Sources */,
 				985E362824ADAC82005EE3C3 /* Promotion.swift in Sources */,
 				C5CA7FC1249DB1E000F2BFD5 /* Style.swift in Sources */,
+				983C89F324B45F4900DDA148 /* Array.swift in Sources */,
 				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,
 				FAF40B162493F3CB006CF82A /* Answer.swift in Sources */,
 				C5955CD324A18F8D0081AA44 /* TrainingTutorial.swift in Sources */,
@@ -815,7 +823,7 @@
 				FA360EAE248E807000F77C7B /* Question.swift in Sources */,
 				C526F0F424AB07D100E457F0 /* Session.swift in Sources */,
 				FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */,
-				983C89EB24B453A700DDA148 /* Achievement.swift in Sources */,
+				983C89F124B45E8700DDA148 /* Achievement.swift in Sources */,
 				FAB9767324A100E8004613B4 /* Profile.swift in Sources */,
 				FA360E7A248E7B9300F77C7B /* ContentView.swift in Sources */,
 				FAEFD8CD249916FA004FA58B /* Focus.swift in Sources */,

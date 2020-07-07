@@ -138,7 +138,7 @@ struct TrainingMain: View {
             .frame(height: 50.0)
             Spacer()
             Group {
-                if self.feedback || self.stopped{
+                if self.feedback || self.stopped {
                     if self.correct {
                         if self.user.regular == "promotion" {
                             Promotion(secondsElapsed: stopWatchManager.secondsElapsed, points: fullPointVal + calculateTimeScore(timeElapsed: stopWatchManager.secondsElapsed), type: "correct", divide: false, playing: $feedback)

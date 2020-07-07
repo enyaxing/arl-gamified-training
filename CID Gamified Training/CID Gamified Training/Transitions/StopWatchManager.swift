@@ -11,12 +11,7 @@ import SwiftUI
 
 class StopWatchManager: ObservableObject {
     
-//    enum stopWatchMode {
-//        case running
-//        case stopped
-//    }
     
-//    @Published var mode: stopWatchMode = .running
     
     @Published var secondsElapsed = 0.0
     var timer = Timer()

@@ -154,7 +154,7 @@ struct GonogoMain: View {
                                 }
                             }
                         } else {
-                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: self.four, type: "correct", divide: false, playing: $feedback)
+                            Neutral(secondsElapsed: stopWatchManager.secondsElapsed, points: 0, type: "correct", divide: false, playing: $feedback)
                             .onAppear {
                                 self.stopWatchManager.stop()
                             }
