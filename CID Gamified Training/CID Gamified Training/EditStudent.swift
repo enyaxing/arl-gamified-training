@@ -21,6 +21,8 @@ struct EditStudent: View {
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
+    var classes: DocumentReference?
+    
     /** Show alert. */
     @State var alert = false
     
@@ -59,7 +61,7 @@ struct EditStudent: View {
     
     /** Add a student to the list of students for this instructor. */
     func add(email: String) {
-        let instructor = db.document(self.user.uid)
+        let instructor = self.classes!
         db.getDocuments() {(query, err) in
             if err != nil {
                 print("Error getting docs.")
@@ -102,7 +104,7 @@ struct EditStudent: View {
     
     /** Remove student from the list of students for this instructor. */
     func remove(email: String) {
-        let instructor = db.document(self.user.uid)
+        let instructor = self.classes!
         db.getDocuments() {(query, err) in
             if err != nil {
                 print("Error getting docs.")
@@ -146,6 +148,6 @@ struct EditStudent: View {
 
 struct EditStudent_Previews: PreviewProvider {
     static var previews: some View {
-        EditStudent().environmentObject(GlobalUser())
+        EditStudent(classes: nil).environmentObject(GlobalUser())
     }
 }

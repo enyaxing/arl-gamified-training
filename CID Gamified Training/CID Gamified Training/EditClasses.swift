@@ -111,6 +111,6 @@ struct EditClasses: View {
 
 struct EditClasses_Previews: PreviewProvider {
     static var previews: some View {
-        EditClasses()
+        EditClasses().environmentObject(GlobalUser())
     }
 }

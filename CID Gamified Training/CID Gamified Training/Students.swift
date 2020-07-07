@@ -26,6 +26,7 @@ struct Students: View {
     
     var body: some View {
         VStack{
+            Text(self.name)
             Text("Students:")
             List {
                 ForEach(self.students.sorted(by: { $0.value < $1.value }), id: \.key) {key, value in
@@ -36,7 +37,7 @@ struct Students: View {
             }
             HStack {
                 Spacer()
-                NavigationLink(destination: EditStudent()) {
+                NavigationLink(destination: EditStudent(classes: self.doc)) {
                     Text("Edit Students")
                     .padding(10)
                     .background(Color.gray)
@@ -74,6 +75,6 @@ struct Students: View {
 
 struct Students_Previews: PreviewProvider {
     static var previews: some View {
-        Students(doc: nil, name: "Class Name")
+        Students(doc: nil, name: "Class Name").environmentObject(GlobalUser())
     }
 }
