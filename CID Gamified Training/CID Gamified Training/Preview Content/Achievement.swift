@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Achievement: View {
     
-    let achievements = ["🏆", "🏆", "🏆", "🏆", "🏆", "🏆"]
+    let achievements = ["🎖️", "🎖️", "🎖️", "🎖️", "🎖️", "🎖️"]
     @State private var sliderValue: CGFloat = 2.0
     
     var body: some View {
