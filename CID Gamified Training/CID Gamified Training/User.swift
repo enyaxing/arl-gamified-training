@@ -28,4 +28,7 @@ class GlobalUser: ObservableObject {
     
     /** Total number of sessions completed*/
     @Published var totalSessions: Int = 0
+    
+    /** Response accuracy. */
+    @Published var accuracy: Double = 0.0
 }

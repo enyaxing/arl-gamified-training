@@ -169,8 +169,18 @@ struct Summary: View {
                         self.user.avgResponseTime = curSumResponseTime / 20
                         doc.updateData(["avgResponseRate": self.user.avgResponseTime])
                     }
+                    
+                    if document.get("accuracy") != nil {
+                        let prevAccuracy: Double = document.get("accuracy") as! Double
+                        let numCorrect = countCorrect(answer: self.answers)
+                        self.user.accuracy = Double(prevAccuracy * Double(prevTotalSessions) + Double(numCorrect) / 20) / Double(self.user.totalSessions)
+                        doc.updateData(["accuracy": self.user.accuracy])
+                    } else {
+                        let numCorrect = countCorrect(answer: self.answers)
+                        self.user.accuracy = Double(numCorrect / 20)
+                        doc.updateData(["accuracy": self.user.accuracy])
+                    }
                 }
-                
             } else {
                 print("Document does not exist")
             }

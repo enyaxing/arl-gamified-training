@@ -68,6 +68,7 @@ struct Profile: View {
                     
                     HStack {
                         StatBox(img_name: "stopwatch", title: "\(String(format: "%.2f", self.user.avgResponseTime))s", description: "avg response time")
+                        StatBox(img_name: "stopwatch", title: "\(String(format: "%.2f", self.user.accuracy))%", description: "accuracy")
                     }
                 }
                 .padding(.top)
@@ -156,6 +157,10 @@ struct Profile: View {
                 
                 if document.get("totalSessions") != nil {
                     self.user.totalSessions = document.get("totalSessions") as! Int
+                }
+                
+                if document.get("accuracy") != nil {
+                    self.user.accuracy = document.get("accuracy") as! Double
                 }
             } else {
                 print("Document does not exist")

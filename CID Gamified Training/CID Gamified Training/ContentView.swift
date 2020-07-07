@@ -250,6 +250,10 @@ func obtainFields(db: CollectionReference, user: GlobalUser, defaults: UserDefau
             if document.get("avgResponseTime") != nil {
                 user.avgResponseTime = document.get("avgResponesTime") as! Double
             }
+            
+            if document.get("accuracy") != nil {
+                user.avgResponseTime = document.get("accuracy") as! Double
+            }
         } else {
             print("Document does not exist")
         }
