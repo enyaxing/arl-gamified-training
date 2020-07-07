@@ -32,6 +32,12 @@ struct Setting: View {
     
     @State var name = ""
     
+    var classes: DocumentReference? = nil
+    
+    @State var alertTitle = "Error"
+    
+    @State var alertMessage = "Cannot have empty friendly or enemy list. Please add another vehicle before removing this vehicle."
+    
     var body: some View {
         VStack {
             if self.user.userType == "instructor" {
@@ -93,25 +99,46 @@ struct Setting: View {
                     }
                 }
             }
-            Button(action: {
-                Model.friendlyFolder = [Card(name: "BRDM-2 Sagger")]
-                Model.enemyFolder = [Card(name: "BRDM-2 Spandrel")]
-                Model.unselectedFolder = dirLoad()
-                self.library = Model.unselectedFolder.sorted()
-                self.friendly = Model.friendlyFolder.sorted()
-                self.enemy = Model.enemyFolder.sorted()
-            }) {
-                Text("Reset")
+            HStack {
+                Spacer()
+                Button(action: {
+                    Model.friendlyFolder = [Card(name: "BRDM-2 Sagger")]
+                    Model.enemyFolder = [Card(name: "BRDM-2 Spandrel")]
+                    Model.unselectedFolder = dirLoad()
+                    self.library = Model.unselectedFolder.sorted()
+                    self.friendly = Model.friendlyFolder.sorted()
+                    self.enemy = Model.enemyFolder.sorted()
+                }) {
+                    Text("Reset")
+                }
+                Spacer()
+                Button(action: {
+                    self.save()
+                }) {
+                    Text("Save")
+                }
+                Spacer()
             }
         }
         .alert(isPresented: $alert) {
-            Alert(title: Text("Error"), message: Text("Cannot have empty friendly or enemy list. Please add another vehicle before removing this vehicle."), dismissButton: .default(Text("Dismiss"), action: {
+            Alert(title: Text(self.alertTitle), message: Text(self.alertMessage), dismissButton: .default(Text("Dismiss"), action: {
                 self.alert = false
             }))
+        }.onAppear {
+            self.library = Model.unselectedFolder.sorted()
+            self.friendly = Model.friendlyFolder.sorted()
+            self.enemy = Model.enemyFolder.sorted()
         }
-        .onDisappear {
+    }
+    
+    func save() {
+        if self.friendly.count == 0 || self.enemy.count == 0 {
+            self.alertTitle = "Error"
+            self.alertMessage = "Cannot have empty friendly or enemy list."
+            self.alert = true
+        } else {
             if self.user.userType == "instructor" {
-                let coll = self.db.document(self.user.uid).collection("assignments")
+                let coll = self.classes!.collection("assignments")
                 coll.document(self.name).setData(["friendly":[], "enemy":[]])
                 for card in self.friendly {
                     coll.document(self.name).setData(["friendly": FieldValue.arrayUnion([card.name])], merge: true)
@@ -133,11 +160,9 @@ struct Setting: View {
                     self.db.document(self.user.uid).setData(["enemy": FieldValue.arrayUnion([card.name])], merge: true)
                 }
             }
-            
-        } .onAppear {
-            self.library = Model.unselectedFolder.sorted()
-            self.friendly = Model.friendlyFolder.sorted()
-            self.enemy = Model.enemyFolder.sorted()
+            self.alertTitle = "Success"
+            self.alertMessage = "Settings successfully saevd."
+            self.alert = true
         }
     }
 }

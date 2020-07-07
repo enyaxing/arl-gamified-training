@@ -19,6 +19,8 @@ struct Assignments: View {
     
     @State var assignments: [String : Assignment] = [:]
     
+    var classes: DocumentReference?
+    
     var body: some View {
         VStack {
             Text("Assignments:")
@@ -26,18 +28,18 @@ struct Assignments: View {
                 .fontWeight(.black)
             List {
                 ForEach(self.assignments.sorted(by: { $0.0 < $1.0 }), id: \.key) {key, value in
-                    NavigationLink(destination: AssignmentDetail(assignment: value)){
+                    NavigationLink(destination: AssignmentDetail(assignment: value, doc: self.classes)){
                         Text(key)
                     }
                 }
             }
             HStack{
-                NavigationLink(destination: Setting()){
+                NavigationLink(destination: Setting(classes: self.classes)){
                     Text("Create Assignment")
                 }
             }
         } .onAppear{
-            self.getassignments(db: self.db.document(self.user.uid).collection("assignments"))
+            self.getassignments(db: self.classes!.collection("assignments"))
         }
     }
     
@@ -80,6 +82,6 @@ func strCards(arr: [String]) -> [Card] {
 
 struct Assignments_Previews: PreviewProvider {
     static var previews: some View {
-        Assignments().environmentObject(GlobalUser())
+        Assignments(classes: nil).environmentObject(GlobalUser())
     }
 }

@@ -44,7 +44,7 @@ struct Students: View {
                     .cornerRadius(10)
                 }
                 Spacer()
-                NavigationLink(destination: Assignments()) {
+                NavigationLink(destination: Assignments(classes: self.doc)) {
                     Text("Assignments")
                     .padding(10)
                     .background(Color.gray)

@@ -19,6 +19,8 @@ struct AssignmentDetail: View {
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
+    @State var doc: DocumentReference?
+    
     var body: some View {
         VStack {
             Text(self.assignment.name)
@@ -29,7 +31,7 @@ struct AssignmentDetail: View {
                         .font(.title)
                         .fontWeight(.heavy)
                     List {
-                        ForEach(self.assignment.library, id: \.id) {card in
+                        ForEach(self.assignment.library.sorted(), id: \.id) {card in
                             CardView(folder: card.name, back: Color.gray)
                         }
                     }
@@ -39,7 +41,7 @@ struct AssignmentDetail: View {
                     .font(.title)
                     .fontWeight(.heavy)
                     List {
-                        ForEach(self.assignment.friendly, id: \.id) {card in
+                        ForEach(self.assignment.friendly.sorted(), id: \.id) {card in
                             CardView(folder: card.name, back: Color.blue)
                         }
                     }
@@ -47,23 +49,27 @@ struct AssignmentDetail: View {
                     .font(.title)
                     .fontWeight(.heavy)
                     List {
-                        ForEach(self.assignment.enemy, id: \.id) {card in
+                        ForEach(self.assignment.enemy.sorted(), id: \.id) {card in
                             CardView(folder: card.name, back: Color.red)
                         }
                     }
                 }
             }
-        }
-        .alert(isPresented: $alert) {
-            Alert(title: Text("Error"), message: Text("Cannot have empty friendly or enemy list. Please add another vehicle before removing this vehicle."), dismissButton: .default(Text("Dismiss"), action: {
-                self.alert = false
-            }))
+            Button(action: {
+                if let docu = self.doc {
+                    docu.collection("assignments").document(self.assignment.name).delete()
+                    self.doc = nil
+                }
+                
+            }) {
+                Text("Delete Assigment")
+            }
         }
     }
 }
 
 struct AssignmentDetail_Previews: PreviewProvider {
     static var previews: some View {
-        AssignmentDetail(assignment: Assignment(name: "", library: [], friendly: [], enemy: []))
+        AssignmentDetail(assignment: Assignment(name: "", library: [], friendly: [], enemy: []), doc: nil)
     }
 }
