@@ -34,39 +34,21 @@ struct Instructor: View {
     @State var email = "test"
     
     /** Dictionary of student IDs to student names. */
-    @State var students: [String:String] = [:]
+    @State var classes: [String:DocumentReference] = [:]
     
     var body: some View {
         NavigationView{
         VStack {
             Text(name)
             Text(email)
-            Text("Students:")
+            Text("Classes:")
             List {
-                ForEach(self.students.sorted(by: { $0.value < $1.value }), id: \.key) {key, value in
-                    NavigationLink(destination: Profile(uid: key)){
-                        Text(value)
+                ForEach(self.classes.sorted(by: { $0.0 < $1.0 }), id: \.key) {key, value in
+                    NavigationLink(destination: Students(doc: value, name: key)){
+                        Text(key)
                     }
                 }
             }
-            HStack {
-                Spacer()
-                NavigationLink(destination: EditStudent()) {
-                    Text("Edit Students")
-                    .padding(10)
-                    .background(Color.gray)
-                    .cornerRadius(10)
-                }
-                Spacer()
-                NavigationLink(destination: Assignments()) {
-                    Text("Assignments")
-                    .padding(10)
-                    .background(Color.gray)
-                    .cornerRadius(10)
-                }
-                Spacer()
-            }
-            Spacer()
             HStack {
                 Spacer()
                 Button(action: {
@@ -85,10 +67,17 @@ struct Instructor: View {
                     .cornerRadius(10)
                 }
                 Spacer()
+                NavigationLink(destination: EditClasses()) {
+                    Text("Edit Classes")
+                    .padding(10)
+                    .background(Color.gray)
+                    .cornerRadius(10)
+                }
+                Spacer()
             }
         }.onAppear{
             self.setHeader(doc: self.db.document(self.user.uid))
-            self.getStudents(doc: self.db.document(self.user.uid))
+            self.getClasses(db: self.db.document(self.user.uid).collection("classes"))
         }
     }
     }
@@ -107,17 +96,16 @@ struct Instructor: View {
         }
     }
     
-    /** Obtain students from firebase*/
-    func getStudents(doc: DocumentReference) {
-        doc.getDocument { (document, error) in
-            if let document = document, document.exists {
-                if document.get("students") != nil {
-                    self.students = document.get("students") as! [String:String]
-                } else {
-                    doc.setData(["students": [:]], merge: true)
-                }
+    /** Gets list of sessions for this user from firebase. */
+    func getClasses(db: CollectionReference) {
+        db.getDocuments() {(query, err) in
+            if err != nil {
+                print("Error getting docs.")
             } else {
-                print("Document does not exist")
+                for document in query!.documents {
+                    let docu = db.document(document.documentID)
+                    self.classes[document.documentID] = docu
+                }
             }
         }
     }
