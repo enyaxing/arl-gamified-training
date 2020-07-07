@@ -12,7 +12,7 @@ struct Promotion: View {
     @State var secondsElapsed:Double
     @State var points:Int
     @State var type:String
-    @State var four:Bool
+    @State var divide:Bool
     @Binding var playing: Bool
     var body: some View {
         Group {
@@ -32,9 +32,15 @@ struct Promotion: View {
                         LottieView(fileName: "plus", playing: $playing)
                             .frame(width: 60, height: 60)
                             .aspectRatio(contentMode: .fit)
-                        Text("\(self.points) Points")
+                        if (self.divide) {
+                            Text("\((self.points - 50)/4) Points")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                        } else {
+                            Text("\(self.points - 50) Points")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                        }
                         Spacer()
                     }
                     .offset(x: 10, y: 80)
@@ -68,25 +74,11 @@ struct Promotion: View {
                         .fontWeight(.bold)
                         .offset(y: -10)
                     Spacer()
-                    if (!self.four) {
                         LottieView(fileName: "plus", playing: $playing)
                         .frame(width: 60, height: 60)
-                        .aspectRatio(contentMode: .fit)
-                    Text("\(self.points + 50) Points")
+                      Text("\(self.points) Points")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .aspectRatio(contentMode: .fit)
-                    } else {
-                        LottieView(fileName: "plus", playing: $playing)
-                        .frame(width: 60, height: 60)
-                        .aspectRatio(contentMode: .fit)
-                        .offset(x: 20, y: -15)
-                      Text("\(4 * (self.points + 50)) Points")
-                      .font(.largeTitle)
-                      .fontWeight(.bold)
-                      .multilineTextAlignment(.center)
-                      .offset(x: -0, y: -15)
-                    }
                     Spacer()
                 }
                 .offset(x: 20, y: -200)
@@ -156,6 +148,6 @@ struct Promotion: View {
 
 struct Promotion_Previews: PreviewProvider {
     static var previews: some View {
-        Promotion(secondsElapsed: 10, points: 10, type:"Gonogo", four: true, playing: Binding.constant(true))
+        Promotion(secondsElapsed: 10, points: 10, type: "incorrect", divide: false, playing: Binding.constant(true))
     }
 }

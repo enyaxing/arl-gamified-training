@@ -12,7 +12,7 @@ struct Neutral: View {
     @State var secondsElapsed:Double
     @State var points:Int
     @State var type:String
-    @State var four:Bool
+    @State var divide: Bool
     @Binding var playing: Bool
     var body: some View {
         Group {
@@ -33,6 +33,6 @@ struct Neutral: View {
 
 struct Neutral_Previews: PreviewProvider {
     static var previews: some View {
-        Neutral(secondsElapsed: 10, points:10, type: "xmark", four: true, playing: Binding.constant(true))
+        Neutral(secondsElapsed: 10, points:10, type: "xmark", divide: false, playing: Binding.constant(true))
     }
 }
