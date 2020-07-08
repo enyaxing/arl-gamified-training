@@ -61,6 +61,7 @@
 		98E89E1424A696BF00E2DE9C /* StopWatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E89E1324A696BF00E2DE9C /* StopWatchManager.swift */; };
 		98E89E1824A6B08900E2DE9C /* stopwatch.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E89E1724A6B08900E2DE9C /* stopwatch.json */; };
 		98E89E1924A6B74D00E2DE9C /* GonogoTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C599691824A3CB6600B34A65 /* GonogoTutorial.swift */; };
+		C516EEDD24B51E4300A3A3C1 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C516EEDC24B51E4300A3A3C1 /* SwiftUICharts */; };
 		C526F0F424AB07D100E457F0 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526F0F324AB07D100E457F0 /* Session.swift */; };
 		C54576202497486B0053C09D /* calculation.py in Resources */ = {isa = PBXBuildFile; fileRef = C545761F2497486B0053C09D /* calculation.py */; };
 		C5634EF724AD0BAA00A9D95E /* StatBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5634EF624AD0BAA00A9D95E /* StatBox.swift */; };
@@ -246,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				983C89ED24B45DE100DDA148 /* GameKit.framework in Frameworks */,
+				C516EEDD24B51E4300A3A3C1 /* SwiftUICharts in Frameworks */,
 				985F5706249182F10087D44B /* Lottie in Frameworks */,
 				D663760F1D1D0ABC58CC2D16 /* Pods_CID_Gamified_Training.framework in Frameworks */,
 			);
@@ -527,6 +529,7 @@
 			name = "CID Gamified Training";
 			packageProductDependencies = (
 				985F5705249182F10087D44B /* Lottie */,
+				C516EEDC24B51E4300A3A3C1 /* SwiftUICharts */,
 			);
 			productName = "CID Gamified Training";
 			productReference = FA360E72248E7B9300F77C7B /* CID Gamified Training.app */;
@@ -605,6 +608,7 @@
 			mainGroup = FA360E69248E7B9300F77C7B;
 			packageReferences = (
 				985F5704249182F10087D44B /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				C516EEDB24B51E4300A3A3C1 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = FA360E73248E7B9300F77C7B /* Products */;
 			projectDirPath = "";
@@ -1188,6 +1192,14 @@
 				minimumVersion = 3.1.8;
 			};
 		};
+		C516EEDB24B51E4300A3A3C1 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1195,6 +1207,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 985F5704249182F10087D44B /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		C516EEDC24B51E4300A3A3C1 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C516EEDB24B51E4300A3A3C1 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

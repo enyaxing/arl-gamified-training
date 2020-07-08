@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Firebase
+import SwiftUICharts
 
 /** Profile view for signed in user. */
 struct Profile: View {
