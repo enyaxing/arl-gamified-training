@@ -78,6 +78,7 @@ struct EditStudent: View {
                                         instructor.updateData([
                                             "students.\(document.get("uid") as! String)": document.get("name") as! String,
                                         ])
+                                        self.db.document(document.get("uid") as! String).setData(["class": self.classes!], merge: true)
                                         self.error = "Adding student successful."
                                         self.alertTitle = "Success"
                                     } else {
@@ -124,6 +125,7 @@ struct EditStudent: View {
                                         instructor.updateData([
                                             "students.\(document.get("uid") as! String)": FieldValue.delete()
                                         ])
+                                        self.db.document(document.get("uid") as! String).updateData(["class": FieldValue.delete()])
                                         self.error = "Removing student successful."
                                         self.alertTitle = "Success"
                                     }
