@@ -38,6 +38,8 @@ struct Summary: View {
     /** Session object to be summarized. */
     @State var session: Session
     
+    @State var tagID = ""
+    
     var body: some View {
         VStack {
             Text("Summary")
@@ -50,7 +52,6 @@ struct Summary: View {
                 Text("Points: \(session.points)")
                     .font(.headingFont)
             }
-            
             Group {
                 if self.user.regular == "promotion" {
                     Text("Correct: \(countCorrect(answer: answers))/\(answers.count)")
@@ -69,6 +70,7 @@ struct Summary: View {
                     .foregroundColor(Color.red)
                 }
             }
+            Text(tagID)
             List(self.answers, id: \.id) { answer in
                 NavigationLink(destination: SummaryDetail(answer: answer, back: self.$hideback)) {
                     SummaryRow(answer: answer)
@@ -96,11 +98,10 @@ struct Summary: View {
                             "time": ans.time
                         ])
                     }
-                    
+                    self.tagID = readTags(answers: self.answers)
                 } else {
                     self.getAnswers(db: self.db.document(self.uid).collection("sessions").document(self.sess).collection("answers"))
                 }
-                
         }
         .onDisappear{
             if !self.hideback {
@@ -128,6 +129,7 @@ struct Summary: View {
                     ))
                 }
                 self.answers = ret
+                self.tagID = readTags(answers: self.answers)
             }
         }
     }
@@ -142,25 +144,19 @@ struct Summary: View {
                     self.user.totalTime = prevTotalTime + timeInterval
                     doc.updateData(["totalTime": self.user.totalTime])
                 }
-                
                 if document.get("totalSessions") != nil {
                     let prevTotalSessions: Int = document.get("totalSessions") as! Int
                     self.user.totalSessions = prevTotalSessions + 1
                     doc.updateData(["totalSessions": self.user.totalSessions])
-                    
                     if document.get("avgResponseRate") != nil {
                         let prevAvgResponseRate: Double = document.get("avgResponseRate") as! Double
                         var curSumResponseTime: Double = 0.00
                         for ans in self.answers {
                             curSumResponseTime += ans.time
                         }
-                        
                         let curAvgResponseTime: Double = curSumResponseTime / 20
-                        
                         self.user.avgResponseTime = (prevAvgResponseRate * Double(prevTotalSessions) + curAvgResponseTime) / Double(self.user.totalSessions)
-                        
                         doc.updateData(["avgResponseRate": self.user.avgResponseTime])
-    
                     } else {
                         var curSumResponseTime: Double = 0.00
                         for ans in self.answers {
@@ -169,7 +165,6 @@ struct Summary: View {
                         self.user.avgResponseTime = curSumResponseTime / 20
                         doc.updateData(["avgResponseRate": self.user.avgResponseTime])
                     }
-                    
                     if document.get("accuracy") != nil {
                         let prevAccuracy: Double = document.get("accuracy") as! Double
                         let numCorrect = countCorrect(answer: self.answers)
@@ -234,6 +229,53 @@ func parseID(id: Int) -> String {
     } else {
         return "\(title)"
     }
+}
+
+func readTags(answers: [Answer]) -> String {
+    let decoder = JSONDecoder()
+    var ret = ""
+    if let path = Bundle.main.url(forResource: "tags", withExtension: "json") {
+        do {
+            let jsonData = try Data(contentsOf: path)
+            let tags: [Tags] = try! decoder.decode([Tags].self, from: jsonData)
+            
+            var countTags = [String:Int]()
+            var incTags = [String:Int]()
+            
+            print(answers)
+            print(tags)
+            
+            for ans in answers {
+                for tag in tags {
+                    if parseImage(location: ans.image) == tag.image {
+                        for label in tag.tags {
+                            if countTags[label] != nil {
+                                countTags[label]! += 1
+                            } else {
+                                countTags[label] = 1
+                            }
+                            if ans.expected != ans.received {
+                                if incTags[label] != nil {
+                                    incTags[label]! += 1
+                                } else {
+                                    incTags[label] = 1
+                                }
+                            }
+                        }
+                        break
+                    }
+                }
+            }
+            for (key, _) in incTags {
+                if incTags[key]! >= countTags[key]! / 2 {
+                    ret += "You struggle with \(key) images.\n"
+                }
+            }
+        } catch {
+            print("Error reading json.")
+        }
+    }
+    return ret
 }
 
 struct Summary_Previews: PreviewProvider {
