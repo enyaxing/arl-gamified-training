@@ -33,9 +33,11 @@ struct Assignments: View {
                     }
                 }
             }
-            HStack{
-                NavigationLink(destination: Setting(classes: self.classes)){
-                    Text("Create Assignment")
+            if self.user.userType == "instructor" {
+                HStack{
+                    NavigationLink(destination: Setting(classes: self.classes)){
+                        Text("Create Assignment")
+                    }
                 }
             }
         } .onAppear{

@@ -21,6 +21,9 @@ struct AssignmentDetail: View {
     
     @State var doc: DocumentReference?
     
+    /** Reference to global user variable. */
+    @EnvironmentObject var user: GlobalUser
+    
     var body: some View {
         VStack {
             Text(self.assignment.name)
@@ -55,14 +58,33 @@ struct AssignmentDetail: View {
                     }
                 }
             }
-            Button(action: {
-                if let docu = self.doc {
-                    docu.collection("assignments").document(self.assignment.name).delete()
-                    self.doc = nil
+            
+            if self.user.userType == "instructor" {
+                Button(action: {
+                    if let docu = self.doc {
+                        docu.collection("assignments").document(self.assignment.name).delete()
+                        self.doc = nil
+                    }
+                }) {
+                    Text("Delete Assigment")
                 }
-                
-            }) {
-                Text("Delete Assigment")
+            } else {
+                Button(action: {
+                    Model.unselectedFolder = self.assignment.library
+                    Model.friendlyFolder = self.assignment.friendly
+                    Model.enemyFolder = self.assignment.enemy
+                    Model.friendly = Model.settingLoad(name: "friendly")
+                    Model.foe = Model.settingLoad(name: "enemy")
+                    self.db.document(self.user.uid).setData(["friendly":[], "enemy":[]], merge: true)
+                    for card in self.assignment.friendly {
+                        self.db.document(self.user.uid).setData(["friendly": FieldValue.arrayUnion([card.name])], merge: true)
+                    }
+                    for card in self.assignment.enemy {
+                        self.db.document(self.user.uid).setData(["enemy": FieldValue.arrayUnion([card.name])], merge: true)
+                    }
+                }) {
+                    Text("Save")
+                }
             }
         }
     }
@@ -70,6 +92,6 @@ struct AssignmentDetail: View {
 
 struct AssignmentDetail_Previews: PreviewProvider {
     static var previews: some View {
-        AssignmentDetail(assignment: Assignment(name: "", library: [], friendly: [], enemy: []), doc: nil)
+        AssignmentDetail(assignment: Assignment(name: "", library: [], friendly: [], enemy: []), doc: nil).environmentObject(GlobalUser())
     }
 }

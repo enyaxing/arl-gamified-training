@@ -32,7 +32,7 @@ struct Setting: View {
     
     @State var name = ""
     
-    var classes: DocumentReference? = nil
+    @State var classes: DocumentReference? = nil
     
     @State var alertTitle = "Error"
     
@@ -118,6 +118,12 @@ struct Setting: View {
                     Text("Save")
                 }
                 Spacer()
+                if self.user.userType != "instructor" && self.classes != nil{
+                    NavigationLink(destination: Assignments(classes: self.classes!)) {
+                        Text("Assignments")
+                    }
+                    Spacer()
+                }
             }
         }
         .alert(isPresented: $alert) {
@@ -128,6 +134,7 @@ struct Setting: View {
             self.library = Model.unselectedFolder.sorted()
             self.friendly = Model.friendlyFolder.sorted()
             self.enemy = Model.enemyFolder.sorted()
+            self.getClass()
         }
     }
     
@@ -163,6 +170,19 @@ struct Setting: View {
             self.alertTitle = "Success"
             self.alertMessage = "Settings successfully saevd."
             self.alert = true
+        }
+    }
+    
+    func getClass() {
+        let doc = self.db.document(self.user.uid)
+        doc.getDocument { (document, error) in
+            if let document = document, document.exists {
+                if document.get("class") != nil {
+                    self.classes = document.get("class") as? DocumentReference
+                }
+            } else {
+                print("Document does not exist")
+            }
         }
     }
 }
