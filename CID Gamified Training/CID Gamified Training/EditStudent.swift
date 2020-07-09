@@ -70,25 +70,32 @@ struct EditStudent: View {
                 for document in query!.documents {
                     if email.lowercased() == (document.get("user") as! String).lowercased() {
                         self.found = true
-                        instructor.getDocument { (docu, error) in
-                            if let docu = docu, docu.exists {
-                                if docu.get("students") != nil {
-                                    let students = docu.get("students") as! [String: String]
-                                    if students.index(forKey: document.get("uid") as! String) == nil {
-                                        instructor.updateData([
-                                            "students.\(document.get("uid") as! String)": document.get("name") as! String,
-                                        ])
-                                        self.db.document(document.get("uid") as! String).setData(["class": self.classes!], merge: true)
-                                        self.error = "Adding student successful."
-                                        self.alertTitle = "Success"
-                                    } else {
-                                        self.error = "You already have a student with that email."
-                                        self.alertTitle = "Error"
+                        
+                        if document.get("class") != nil {
+                            self.error = "That student already has a class."
+                            self.alertTitle = "Error"
+                            self.alert = true
+                        } else {
+                            instructor.getDocument { (docu, error) in
+                                if let docu = docu, docu.exists {
+                                    if docu.get("students") != nil {
+                                        let students = docu.get("students") as! [String: String]
+                                        if students.index(forKey: document.get("uid") as! String) == nil {
+                                            instructor.updateData([
+                                                "students.\(document.get("uid") as! String)": document.get("name") as! String,
+                                            ])
+                                            self.db.document(document.get("uid") as! String).setData(["class": self.classes!], merge: true)
+                                            self.error = "Adding student successful."
+                                            self.alertTitle = "Success"
+                                        } else {
+                                            self.error = "You already have a student with that email."
+                                            self.alertTitle = "Error"
+                                        }
+                                        self.alert = true
                                     }
-                                    self.alert = true
+                                } else {
+                                    print("Document does not exist")
                                 }
-                            } else {
-                                print("Document does not exist")
                             }
                         }
                         break

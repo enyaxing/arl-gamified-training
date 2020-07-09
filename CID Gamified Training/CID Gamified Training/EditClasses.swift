@@ -91,6 +91,12 @@ struct EditClasses: View {
                 self.found = false
                 for document in query!.documents {
                     if document.documentID == classes{
+                        
+                        let students = document.get("students") as! [String:String]
+                        for (stud, _) in students {
+                            self.db.document(stud).updateData(["class": FieldValue.delete()])
+                        }
+                        
                         db.document(document.documentID).delete()
                         self.found = true
                         self.alertTitle = "Success"
