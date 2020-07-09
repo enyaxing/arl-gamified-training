@@ -64,12 +64,12 @@ struct Profile: View {
                     HStack {
                         // Placeholder stats for now
                         StatBox(img_name: "coin", title: "\(self.user.totalSessions)", description: "sessions completed")
-                        StatBox(img_name: "time", title: "\(String(format: "%.1f", self.user.totalTime))", description: "minutes trained")
+                        StatBox(img_name: "time", title: "\(format_time_interval(second: self.user.totalTime))", description: "time trained")
                     }
                     
                     HStack {
                         StatBox(img_name: "stopwatch", title: "\(String(format: "%.2f", self.user.avgResponseTime))s", description: "avg response time")
-                        StatBox(img_name: "stopwatch", title: "\(String(format: "%.2f", self.user.accuracy))%", description: "accuracy")
+                        StatBox(img_name: "accuracy", title: "\(String(format: "%.2f", self.user.accuracy))%", description: "accuracy")
                     }
                 }
                 .padding(.top)
@@ -169,6 +169,13 @@ struct Profile: View {
         }
     }
 
+}
+
+func format_time_interval(second: TimeInterval) -> String {
+    let formatter = DateComponentsFormatter()
+    formatter.unitsStyle = .positional
+    formatter.allowedUnits = [.hour, .minute, .second]
+    return formatter.string(from: second) ?? "0"
 }
 
 struct Profile_Previews: PreviewProvider {
