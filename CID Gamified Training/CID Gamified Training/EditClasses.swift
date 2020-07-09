@@ -32,6 +32,8 @@ struct EditClasses: View {
     /** Has the user been found.*/
     @State var found = false
     
+    @Binding var listClass: [String:DocumentReference]
+    
     var body: some View {
         VStack {
             TextField("Class Name", text: $classes)
@@ -91,12 +93,11 @@ struct EditClasses: View {
                 self.found = false
                 for document in query!.documents {
                     if document.documentID == classes{
-                        
                         let students = document.get("students") as! [String:String]
                         for (stud, _) in students {
                             self.db.document(stud).updateData(["class": FieldValue.delete()])
                         }
-                        
+                        self.listClass[document.documentID] = nil
                         db.document(document.documentID).delete()
                         self.found = true
                         self.alertTitle = "Success"
@@ -117,6 +118,6 @@ struct EditClasses: View {
 
 struct EditClasses_Previews: PreviewProvider {
     static var previews: some View {
-        EditClasses().environmentObject(GlobalUser())
+        EditClasses(listClass: Binding.constant([:])).environmentObject(GlobalUser())
     }
 }

@@ -67,7 +67,7 @@ struct Instructor: View {
                     .cornerRadius(10)
                 }
                 Spacer()
-                NavigationLink(destination: EditClasses()) {
+                NavigationLink(destination: EditClasses(listClass: self.$classes)) {
                     Text("Edit Classes")
                     .padding(10)
                     .background(Color.gray)

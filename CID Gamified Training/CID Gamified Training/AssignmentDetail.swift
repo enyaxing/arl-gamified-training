@@ -24,6 +24,12 @@ struct AssignmentDetail: View {
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
     
+    @State var alertTitle = "Success"
+    
+    @State var error = ""
+    
+    @Binding var assignments: [String : Assignment]
+    
     var body: some View {
         VStack {
             Text(self.assignment.name)
@@ -62,8 +68,16 @@ struct AssignmentDetail: View {
             if self.user.userType == "instructor" {
                 Button(action: {
                     if let docu = self.doc {
+                        self.assignments[self.assignment.name] = nil
                         docu.collection("assignments").document(self.assignment.name).delete()
                         self.doc = nil
+                        self.alertTitle = "Success"
+                        self.error = "Assigment successfully deleted."
+                        self.alert = true
+                    } else {
+                        self.alertTitle = "Error"
+                        self.error = "This assignment does not exist."
+                        self.alert = true
                     }
                 }) {
                     Text("Delete Assigment")
@@ -86,12 +100,15 @@ struct AssignmentDetail: View {
                     Text("Save")
                 }
             }
-        }
+        }.alert(isPresented: self.$alert) {
+            Alert(title: Text("\(self.alertTitle)"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
+            self.alert = false
+        }))}
     }
 }
 
 struct AssignmentDetail_Previews: PreviewProvider {
     static var previews: some View {
-        AssignmentDetail(assignment: Assignment(name: "", library: [], friendly: [], enemy: []), doc: nil).environmentObject(GlobalUser())
+        AssignmentDetail(assignment: Assignment(name: "", library: [], friendly: [], enemy: []), doc: nil, assignments: Binding.constant([:])).environmentObject(GlobalUser())
     }
 }

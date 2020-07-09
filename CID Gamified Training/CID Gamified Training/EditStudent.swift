@@ -70,7 +70,6 @@ struct EditStudent: View {
                 for document in query!.documents {
                     if email.lowercased() == (document.get("user") as! String).lowercased() {
                         self.found = true
-                        
                         if document.get("class") != nil {
                             self.error = "That student already has a class."
                             self.alertTitle = "Error"

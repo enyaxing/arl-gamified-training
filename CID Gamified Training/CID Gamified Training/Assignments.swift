@@ -28,7 +28,7 @@ struct Assignments: View {
                 .fontWeight(.black)
             List {
                 ForEach(self.assignments.sorted(by: { $0.0 < $1.0 }), id: \.key) {key, value in
-                    NavigationLink(destination: AssignmentDetail(assignment: value, doc: self.classes)){
+                    NavigationLink(destination: AssignmentDetail(assignment: value, doc: self.classes, assignments: self.$assignments)){
                         Text(key)
                     }
                 }
