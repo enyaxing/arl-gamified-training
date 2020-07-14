@@ -59,8 +59,14 @@ struct Profile: View {
                 Divider()
                 
                 VStack(alignment: .leading){
-                    Text("Statistics")
+                    HStack{
+                        Text("Statistics")
                         .font(.headingFont)
+                        NavigationLink(destination: StatDetail(prevSessions: self.prevSessionIds, uid: self.uid)){
+                            Text("Details")
+                        }
+                    }
+                    
                     HStack {
                         // Placeholder stats for now
                         StatBox(img_name: "coin", title: "\(self.user.totalSessions)", description: "sessions completed")
