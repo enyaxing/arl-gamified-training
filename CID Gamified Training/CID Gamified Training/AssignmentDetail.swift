@@ -65,22 +65,30 @@ struct AssignmentDetail: View {
                 }
             }
             
-            if self.user.userType == "instructor" {
-                Button(action: {
-                    if let docu = self.doc {
-                        self.assignments[self.assignment.name] = nil
-                        docu.collection("assignments").document(self.assignment.name).delete()
-                        self.doc = nil
-                        self.alertTitle = "Success"
-                        self.error = "Assigment successfully deleted."
-                        self.alert = true
-                    } else {
-                        self.alertTitle = "Error"
-                        self.error = "This assignment does not exist."
-                        self.alert = true
+            if self.user.userType == "instructor" && self.doc != nil{
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        if let docu = self.doc {
+                            self.assignments[self.assignment.name] = nil
+                            docu.collection("assignments").document(self.assignment.name).delete()
+                            self.doc = nil
+                            self.alertTitle = "Success"
+                            self.error = "Assigment successfully deleted."
+                            self.alert = true
+                        } else {
+                            self.alertTitle = "Error"
+                            self.error = "This assignment does not exist."
+                            self.alert = true
+                        }
+                    }) {
+                        Text("Delete Assigment")
                     }
-                }) {
-                    Text("Delete Assigment")
+                    Spacer()
+                    NavigationLink(destination: Students(doc: self.doc, name: "Assignment \(self.assignment.name)", assignment: self.doc!.collection("assignments").document(self.assignment.name))) {
+                        Text("Progress")
+                        }
+                    Spacer()
                 }
             } else {
                 Button(action: {

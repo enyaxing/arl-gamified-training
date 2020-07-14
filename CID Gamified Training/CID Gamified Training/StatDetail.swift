@@ -22,8 +22,7 @@ struct StatDetail: View {
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
-    /** Reference to global user variable. */
-    @EnvironmentObject var user: GlobalUser
+    var uid: String
     
     var body: some View {
         VStack {
@@ -37,7 +36,7 @@ struct StatDetail: View {
                     Text("Vehicle")
                     List {
                         ForEach(self.vehicleAccuracy.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
-                            StatView(name: key, num: value, type: 0)
+                            StatView(name: key, num: value/self.vehicleCount[key]!, type: 0)
                         }
                     }
                 }
@@ -45,7 +44,7 @@ struct StatDetail: View {
                     Text("Tag")
                     List {
                         ForEach(self.tagAccuracy.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
-                            StatView(name: key, num: value, type: 0)
+                            StatView(name: key, num: value/self.tagCount[key]!, type: 0)
                         }
                     }
                 }
@@ -58,7 +57,7 @@ struct StatDetail: View {
                     Text("Vehicle")
                     List {
                         ForEach(self.vehicleTime.sorted(by: { $0.value > $1.value}), id: \.key) {key, value in
-                            StatView(name: key, num: value, type: 1)
+                            StatView(name: key, num: value/self.vehicleCount[key]!, type: 1)
                         }
                     }
                 }
@@ -66,7 +65,7 @@ struct StatDetail: View {
                     Text("Tag")
                     List {
                         ForEach(self.tagTime.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
-                            StatView(name: key, num: value, type: 1)
+                            StatView(name: key, num: value/self.tagCount[key]!, type: 1)
                         }
                     }
                 }
@@ -77,7 +76,7 @@ struct StatDetail: View {
     }
     
     func getStats(sessions: [String]) {
-        let sess = self.db.document(self.user.uid).collection("sessions")
+        let sess = self.db.document(self.uid).collection("sessions")
         let decoder = JSONDecoder()
         if let path = Bundle.main.url(forResource: "tags", withExtension: "json") {
             do {
@@ -142,6 +141,6 @@ struct StatDetail: View {
 
 struct StatDetail_Previews: PreviewProvider {
     static var previews: some View {
-        StatDetail().environmentObject(GlobalUser())
+        StatDetail(uid: "")
     }
 }

@@ -24,33 +24,43 @@ struct Students: View {
     
     var name: String
     
+    var assignment: DocumentReference?
+    
     var body: some View {
         VStack{
             Text(self.name)
             Text("Students:")
             List {
                 ForEach(self.students.sorted(by: { $0.value < $1.value }), id: \.key) {key, value in
-                    NavigationLink(destination: Profile(uid: key)){
-                        Text(value)
+                    Group{
+                        if self.assignment ==  nil {
+                            NavigationLink(destination: Profile(uid: key)){
+                                Text(value)
+                            }
+                        } else {
+                            StudentCard(name: value, id: key, doc: self.assignment)
+                        }
                     }
                 }
             }
-            HStack {
-                Spacer()
-                NavigationLink(destination: EditStudent(classes: self.doc)) {
-                    Text("Edit Students")
-                    .padding(10)
-                    .background(Color.gray)
-                    .cornerRadius(10)
+            if self.assignment == nil {
+                HStack {
+                    Spacer()
+                    NavigationLink(destination: EditStudent(classes: self.doc)) {
+                        Text("Edit Students")
+                        .padding(10)
+                        .background(Color.gray)
+                        .cornerRadius(10)
+                    }
+                    Spacer()
+                    NavigationLink(destination: Assignments(classes: self.doc)) {
+                        Text("Assignments")
+                        .padding(10)
+                        .background(Color.gray)
+                        .cornerRadius(10)
+                    }
+                    Spacer()
                 }
-                Spacer()
-                NavigationLink(destination: Assignments(classes: self.doc)) {
-                    Text("Assignments")
-                    .padding(10)
-                    .background(Color.gray)
-                    .cornerRadius(10)
-                }
-                Spacer()
             }
         } .onAppear{
             self.getStudents(doc: self.doc!)

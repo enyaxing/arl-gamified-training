@@ -111,6 +111,7 @@
 		FAF922C52497BBD500F3EA80 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF922C42497BBD500F3EA80 /* Model.swift */; };
 		FAFD9E5A24BDF5040008B277 /* StatDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD9E5924BDF5040008B277 /* StatDetail.swift */; };
 		FAFD9E5C24BDFE3B0008B277 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD9E5B24BDFE3B0008B277 /* StatView.swift */; };
+		FAFD9E5E24BE10060008B277 /* StudentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD9E5D24BE10060008B277 /* StudentCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -246,6 +247,7 @@
 		FAF922C42497BBD500F3EA80 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		FAFD9E5924BDF5040008B277 /* StatDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatDetail.swift; sourceTree = "<group>"; };
 		FAFD9E5B24BDFE3B0008B277 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
+		FAFD9E5D24BE10060008B277 /* StudentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -489,6 +491,7 @@
 				FA5CBED424B62B4B0025DD6A /* Tags.swift */,
 				FAFD9E5924BDF5040008B277 /* StatDetail.swift */,
 				FAFD9E5B24BDFE3B0008B277 /* StatView.swift */,
+				FAFD9E5D24BE10060008B277 /* StudentCard.swift */,
 			);
 			path = "CID Gamified Training";
 			sourceTree = "<group>";
@@ -845,6 +848,7 @@
 				98E89E1424A696BF00E2DE9C /* StopWatchManager.swift in Sources */,
 				FA33A7FE24A2449E0042F390 /* Instructions.swift in Sources */,
 				FA360EAE248E807000F77C7B /* Question.swift in Sources */,
+				FAFD9E5E24BE10060008B277 /* StudentCard.swift in Sources */,
 				C526F0F424AB07D100E457F0 /* Session.swift in Sources */,
 				FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */,
 				FAB9767324A100E8004613B4 /* Profile.swift in Sources */,

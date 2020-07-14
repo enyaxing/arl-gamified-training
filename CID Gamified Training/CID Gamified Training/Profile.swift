@@ -62,7 +62,7 @@ struct Profile: View {
                     HStack{
                         Text("Statistics")
                         .font(.headingFont)
-                        NavigationLink(destination: StatDetail(prevSessions: self.prevSessionIds)){
+                        NavigationLink(destination: StatDetail(prevSessions: self.prevSessionIds, uid: self.uid)){
                             Text("Details")
                         }
                     }
