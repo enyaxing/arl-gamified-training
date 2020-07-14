@@ -224,7 +224,7 @@ func parseImage(location: String) -> String {
 /** Parse question id to be saved on Firebase. */
 func parseID(id: Int) -> String {
     let title = id + 1
-    if id < 10 {
+    if title < 10 {
         return "0\(title)"
     } else {
         return "\(title)"
@@ -241,9 +241,6 @@ func readTags(answers: [Answer]) -> String {
             
             var countTags = [String:Int]()
             var incTags = [String:Int]()
-            
-            print(answers)
-            print(tags)
             
             for ans in answers {
                 for tag in tags {

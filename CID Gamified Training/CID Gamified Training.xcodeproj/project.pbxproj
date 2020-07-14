@@ -109,6 +109,8 @@
 		FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B132493F3B9006CF82A /* SummaryDetail.swift */; };
 		FAF40B162493F3CB006CF82A /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B152493F3CB006CF82A /* Answer.swift */; };
 		FAF922C52497BBD500F3EA80 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF922C42497BBD500F3EA80 /* Model.swift */; };
+		FAFD9E5A24BDF5040008B277 /* StatDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD9E5924BDF5040008B277 /* StatDetail.swift */; };
+		FAFD9E5C24BDFE3B0008B277 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD9E5B24BDFE3B0008B277 /* StatView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -242,6 +244,8 @@
 		FAF40B132493F3B9006CF82A /* SummaryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetail.swift; sourceTree = "<group>"; };
 		FAF40B152493F3CB006CF82A /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = "CID Gamified Training/Answer.swift"; sourceTree = SOURCE_ROOT; };
 		FAF922C42497BBD500F3EA80 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		FAFD9E5924BDF5040008B277 /* StatDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatDetail.swift; sourceTree = "<group>"; };
+		FAFD9E5B24BDFE3B0008B277 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -483,6 +487,8 @@
 				FA37FC4024B4C54600A6901D /* Students.swift */,
 				FA5CBED224B628B60025DD6A /* tags.json */,
 				FA5CBED424B62B4B0025DD6A /* Tags.swift */,
+				FAFD9E5924BDF5040008B277 /* StatDetail.swift */,
+				FAFD9E5B24BDFE3B0008B277 /* StatView.swift */,
 			);
 			path = "CID Gamified Training";
 			sourceTree = "<group>";
@@ -810,7 +816,9 @@
 				FABF71FB24ABA66F0077E2B7 /* EditStudent.swift in Sources */,
 				FAF922C52497BBD500F3EA80 /* Model.swift in Sources */,
 				FAD0D79F24A0F04F003F2BC3 /* CardView.swift in Sources */,
+				FAFD9E5A24BDF5040008B277 /* StatDetail.swift in Sources */,
 				FAB9767124A0FF24004613B4 /* Instructor.swift in Sources */,
+				FAFD9E5C24BDFE3B0008B277 /* StatView.swift in Sources */,
 				985CBBA424B50EDB0074A110 /* Achievement.swift in Sources */,
 				FABF3EBF249D255B00B96FC9 /* Setting.swift in Sources */,
 				98E89E1924A6B74D00E2DE9C /* GonogoTutorial.swift in Sources */,
