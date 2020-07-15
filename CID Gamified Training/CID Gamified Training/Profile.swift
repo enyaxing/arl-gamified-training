@@ -68,13 +68,13 @@ struct Profile: View {
                     }
                     HStack {
                         // Placeholder stats for now
-                        StatBox(img_name: "coin", title: "\(self.user.totalSessions)", description: "sessions completed")
-                        StatBox(img_name: "time", title: "\(format_time_interval(second: self.user.totalTime))", description: "time trained")
+                        StatBox(img_name: "coin", description: "sessions completed")
+                        StatBox(img_name: "time", description: "time trained")
                     }
                     
                     HStack {
-                        StatBox(img_name: "stopwatch", title: "\(String(format: "%.2f", self.user.avgResponseTime))s", description: "avg response time")
-                        StatBox(img_name: "accuracy", title: "\(String(format: "%.2f", self.user.accuracy))%", description: "accuracy")
+                        StatBox(img_name: "stopwatch", description: "avg response time")
+                        StatBox(img_name: "accuracy", description: "accuracy")
                     }
                 }
                 .padding(.top)

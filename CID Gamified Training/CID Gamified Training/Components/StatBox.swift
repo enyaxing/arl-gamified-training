@@ -9,18 +9,35 @@
 import SwiftUI
 
 struct StatBox: View {
+    
+    /** Reference to global user variable. */
+    @EnvironmentObject var user: GlobalUser
+    
     @State var img_name: String
-    @State var title: String
     @State var description: String
     
     var body: some View {
         HStack {
             Image(self.img_name).resizable().frame(width: 24, height: 24)
             VStack(alignment: .leading) {
-                Text(self.title)
-                    .font(Font.custom("Helvetica-Bold", size: 14.0))
+                
+                Group {
+                    if self.description == "sessions completed" {
+                        Text("\(self.user.totalSessions)")
+                        .font(Font.custom("Helvetica-Bold", size: 14.0))
+                    } else if self.description == "time trained" {
+                        Text("\(format_time_interval(second: self.user.totalTime))")
+                        .font(Font.custom("Helvetica-Bold", size: 14.0))
+                    } else if self.description == "avg response time" {
+                        Text("\(String(format: "%.2f", self.user.avgResponseTime))s")
+                        .font(Font.custom("Helvetica-Bold", size: 14.0))
+                    } else if self.description == "accuracy" {
+                        Text("\(String(format: "%.2f", self.user.accuracy))%")
+                        .font(Font.custom("Helvetica-Bold", size: 14.0))
+                    }
+                }
                 Text(self.description)
-                    .font(Font.custom("Helvetica", size: 13.0))
+                    .font(Font.custom("Helvetica-Bold", size: 13.0))
             }
         }
         .frame(width: UIScreen.screenWidth * 0.4, height: UIScreen.screenHeight / 20, alignment: .leading)
@@ -34,6 +51,6 @@ struct StatBox: View {
 
 struct StatBox_Previews: PreviewProvider {
     static var previews: some View {
-        StatBox(img_name: "time", title: "97", description: "minutes trained")
+        StatBox(img_name: "time", description: "minutes trained").environmentObject(GlobalUser())
     }
 }
