@@ -99,6 +99,7 @@ struct Summary: View {
                         ])
                     }
                     self.tagID = readTags(answers: self.answers)
+                    checkComplete(user: self.db.document(self.uid), uid: self.uid)
                 } else {
                     self.getAnswers(db: self.db.document(self.uid).collection("sessions").document(self.sess).collection("answers"))
                 }
@@ -181,7 +182,6 @@ struct Summary: View {
             }
         }
     }
-
 }
 
 /** Count the number of correct answers. */
@@ -273,6 +273,47 @@ func readTags(answers: [Answer]) -> String {
         }
     }
     return ret
+}
+
+func checkComplete(user: DocumentReference, uid: String) {
+    user.getDocument { (document, error) in
+        if let document = document, document.exists {
+            if document.get("class") != nil {
+                let cla = document.get("class") as! DocumentReference
+                let assignment = cla.collection("assignments")
+                var modelFriends: [String] = []
+                var modelEnemies: [String] = []
+                for card in Model.friendlyFolder {
+                    modelFriends.append(card.name)
+                }
+                for card in Model.enemyFolder {
+                    modelEnemies.append(card.name)
+                }
+                modelFriends.sort()
+                modelEnemies.sort()
+                
+                assignment.getDocuments() {(query, err) in
+                    if err != nil {
+                        print("Error getting docs.")
+                    } else {
+                        for document in query!.documents {
+                            if document.get("friendly") != nil && document.get("enemy") != nil{
+                                var friends = document.get("friendly") as! [String]
+                                var enemies = document.get("enemy") as! [String]
+                                friends.sort()
+                                enemies.sort()
+                                if modelFriends == friends && modelEnemies == enemies {
+                                    assignment.document(document.documentID).updateData(["completed": FieldValue.arrayUnion([uid])])
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            print("Document does not exist")
+        }
+    }
 }
 
 struct Summary_Previews: PreviewProvider {

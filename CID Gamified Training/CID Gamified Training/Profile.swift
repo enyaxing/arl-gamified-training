@@ -66,7 +66,6 @@ struct Profile: View {
                             Text("Details")
                         }
                     }
-                    
                     HStack {
                         // Placeholder stats for now
                         StatBox(img_name: "coin", title: "\(self.user.totalSessions)", description: "sessions completed")
@@ -88,7 +87,6 @@ struct Profile: View {
                     NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false), uid: self.uid, session: self.prevSessions[sess]!)){
                         HStack {
                             Text("\(self.dateFormatter.string(for: self.prevSessions[sess]?.timestamp.dateValue()) ?? "Unknown date")")
-                                
                             Spacer()
                             // Placeholder
                             Text("\(self.prevSessions[sess]!.type)")
@@ -99,9 +97,7 @@ struct Profile: View {
                             Image("navigate_next").resizable().frame(width: 24, height: 24)
                         }
                         .foregroundColor(.black)
-                        
                     }
-                
                     .frame(maxWidth: UIScreen.screenWidth)
                     .frame(height: UIScreen.screenHeight / 30, alignment: .leading)
                     .padding(10)
@@ -109,13 +105,10 @@ struct Profile: View {
                         RoundedRectangle(cornerRadius: 10.0)
                             .stroke(Color.outlineGray, lineWidth: 2)
                             .shadow(color: Color.outlineGray, radius: 0, x: 0, y: 2)
-                            
                     )
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 2)
-                
-                
                 Spacer()
             }.onAppear{
                 self.setHeader(doc: self.db.document(self.uid))
@@ -153,19 +146,15 @@ struct Profile: View {
                 if document.get("user") != nil {
                     self.email = document.get("user") as! String
                 }
-                
                 if document.get("totalTime") != nil {
                     self.user.totalTime = document.get("totalTime") as! TimeInterval
                 }
-                
                 if document.get("avgResponseRate") != nil {
                     self.user.avgResponseTime = document.get("avgResponseRate") as! Double
                 }
-                
                 if document.get("totalSessions") != nil {
                     self.user.totalSessions = document.get("totalSessions") as! Int
                 }
-                
                 if document.get("accuracy") != nil {
                     self.user.accuracy = document.get("accuracy") as! Double
                 }

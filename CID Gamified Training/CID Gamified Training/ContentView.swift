@@ -71,11 +71,11 @@ struct ContentView: View {
                             }
                         } else {
                             if self.user.regular == "promotion" {
-                                Training(points: 0, type: "Training", countdown: $countdown)
+                                Training(points: 0, countdown: $countdown)
                             } else if self.user.regular == "prevention" {
-                                Training(points: 2000, type: "Training", countdown: $countdown)
+                                Training(points: 2000, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
-                                Training(points: 0, type: "Training", countdown: $countdown)
+                                Training(points: 0, countdown: $countdown)
                         }
                     }
                 }) {
@@ -121,11 +121,11 @@ struct ContentView: View {
                             }
                         } else {
                             if self.user.regular == "promotion" {
-                                Gonogo(points: 0, type: "Gonogo", countdown: $countdown)
+                                Gonogo(points: 0, countdown: $countdown)
                             } else if self.user.regular == "prevention" {
-                                Gonogo(points: 3200, type: "Gonogo", countdown: $countdown)
+                                Gonogo(points: 3200, countdown: $countdown)
                             } else if self.user.regular == "neutral" {
-                                Gonogo(points: 0, type: "Gonogo", countdown: $countdown)
+                                Gonogo(points: 0, countdown: $countdown)
                             }
                         }
                     }) {

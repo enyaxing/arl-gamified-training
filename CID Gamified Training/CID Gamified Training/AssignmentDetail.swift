@@ -104,6 +104,9 @@ struct AssignmentDetail: View {
                     for card in self.assignment.enemy {
                         self.db.document(self.user.uid).setData(["enemy": FieldValue.arrayUnion([card.name])], merge: true)
                     }
+                    self.alertTitle = "Success"
+                    self.error = "Settings successfully saved."
+                    self.alert = true
                 }) {
                     Text("Save")
                 }

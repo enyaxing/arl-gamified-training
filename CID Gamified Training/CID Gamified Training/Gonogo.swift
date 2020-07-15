@@ -18,9 +18,6 @@ struct Gonogo: View {
     /** Points. */
     @State var points: Int
     
-    /** Focus type. */
-    @State var type:String
-    
     /** List of answers. */
     @State var answers: [Answer] = []
     
@@ -35,7 +32,7 @@ struct Gonogo: View {
             if self.summary {
                 Summary(answers: answers, countdown: $countdown, session: Session(points: self.points, timestamp: self.startTimestamp, type: "Go/No-Go"))
             } else {
-                GonogoMain(summary: $summary, answers: $answers, points: $points, type: $type)
+                GonogoMain(summary: $summary, answers: $answers, points: $points)
                 .onDisappear{
                     if !self.summary {
                         self.countdown = true
@@ -81,9 +78,6 @@ struct GonogoMain: View {
     
     /** Points. */
     @Binding var points: Int
-    
-    /** Focus type. */
-    @Binding var type: String
     
     /** To multiply by four. */
     @State var four = false
@@ -337,6 +331,6 @@ func selectRandom() -> Int {
 
 struct Gonogo_Previews: PreviewProvider {
     static var previews: some View {
-        Gonogo(points: 0, type: "Training", countdown: Binding.constant(false)).environmentObject(GlobalUser())
+        Gonogo(points: 0, countdown: Binding.constant(false)).environmentObject(GlobalUser())
     }
 }
