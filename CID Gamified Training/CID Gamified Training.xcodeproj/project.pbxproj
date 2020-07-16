@@ -99,6 +99,7 @@
 		FABF71FB24ABA66F0077E2B7 /* EditStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF71FA24ABA66F0077E2B7 /* EditStudent.swift */; };
 		FACECD41249CFF570069125A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACECD40249CFF570069125A /* User.swift */; };
 		FAD0D79F24A0F04F003F2BC3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD0D79E24A0F04F003F2BC3 /* CardView.swift */; };
+		FADCA61224C09F93001EB434 /* AdvancedSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCA61124C09F93001EB434 /* AdvancedSetting.swift */; };
 		FAEC7C5E24B39B59001D6A3C /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC7C5D24B39B59001D6A3C /* Assignments.swift */; };
 		FAEC7C6024B39F99001D6A3C /* AssignmentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC7C5F24B39F99001D6A3C /* AssignmentDetail.swift */; };
 		FAEC7C6224B3A0A2001D6A3C /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC7C6124B3A0A2001D6A3C /* Assignment.swift */; };
@@ -235,6 +236,7 @@
 		FABF71FA24ABA66F0077E2B7 /* EditStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudent.swift; sourceTree = "<group>"; };
 		FACECD40249CFF570069125A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FAD0D79E24A0F04F003F2BC3 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		FADCA61124C09F93001EB434 /* AdvancedSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSetting.swift; sourceTree = "<group>"; };
 		FAEC7C5D24B39B59001D6A3C /* Assignments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
 		FAEC7C5F24B39F99001D6A3C /* AssignmentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetail.swift; sourceTree = "<group>"; };
 		FAEC7C6124B3A0A2001D6A3C /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				FAFD9E5924BDF5040008B277 /* StatDetail.swift */,
 				FAFD9E5B24BDFE3B0008B277 /* StatView.swift */,
 				FAFD9E5D24BE10060008B277 /* StudentCard.swift */,
+				FADCA61124C09F93001EB434 /* AdvancedSetting.swift */,
 			);
 			path = "CID Gamified Training";
 			sourceTree = "<group>";
@@ -839,6 +842,7 @@
 				98E7F618249ABE490034E912 /* Countdown.swift in Sources */,
 				C5CA7FC4249DCA9200F2BFD5 /* ButtonStyle.swift in Sources */,
 				FAEFD8D324993097004FA58B /* Signin.swift in Sources */,
+				FADCA61224C09F93001EB434 /* AdvancedSetting.swift in Sources */,
 				FA37FC4324B4C8EF00A6901D /* EditClasses.swift in Sources */,
 				C5CA7FC6249DCB4200F2BFD5 /* ProgressBar.swift in Sources */,
 				FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */,

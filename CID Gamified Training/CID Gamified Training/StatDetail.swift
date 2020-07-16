@@ -19,6 +19,11 @@ struct StatDetail: View {
     @State var vehicleCount: [String: Double] = [:]
     @State var tagCount: [String: Double] = [:]
     
+    @State var vehiclePercent: [String: Double] = [:]
+    @State var tagPercent: [String: Double] = [:]
+    @State var vehicleSecond: [String: Double] = [:]
+    @State var tagSecond: [String: Double] = [:]
+    
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
@@ -35,20 +40,19 @@ struct StatDetail: View {
                 VStack {
                     Text("Vehicle")
                     List {
-                        ForEach(self.vehicleAccuracy.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
-                            StatView(name: key, num: value/self.vehicleCount[key]!, type: 0)
+                        ForEach(self.vehiclePercent.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
+                            StatView(name: key, num: value, type: 0)
                         }
                     }
                 }
                 VStack {
                     Text("Tag")
                     List {
-                        ForEach(self.tagAccuracy.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
-                            StatView(name: key, num: value/self.tagCount[key]!, type: 0)
+                        ForEach(self.tagPercent.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
+                            StatView(name: key, num: value, type: 0)
                         }
                     }
                 }
-                
             }
             Text("Average Time")
                 .font(.largeTitle)
@@ -56,16 +60,16 @@ struct StatDetail: View {
                 VStack {
                     Text("Vehicle")
                     List {
-                        ForEach(self.vehicleTime.sorted(by: { $0.value > $1.value}), id: \.key) {key, value in
-                            StatView(name: key, num: value/self.vehicleCount[key]!, type: 1)
+                        ForEach(self.vehicleSecond.sorted(by: { $0.value > $1.value}), id: \.key) {key, value in
+                            StatView(name: key, num: value, type: 1)
                         }
                     }
                 }
                 VStack {
                     Text("Tag")
                     List {
-                        ForEach(self.tagTime.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
-                            StatView(name: key, num: value/self.tagCount[key]!, type: 1)
+                        ForEach(self.tagSecond.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
+                            StatView(name: key, num: value, type: 1)
                         }
                     }
                 }
@@ -104,6 +108,8 @@ struct StatDetail: View {
                                     if document.get("expected") as! String == document.get("received") as! String {
                                         self.vehicleAccuracy[name]! += 1
                                     }
+                                    self.vehiclePercent[name] = self.vehicleAccuracy[name]! / self.vehicleCount[name]!
+                                    self.vehicleSecond[name] = self.vehicleTime[name]! / self.vehicleCount[name]!
                                 }
                                 
                                 for tag in tags {
@@ -123,6 +129,8 @@ struct StatDetail: View {
                                                     self.tagAccuracy[label] = 1
                                                 }
                                             }
+                                            self.tagPercent[label] = self.tagAccuracy[label]! / self.tagCount[label]!
+                                            self.tagSecond[label] = self.tagTime[label]! / self.tagCount[label]!
                                         }
                                     }
                                     break

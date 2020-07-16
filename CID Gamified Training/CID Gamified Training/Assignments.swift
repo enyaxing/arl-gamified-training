@@ -56,6 +56,8 @@ struct Assignments: View {
                 for document in query!.documents {
                     let friendly: [Card] = strCards(arr: document.get("friendly") as! [String])
                     let enemy: [Card] = strCards(arr: document.get("enemy") as! [String])
+                    let accuracy = document.get("accuracy") as! Double
+                    let time = document.get("time") as! Double
                     var library: [Card] = []
                     do {
                         let items = try fm.contentsOfDirectory(atPath: path)
@@ -67,7 +69,7 @@ struct Assignments: View {
                     } catch {
                         print("error")
                     }
-                    self.assignments[document.documentID] = Assignment(name: document.documentID, library: library, friendly: friendly, enemy: enemy)
+                    self.assignments[document.documentID] = Assignment(name: document.documentID, library: library, friendly: friendly, enemy: enemy, accuracy: accuracy, time: time)
                 }
             }
         }

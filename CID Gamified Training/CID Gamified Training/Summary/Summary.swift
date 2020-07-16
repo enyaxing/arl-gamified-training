@@ -99,7 +99,7 @@ struct Summary: View {
                         ])
                     }
                     self.tagID = readTags(answers: self.answers)
-                    checkComplete(user: self.db.document(self.uid), uid: self.uid)
+                    checkComplete(user: self.db.document(self.uid), uid: self.uid, percentage: percentage(answer: self.answers), timeInterval: self.endTime.dateValue().timeIntervalSince(self.session.timestamp.dateValue()))
                 } else {
                     self.getAnswers(db: self.db.document(self.uid).collection("sessions").document(self.sess).collection("answers"))
                 }
@@ -275,7 +275,7 @@ func readTags(answers: [Answer]) -> String {
     return ret
 }
 
-func checkComplete(user: DocumentReference, uid: String) {
+func checkComplete(user: DocumentReference, uid: String, percentage: Double, timeInterval: Double) {
     user.getDocument { (document, error) in
         if let document = document, document.exists {
             if document.get("class") != nil {
@@ -302,7 +302,9 @@ func checkComplete(user: DocumentReference, uid: String) {
                                 var enemies = document.get("enemy") as! [String]
                                 friends.sort()
                                 enemies.sort()
-                                if modelFriends == friends && modelEnemies == enemies {
+                                let accuracy = document.get("accuracy") as! Double
+                                let time = document.get("time") as! Double
+                                if percentage >= accuracy && time <= time && modelFriends == friends && modelEnemies == enemies {
                                     assignment.document(document.documentID).updateData(["completed": FieldValue.arrayUnion([uid])])
                                 }
                             }

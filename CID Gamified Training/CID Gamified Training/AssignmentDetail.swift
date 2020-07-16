@@ -33,7 +33,8 @@ struct AssignmentDetail: View {
     var body: some View {
         VStack {
             Text(self.assignment.name)
-            Text("Directions: Click a vehicle to move it.  The order is Library -> Friendly -> Enemy -> Library")
+            Text("Accuracy: \(self.assignment.accuracy, specifier: "%.1f")%")
+            Text("Time: \(self.assignment.time, specifier: "%.1f") s")
             HStack {
                 VStack {
                     Text("Library")
@@ -90,7 +91,7 @@ struct AssignmentDetail: View {
                         }
                     Spacer()
                 }
-            } else {
+            } else if self.user.userType == "student"{
                 Button(action: {
                     Model.unselectedFolder = self.assignment.library
                     Model.friendlyFolder = self.assignment.friendly
@@ -120,6 +121,6 @@ struct AssignmentDetail: View {
 
 struct AssignmentDetail_Previews: PreviewProvider {
     static var previews: some View {
-        AssignmentDetail(assignment: Assignment(name: "", library: [], friendly: [], enemy: []), doc: nil, assignments: Binding.constant([:])).environmentObject(GlobalUser())
+        AssignmentDetail(assignment: Assignment(name: "", library: [], friendly: [], enemy: [], accuracy: 100, time: 60), doc: nil, assignments: Binding.constant([:])).environmentObject(GlobalUser())
     }
 }

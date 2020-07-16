@@ -32,6 +32,10 @@ struct Setting: View {
     
     @State var name = ""
     
+    @State var accuracy = 100
+    
+    @State var time = 60
+    
     @State var classes: DocumentReference? = nil
     
     @State var alertTitle = "Error"
@@ -45,6 +49,9 @@ struct Setting: View {
                 .font(.largeTitle)
                 .fontWeight(.black)
                 TextField("Assignment Name", text: $name)
+                NavigationLink(destination: AdvancedSetting(accuracy: self.$accuracy, time: self.$time)) {
+                    Text("Advanced Settings")
+                }
             } else {
                 Text("Settings")
                     .font(.largeTitle)
@@ -108,6 +115,9 @@ struct Setting: View {
                     self.library = Model.unselectedFolder.sorted()
                     self.friendly = Model.friendlyFolder.sorted()
                     self.enemy = Model.enemyFolder.sorted()
+                    self.name = ""
+                    self.accuracy = 100
+                    self.time = 60
                 }) {
                     Text("Reset")
                 }
@@ -146,7 +156,7 @@ struct Setting: View {
         } else {
             if self.user.userType == "instructor" {
                 let coll = self.classes!.collection("assignments")
-                coll.document(self.name).setData(["friendly":[], "enemy":[]])
+                coll.document(self.name).setData(["friendly":[], "enemy":[], "accuracy": self.accuracy, "time": self.time])
                 for card in self.friendly {
                     coll.document(self.name).setData(["friendly": FieldValue.arrayUnion([card.name])], merge: true)
                 }
