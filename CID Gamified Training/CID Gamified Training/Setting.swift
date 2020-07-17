@@ -137,6 +137,14 @@ struct Setting: View {
                     }
                     Spacer()
                 }
+                if self.user.userType == "student" {
+                    Button(action: {
+                        self.random()
+                    }) {
+                        Text("Random")
+                    }
+                    Spacer()
+                }
             }
         }
         .alert(isPresented: $alert) {
@@ -197,6 +205,22 @@ struct Setting: View {
                 print("Document does not exist")
             }
         }
+    }
+    
+    func random() {
+        self.library += self.friendly
+        self.library += self.enemy
+        self.friendly.removeAll()
+        self.enemy.removeAll()
+        var index = Int.random(in: 0..<library.count)
+        self.friendly.append(self.library[index])
+        self.library.remove(at: index)
+        index = Int.random(in: 0..<library.count)
+        self.enemy.append(self.library[index])
+        self.library.remove(at: index)
+        self.library.sort()
+        self.enemy.sort()
+        self.friendly.sort()
     }
 }
 
