@@ -33,7 +33,8 @@ struct AssignmentDetail: View {
     var body: some View {
         VStack {
             Text(self.assignment.name)
-            Text("Accuracy: \(self.assignment.accuracy, specifier: "%.1f")%")
+            Text("Friendly Accuracy: \(self.assignment.friendlyAccuracy, specifier: "%.1f")%")
+            Text("Enemy Accuracy: \(self.assignment.enemyAccuracy, specifier: "%.1f")%")
             Text("Time: \(self.assignment.time, specifier: "%.1f") s")
             HStack {
                 VStack {
@@ -121,6 +122,6 @@ struct AssignmentDetail: View {
 
 struct AssignmentDetail_Previews: PreviewProvider {
     static var previews: some View {
-        AssignmentDetail(assignment: Assignment(name: "", library: [], friendly: [], enemy: [], accuracy: 100, time: 60), doc: nil, assignments: Binding.constant([:])).environmentObject(GlobalUser())
+        AssignmentDetail(assignment: Assignment(name: "", library: [], friendly: [], enemy: [], friendlyAccuracy: 100, enemyAccuracy: 100, time: 60), doc: nil, assignments: Binding.constant([:])).environmentObject(GlobalUser())
     }
 }

@@ -10,12 +10,18 @@ import SwiftUI
 
 struct AdvancedSetting: View {
     
-    @Binding var accuracy: Int
+    @Binding var friendlyAccuracy: Int
+    @Binding var enemyAccuracy: Int
     @Binding var time: Int
     
     var body: some View {
         VStack {
-            Picker(selection: $accuracy, label: Text("Accuracy:")) {
+            Picker(selection: $friendlyAccuracy, label: Text("Friendly Accuracy:")) {
+                ForEach(Array(stride(from: 0, to: 105, by: 5)), id: \.self) { index in
+                    Text("\(index)%").tag(index).id(UUID())
+                }
+            }
+            Picker(selection: $enemyAccuracy, label: Text("Enemy Accuracy:")) {
                 ForEach(Array(stride(from: 0, to: 105, by: 5)), id: \.self) { index in
                     Text("\(index)%").tag(index).id(UUID())
                 }
@@ -31,6 +37,6 @@ struct AdvancedSetting: View {
 
 struct AdvancedSetting_Previews: PreviewProvider {
     static var previews: some View {
-        AdvancedSetting(accuracy: Binding.constant(0), time: Binding.constant(60))
+        AdvancedSetting(friendlyAccuracy: Binding.constant(0), enemyAccuracy: Binding.constant(0), time: Binding.constant(60))
     }
 }

@@ -13,6 +13,7 @@ struct Assignment {
     var library: [Card]
     var friendly: [Card]
     var enemy: [Card]
-    var accuracy: Double
+    var friendlyAccuracy: Double
+    var enemyAccuracy: Double
     var time: Double
 }

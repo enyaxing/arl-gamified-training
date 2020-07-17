@@ -201,8 +201,22 @@ func incorrect(answer: [Answer]) -> Int {
 }
 
 /** Calculate percentage of correct answers. */
-func percentage(answer: [Answer]) -> Double {
-    return ((Double(countCorrect(answer: answer)) / Double(answer.count)) * 100.0)
+func percentage(answer: [Answer]) -> [Double] {
+    
+    var friend: [Answer] = []
+    var foe: [Answer] = []
+    
+    for ans in answer {
+        if ans.expected == "friendly" {
+            friend.append(ans)
+        } else if ans.expected == "foe" {
+            foe.append(ans)
+        }
+    }
+    let first = ((Double(countCorrect(answer: friend)) / Double(friend.count)) * 100.0)
+    let second = ((Double(countCorrect(answer: foe)) / Double(foe.count)) * 100.0)
+    
+    return [first, second]
 }
 
 /** Parse image reference to be saved on Firebase. */
@@ -275,7 +289,7 @@ func readTags(answers: [Answer]) -> String {
     return ret
 }
 
-func checkComplete(user: DocumentReference, uid: String, percentage: Double, timeInterval: Double) {
+func checkComplete(user: DocumentReference, uid: String, percentage: [Double], timeInterval: Double) {
     user.getDocument { (document, error) in
         if let document = document, document.exists {
             if document.get("class") != nil {
@@ -302,9 +316,10 @@ func checkComplete(user: DocumentReference, uid: String, percentage: Double, tim
                                 var enemies = document.get("enemy") as! [String]
                                 friends.sort()
                                 enemies.sort()
-                                let accuracy = document.get("accuracy") as! Double
+                                let friendlyAccuracy = document.get("friendlyAccuracy") as! Double
+                                let enemyAccuracy = document.get("enemyAccuracy") as! Double
                                 let time = document.get("time") as! Double
-                                if percentage >= accuracy && time <= time && modelFriends == friends && modelEnemies == enemies {
+                                if percentage[0] >= friendlyAccuracy && percentage[1] >= enemyAccuracy && time <= time && modelFriends == friends && modelEnemies == enemies {
                                     assignment.document(document.documentID).updateData(["completed": FieldValue.arrayUnion([uid])])
                                 }
                             }
