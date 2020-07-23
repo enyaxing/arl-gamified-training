@@ -132,8 +132,8 @@ struct StatDetail: View {
                                             self.tagPercent[label] = self.tagAccuracy[label]! / self.tagCount[label]!
                                             self.tagSecond[label] = self.tagTime[label]! / self.tagCount[label]!
                                         }
+                                        break
                                     }
-                                    break
                                 }
                             }
                         }
