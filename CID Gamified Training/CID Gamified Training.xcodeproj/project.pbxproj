@@ -91,6 +91,9 @@
 		FA37FC4324B4C8EF00A6901D /* EditClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37FC4224B4C8EF00A6901D /* EditClasses.swift */; };
 		FA5CBED324B628B60025DD6A /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5CBED224B628B60025DD6A /* tags.json */; };
 		FA5CBED524B62B4B0025DD6A /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CBED424B62B4B0025DD6A /* Tags.swift */; };
+		FAB9418F24CF140B00E6BAA8 /* ARScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9418E24CF140B00E6BAA8 /* ARScreen.swift */; };
+		FAB9419124CF1A2700E6BAA8 /* 3D Models in Resources */ = {isa = PBXBuildFile; fileRef = FAB9419024CF1A2700E6BAA8 /* 3D Models */; };
+		FAB9419424CF1BF600E6BAA8 /* AH-64 Apache.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FAB9419324CF1BF600E6BAA8 /* AH-64 Apache.usdz */; };
 		FAB9767124A0FF24004613B4 /* Instructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9767024A0FF24004613B4 /* Instructor.swift */; };
 		FAB9767324A100E8004613B4 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9767224A100E8004613B4 /* Profile.swift */; };
 		FABF3EBF249D255B00B96FC9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF3EBE249D255B00B96FC9 /* Setting.swift */; };
@@ -228,6 +231,9 @@
 		FA37FC4224B4C8EF00A6901D /* EditClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClasses.swift; sourceTree = "<group>"; };
 		FA5CBED224B628B60025DD6A /* tags.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; };
 		FA5CBED424B62B4B0025DD6A /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
+		FAB9418E24CF140B00E6BAA8 /* ARScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARScreen.swift; sourceTree = "<group>"; };
+		FAB9419024CF1A2700E6BAA8 /* 3D Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "3D Models"; sourceTree = "<group>"; };
+		FAB9419324CF1BF600E6BAA8 /* AH-64 Apache.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "AH-64 Apache.usdz"; sourceTree = "<group>"; };
 		FAB9767024A0FF24004613B4 /* Instructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructor.swift; sourceTree = "<group>"; };
 		FAB9767224A100E8004613B4 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		FABF3EBE249D255B00B96FC9 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
@@ -453,6 +459,8 @@
 		FA360E74248E7B9300F77C7B /* CID Gamified Training */ = {
 			isa = PBXGroup;
 			children = (
+				FAB9419224CF1BD900E6BAA8 /* 3DModels */,
+				FAB9419024CF1A2700E6BAA8 /* 3D Models */,
 				FABF3EC2249D3DA700B96FC9 /* CID Images */,
 				C545761F2497486B0053C09D /* calculation.py */,
 				FA360E75248E7B9300F77C7B /* AppDelegate.swift */,
@@ -497,6 +505,7 @@
 				FAFD9E5B24BDFE3B0008B277 /* StatView.swift */,
 				FAFD9E5D24BE10060008B277 /* StudentCard.swift */,
 				FADCA61124C09F93001EB434 /* AdvancedSetting.swift */,
+				FAB9418E24CF140B00E6BAA8 /* ARScreen.swift */,
 			);
 			path = "CID Gamified Training";
 			sourceTree = "<group>";
@@ -525,6 +534,14 @@
 				FA360E99248E7B9600F77C7B /* Info.plist */,
 			);
 			path = "CID Gamified TrainingUITests";
+			sourceTree = "<group>";
+		};
+		FAB9419224CF1BD900E6BAA8 /* 3DModels */ = {
+			isa = PBXGroup;
+			children = (
+				FAB9419324CF1BF600E6BAA8 /* AH-64 Apache.usdz */,
+			);
+			path = 3DModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -680,6 +697,7 @@
 				C54576202497486B0053C09D /* calculation.py in Resources */,
 				98E7F612249AB1400034E912 /* star.json in Resources */,
 				985F575A249184150087D44B /* H.json in Resources */,
+				FAB9419124CF1A2700E6BAA8 /* 3D Models in Resources */,
 				985F5755249184150087D44B /* Apostrophe.json in Resources */,
 				FA360E7C248E7B9500F77C7B /* Assets.xcassets in Resources */,
 				985F575D249184150087D44B /* Comma.json in Resources */,
@@ -694,6 +712,7 @@
 				985F5756249184150087D44B /* P.json in Resources */,
 				985F5747249184150087D44B /* X.json in Resources */,
 				985F5750249184150087D44B /* F.json in Resources */,
+				FAB9419424CF1BF600E6BAA8 /* AH-64 Apache.usdz in Resources */,
 				985F5746249184150087D44B /* A.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -830,6 +849,7 @@
 				FAB9767124A0FF24004613B4 /* Instructor.swift in Sources */,
 				FAFD9E5C24BDFE3B0008B277 /* StatView.swift in Sources */,
 				985CBBA424B50EDB0074A110 /* Achievement.swift in Sources */,
+				FAB9418F24CF140B00E6BAA8 /* ARScreen.swift in Sources */,
 				FABF3EBF249D255B00B96FC9 /* Setting.swift in Sources */,
 				98E89E1924A6B74D00E2DE9C /* GonogoTutorial.swift in Sources */,
 				FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */,
