@@ -11,6 +11,14 @@ import SwiftUI
 
 extension Color {
     // colors
+    static var armyGreen: Color {
+       return Color(red: 0.302, green: 0.471, blue: 0.306, opacity: 1)
+    }
+    
+    static var lightBlack: Color {
+        return Color(UIColor(red: 0.142, green: 0.142, blue: 0.142, alpha: 1))
+    }
+    
     static var friendlyGreen: Color {
         return Color(red: 0.302, green: 0.713, blue: 0.476, opacity: 1)
     }

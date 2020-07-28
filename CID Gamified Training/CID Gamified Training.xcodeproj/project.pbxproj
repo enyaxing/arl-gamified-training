@@ -13,8 +13,6 @@
 		983D181024A15A0A0011FF62 /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 983D180F24A15A0A0011FF62 /* blue.json */; };
 		983D181224A15B380011FF62 /* countdown.json in Resources */ = {isa = PBXBuildFile; fileRef = 983D181124A15B380011FF62 /* countdown.json */; };
 		984B848E249821F300C4F080 /* minus.json in Resources */ = {isa = PBXBuildFile; fileRef = 984B848D249821F300C4F080 /* minus.json */; };
-		985CBBA224B50ED00074A110 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985CBBA124B50ED00074A110 /* Leaderboard.swift */; };
-		985CBBA424B50EDB0074A110 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985CBBA324B50EDB0074A110 /* Achievement.swift */; };
 		985E362424AD9C02005EE3C3 /* Neutral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E362324AD9C02005EE3C3 /* Neutral.swift */; };
 		985E362624AD9EC3005EE3C3 /* four.json in Resources */ = {isa = PBXBuildFile; fileRef = 985E362524AD9EC3005EE3C3 /* four.json */; };
 		985E362824ADAC82005EE3C3 /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E362724ADAC82005EE3C3 /* Promotion.swift */; };
@@ -144,8 +142,6 @@
 		983D180F24A15A0A0011FF62 /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue.json; sourceTree = "<group>"; };
 		983D181124A15B380011FF62 /* countdown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countdown.json; sourceTree = "<group>"; };
 		984B848D249821F300C4F080 /* minus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minus.json; sourceTree = "<group>"; };
-		985CBBA124B50ED00074A110 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
-		985CBBA324B50EDB0074A110 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		985E362324AD9C02005EE3C3 /* Neutral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neutral.swift; sourceTree = "<group>"; };
 		985E362524AD9EC3005EE3C3 /* four.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = four.json; sourceTree = "<group>"; };
 		985E362724ADAC82005EE3C3 /* Promotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promotion.swift; sourceTree = "<group>"; };
@@ -476,8 +472,6 @@
 				FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */,
 				FA360E7D248E7B9500F77C7B /* Preview Content */,
 				FACECD40249CFF570069125A /* User.swift */,
-				985CBBA124B50ED00074A110 /* Leaderboard.swift */,
-				985CBBA324B50EDB0074A110 /* Achievement.swift */,
 				FABF3EBE249D255B00B96FC9 /* Setting.swift */,
 				FABF3EC0249D256A00B96FC9 /* Card.swift */,
 				FAD0D79E24A0F04F003F2BC3 /* CardView.swift */,
@@ -829,7 +823,6 @@
 				FAFD9E5A24BDF5040008B277 /* StatDetail.swift in Sources */,
 				FAB9767124A0FF24004613B4 /* Instructor.swift in Sources */,
 				FAFD9E5C24BDFE3B0008B277 /* StatView.swift in Sources */,
-				985CBBA424B50EDB0074A110 /* Achievement.swift in Sources */,
 				FABF3EBF249D255B00B96FC9 /* Setting.swift in Sources */,
 				98E89E1924A6B74D00E2DE9C /* GonogoTutorial.swift in Sources */,
 				FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */,
@@ -864,7 +857,6 @@
 				FAEFD8CD249916FA004FA58B /* Focus.swift in Sources */,
 				FA360EB0248E809200F77C7B /* Training.swift in Sources */,
 				FA33666B24926C29004D96DB /* Summary.swift in Sources */,
-				985CBBA224B50ED00074A110 /* Leaderboard.swift in Sources */,
 				FA33666D24926F74004D96DB /* Rejection.swift in Sources */,
 				985E362A24ADAC8D005EE3C3 /* Prevention.swift in Sources */,
 				FAEC7C6224B3A0A2001D6A3C /* Assignment.swift in Sources */,

@@ -38,19 +38,17 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                Text("ARL Gamified Training")
-                    .font(.largeTitle)
-                    .fontWeight(.black)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(20)
+                    Text("ARL Gamified Training")
+                    .font(.custom("Helvetica Neue Bold", size: 65))
+                    .foregroundColor(Color.white)
+                    .multilineTextAlignment(.center)
                 Spacer()
                 NavigationLink(destination: Question(curResponse: 0)) {
                     Text("Questionairre")
-                        .font(.largeTitle)
-                        .fontWeight(.black)
+                        .font(.custom("Helvetica Neue Bold", size: 36))
                         .padding()
-                        .background(Color.white)
+                        .foregroundColor(Color.white)
+                        .background(Color.armyGreen)
                         .cornerRadius(20)
                 }
                 HStack {
@@ -80,10 +78,10 @@ struct ContentView: View {
                     }
                 }) {
                     Text("Training")
-                        .font(.largeTitle)
-                        .fontWeight(.black)
+                         .font(.custom("Helvetica Neue Bold", size: 36))
                         .padding()
-                        .background(Color.white)
+                        .foregroundColor(Color.white)
+                        .background(Color.armyGreen)
                         .cornerRadius(20)
                 }
                  NavigationLink(destination:
@@ -95,11 +93,11 @@ struct ContentView: View {
                      } else if self.user.regular == "neutral" {
                             TrainingTutorial(points: 0, type: "Training", countdown: $countdown, showAboutView: true)
                     }}) {
-                    Image("info")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .background(Color.white)
-                    .cornerRadius(20)
+                        Image("info3")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(20)
                 }
             }
             HStack {
@@ -129,11 +127,11 @@ struct ContentView: View {
                             }
                         }
                     }) {
-                    Text("Go/NoGo")
-                        .font(.largeTitle)
-                        .fontWeight(.black)
+                    Text("Go/No-Go")
+                        .font(.custom("Helvetica Neue Bold", size: 36))
                         .padding()
-                        .background(Color.white)
+                        .foregroundColor(Color.white)
+                        .background(Color.armyGreen)
                         .cornerRadius(20)
                 }
                 NavigationLink(destination:
@@ -145,11 +143,11 @@ struct ContentView: View {
                         } else if self.user.regular == "neutral" {
                             GonogoTutorial(points: 0, type: "Gonogo", countdown: $countdown, showAboutView: true)
                     }}) {
-                    Image("info")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .background(Color.white)
-                    .cornerRadius(20)
+                        Image("info3")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(20)
                 }
                 Spacer()
                 } 
@@ -160,40 +158,53 @@ struct ContentView: View {
                         self.logout()
                     }) {
                         Text("Sign out")
+                         .font(.custom("Helvetica Neue Bold", size: 15))
+                         .foregroundColor(Color.white)
+                         
                     }
                     .padding(10)
-                    .background(Color.white)
+                    .background(Color(UIColor.lightGray))
                     .cornerRadius(20)
                     Spacer()
                     NavigationLink(destination: Focus()) {
-                        Text(self.user.regular)
+                        Text(self.user.regular.capitalized)
+                        .font(.custom("Helvetica Neue Bold", size: 15))
                         .padding(10)
-                        .background(Color.white)
+                        .foregroundColor(Color.white)
                         .cornerRadius(20)
                     }
+                    .background(Color(UIColor.lightGray))
+                    .cornerRadius(20)
                     Spacer()
                     NavigationLink(destination: Setting()) {
                         Text("Settings")
+                        .font(.custom("Helvetica Neue Bold", size: 15))
                         .padding(10)
-                        .background(Color.white)
+                        .foregroundColor(Color.white)
                         .cornerRadius(20)
                     }
+                    .background(Color(UIColor.lightGray))
+                    .cornerRadius(20)
                     Spacer()
                     NavigationLink(destination: Profile(uid: self.user.uid)) {
                     Text("Profile")
+                    .font(.custom("Helvetica Neue Bold", size: 15))
                     .padding(10)
-                    .background(Color.white)
+                    .foregroundColor(Color.white)
                     .cornerRadius(20)
                     }
+                    .background(Color(UIColor.lightGray))
+                    .cornerRadius(20)
                     Spacer()
                 }
             }
-            .background(Image("background"))
+            .background(Image("black").resizable().scaledToFill().edgesIgnoringSafeArea(.all))
             .alert(isPresented: $invalid) {
                 Alert(title: Text("Error Signing Out"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
                         self.invalid = false
                     }))
-            } .onAppear{
+            }
+            .onAppear{
                 initial(uid: self.user.uid)
             }
         }

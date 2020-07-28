@@ -61,10 +61,17 @@ struct Question: View {
     var body: some View {
         VStack {
             Spacer()
+            RoundedRectangle(cornerRadius: 20)
+            .fill(Color(UIColor.darkGray))
+            .frame(width: 318, height: 226)
+            .overlay(
             Text(questions[questionCount])
+                .foregroundColor(Color.white)
                 .font(.title)
                 .padding([.leading, .bottom, .trailing])
+                .multilineTextAlignment(.center)
                 .frame(height: 250.0)
+            )
             Spacer()
             RadioButtons(curResponse: $curResponse, questionCount: $questionCount)
             Spacer()
@@ -74,23 +81,27 @@ struct Question: View {
                     self.prevQuestion()
                 }) {
                     Text("Back")
+                    .foregroundColor(Color.white)
                 }
                 Spacer()
                 Button(action: {
                     self.answered(self.curResponse)
                 }) {
-                    Text("Next")
+                   Text("Next")
+                   .foregroundColor(Color.white)
                 }
                 Spacer()
             }
             .padding(.bottom)
             Spacer()
             Text("\(questionCount + 1) out of \(questions.count)")
+            .foregroundColor(Color.white)
             Spacer()
     }
-    .navigationBarTitle(Text("Quiz")
+    .navigationBarTitle(Text("")
     .font(.largeTitle))
-    .padding()
+    .multilineTextAlignment(.center)
+    .background(Color.lightBlack.edgesIgnoringSafeArea(.all))
 
     .alert(isPresented: $showAlert) {
         switch activeAlert {
@@ -292,17 +303,17 @@ struct RadioButtons: View {
                     }) {
                         VStack {
                             ZStack{
-                                Circle().fill(self.curResponse == i ? Color.blue : Color.black.opacity(0.2)).frame(width: 20, height: 25)
+                                Circle().fill(self.curResponse == i ? Color.armyGreen : Color.white.opacity(0.8)).frame(width: 30, height: 35)
                                 if self.curResponse == i{
                                     Circle().stroke(Color.blue, lineWidth: 4).frame(width: 32, height: 25)
                                 }
                             }
                             Text("\(i)")
+                                .foregroundColor(Color.white)
                                 .fontWeight(.semibold)
                         }
                         .frame(width: 50.0, height: 50)
                     }
-    //                .padding(.horizontal, 8.0)
                     .foregroundColor(.black)
                 }
                 .padding(.top)
@@ -313,13 +324,16 @@ struct RadioButtons: View {
                     .multilineTextAlignment(.center)
                     .padding(.trailing, 20.0)
                     .frame(width: 100.0)
+                    .foregroundColor(Color.white)
                 Text(getResponseDescription(3))
                     .multilineTextAlignment(.center)
                     .frame(width: 100.0)
+                    .foregroundColor(Color.white)
                 Text(getResponseDescription(5))
                     .multilineTextAlignment(.center)
                     .padding(.leading)
                     .frame(width: 100.0)
+                    .foregroundColor(Color.white)
             }
             .padding(.top)
             

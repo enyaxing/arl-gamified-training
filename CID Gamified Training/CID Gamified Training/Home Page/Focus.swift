@@ -28,9 +28,9 @@ struct Focus: View {
         VStack {
             Text("Please select your focus style.")
             Picker(selection: $selection, label: Text("Picker")) {
-                Text("promotion").tag("promotion").id(UUID())
-                Text("prevention").tag("prevention").id(UUID())
-                Text("neutral").tag("neutral").id(UUID())
+                Text("Promotion").tag("promotion").id(UUID())
+                Text("Prevention").tag("prevention").id(UUID())
+                Text("Neutral").tag("neutral").id(UUID())
             } .pickerStyle(SegmentedPickerStyle())
         } .onDisappear {
             self.db.document(self.user.uid).setData(["focus": self.selection], merge: true)
