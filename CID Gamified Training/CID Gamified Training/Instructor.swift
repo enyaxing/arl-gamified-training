@@ -37,45 +37,62 @@ struct Instructor: View {
     @State var classes: [String:DocumentReference] = [:]
     
     var body: some View {
-        NavigationView{
-        VStack {
-            Text(name)
-            Text(email)
-            Text("Classes:")
+        NavigationView {
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                Spacer()
+                Text("\(name)'s Instructor Portal")
+                .font(.title)
+                .fontWeight(.black)
+                    .foregroundColor(Color.white)
+                    .multilineTextAlignment(.center)
+                Spacer()
+            }
+            Text("  Classes:")
+                .font(.title)
+                .fontWeight(.semibold)
+                .foregroundColor(Color(red: 0.6, green: 0.6, blue: 0.6))
             List {
                 ForEach(self.classes.sorted(by: { $0.0 < $1.0 }), id: \.key) {key, value in
                     NavigationLink(destination: Students(doc: value, name: key)){
                         Text(key)
+                            .foregroundColor(Color.white)
                     }
-                }
+                } .listRowBackground(Color(red: 0.2, green: 0.2, blue: 0.2))
             }
+                
             HStack {
                 Spacer()
                 Button(action: {
                     self.logout()
                 }) {
                     Text("Sign out")
-                    .padding(10)
-                    .background(Color.gray)
-                    .cornerRadius(10)
+                    .foregroundColor(Color.white)
+                    .padding(15)
+                    .background(Color(red: 0, green: 0.2, blue: 0))
+                    .cornerRadius(25)
                 }
                 Spacer()
                 NavigationLink(destination: Focus()) {
                     Text(self.user.regular)
-                    .padding(10)
-                    .background(Color.gray)
-                    .cornerRadius(10)
+                        .foregroundColor(Color.white)
+                    .padding(15)
+                    .background(Color(red: 0, green: 0.4, blue: 0))
+                    .cornerRadius(25)
                 }
                 Spacer()
                 NavigationLink(destination: EditClasses(listClass: self.$classes)) {
                     Text("Edit Classes")
-                    .padding(10)
-                    .background(Color.gray)
-                    .cornerRadius(10)
+                        .foregroundColor(Color.white)
+                    .padding(15)
+                    .background(Color(red: 0, green: 0.6, blue: 0))
+                    .cornerRadius(25)
                 }
                 Spacer()
             }
-        }.onAppear{
+        } .background(Color.black.edgesIgnoringSafeArea(.all))
+            .onAppear{
+                UITableView.appearance().backgroundColor = .clear
             self.setHeader(doc: self.db.document(self.user.uid))
             self.getClasses(db: self.db.document(self.user.uid).collection("classes"))
         }

@@ -85,11 +85,11 @@
 		FA360EAE248E807000F77C7B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EAD248E807000F77C7B /* Question.swift */; };
 		FA360EB0248E809200F77C7B /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EAF248E809200F77C7B /* Training.swift */; };
 		FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EB7248ED74900F77C7B /* Gonogo.swift */; };
-		FA37533524D1CDCB000F2877 /* ARScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37533424D1CDCB000F2877 /* ARScreen.swift */; };
 		FA37FC4124B4C54600A6901D /* Students.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37FC4024B4C54600A6901D /* Students.swift */; };
 		FA37FC4324B4C8EF00A6901D /* EditClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37FC4224B4C8EF00A6901D /* EditClasses.swift */; };
 		FA5CBED324B628B60025DD6A /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5CBED224B628B60025DD6A /* tags.json */; };
 		FA5CBED524B62B4B0025DD6A /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CBED424B62B4B0025DD6A /* Tags.swift */; };
+		FAB9418F24CF140B00E6BAA8 /* ARScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9418E24CF140B00E6BAA8 /* ARScreen.swift */; };
 		FAB9419124CF1A2700E6BAA8 /* 3D Models in Resources */ = {isa = PBXBuildFile; fileRef = FAB9419024CF1A2700E6BAA8 /* 3D Models */; };
 		FAB9419424CF1BF600E6BAA8 /* AH-64 Apache.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FAB9419324CF1BF600E6BAA8 /* AH-64 Apache.usdz */; };
 		FAB9767124A0FF24004613B4 /* Instructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9767024A0FF24004613B4 /* Instructor.swift */; };
@@ -223,11 +223,11 @@
 		FA360EAD248E807000F77C7B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		FA360EAF248E809200F77C7B /* Training.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Training.swift; path = "CID Gamified Training/Training.swift"; sourceTree = SOURCE_ROOT; };
 		FA360EB7248ED74900F77C7B /* Gonogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Gonogo.swift; path = "CID Gamified Training/Gonogo.swift"; sourceTree = SOURCE_ROOT; };
-		FA37533424D1CDCB000F2877 /* ARScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARScreen.swift; sourceTree = "<group>"; };
 		FA37FC4024B4C54600A6901D /* Students.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Students.swift; sourceTree = "<group>"; };
 		FA37FC4224B4C8EF00A6901D /* EditClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClasses.swift; sourceTree = "<group>"; };
 		FA5CBED224B628B60025DD6A /* tags.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; };
 		FA5CBED424B62B4B0025DD6A /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
+		FAB9418E24CF140B00E6BAA8 /* ARScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARScreen.swift; sourceTree = "<group>"; };
 		FAB9419024CF1A2700E6BAA8 /* 3D Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "3D Models"; sourceTree = "<group>"; };
 		FAB9419324CF1BF600E6BAA8 /* AH-64 Apache.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = "AH-64 Apache.usdz"; sourceTree = "<group>"; };
 		FAB9767024A0FF24004613B4 /* Instructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructor.swift; sourceTree = "<group>"; };
@@ -499,7 +499,7 @@
 				FAFD9E5B24BDFE3B0008B277 /* StatView.swift */,
 				FAFD9E5D24BE10060008B277 /* StudentCard.swift */,
 				FADCA61124C09F93001EB434 /* AdvancedSetting.swift */,
-				FA37533424D1CDCB000F2877 /* ARScreen.swift */,
+				FAB9418E24CF140B00E6BAA8 /* ARScreen.swift */,
 			);
 			path = "CID Gamified Training";
 			sourceTree = "<group>";
@@ -841,8 +841,12 @@
 				FAD0D79F24A0F04F003F2BC3 /* CardView.swift in Sources */,
 				FAFD9E5A24BDF5040008B277 /* StatDetail.swift in Sources */,
 				FAB9767124A0FF24004613B4 /* Instructor.swift in Sources */,
-				FA37533524D1CDCB000F2877 /* ARScreen.swift in Sources */,
 				FAFD9E5C24BDFE3B0008B277 /* StatView.swift in Sources */,
+<<<<<<< HEAD
+				985CBBA424B50EDB0074A110 /* Achievement.swift in Sources */,
+				FAB9418F24CF140B00E6BAA8 /* ARScreen.swift in Sources */,
+=======
+>>>>>>> master
 				FABF3EBF249D255B00B96FC9 /* Setting.swift in Sources */,
 				98E89E1924A6B74D00E2DE9C /* GonogoTutorial.swift in Sources */,
 				FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */,

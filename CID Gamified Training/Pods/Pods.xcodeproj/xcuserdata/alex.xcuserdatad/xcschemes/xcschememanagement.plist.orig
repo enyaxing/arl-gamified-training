@@ -57,7 +57,7 @@
 		<key>GoogleDataTransport.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>16</integer>
 		</dict>
 		<key>GoogleDataTransportCCTSupport.xcscheme_^#shared#^_</key>
 		<dict>

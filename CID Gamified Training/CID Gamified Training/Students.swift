@@ -27,42 +27,57 @@ struct Students: View {
     var assignment: DocumentReference?
     
     var body: some View {
-        VStack{
-            Text(self.name)
-            Text("Students:")
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                Spacer()
+                Text(self.name)
+                .font(.title)
+                .fontWeight(.black)
+                    .foregroundColor(Color.white)
+                    .multilineTextAlignment(.center)
+                Spacer()
+            }
+            Text("  Students:")
+            .font(.title)
+            .fontWeight(.semibold)
+            .foregroundColor(Color(red: 0.6, green: 0.6, blue: 0.6))
             List {
                 ForEach(self.students.sorted(by: { $0.value < $1.value }), id: \.key) {key, value in
                     Group{
                         if self.assignment ==  nil {
                             NavigationLink(destination: Profile(uid: key)){
-                                Text(value)
+                                Text(value).foregroundColor(Color.white)
                             }
                         } else {
                             StudentCard(name: value, id: key, doc: self.assignment)
                         }
                     }
-                }
+                }.listRowBackground(Color(red: 0.2, green: 0.2, blue: 0.2))
             }
             if self.assignment == nil {
                 HStack {
                     Spacer()
                     NavigationLink(destination: EditStudent(classes: self.doc)) {
                         Text("Edit Students")
-                        .padding(10)
-                        .background(Color.gray)
-                        .cornerRadius(10)
+                        .foregroundColor(Color.white)
+                        .padding(15)
+                        .background(Color(red: 0, green: 0.2, blue: 0))
+                        .cornerRadius(25)
                     }
                     Spacer()
                     NavigationLink(destination: Assignments(classes: self.doc)) {
                         Text("Assignments")
-                        .padding(10)
-                        .background(Color.gray)
-                        .cornerRadius(10)
+                        .foregroundColor(Color.white)
+                        .padding(15)
+                        .background(Color(red: 0, green: 0.6, blue: 0))
+                        .cornerRadius(25)
                     }
                     Spacer()
                 }
             }
-        } .onAppear{
+        }.background(Color.black.edgesIgnoringSafeArea(.all))
+        .onAppear{
+            UITableView.appearance().backgroundColor = .clear
             self.getStudents(doc: self.doc!)
         }
     }
