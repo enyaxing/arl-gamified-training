@@ -22,25 +22,38 @@ struct Assignments: View {
     var classes: DocumentReference?
     
     var body: some View {
-        VStack {
-            Text("Assignments:")
-                .font(.largeTitle)
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                Spacer()
+                Text("Assignments:")
+                .font(.title)
                 .fontWeight(.black)
+                .foregroundColor(Color.white)
+                Spacer()
+            }
             List {
                 ForEach(self.assignments.sorted(by: { $0.0 < $1.0 }), id: \.key) {key, value in
                     NavigationLink(destination: AssignmentDetail(assignment: value, doc: self.classes, assignments: self.$assignments)){
-                        Text(key)
+                        Text(key).foregroundColor(Color.white)
                     }
-                }
+                }.listRowBackground(Color(red: 0.4, green: 0.4, blue: 0.4))
             }
             if self.user.userType == "instructor" {
                 HStack{
+                    Spacer()
                     NavigationLink(destination: Setting(classes: self.classes)){
                         Text("Create Assignment")
+                        .foregroundColor(Color.white)
+                        .padding(15)
+                        .background(Color(red: 0, green: 0.6, blue: 0))
+                        .cornerRadius(25)
                     }
+                    Spacer()
                 }
             }
-        } .onAppear{
+        }.background(Color.black.edgesIgnoringSafeArea(.all))
+        .onAppear{
+            UITableView.appearance().backgroundColor = .clear
             self.getassignments(db: self.classes!.collection("assignments"))
         }
     }
