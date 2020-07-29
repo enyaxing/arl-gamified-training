@@ -33,7 +33,8 @@ struct Students: View {
                 Text(self.name)
                 .font(.title)
                 .fontWeight(.black)
-                .foregroundColor(Color.white)
+                    .foregroundColor(Color.white)
+                    .multilineTextAlignment(.center)
                 Spacer()
             }
             Text("  Students:")
@@ -51,7 +52,7 @@ struct Students: View {
                             StudentCard(name: value, id: key, doc: self.assignment)
                         }
                     }
-                }.listRowBackground(Color(red: 0.4, green: 0.4, blue: 0.4))
+                }.listRowBackground(Color(red: 0.2, green: 0.2, blue: 0.2))
             }
             if self.assignment == nil {
                 HStack {

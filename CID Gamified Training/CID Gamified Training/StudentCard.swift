@@ -21,15 +21,19 @@ struct StudentCard: View {
             if self.complete {
                 HStack {
                     Text(self.name)
+                        .foregroundColor(Color.white)
                     Spacer()
-                    Text("COMPLETED")
-                } .background(Color.blue)
+                    Text("COMPLETE")
+                        .foregroundColor(Color.white)
+                }
             } else {
                 HStack {
                     Text(self.name)
+                        .foregroundColor(Color.white)
                     Spacer()
                     Text("INCOMPLETE")
-                }.background(Color.red)
+                        .foregroundColor(Color.red)
+                }
             }
         } .onAppear{
             self.checkStudent(doc: self.doc!)

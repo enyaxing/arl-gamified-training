@@ -36,7 +36,7 @@ struct Assignments: View {
                     NavigationLink(destination: AssignmentDetail(assignment: value, doc: self.classes, assignments: self.$assignments)){
                         Text(key).foregroundColor(Color.white)
                     }
-                }.listRowBackground(Color(red: 0.4, green: 0.4, blue: 0.4))
+                }.listRowBackground(Color(red: 0.2, green: 0.2, blue: 0.2))
             }
             if self.user.userType == "instructor" {
                 HStack{

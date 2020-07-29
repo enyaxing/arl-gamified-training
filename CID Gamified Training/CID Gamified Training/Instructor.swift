@@ -44,7 +44,8 @@ struct Instructor: View {
                 Text("\(name)'s Instructor Portal")
                 .font(.title)
                 .fontWeight(.black)
-                .foregroundColor(Color.white)
+                    .foregroundColor(Color.white)
+                    .multilineTextAlignment(.center)
                 Spacer()
             }
             Text("  Classes:")
@@ -57,7 +58,7 @@ struct Instructor: View {
                         Text(key)
                             .foregroundColor(Color.white)
                     }
-                } .listRowBackground(Color(red: 0.4, green: 0.4, blue: 0.4))
+                } .listRowBackground(Color(red: 0.2, green: 0.2, blue: 0.2))
             }
                 
             HStack {
