@@ -80,15 +80,32 @@ struct Question: View {
                 Button(action: {
                     self.prevQuestion()
                 }) {
-                    Text("Back")
-                    .foregroundColor(Color.white)
+                    VStack {
+                        Image("right")
+                            .resizable()
+                            .rotationEffect(.degrees(-180))
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(Color.white)
+                            .cornerRadius(20)
+                        Text("back")
+                        .frame(width: 100, height: 10)
+                        .foregroundColor(Color.white)
+                    }
                 }
                 Spacer()
                 Button(action: {
                     self.answered(self.curResponse)
                 }) {
-                   Text("Next")
-                   .foregroundColor(Color.white)
+                    VStack {
+                        Image("right")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(20)
+                        Text("next")
+                            .frame(width: 100, height: 10)
+                            .foregroundColor(Color.white)
+                    }
                 }
                 Spacer()
             }

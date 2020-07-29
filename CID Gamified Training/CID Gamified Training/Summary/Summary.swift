@@ -45,29 +45,32 @@ struct Summary: View {
             Text("Summary")
             .font(.largeTitle)
             .fontWeight(.black)
+            .foregroundColor(Color.white)
             Text("Session Type: \(self.session.type)")
                 .font(.headline)
                 .fontWeight(.bold)
+                .foregroundColor(Color.white)
             if(self.user.regular != "neutral") {
                 Text("Points: \(session.points)")
                     .font(.headingFont)
+                    .foregroundColor(Color.white)
             }
             Group {
                 if self.user.regular == "promotion" {
                     Text("Correct: \(countCorrect(answer: answers))/\(answers.count)")
                     .fontWeight(.bold)
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color.darkBlue)
                 } else if self.user.regular == "prevention" {
                     Text("Incorrect: \(incorrect(answer: answers))/\(answers.count)")
                     .fontWeight(.bold)
-                    .foregroundColor(Color.red)
+                    .foregroundColor(Color.enemyRed)
                 } else {
                     Text("Correct: \(countCorrect(answer: answers))")
                     .fontWeight(.bold)
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color.darkBlue)
                     Text("Incorrect: \(incorrect(answer: answers))")
                     .fontWeight(.bold)
-                    .foregroundColor(Color.red)
+                    .foregroundColor(Color.enemyRed)
                 }
             }
             Text(tagID)
@@ -108,7 +111,7 @@ struct Summary: View {
             if !self.hideback {
                 self.countdown = true
             }
-        }
+        }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
     }
     
     /** Get the list of answers of session from Firebase. */

@@ -50,6 +50,7 @@ struct Setting: View {
                 Text("Create Assignment")
                 .font(.largeTitle)
                 .fontWeight(.black)
+                .foregroundColor(Color.white)
                 TextField("Assignment Name", text: $name)
                 NavigationLink(destination: AdvancedSetting(friendlyAccuracy: self.$friendlyAccuracy, enemyAccuracy: self.$enemyAccuracy, time: self.$time)) {
                     Text("Advanced Settings")
@@ -58,13 +59,17 @@ struct Setting: View {
                 Text("Settings")
                     .font(.largeTitle)
                     .fontWeight(.black)
+                    .foregroundColor(Color.white)
             }
-            Text("Directions: Click a vehicle to move it.  The order is Library -> Friendly -> Enemy -> Library")
+            Text("Directions: Click a vehicle to move it.  The order is Library → Friendly → Enemy → Library.")
+             .foregroundColor(Color.white)
+            Spacer()
             HStack {
                 VStack {
                     Text("Library")
                         .font(.title)
                         .fontWeight(.heavy)
+                         .foregroundColor(Color.white)
                     List {
                         ForEach(self.library, id: \.id) {card in
                             CardView(folder: card.name, back: Color.gray)
@@ -81,9 +86,10 @@ struct Setting: View {
                     Text("Friendly")
                     .font(.title)
                     .fontWeight(.heavy)
+                     .foregroundColor(Color.white)
                     List {
                         ForEach(self.friendly, id: \.id) {card in
-                            CardView(folder: card.name, back: Color.blue)
+                            CardView(folder: card.name, back: Color.darkBlue)
                                 .onTapGesture {
                                     let index = self.friendly.firstIndex(of: card) ?? 0
                                     self.enemy.append(card)
@@ -95,9 +101,10 @@ struct Setting: View {
                     Text("Enemy")
                     .font(.title)
                     .fontWeight(.heavy)
+                     .foregroundColor(Color.white)
                     List {
                         ForEach(self.enemy, id: \.id) {card in
-                            CardView(folder: card.name, back: Color.red)
+                            CardView(folder: card.name, back: Color.enemyRed)
                                 .onTapGesture {
                                     let index = self.enemy.firstIndex(of: card) ?? 0
                                     self.library.append(card)
@@ -123,17 +130,20 @@ struct Setting: View {
                     self.time = 60
                 }) {
                     Text("Reset")
+                     .foregroundColor(Color.white)
                 }
                 Spacer()
                 Button(action: {
                     self.save()
                 }) {
                     Text("Save")
+                     .foregroundColor(Color.white)
                 }
                 Spacer()
                 if self.user.userType != "instructor" && self.classes != nil{
                     NavigationLink(destination: Assignments(classes: self.classes!)) {
                         Text("Assignments")
+                         .foregroundColor(Color.white)
                     }
                     Spacer()
                 }
@@ -142,6 +152,7 @@ struct Setting: View {
                         self.random()
                     }) {
                         Text("Random")
+                         .foregroundColor(Color.white)
                     }
                     Spacer()
                 }
@@ -156,7 +167,7 @@ struct Setting: View {
             self.friendly = Model.friendlyFolder.sorted()
             self.enemy = Model.enemyFolder.sorted()
             self.getClass()
-        }
+        }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
     }
     
     func save() {

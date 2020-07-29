@@ -19,16 +19,16 @@ extension Color {
         return Color(UIColor(red: 0.142, green: 0.142, blue: 0.142, alpha: 1))
     }
     
-    static var friendlyGreen: Color {
-        return Color(red: 0.302, green: 0.713, blue: 0.476, opacity: 1)
+    static var darkBlue: Color {
+        return Color(UIColor(red: 0.2, green: 0.4, blue: 0.8, alpha: 0.8))
     }
-    
-    static var friendlyGreenShadow: Color {
-        return Color(red: 0.08, green: 0.62, blue: 0.31, opacity: 1.0)
+
+    static var armyGreenShadow: Color {
+        return Color(red: 0.250, green: 0.42, blue: 0.28, opacity: 1)
     }
     
     static var enemyRed: Color {
-        return Color(red: 1, green: 0.231, blue: 0.188, opacity: 1)
+        return Color(UIColor(red: 0.708, green: 0.163, blue: 0.133, alpha: 1))
     }
     
     static var enemyRedShadow: Color {

@@ -18,12 +18,12 @@ struct Neutral: View {
             LottieView(fileName: "blue", playing: $playing)
                 .frame(width: 300, height: 300)
                 .background(Color.clear)
-                .overlay(Text("\( String(format: "%.1f", secondsElapsed)) seconds").font(.largeTitle).fontWeight(.bold).offset(y:-200))
+                .overlay(Text("\( String(format: "%.1f", secondsElapsed)) seconds").font(.largeTitle).fontWeight(.bold).offset(y:-200).foregroundColor(Color.white))
         } else {
             LottieView(fileName: "incorrect", playing: $playing)
-            .frame(width: 900, height: 900)
+            .frame(width: 800, height: 800)
             .background(Color.clear)
-            .overlay(Text("\( String(format: "%.1f", secondsElapsed)) seconds").font(.largeTitle).fontWeight(.bold).offset(y:-200))
+            .overlay(Text("\( String(format: "%.1f", secondsElapsed)) seconds").font(.largeTitle).fontWeight(.bold).offset(y:-200).foregroundColor(Color.white))
             }
         }
     }

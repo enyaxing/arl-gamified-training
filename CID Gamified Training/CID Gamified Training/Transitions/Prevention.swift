@@ -15,6 +15,7 @@ struct Prevention: View {
     @State var multiply: Bool
     @Binding var playing: Bool
     var body: some View {
+        Color.lightBlack.edgesIgnoringSafeArea(.all).overlay(
          Group {
                if (type == "correct") {
                 VStack {
@@ -22,13 +23,14 @@ struct Prevention: View {
                  LottieView(fileName: "blue", playing: $playing)
                      .frame(width: 100, height: 100)
                      .background(Color.clear)
-                     .offset(y: 120)
+                     .offset(y: 100)
                      VStack {
                          HStack {
                              Spacer()
                              Text("Time    ")
                                  .font(.largeTitle)
                                  .fontWeight(.bold)
+                                .foregroundColor(Color.white)
                              Spacer()
                                  LottieView(fileName: "minus", playing: $playing)
                                  .frame(width: 20, height: 20)
@@ -37,11 +39,13 @@ struct Prevention: View {
                                  Text("0 Points")
                                      .font(.largeTitle)
                                      .fontWeight(.bold)
+                                    .foregroundColor(Color.white)
                                      .offset(x: 10)
                             } else {
                                 Text("\(self.points) Points")
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
+                                .foregroundColor(Color.white)
                                 .offset(x: 10)
                             }
                                  Spacer()
@@ -52,12 +56,14 @@ struct Prevention: View {
                                  Text("Accuracy")
                                      .font(.largeTitle)
                                      .fontWeight(.bold)
+                                    .foregroundColor(Color.white)
                                  Spacer()
                                  LottieView(fileName: "minus", playing: $playing)
                                  .frame(width: 20, height: 20)
                                  Text("0 Points")
                                      .font(.largeTitle)
                                      .fontWeight(.bold)
+                                    .foregroundColor(Color.white)
                                  Spacer()
                          }.offset(y: 100)
                          Spacer()
@@ -72,6 +78,7 @@ struct Prevention: View {
                                  .font(.largeTitle)
                                  .fontWeight(.bold)
                                  .offset(y: -20)
+                                .foregroundColor(Color.white)
                              Spacer()
                                  LottieView(fileName: "minus", playing: $playing)
                                  .frame(width: 20, height: 20)
@@ -81,11 +88,13 @@ struct Prevention: View {
                                          .font(.largeTitle)
                                          .fontWeight(.bold)
                                         .offset(x: 10, y: -20)
+                                        .foregroundColor(Color.white)
                                 } else {
                                     Text("\(self.points) Points")
                                     .font(.largeTitle)
                                     .fontWeight(.bold)
-                                        .offset(x: 10, y: -20)
+                                    .offset(x: 10, y: -20)
+                                    .foregroundColor(Color.white)
                                 }
                              Spacer()
                          }.offset(y: -200)
@@ -95,16 +104,17 @@ struct Prevention: View {
                } else {
                 VStack {
                     Spacer()
-                    LottieView(fileName: "xmark", playing: $playing)
-                        .frame(width: 150, height: 150)
+                    LottieView(fileName: "incorrect", playing: $playing)
+                        .frame(width: 200, height: 200)
                         .background(Color.clear)
-                        .offset(y: 120)
+                        .offset(y:60)
                         VStack {
                             HStack {
                                 Spacer()
                                 Text("Time    ")
                                     .font(.largeTitle)
                                     .fontWeight(.bold)
+                                    .foregroundColor(Color.white)
                                 Spacer()
                                     LottieView(fileName: "minus", playing: $playing)
                                     .frame(width: 20, height: 20)
@@ -114,11 +124,13 @@ struct Prevention: View {
                                              .font(.largeTitle)
                                              .fontWeight(.bold)
                                              .offset(x: 10)
+                                            .foregroundColor(Color.white)
                                     } else {
                                         Text("50 Points")
                                         .font(.largeTitle)
                                         .fontWeight(.bold)
                                         .offset(x: 10)
+                                        .foregroundColor(Color.white)
                                     }
                                     Spacer()
                                 }.offset(y: 80)
@@ -128,6 +140,7 @@ struct Prevention: View {
                                     Text("Accuracy")
                                         .font(.largeTitle)
                                         .fontWeight(.bold)
+                                        .foregroundColor(Color.white)
                                     Spacer()
                                     LottieView(fileName: "minus", playing: $playing)
                                     .frame(width: 20, height: 20)
@@ -135,12 +148,12 @@ struct Prevention: View {
                                          Text("200 Points")
                                              .font(.largeTitle)
                                              .fontWeight(.bold)
-                                             .offset(x: 10)
+                                            .foregroundColor(Color.white)
                                     } else {
                                         Text("50 Points")
                                         .font(.largeTitle)
                                         .fontWeight(.bold)
-                                        .offset(x: 10)
+                                        .foregroundColor(Color.white)
                                     }
                                     Spacer()
                             }.offset(y: 100)
@@ -156,6 +169,7 @@ struct Prevention: View {
                                     .font(.largeTitle)
                                     .fontWeight(.bold)
                                     .offset(y: -20)
+                                    .foregroundColor(Color.white)
                                 Spacer()
                                     LottieView(fileName: "minus", playing: $playing)
                                     .frame(width: 20, height: 20)
@@ -165,24 +179,27 @@ struct Prevention: View {
                                              .font(.largeTitle)
                                              .fontWeight(.bold)
                                             .offset(x: 10, y: -20)
+                                            .foregroundColor(Color.white)
                                     } else {
                                         Text("100 Points")
                                         .font(.largeTitle)
                                         .fontWeight(.bold)
-                                            .offset(x: 10, y: -20)
+                                        .offset(x: 10, y: -20)
+                                        .foregroundColor(Color.white)
                                     }
                                 Spacer()
                             }.offset(y: -200)
                             Spacer()
-                            }.offset(y: 0)
+                            }.offset(y: -100)
                         }
                    }
                }
+        )
     }
 }
 
 struct Prevention_Previews: PreviewProvider {
     static var previews: some View {
-        Prevention(secondsElapsed: 10, points: 100, type: "incorrect", multiply: false, playing: Binding.constant(true))
+        Prevention(secondsElapsed: 10, points: 10, type: "incorrect", multiply: false, playing: Binding.constant(true))
     }
 }

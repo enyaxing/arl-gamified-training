@@ -13,15 +13,18 @@ struct Countdown: View {
     @Binding var instructions: Bool
     
     var body: some View {
+        Color.lightBlack.edgesIgnoringSafeArea(.all).overlay(
         ZStack {
             LottieView(fileName: "countdown", playing: $playing)
                 .background(Color.clear)
                 .scaledToFit()
                 .aspectRatio(contentMode: .fit)
                 .edgesIgnoringSafeArea(.all)
+            
         } .onDisappear{
             self.instructions = true
         }
+        )
     }
 }
 

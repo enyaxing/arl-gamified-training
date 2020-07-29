@@ -108,7 +108,7 @@ struct GonogoMain: View {
             HStack {
             Image("close")
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(.black)
+                .foregroundColor(Color.white)
             }
         }
     }
@@ -191,7 +191,7 @@ struct GonogoMain: View {
         }
         .onAppear() {
             self.index = Int.random(in: 0..<self.models[self.folder].count)
-        }
+        }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
     }
     
     /** Action performed when enemy button clicked. */
@@ -254,6 +254,7 @@ struct GonogoMain: View {
                     Text("\(self.points)")
                         .font(.title)
                         .fontWeight(.bold)
+                        .foregroundColor(Color.white)
                     Image("coin").resizable().frame(width: 40, height: 40)
                         .aspectRatio(contentMode: .fit)
                         .offset(y: -2)
@@ -266,6 +267,7 @@ struct GonogoMain: View {
             Text("Time Remaining: \(timeRemaining)")
                 .font(.title)
                 .fontWeight(.semibold)
+                .foregroundColor(Color.white)
                 .padding(.top)
                 .onReceive(timer) { _ in
                     if self.timeRemaining > 0 && !self.stopped {

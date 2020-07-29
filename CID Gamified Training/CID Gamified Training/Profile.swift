@@ -37,17 +37,19 @@ struct Profile: View {
     
     var body: some View {
         dateFormatter.dateFormat = "HH:mm dd MMM yy"
-
+        
         return ScrollView {
             VStack {
                 HStack(alignment: .center) {
                     VStack(alignment: .leading) {
                        Text(name)
                            .font(.headingFont)
+                            .foregroundColor(Color.white)
                        HStack(alignment: .center){
                            Image("mail").resizable().frame(width: 24, height: 24)
                            Text(email)
                                .font(.bodyFontSmall)
+                            .foregroundColor(Color.white)
                        }
                     }
                     Spacer()
@@ -62,24 +64,42 @@ struct Profile: View {
                     HStack{
                         Text("Statistics")
                         .font(.headingFont)
+                        .foregroundColor(Color.white)
                         NavigationLink(destination: StatDetail(prevSessions: self.prevSessionIds, uid: self.uid)){
                             Text("Details")
                         }
                     }
                     HStack {
                         // Placeholder stats for now
-                        StatBox(img_name: "coin", description: "sessions completed")
-                        StatBox(img_name: "time", description: "time trained")
+                        StatBox(img_name: "coin", description: "sessions completed").foregroundColor(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10.0)
+                                .stroke(Color.white, lineWidth: 2)
+                        )
+                        StatBox(img_name: "time", description: "time trained").foregroundColor(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10.0)
+                                .stroke(Color.white, lineWidth: 2)
+                        )
                     }
                     
                     HStack {
-                        StatBox(img_name: "stopwatch", description: "avg response time")
-                        StatBox(img_name: "accuracy", description: "accuracy")
+                        StatBox(img_name: "stopwatch", description: "avg response time").foregroundColor(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10.0)
+                                .stroke(Color.white, lineWidth: 2)
+                        )
+                        StatBox(img_name: "accuracy", description: "accuracy").foregroundColor(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10.0)
+                                .stroke(Color.white, lineWidth: 2)
+                        )
                     }
                 }
                 .padding(.top)
                 Text("Previous Sessions:")
                     .font(.headingFont)
+                    .foregroundColor(Color.white)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 30)
                     .padding(.horizontal)
@@ -87,14 +107,17 @@ struct Profile: View {
                     NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false), uid: self.uid, session: self.prevSessions[sess]!)){
                         HStack {
                             Text("\(self.dateFormatter.string(for: self.prevSessions[sess]?.timestamp.dateValue()) ?? "Unknown date")")
+                                .foregroundColor(Color.white)
                             Spacer()
                             // Placeholder
                             Text("\(self.prevSessions[sess]!.type)")
+                                .foregroundColor(Color.white)
                             Spacer()
                             // Placeholder
                             Text("\(self.prevSessions[sess]!.points)")
+                                .foregroundColor(Color.white)
                             Spacer()
-                            Image("navigate_next").resizable().frame(width: 24, height: 24)
+                            Image("navigate_next").resizable().frame(width: 24, height: 24).foregroundColor(Color.white)
                         }
                         .foregroundColor(.black)
                     }
@@ -103,8 +126,7 @@ struct Profile: View {
                     .padding(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10.0)
-                            .stroke(Color.outlineGray, lineWidth: 2)
-                            .shadow(color: Color.outlineGray, radius: 0, x: 0, y: 2)
+                            .stroke(Color.white, lineWidth: 2)
                     )
                 }
                 .padding(.horizontal)
@@ -113,7 +135,7 @@ struct Profile: View {
             }.onAppear{
                 self.setHeader(doc: self.db.document(self.uid))
                 self.getSessions(db: self.db.document(self.uid).collection("sessions"))
-            }
+            }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
         }
     }
 

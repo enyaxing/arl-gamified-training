@@ -18,6 +18,7 @@ struct SummaryDetail: View {
     @Binding var back: Bool
     
     var body: some View {
+        Color.lightBlack.edgesIgnoringSafeArea(.all).overlay(
         VStack {
             Image(uiImage: UIImage(imageLiteralResourceName: self.answer.image))
             .resizable()
@@ -28,16 +29,19 @@ struct SummaryDetail: View {
                  Text("You chose ")
                  .font(.title)
                  .fontWeight(.semibold)
+                    .foregroundColor(Color.white)
                 + Text(self.answer.expected)
                  .font(.title)
                  .fontWeight(.semibold)
-                 .foregroundColor(Color.blue)
+                 .foregroundColor(Color.darkBlue)
                 + Text(",")
                 .font(.title)
                 .fontWeight(.semibold)
+                    .foregroundColor(.white)
                  Text("the correct answer.")
                 .font(.title)
                 .fontWeight(.semibold)
+                .foregroundColor(Color.white)
                 }
               }
             } else {
@@ -45,34 +49,41 @@ struct SummaryDetail: View {
              Text("The correct answer is")
                  .font(.title)
                  .fontWeight(.semibold)
+                .foregroundColor(Color.white)
             Text(self.answer.expected)
                  .font(.title)
                  .fontWeight(.semibold)
-                 .foregroundColor(Color.blue)
+                 .foregroundColor(Color.darkBlue)
              + Text(".")
                  .font(.title)
                  .fontWeight(.semibold)
+                .foregroundColor(Color.white)
                 }
          HStack {
              Text("You chose")
                  .font(.title)
                  .fontWeight(.semibold)
+            .foregroundColor(Color.white)
             Text(self.answer.received)
                  .font(.title)
                  .fontWeight(.semibold)
-                 .foregroundColor(Color.red)
+                 .foregroundColor(Color.enemyRed)
              + Text(".")
                  .font(.title)
                  .fontWeight(.semibold)
+            .foregroundColor(Color.white)
                 }
             }
             Text("You answered in \(self.answer.time, specifier: "%.1f") seconds.")
+                .foregroundColor(Color.white)
             Text("(This is a \(self.answer.vehicleName))")
+                .foregroundColor(Color.white)
         }.onAppear {
             self.back = true
         }.onDisappear {
             self.back = false
         }
+        )
     }
 }
 

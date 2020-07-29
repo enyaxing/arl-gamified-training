@@ -37,7 +37,7 @@ struct Instructions: View {
            HStack {
            Image("close")
                .aspectRatio(contentMode: .fit)
-               .foregroundColor(.black)
+               .foregroundColor(.white)
            }
        }
     }
@@ -53,8 +53,10 @@ struct Instructions: View {
                     Text("You are about to enter the Training game mode.  You must classify 20 vehicles as either friendly or enemy by clicking the corresponding buttons.  The list of friendly and enemy vehicles are shown below.  Good luck!")
                         .font(.headline)
                         .fontWeight(.medium)
+                        .foregroundColor(Color.white)
                 } else {
                     Text("You are about to enter the Gonogo game mode.  You must classify 20 vehicles as either friendly.  The default answer is friendly.  To select friendly, simply wait for the turn timer to expire.  To select enemy, click the enemy button at the bottom of the screen.  The list of friendly and enemy vehicles are shown below.  Good luck!")
+                        .foregroundColor(Color.white)
                 }
             }
             Spacer()
@@ -63,9 +65,10 @@ struct Instructions: View {
                     Text("Friendly")
                     .font(.title)
                     .fontWeight(.heavy)
+                    .foregroundColor(Color.white)
                     List {
                         ForEach(self.enemy, id: \.id) {card in
-                            CardView(folder: card.name, back: Color.blue)
+                            CardView(folder: card.name, back: Color.darkBlue)
                         }
                     }
                 }
@@ -73,6 +76,7 @@ struct Instructions: View {
                     Text("Enemy")
                     .font(.title)
                     .fontWeight(.heavy)
+                    .foregroundColor(Color.white)
                     List {
                         ForEach(self.friendly, id: \.id) {card in
                             CardView(folder: card.name, back: Color.red)
@@ -85,12 +89,13 @@ struct Instructions: View {
                 Text("Start")
                     .font(.largeTitle)
                     .fontWeight(.black)
+                    .foregroundColor(Color.darkBlue)
             }
             Spacer()
         } .onAppear{
             self.friendly = Model.friendlyFolder
             self.enemy = Model.enemyFolder
-        }
+        }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
     }
 }
 

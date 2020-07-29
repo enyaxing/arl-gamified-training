@@ -25,8 +25,10 @@ struct Focus: View {
     let defaults = UserDefaults.standard
     
     var body: some View {
+        Color.lightBlack.edgesIgnoringSafeArea(.all).overlay(
         VStack {
             Text("Please select your focus style.")
+            .foregroundColor(Color.white)
             Picker(selection: $selection, label: Text("Picker")) {
                 Text("Promotion").tag("promotion").id(UUID())
                 Text("Prevention").tag("prevention").id(UUID())
@@ -38,6 +40,7 @@ struct Focus: View {
         }.onAppear {
             self.selection = self.user.regular
         }
+        )
     }
 }
 

@@ -15,6 +15,7 @@ struct Promotion: View {
     @State var multiply:Bool
     @Binding var playing: Bool
     var body: some View {
+        Color.lightBlack.edgesIgnoringSafeArea(.all).overlay(
         Group {
             if (type == "correct") {
             VStack {
@@ -28,18 +29,21 @@ struct Promotion: View {
                         Text("Time    ")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .foregroundColor(Color.white)
                         Spacer()
                         LottieView(fileName: "plus", playing: $playing)
-                            .frame(width: 60, height: 60)
+                            .frame(width: 30, height: 30)
                             .aspectRatio(contentMode: .fit)
                         if (self.multiply) {
                             Text("200 Points")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .foregroundColor(Color.white)
                         } else {
                             Text("\(self.points - 50) Points")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .foregroundColor(Color.white)
                         }
                         Spacer()
                     }
@@ -50,19 +54,22 @@ struct Promotion: View {
                         Text("Accuracy")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .foregroundColor(Color.white)
                         Spacer()
                         LottieView(fileName: "plus", playing: $playing)
-                            .frame(width: 55, height: 60)
+                            .frame(width: 30, height: 30)
                             .aspectRatio(contentMode: .fit)
                         if (self.multiply) {
                             Text("200 Points")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .frame(width: 175, height: 60)
+                            .foregroundColor(Color.white)
                         } else {
                             Text("50 Points")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .foregroundColor(Color.white)
                         }
                         Spacer()
                 }
@@ -79,18 +86,20 @@ struct Promotion: View {
                     Text("Total   ")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .offset(y: -10)
+                        .foregroundColor(Color.white)
                     Spacer()
                         LottieView(fileName: "plus", playing: $playing)
-                        .frame(width: 60, height: 60)
+                        .frame(width: 30, height: 30)
                       if (self.multiply) {
                         Text("400 Points")
                           .font(.largeTitle)
                           .fontWeight(.bold)
+                          .foregroundColor(Color.white)
                       } else {
                         Text("\(self.points) Points")
                           .font(.largeTitle)
                           .fontWeight(.bold)
+                          .foregroundColor(Color.white)
                       }
                     Spacer()
                 }
@@ -100,21 +109,23 @@ struct Promotion: View {
         } else {
             VStack {
                 Spacer()
-                LottieView(fileName: "xmark", playing: $playing)
-                    .frame(width: 150, height: 150)
-                    .offset(y: 100)
+                LottieView(fileName: "incorrect", playing: $playing)
+                    .frame(width: 200, height: 200)
+                    .offset(y: 60)
                 VStack {
                     HStack {
                         Spacer()
                         Text("Time    ")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .foregroundColor(Color.white)
                         Spacer()
                         LottieView(fileName: "plus", playing: $playing)
-                        .frame(width: 60, height: 60)
+                        .frame(width: 30, height: 30)
                         Text("0 Points")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .foregroundColor(Color.white)
                         Spacer()
                     }.offset(x: 20, y: 120)
                     Spacer()
@@ -123,19 +134,21 @@ struct Promotion: View {
                         Text("Accuracy")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .foregroundColor(Color.white)
                         Spacer()
                         LottieView(fileName: "plus", playing: $playing)
-                            .frame(width: 60, height: 60)
-                            .offset(x: 10)
+                            .frame(width: 30, height: 30)
+                            .offset(x: 3)
                         Text("0 Points")
                             .font(.largeTitle)
                             .fontWeight(.bold)
+                            .foregroundColor(Color.white)
                         Spacer()
                 }.offset(y: 140)
                 Spacer()
                 Image("line")
                 .resizable()
-                .frame(width: 400, height: 400)
+                .frame(width: 400, height: 350)
                 .offset(y: -10)
                 Spacer()
                 HStack {
@@ -143,24 +156,27 @@ struct Promotion: View {
                     Text("Total   ")
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .foregroundColor(Color.white)
                     Spacer()
                     LottieView(fileName: "plus", playing: $playing)
-                        .frame(width: 60, height: 60)
+                        .frame(width: 30, height: 30)
                     Text("0 Points")
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .foregroundColor(Color.white)
                     Spacer()
                 }.offset(x: 27, y: -160)
                 Spacer()
-                }.offset(y: -60)
+                }.offset(y: -130)
                 }
             }
         }
+    )
     }
 }
 
 struct Promotion_Previews: PreviewProvider {
     static var previews: some View {
-        Promotion(secondsElapsed: 10, points: 100, type: "correct", multiply: true, playing: Binding.constant(true))
+        Promotion(secondsElapsed: 10, points: 100, type: "incorrect", multiply: true, playing: Binding.constant(true))
     }
 }

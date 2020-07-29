@@ -50,6 +50,10 @@ struct ContentView: View {
                         .foregroundColor(Color.white)
                         .background(Color.armyGreen)
                         .cornerRadius(20)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white, lineWidth: 5)
+                        )
                 }
                 HStack {
                 NavigationLink(destination:
@@ -83,6 +87,10 @@ struct ContentView: View {
                         .foregroundColor(Color.white)
                         .background(Color.armyGreen)
                         .cornerRadius(20)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white, lineWidth: 5)
+                    )
                 }
                  NavigationLink(destination:
                     Group {
@@ -133,6 +141,10 @@ struct ContentView: View {
                         .foregroundColor(Color.white)
                         .background(Color.armyGreen)
                         .cornerRadius(20)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white, lineWidth: 5)
+                        )
                 }
                 NavigationLink(destination:
                     Group {
@@ -160,11 +172,14 @@ struct ContentView: View {
                         Text("Sign out")
                          .font(.custom("Helvetica Neue Bold", size: 15))
                          .foregroundColor(Color.white)
-                         
                     }
                     .padding(10)
                     .background(Color(UIColor.lightGray))
                     .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white, lineWidth: 5)
+                    )
                     Spacer()
                     NavigationLink(destination: Focus()) {
                         Text(self.user.regular.capitalized)
@@ -175,6 +190,10 @@ struct ContentView: View {
                     }
                     .background(Color(UIColor.lightGray))
                     .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.white, lineWidth: 5)
+                    )
                     Spacer()
                     NavigationLink(destination: Setting()) {
                         Text("Settings")
@@ -185,6 +204,10 @@ struct ContentView: View {
                     }
                     .background(Color(UIColor.lightGray))
                     .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white, lineWidth: 5)
+                    )
                     Spacer()
                     NavigationLink(destination: Profile(uid: self.user.uid)) {
                     Text("Profile")
@@ -195,6 +218,10 @@ struct ContentView: View {
                     }
                     .background(Color(UIColor.lightGray))
                     .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white, lineWidth: 5)
+                    )
                     Spacer()
                 }
             }
@@ -204,9 +231,9 @@ struct ContentView: View {
                         self.invalid = false
                     }))
             }
-            .onAppear{
-                initial(uid: self.user.uid)
-            }
+//            .onAppear{
+//                initial(uid: self.user.uid)
+//            }
         }
     }
     

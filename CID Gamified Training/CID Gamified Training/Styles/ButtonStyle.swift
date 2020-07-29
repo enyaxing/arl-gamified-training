@@ -15,9 +15,9 @@ struct FriendlyButtonStyle: ButtonStyle {
           .frame(width: 150, height: 55, alignment: .center)
           .font(Font.bodyFontBold)
           .foregroundColor(.white)
-          .background(Color.friendlyGreen)
+          .background(Color.armyGreen)
           .cornerRadius(10.0)
-          .shadow(color: Color.friendlyGreenShadow, radius: 0, x: 0, y: 4)
+          .shadow(color: Color.armyGreen, radius: 0, x: 0, y: 4)
     }
 }
 
@@ -40,8 +40,8 @@ struct CustomDefaultButtonStyle: ButtonStyle {
            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
           .font(Font.bodyFontBold)
           .foregroundColor(.white)
-          .background(Color.friendlyGreen)
+          .background(Color.armyGreen)
           .cornerRadius(10.0)
-          .shadow(color: Color.friendlyGreenShadow, radius: 0, x: 0, y: 4)
+          .shadow(color: Color.armyGreen, radius: 0, x: 0, y: 4)
   }
 }
