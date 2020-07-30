@@ -69,7 +69,7 @@ struct Instructions: View {
                     List {
                         ForEach(self.enemy, id: \.id) {card in
                             CardView(folder: card.name, back: Color.darkBlue)
-                        }
+                        } .listRowBackground(Color.lightBlack)
                     }
                 }
                 VStack {
@@ -80,7 +80,7 @@ struct Instructions: View {
                     List {
                         ForEach(self.friendly, id: \.id) {card in
                             CardView(folder: card.name, back: Color.red)
-                        }
+                        } .listRowBackground(Color.lightBlack)
                     }
                 }
             }

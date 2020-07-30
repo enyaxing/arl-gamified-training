@@ -79,7 +79,7 @@ struct Setting: View {
                                     self.friendly = self.friendly.sorted()
                                     self.library.remove(at: index)
                             }
-                        }
+                        }.listRowBackground(Color.lightBlack)
                     }
                 }
                 VStack {
@@ -96,7 +96,7 @@ struct Setting: View {
                                     self.enemy = self.enemy.sorted()
                                     self.friendly.remove(at: index)
                             }
-                        }
+                        }.listRowBackground(Color.lightBlack)
                     }
                     Text("Enemy")
                     .font(.title)
@@ -111,7 +111,7 @@ struct Setting: View {
                                     self.library = self.library.sorted()
                                     self.enemy.remove(at: index)
                             }
-                        }
+                        }.listRowBackground(Color.lightBlack)
                     }
                 }
             }
@@ -163,6 +163,7 @@ struct Setting: View {
                 self.alert = false
             }))
         }.onAppear {
+            UITableView.appearance().backgroundColor = .clear
             self.library = Model.unselectedFolder.sorted()
             self.friendly = Model.friendlyFolder.sorted()
             self.enemy = Model.enemyFolder.sorted()

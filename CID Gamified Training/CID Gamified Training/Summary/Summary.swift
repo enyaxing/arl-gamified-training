@@ -74,13 +74,17 @@ struct Summary: View {
                 }
             }
             Text(tagID)
-            List(self.answers, id: \.id) { answer in
-                NavigationLink(destination: SummaryDetail(answer: answer, back: self.$hideback)) {
-                    SummaryRow(answer: answer)
-                }
+            List {
+                ForEach(self.answers, id: \.id) {answer in
+                    NavigationLink(destination: SummaryDetail(answer: answer, back: self.$hideback)) {
+                        SummaryRow(answer: answer)
+                    }
+                }.listRowBackground(Color.lightBlack)
             }
+            
         } .navigationBarBackButtonHidden(hideback)
             .onAppear{
+                UITableView.appearance().backgroundColor = .clear
                 if self.uid == "" {
                     self.uid = self.user.uid
                 }
