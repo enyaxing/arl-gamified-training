@@ -51,7 +51,7 @@ struct Signin: View {
                 Signup(signup: $signup)
             } else {
                 ZStack {
-                    Color(#colorLiteral(red: 0.14166666567325592, green: 0.14166666567325592, blue: 0.14166666567325592, alpha: 1)).edgesIgnoringSafeArea(.all)
+                    Color.lightBlack.edgesIgnoringSafeArea(.all)
                     VStack {
                         Spacer()
                         Text("Sign in with your account details")
