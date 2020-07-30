@@ -93,6 +93,7 @@ struct Instructions: View {
             }
             Spacer()
         } .onAppear{
+            UITableView.appearance().backgroundColor = .clear
             self.friendly = Model.friendlyFolder
             self.enemy = Model.enemyFolder
         }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
