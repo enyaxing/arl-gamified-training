@@ -147,7 +147,6 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 HStack {
-                    Spacer()
                     Button(action: {
                         self.logout()
                     }) {
@@ -204,8 +203,8 @@ struct ContentView: View {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(Color.white, lineWidth: 5)
                     )
-                    Spacer()
                 }
+                .padding()
             }
             .background(Image("black").resizable().scaledToFill().edgesIgnoringSafeArea(.all))
             .alert(isPresented: $invalid) {

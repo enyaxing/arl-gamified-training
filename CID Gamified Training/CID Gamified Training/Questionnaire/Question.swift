@@ -322,7 +322,7 @@ struct RadioButtons: View {
                             ZStack{
                                 Circle().fill(self.curResponse == i ? Color.armyGreen : Color.white.opacity(0.8)).frame(width: 30, height: 35)
                                 if self.curResponse == i{
-                                    Circle().stroke(Color.blue, lineWidth: 4).frame(width: 32, height: 25)
+                                    Circle().stroke(Color.white, lineWidth: 4).frame(width: 32, height: 25)
                                 }
                             }
                             Text("\(i)")
