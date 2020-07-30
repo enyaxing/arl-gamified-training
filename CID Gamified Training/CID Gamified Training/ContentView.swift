@@ -38,24 +38,17 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                    Text("ARL Gamified Training")
-                    .font(.custom("Helvetica Neue Bold", size: 65))
-                    .foregroundColor(Color.white)
-                    .multilineTextAlignment(.center)
+                Spacer()
+                Image("title")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 350)
                 Spacer()
                 NavigationLink(destination: Question(curResponse: 0)) {
                     Text("Questionairre")
-                        .font(.custom("Helvetica Neue Bold", size: 36))
-                        .padding()
-                        .foregroundColor(Color.white)
-                        .background(Color.armyGreen)
-                        .cornerRadius(20)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.white, lineWidth: 5)
-                        )
+                        .customRoundedButtonWithStrokeStyle()
                 }
-                HStack {
+                ZStack {
                 NavigationLink(destination:
                     Group {
                         if self.user.regular != "promotion" && self.user.regular != "prevention" && self.user.regular != "neutral" {
@@ -82,15 +75,8 @@ struct ContentView: View {
                     }
                 }) {
                     Text("Training")
-                         .font(.custom("Helvetica Neue Bold", size: 36))
-                        .padding()
-                        .foregroundColor(Color.white)
-                        .background(Color.armyGreen)
-                        .cornerRadius(20)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.white, lineWidth: 5)
-                    )
+                        .frame(maxWidth: .infinity)
+                        .customRoundedButtonWithStrokeStyle()
                 }
                  NavigationLink(destination:
                     Group {
@@ -107,8 +93,9 @@ struct ContentView: View {
                         .foregroundColor(Color.white)
                         .cornerRadius(20)
                 }
+                 .offset(x: 125)
             }
-            HStack {
+            ZStack {
                 Spacer()
                 NavigationLink(destination:
                     Group {
@@ -136,15 +123,7 @@ struct ContentView: View {
                         }
                     }) {
                     Text("Go/No-Go")
-                        .font(.custom("Helvetica Neue Bold", size: 36))
-                        .padding()
-                        .foregroundColor(Color.white)
-                        .background(Color.armyGreen)
-                        .cornerRadius(20)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.white, lineWidth: 5)
-                        )
+                        .customRoundedButtonWithStrokeStyle()
                 }
                 NavigationLink(destination:
                     Group {
@@ -161,8 +140,11 @@ struct ContentView: View {
                         .foregroundColor(Color.white)
                         .cornerRadius(20)
                 }
+                    .offset(x: 125)
+                
                 Spacer()
                 } 
+                Spacer()
                 Spacer()
                 HStack {
                     Spacer()
@@ -301,5 +283,6 @@ func obtainFields(db: CollectionReference, user: GlobalUser, defaults: UserDefau
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environmentObject(GlobalUser())
+        .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
     }
 }
