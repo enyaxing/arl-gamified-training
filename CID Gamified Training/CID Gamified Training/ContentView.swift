@@ -147,6 +147,7 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 HStack {
+                    Spacer()
                     Button(action: {
                         self.logout()
                     }) {
