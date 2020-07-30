@@ -102,13 +102,38 @@ struct CustomRoundedButtonStyle: ViewModifier {
     }
 }
 
+/** Rounded button with white stroke outline. */
+/** Currently used on homepage. */
+struct CustomRoundedButtonStrokeStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.custom("Helvetica Neue Bold", size: 18))
+            .padding()
+            .foregroundColor(Color.white)
+            .cornerRadius(20)
+            .background(
+                ZStack {
+                    RoundedRectangle(cornerRadius: 30)
+                        .fill(Color.armyGreen)
+                    RoundedRectangle(cornerRadius: 30)
+                        .strokeBorder(Color.white, lineWidth: 3)
+                }
+                .frame(width: 303, height: 47)
+            )
+    }
+}
+
 
 /** Wrapping modifiers*/
 extension View {
     func inputStyle() -> some View {
         self.modifier(Input())
     }
-    func customRoundedButtonTextStyle() -> some View {
+    func customRoundedButtonStyle() -> some View {
         self.modifier(CustomRoundedButtonStyle())
+    }
+    
+    func customRoundedButtonWithStrokeStyle() -> some View {
+        self.modifier(CustomRoundedButtonStrokeStyle())
     }
 }

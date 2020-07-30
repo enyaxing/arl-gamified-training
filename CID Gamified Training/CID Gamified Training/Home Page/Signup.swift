@@ -63,7 +63,7 @@ struct Signup: View {
                     self.createUser(email: self.email, password: self.password, name: self.name, selection: self.selection)
                 }) {
                     Text("Create Account")
-                        .customRoundedButtonTextStyle()
+                        .customRoundedButtonStyle()
                 }
                     .padding()
                 

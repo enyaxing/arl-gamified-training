@@ -10,52 +10,45 @@ import Firebase
 
 /** Main menu view. */
 struct ContentView: View {
-    
+
     /** Save defaults locally (ie. who is signed in). */
     let defaults = UserDefaults.standard
-    
+
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
-    
+
     /** Hide navigation back bar. */
     @State var back = false
-    
+
     /** Error message for alerts. */
     @State var error = ""
-    
+
     /** Is logout invalid. */
     @State var invalid = false
-    
+
     /** Should countdown play?  */
     @State var countdown = true
-    
+
     /** Show instructions. */
     @State var instructions = true
-    
+
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
-    
+
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                    Text("ARL Gamified Training")
-                    .font(.custom("Helvetica Neue Bold", size: 65))
-                    .foregroundColor(Color.white)
-                    .multilineTextAlignment(.center)
+                Spacer()
+                Image("title")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 350)
                 Spacer()
                 NavigationLink(destination: Question(curResponse: 0)) {
                     Text("Questionairre")
-                        .font(.custom("Helvetica Neue Bold", size: 36))
-                        .padding()
-                        .foregroundColor(Color.white)
-                        .background(Color.armyGreen)
-                        .cornerRadius(40)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 40)
-                            .stroke(Color.white, lineWidth: 5)
-                        )
+                        .customRoundedButtonWithStrokeStyle()
                 }
-                HStack {
+                ZStack {
                 NavigationLink(destination:
                     Group {
                         if self.user.regular != "promotion" && self.user.regular != "prevention" && self.user.regular != "neutral" {
@@ -82,15 +75,8 @@ struct ContentView: View {
                     }
                 }) {
                     Text("Training")
-                         .font(.custom("Helvetica Neue Bold", size: 36))
-                        .padding()
-                        .foregroundColor(Color.white)
-                        .background(Color.armyGreen)
-                        .cornerRadius(40)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 40)
-                            .stroke(Color.white, lineWidth: 5)
-                    )
+                        .frame(maxWidth: .infinity)
+                        .customRoundedButtonWithStrokeStyle()
                 }
                  NavigationLink(destination:
                     Group {
@@ -107,8 +93,9 @@ struct ContentView: View {
                         .foregroundColor(Color.white)
                         .cornerRadius(20)
                 }
+                 .offset(x: 125)
             }
-            HStack {
+            ZStack {
                 Spacer()
                 NavigationLink(destination:
                     Group {
@@ -136,15 +123,7 @@ struct ContentView: View {
                         }
                     }) {
                     Text("Go/No-Go")
-                        .font(.custom("Helvetica Neue Bold", size: 36))
-                        .padding()
-                        .foregroundColor(Color.white)
-                        .background(Color.armyGreen)
-                        .cornerRadius(40)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 40)
-                            .stroke(Color.white, lineWidth: 5)
-                        )
+                        .customRoundedButtonWithStrokeStyle()
                 }
                 NavigationLink(destination:
                     Group {
@@ -161,11 +140,13 @@ struct ContentView: View {
                         .foregroundColor(Color.white)
                         .cornerRadius(20)
                 }
+                    .offset(x: 125)
+
                 Spacer()
-                } 
+                }
+                Spacer()
                 Spacer()
                 HStack {
-                    Spacer()
                     Button(action: {
                         self.logout()
                     }) {
@@ -201,10 +182,10 @@ struct ContentView: View {
                                     .padding(10)
                                     .foregroundColor(Color.white)
                                     .cornerRadius(20)
-                                
+
                             }
                         }
-                       
+
                     }
                     .background(Color.lightBlack)
                     .cornerRadius(20)
@@ -229,6 +210,7 @@ struct ContentView: View {
                     }
                     Spacer()
                 }
+                .padding()
             }
             .background(Image("black").resizable().scaledToFill().edgesIgnoringSafeArea(.all))
             .alert(isPresented: $invalid) {
@@ -241,7 +223,7 @@ struct ContentView: View {
 //            }
         }
     }
-    
+
     /** Logout function. */
     func logout() {
         do {
@@ -250,7 +232,7 @@ struct ContentView: View {
             self.user.avgResponseTime = 0.00
             self.user.totalSessions = 0
             self.user.totalTime = 0
-            
+
             self.user.userType = "student"
             defaults.set("", forKey: "uid")
             defaults.set("student", forKey: "userType")
@@ -285,15 +267,15 @@ func obtainFields(db: CollectionReference, user: GlobalUser, defaults: UserDefau
             if document.get("avgResponseTime") != nil {
                 user.avgResponseTime = document.get("avgResponseTime") as! Double
             }
-            
+
             if document.get("totalSessions") != nil {
                 user.totalSessions = document.get("totalSessions") as! Int
             }
-            
+
             if document.get("avgResponseTime") != nil {
                 user.avgResponseTime = document.get("avgResponesTime") as! Double
             }
-            
+
             if document.get("accuracy") != nil {
                 user.avgResponseTime = document.get("accuracy") as! Double
             }
@@ -306,5 +288,6 @@ func obtainFields(db: CollectionReference, user: GlobalUser, defaults: UserDefau
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environmentObject(GlobalUser())
+        .previewDevice(PreviewDevice(rawValue: "iPhone XS Max"))
     }
 }

@@ -65,7 +65,7 @@ struct Signin: View {
                                 self.login(email: self.email, password: self.password)
                             }) {
                                 Text("LOG IN")
-                                    .customRoundedButtonTextStyle()
+                                    .customRoundedButtonStyle()
                             }
                                 .padding()
                             

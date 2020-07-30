@@ -38,10 +38,7 @@ struct EditStudent: View {
     var body: some View {
         VStack(spacing: 20) {
             TextField("Student's Email", text: $email)
-                .frame(width: 350)
-                .padding(.all, 5)
-                .font(Font.system(size: 24, design: .default))
-                .background(Color.white)
+                .inputStyle()
             HStack {
                 Spacer()
                 Button(action: {
