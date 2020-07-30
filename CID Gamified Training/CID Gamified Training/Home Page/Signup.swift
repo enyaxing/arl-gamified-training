@@ -44,36 +44,45 @@ struct Signup: View {
     var body: some View {
         NavigationView {
             VStack {
-                Form {
-                    Section(header: Text("Account Information")) {
-                        TextField("Name", text: $name)
-                        TextField("Email", text: $email)
-                        SecureField("Password", text: $password)
-                        Picker(selection: $selection, label: Text("Picker")) {
-                            Text("student").tag("student").id(UUID())
-                            Text("instructor").tag("instructor").id(UUID())
-                        } .pickerStyle(SegmentedPickerStyle())
-                    }
-                    Button(action: {
-                        self.createUser(email: self.email, password: self.password, name: self.name, selection: self.selection)
-                    }) {
-                        Text("Create Account")
-                    }
-                    Button(action: {
-                        self.signup = false
-                    }) {
-                        Text("Already have an account? Sign in here!")
-                    }
+                TextField("Name", text: $name)
+                    .inputStyle()
+                TextField("Email", text: $email)
+                    .inputStyle()
+                SecureField("Password", text: $password)
+                    .inputStyle()
+                Picker(selection: $selection, label: Text("Picker")) {
+                    Text("student").tag("student").id(UUID())
+                    Text("instructor").tag("instructor").id(UUID())
                 }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding(.horizontal)
+                
+                Spacer()
+                
+                Button(action: {
+                    self.createUser(email: self.email, password: self.password, name: self.name, selection: self.selection)
+                }) {
+                    Text("Create Account")
+                        .customRoundedButtonTextStyle()
+                }
+                    .padding()
+                
+                Button(action: {
+                    self.signup = false
+                }) {
+                    Text("Already have an account? Sign in here!")
+                        .font(.custom("Helvetica-Bold", size: 16))
+                        .foregroundColor(Color.armyGreen)
+                }
+                    .padding()
+            }
                 
                 .navigationBarTitle("Sign Up")
-            }
-            .alert(isPresented: $invalid) {
-                Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
-                        self.invalid = false
-            })
-            )
-            }
+                .alert(isPresented: $invalid) {
+                    Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
+                            self.invalid = false
+                }))
+                }
         }
         .onAppear {
             self.name = ""

@@ -50,35 +50,14 @@ struct Signin: View {
             } else if signup {
                 Signup(signup: $signup)
             } else {
-                ZStack {
+                NavigationView {
                     VStack {
-                        Text("Sign In")
-                            .font(.custom("Helvetica-Bold", size: 30))
-
-                            .foregroundColor(.white)
-                            .padding(.top, 40.0)
-                        
                         TextField("Email", text: $email)
-                            .padding(.horizontal, 30.0)
-                            .padding(.vertical)
-                            .font(.custom("Helvetica", size: 16))
-                            .background(
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(Color(#colorLiteral(red: 0.10196078568696976, green: 0.10196078568696976, blue: 0.10980392247438431, alpha: 1)))
-                                    .frame(width: 343, height: 50)
-                                    .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
-                            )
+
+                            .inputStyle()
 
                         SecureField("Password", text: $password)
-                            .padding(.horizontal, 30.0)
-                            .padding(.vertical)
-                            .font(.custom("Helvetica", size: 16))
-                            .background(
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(Color(#colorLiteral(red: 0.10196078568696976, green: 0.10196078568696976, blue: 0.10980392247438431, alpha: 1)))
-                                    .frame(width: 343, height: 50)
-                                    .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
-                            )
+                            .inputStyle()
                         
                         Spacer()
                         Spacer()
@@ -87,14 +66,7 @@ struct Signin: View {
                                 self.login(email: self.email, password: self.password)
                             }) {
                                 Text("LOG IN")
-                                    .font(.custom("Helvetica-Bold", size: 16)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
-                                    .multilineTextAlignment(.center)
-                                    .background(//Rectangle 9
-                                        RoundedRectangle(cornerRadius: 40)
-                                            .fill(Color.armyGreen)
-                                            .frame(width: 229, height: 46)
-                                            .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
-                                    )
+                                    .customRoundedButtonTextStyle()
                             }
                                 .padding()
                             
@@ -108,8 +80,10 @@ struct Signin: View {
                                 .padding()
                         }
                     }
+                    .navigationBarTitle("Sign In")
                     .modifier(AdaptsToKeyboard())
                 }
+            
             }
         }.alert(isPresented: $invalid) {
             Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {

@@ -67,3 +67,48 @@ extension UIScreen{
    static let screenHeight = UIScreen.main.bounds.size.height
    static let screenSize = UIScreen.main.bounds.size
 }
+
+
+/** Start of view modifiers. */
+/** Input is a modifier for text input fields. */
+struct Input: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(.horizontal, 30.0)
+            .padding(.vertical)
+            .font(.custom("Helvetica", size: 16))
+            .background(
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color(#colorLiteral(red: 0.10196078568696976, green: 0.10196078568696976, blue: 0.10980392247438431, alpha: 1)))
+                    .frame(width: 343, height: 50)
+                    .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
+            )
+    }
+}
+
+/** Rounded button is a view modifier for round buttons to be applied to the text of the button. */
+/** Currently being used in the sign in and sign up pages. */
+struct CustomRoundedButtonStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.custom("Helvetica-Bold", size: 16)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+            .multilineTextAlignment(.center)
+            .background(//Rectangle 9
+                RoundedRectangle(cornerRadius: 40)
+                    .fill(Color.armyGreen)
+                    .frame(width: 229, height: 46)
+                    .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
+            )
+    }
+}
+
+
+/** Wrapping modifiers*/
+extension View {
+    func inputStyle() -> some View {
+        self.modifier(Input())
+    }
+    func customRoundedButtonTextStyle() -> some View {
+        self.modifier(CustomRoundedButtonStyle())
+    }
+}
