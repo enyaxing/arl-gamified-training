@@ -53,10 +53,10 @@ struct Signin: View {
                 ZStack {
                     Color.lightBlack.edgesIgnoringSafeArea(.all)
                     VStack {
-                        Spacer()
-                        Text("Sign in with your account details")
-                            .font(.custom("Helvetica", size: 16))
+                        Text("Sign In")
+                            .font(.custom("Helvetica-Bold", size: 30))
                             .foregroundColor(.white)
+                            .padding(.top, 40.0)
                         TextField("Email", text: $email)
                             .padding(.horizontal, 30.0)
                             .padding(.vertical)
