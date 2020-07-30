@@ -36,24 +36,38 @@ struct EditStudent: View {
     @State var found = false
     
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             TextField("Student's Email", text: $email)
+                .frame(width: 350)
+                .padding(.all, 5)
+                .font(Font.system(size: 24, design: .default))
+                .background(Color.white)
             HStack {
                 Spacer()
                 Button(action: {
                     self.add(email: self.email)
                 }) {
                     Text("Add Student")
+                    .foregroundColor(Color.white)
+                    .padding(15)
+                    .background(Color(red: 0, green: 0.2, blue: 0))
+                    .cornerRadius(25)
                 }
                 Spacer()
                 Button(action: {
                     self.remove(email: self.email)
                 }) {
                     Text("Remove Student")
+                    .foregroundColor(Color.white)
+                    .padding(15)
+                    .background(Color(red: 0, green: 0.6, blue: 0))
+                    .cornerRadius(25)
                 }
                 Spacer()
             }
-        }.alert(isPresented: self.$alert) {
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black.edgesIgnoringSafeArea(.all))
+        .alert(isPresented: self.$alert) {
             Alert(title: Text("\(self.alertTitle)"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
             self.alert = false
         }))}

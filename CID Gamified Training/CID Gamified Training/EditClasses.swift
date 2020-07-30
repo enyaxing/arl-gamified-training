@@ -35,24 +35,38 @@ struct EditClasses: View {
     @Binding var listClass: [String:DocumentReference]
     
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             TextField("Class Name", text: $classes)
+            .frame(width: 350)
+            .padding(.all, 5)
+            .font(Font.system(size: 24, design: .default))
+            .background(Color.white)
             HStack {
                 Spacer()
                 Button(action: {
                     self.add(classes: self.classes)
                 }) {
                     Text("Add Class")
+                    .foregroundColor(Color.white)
+                    .padding(15)
+                    .background(Color(red: 0, green: 0.2, blue: 0))
+                    .cornerRadius(25)
                 }
                 Spacer()
                 Button(action: {
                     self.remove(classes: self.classes)
                 }) {
                     Text("Remove Class")
+                    .foregroundColor(Color.white)
+                    .padding(15)
+                    .background(Color(red: 0, green: 0.6, blue: 0))
+                    .cornerRadius(25)
                 }
                 Spacer()
             }
-        }.alert(isPresented: self.$alert) {
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black.edgesIgnoringSafeArea(.all))
+            .alert(isPresented: self.$alert) {
             Alert(title: Text("\(self.alertTitle)"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
             self.alert = false
         }))}
