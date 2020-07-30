@@ -167,7 +167,7 @@ struct Promotion: View {
                     Spacer()
                 }.offset(x: 27, y: -160)
                 Spacer()
-                }.offset(y: -130)
+                }.offset(y: -100)
                 }
             }
         }

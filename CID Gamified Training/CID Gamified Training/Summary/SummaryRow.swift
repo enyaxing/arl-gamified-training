@@ -14,6 +14,8 @@ struct SummaryRow: View {
     var answer: Answer
     
     var body: some View {
+        RoundedRectangle(cornerRadius: 40)
+            .fill(color(answer: answer)).frame(width: 350, height: 50).overlay(
         HStack {
             Image(uiImage: UIImage(imageLiteralResourceName: answer.image))
             .resizable()
@@ -31,7 +33,9 @@ struct SummaryRow: View {
                 }
             }
             Spacer()
-            } .background(color(answer: answer))
+            }.offset(x: 15)
+        )
+//        .background(color(answer: answer))
     }
 }
 

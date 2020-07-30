@@ -31,8 +31,8 @@ extension Color {
         return Color(UIColor(red: 0.708, green: 0.163, blue: 0.133, alpha: 1))
     }
     
-    static var enemyRedShadow: Color {
-        return Color(red: 0.708, green: 0.163, blue: 0.133, opacity: 1)
+    static var darkYellow: Color {
+        return Color(UIColor(red: 0.842, green: 0.646, blue: 0.144, alpha: 1))
     }
     
     static var progressBarBackground: Color {

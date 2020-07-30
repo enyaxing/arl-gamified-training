@@ -59,6 +59,7 @@ struct Instructions: View {
                         .foregroundColor(Color.white)
                 }
             }
+            .padding([.leading, .bottom, .trailing])
             Spacer()
             HStack{
                 VStack {
@@ -79,7 +80,7 @@ struct Instructions: View {
                     .foregroundColor(Color.white)
                     List {
                         ForEach(self.friendly, id: \.id) {card in
-                            CardView(folder: card.name, back: Color.red)
+                            CardView(folder: card.name, back: Color.enemyRed)
                         } .listRowBackground(Color.lightBlack)
                     }
                 }

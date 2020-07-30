@@ -105,9 +105,9 @@ struct Prevention: View {
                 VStack {
                     Spacer()
                     LottieView(fileName: "incorrect", playing: $playing)
-                        .frame(width: 200, height: 200)
+                        .frame(width: 300, height: 300)
                         .background(Color.clear)
-                        .offset(y:60)
+                        .offset(y: 110)
                         VStack {
                             HStack {
                                 Spacer()
@@ -190,7 +190,7 @@ struct Prevention: View {
                                 Spacer()
                             }.offset(y: -200)
                             Spacer()
-                            }.offset(y: -100)
+                            }.offset(y: -60)
                         }
                    }
                }

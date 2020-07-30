@@ -49,9 +49,9 @@ struct ContentView: View {
                         .padding()
                         .foregroundColor(Color.white)
                         .background(Color.armyGreen)
-                        .cornerRadius(20)
+                        .cornerRadius(40)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20)
+                            RoundedRectangle(cornerRadius: 40)
                             .stroke(Color.white, lineWidth: 5)
                         )
                 }
@@ -86,9 +86,9 @@ struct ContentView: View {
                         .padding()
                         .foregroundColor(Color.white)
                         .background(Color.armyGreen)
-                        .cornerRadius(20)
+                        .cornerRadius(40)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20)
+                            RoundedRectangle(cornerRadius: 40)
                             .stroke(Color.white, lineWidth: 5)
                     )
                 }
@@ -140,9 +140,9 @@ struct ContentView: View {
                         .padding()
                         .foregroundColor(Color.white)
                         .background(Color.armyGreen)
-                        .cornerRadius(20)
+                        .cornerRadius(40)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20)
+                            RoundedRectangle(cornerRadius: 40)
                             .stroke(Color.white, lineWidth: 5)
                         )
                 }
@@ -169,26 +169,44 @@ struct ContentView: View {
                     Button(action: {
                         self.logout()
                     }) {
-                        Text("Sign out")
-                         .font(.custom("Helvetica Neue Bold", size: 15))
-                         .foregroundColor(Color.white)
+                        Image("logout")
+                        .resizable()
+                        .foregroundColor(Color.white)
+                        .frame(width: 40, height: 40)
                     }
-                    .padding(10)
-                    .background(Color(UIColor.lightGray))
-                    .cornerRadius(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.white, lineWidth: 5)
-                    )
                     Spacer()
                     NavigationLink(destination: Focus()) {
-                        Text(self.user.regular.capitalized)
-                        .font(.custom("Helvetica Neue Bold", size: 15))
-                        .padding(10)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(20)
+                        Group {
+                            if (self.user.regular.capitalized == "None") {
+                                Text("Focus")
+                                .font(.custom("Helvetica Neue Bold", size: 15))
+                                .padding(10)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(20)
+                            } else if (self.user.regular.capitalized == "Promotion") {
+                                Text("Gain")
+                                .font(.custom("Helvetica Neue Bold", size: 15))
+                                .padding(10)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(20)
+                            } else if (self.user.regular.capitalized == "Prevention") {
+                                Text("Loss")
+                                .font(.custom("Helvetica Neue Bold", size: 15))
+                                .padding(10)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(20)
+                            } else {
+                                Text(self.user.regular.capitalized)
+                                    .font(.custom("Helvetica Neue Bold", size: 15))
+                                    .padding(10)
+                                    .foregroundColor(Color.white)
+                                    .cornerRadius(20)
+                                
+                            }
+                        }
+                       
                     }
-                    .background(Color(UIColor.lightGray))
+                    .background(Color.lightBlack)
                     .cornerRadius(20)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
@@ -196,32 +214,19 @@ struct ContentView: View {
                     )
                     Spacer()
                     NavigationLink(destination: Setting()) {
-                        Text("Settings")
-                        .font(.custom("Helvetica Neue Bold", size: 15))
-                        .padding(10)
+                        Image("setting")
+                        .resizable()
                         .foregroundColor(Color.white)
-                        .cornerRadius(20)
+                        .frame(width: 40, height: 40)
                     }
-                    .background(Color(UIColor.lightGray))
-                    .cornerRadius(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.white, lineWidth: 5)
-                    )
                     Spacer()
                     NavigationLink(destination: Profile(uid: self.user.uid)) {
-                    Text("Profile")
-                    .font(.custom("Helvetica Neue Bold", size: 15))
-                    .padding(10)
-                    .foregroundColor(Color.white)
-                    .cornerRadius(20)
+                        Image("user")
+                        .resizable()
+                        .foregroundColor(Color.white)
+                        .frame(width: 40, height: 40)
+
                     }
-                    .background(Color(UIColor.lightGray))
-                    .cornerRadius(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.white, lineWidth: 5)
-                    )
                     Spacer()
                 }
             }

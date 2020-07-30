@@ -18,6 +18,8 @@ struct CardView: View {
     var back: Color
     
     var body: some View {
+        RoundedRectangle(cornerRadius: 40)
+        .fill(back).frame(width: 175, height: 50).overlay(
         HStack {
         Image(uiImage: UIImage(imageLiteralResourceName: getImage()))
         .resizable()
@@ -26,7 +28,8 @@ struct CardView: View {
         Text(folder)
         Spacer()
         } .frame(width: 150, height: 40)
-        .background(back)
+        .offset(x: 10)
+        )
     }
     
     /** Retrieve image from folder name. */

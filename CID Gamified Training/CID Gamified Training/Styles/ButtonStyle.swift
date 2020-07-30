@@ -15,9 +15,9 @@ struct FriendlyButtonStyle: ButtonStyle {
           .frame(width: 150, height: 55, alignment: .center)
           .font(Font.bodyFontBold)
           .foregroundColor(.white)
-          .background(Color.armyGreen)
+          .background(Color.darkBlue)
           .cornerRadius(10.0)
-          .shadow(color: Color.armyGreen, radius: 0, x: 0, y: 4)
+          .shadow(color: Color.darkBlue, radius: 0, x: 0, y: 4)
     }
 }
 
@@ -30,7 +30,7 @@ struct EnemyButtonStyle: ButtonStyle {
           .foregroundColor(.white)
           .background(Color.enemyRed)
           .cornerRadius(10.0)
-          .shadow(color: Color.enemyRedShadow, radius: 0, x: 0, y: 4)
+          .shadow(color: Color.enemyRed, radius: 0, x: 0, y: 4)
   }
 }
 

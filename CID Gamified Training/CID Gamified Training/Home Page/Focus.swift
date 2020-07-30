@@ -30,8 +30,8 @@ struct Focus: View {
             Text("Please select your focus style.")
             .foregroundColor(Color.white)
             Picker(selection: $selection, label: Text("Picker")) {
-                Text("Promotion").tag("promotion").id(UUID())
-                Text("Prevention").tag("prevention").id(UUID())
+                Text("Gain").tag("promotion").id(UUID())
+                Text("Loss").tag("prevention").id(UUID())
                 Text("Neutral").tag("neutral").id(UUID())
             } .pickerStyle(SegmentedPickerStyle())
         } .onDisappear {

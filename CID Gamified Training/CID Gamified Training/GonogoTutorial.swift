@@ -130,7 +130,7 @@ struct GonogoTutorialMain: View {
             HStack {
             Image("close")
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
             }
         }
     }
@@ -192,7 +192,7 @@ struct GonogoTutorialMain: View {
         .onAppear() {
             self.index = Int.random(in: 0..<self.models[self.folder].count)
         }
-    }
+        }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
     }
     
     /** Action performed when enemy button clicked. */
@@ -337,6 +337,7 @@ struct GonogoTutorialMain: View {
             Text("Time Remaining: \(timeRemaining)")
                 .font(.title)
                 .fontWeight(.semibold)
+                .foregroundColor(Color.white)
                 .padding(.top)
                 .onReceive(timer) { _ in
                     if self.timeRemaining > 0 && !self.stopped && !self.showAboutView {

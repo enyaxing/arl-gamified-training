@@ -129,7 +129,7 @@ struct TrainingTutorialMain: View {
             HStack {
             Image("close")
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
             }
         }
     }
@@ -168,6 +168,7 @@ struct TrainingTutorialMain: View {
                             Text("\(self.points)")
                                 .font(.title)
                                 .fontWeight(.bold)
+                                .foregroundColor(Color.white)
                             Image("coin").resizable().frame(width: 40, height: 40)
                                 .aspectRatio(contentMode: .fit)
                                 .offset(y: -2)
@@ -258,7 +259,7 @@ struct TrainingTutorialMain: View {
         }
         .onAppear() {
             self.index = Int.random(in: 0..<self.models[self.folder].count)
-        }
+        }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
     }
 
     /** Action performed when friendly button clicked. */
