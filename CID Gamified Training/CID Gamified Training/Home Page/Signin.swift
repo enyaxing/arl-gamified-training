@@ -51,35 +51,35 @@ struct Signin: View {
                 Signup(signup: $signup)
             } else {
                 ZStack {
-                    Color.lightBlack.edgesIgnoringSafeArea(.all)
                     VStack {
                         Text("Sign In")
                             .font(.custom("Helvetica-Bold", size: 30))
+
                             .foregroundColor(.white)
                             .padding(.top, 40.0)
+                        
                         TextField("Email", text: $email)
                             .padding(.horizontal, 30.0)
                             .padding(.vertical)
                             .font(.custom("Helvetica", size: 16))
                             .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color(#colorLiteral(red: 0.10196078568696976, green: 0.10196078568696976, blue: 0.10980392247438431, alpha: 1)))
                                     .frame(width: 343, height: 50)
                                     .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
                             )
-                            .foregroundColor(Color(#colorLiteral(red: 0.61, green: 0.62, blue: 0.62, alpha: 1)))
 
                         SecureField("Password", text: $password)
                             .padding(.horizontal, 30.0)
                             .padding(.vertical)
                             .font(.custom("Helvetica", size: 16))
                             .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color(#colorLiteral(red: 0.10196078568696976, green: 0.10196078568696976, blue: 0.10980392247438431, alpha: 1)))
                                     .frame(width: 343, height: 50)
                                     .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
                             )
-                            .foregroundColor(Color(#colorLiteral(red: 0.61, green: 0.62, blue: 0.62, alpha: 1)))
+                        
                         Spacer()
                         Spacer()
                         VStack {
@@ -91,7 +91,7 @@ struct Signin: View {
                                     .multilineTextAlignment(.center)
                                     .background(//Rectangle 9
                                         RoundedRectangle(cornerRadius: 40)
-                                            .fill(Color(#colorLiteral(red: 0.30190640687942505, green: 0.7134796380996704, blue: 0.47554999589920044, alpha: 1)))
+                                            .fill(Color.armyGreen)
                                             .frame(width: 229, height: 46)
                                             .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
                                     )
@@ -103,7 +103,7 @@ struct Signin: View {
                             }) {
                                 Text("New User? Sign up Here!")
                                     .font(.custom("Helvetica-Bold", size: 16))
-                                    .foregroundColor(Color(#colorLiteral(red: 0.3, green: 0.71, blue: 0.48, alpha: 1)))
+                                    .foregroundColor(Color.armyGreen)
                             }
                                 .padding()
                         }
@@ -143,5 +143,6 @@ struct Signin: View {
 struct Signin_Previews: PreviewProvider {
     static var previews: some View {
         Signin().environmentObject(GlobalUser())
+            .environment(\.colorScheme, .dark)
     }
 }
