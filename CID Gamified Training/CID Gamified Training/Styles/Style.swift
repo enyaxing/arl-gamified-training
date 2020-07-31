@@ -74,15 +74,19 @@ extension UIScreen{
 struct Input: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding(.all)
+            .padding(.vertical)
+            .padding(.horizontal, 30)
             .font(.custom("Helvetica", size: 16))
             .background(
                 RoundedRectangle(cornerRadius: 4)
                     .fill(Color(#colorLiteral(red: 0.10196078568696976, green: 0.10196078568696976, blue: 0.10980392247438431, alpha: 1)))
-                    .frame(width: 343, height: 50)
+                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
                     .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
             )
-            .frame(maxWidth: 343)
+            .frame(maxWidth: .infinity)
+            
     }
 }
 
@@ -99,6 +103,7 @@ struct CustomRoundedButtonStyle: ViewModifier {
                     .frame(width: 229, height: 46)
                     .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
             )
+            .frame(width: 200)
     }
 }
 
@@ -120,6 +125,7 @@ struct CustomRoundedButtonStrokeStyle: ViewModifier {
                 }
                 .frame(width: 303, height: 47)
             )
+            .frame(width: 300)
     }
 }
 
