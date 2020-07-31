@@ -75,16 +75,12 @@ struct Signup: View {
                         .foregroundColor(Color.armyGreen)
                 }
                     .padding()
-            }
-                
-                .navigationBarTitle("Sign Up")
+            } .navigationBarTitle("Sign Up")
                 .alert(isPresented: $invalid) {
                     Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
                             self.invalid = false
-                }))
-                }
-        }
-        .onAppear {
+                }))}
+        }.onAppear {
             self.name = ""
             self.email = ""
             self.password = ""

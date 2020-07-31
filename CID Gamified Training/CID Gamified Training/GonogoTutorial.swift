@@ -409,7 +409,7 @@ struct AboutViewGoNoGo: View {
             }
             .padding(.horizontal, 50)
             .frame(width: geo.size.width, height: geo.size.height * 0.35)
-            .background(Color.white)
+            .background(Color.gray)
             .position(x: geo.size.width * 0.5, y: geo.size.height * 0.825)
         }
         .background(Color.black.opacity(0.5))

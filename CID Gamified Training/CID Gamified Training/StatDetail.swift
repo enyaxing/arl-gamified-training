@@ -34,57 +34,70 @@ struct StatDetail: View {
     var body: some View {
         
         TabView(selection: $selectedTab) {
-            VStack {
-                Text("Stat Details")
-                .font(.largeTitle)
-                .fontWeight(.black)
+            VStack(alignment: .leading, spacing: 20) {
+                HStack {
+                    Spacer()
+                    Text("Stat Details")
+                    .font(.largeTitle)
+                    .fontWeight(.black)
+                    Spacer()
+                }
                 Text("Vehicle Accuracy")
-                .font(.title)
+                    .font(.custom("Helvetica-Bold", size: 24))
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
                 List {
                     ForEach(self.vehiclePercent.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
                         StatView(name: key, num: value, type: 0)
-                    }
+                    }.listRowBackground(Color.lightBlack)
                 }
                 Text("Vehicle Average Response Time")
-                .font(.title)
+                .font(.custom("Helvetica-Bold", size: 24))
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
                 List {
                     ForEach(self.vehicleSecond.sorted(by: { $0.value > $1.value}), id: \.key) {key, value in
                         StatView(name: key, num: value, type: 1)
-                    }
+                    }.listRowBackground(Color.lightBlack)
                 }
             } .tabItem {
                 Text("Vehicle")
             }.tag(0)
-            VStack {
-                Text("Stat Details")
-                .font(.largeTitle)
-                .fontWeight(.black)
+            .background(Color.lightBlack.edgesIgnoringSafeArea(.all))
+            VStack(alignment: .leading, spacing: 20) {
+                HStack {
+                    Spacer()
+                    Text("Stat Details")
+                    .font(.largeTitle)
+                    .fontWeight(.black)
+                    Spacer()
+                }
                 Text("Tag Accuracy")
-                .font(.title)
+                .font(.custom("Helvetica-Bold", size: 24))
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
                 List {
                     ForEach(self.tagPercent.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
                         StatView(name: key, num: value, type: 0)
-                    }
+                    }.listRowBackground(Color.lightBlack)
                 }
                 Text("Tag Average Response Time")
-                .font(.title)
+                .font(.custom("Helvetica-Bold", size: 24))
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
                 List {
                     ForEach(self.tagSecond.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
                         StatView(name: key, num: value, type: 1)
-                    }
+                    }.listRowBackground(Color.lightBlack)
                 }
             }.tabItem {
                 Text("Tag")
             }.tag(1)
-        }.onAppear{
+            .background(Color.lightBlack.edgesIgnoringSafeArea(.all))
+        }
+        .onAppear{
+            UITableView.appearance().backgroundColor = .clear
+            UITabBar.appearance().backgroundColor = UIColor.lightGray
             self.getStats(sessions: self.prevSessions)
         }
     }

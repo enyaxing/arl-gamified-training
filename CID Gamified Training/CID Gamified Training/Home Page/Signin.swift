@@ -87,9 +87,8 @@ struct Signin: View {
         }.alert(isPresented: $invalid) {
             Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
             self.invalid = false
-        })
-        )
-        }.onAppear {
+        }))}
+        .onAppear {
             self.email = ""
             self.password = ""
         }

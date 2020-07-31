@@ -31,11 +31,32 @@ struct AssignmentDetail: View {
     @Binding var assignments: [String : Assignment]
     
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             Text(self.assignment.name)
-            Text("Friendly Accuracy: \(self.assignment.friendlyAccuracy, specifier: "%.1f")%")
-            Text("Enemy Accuracy: \(self.assignment.enemyAccuracy, specifier: "%.1f")%")
-            Text("Time: \(self.assignment.time, specifier: "%.1f") s")
+            .font(.title)
+            .fontWeight(.black)
+            .foregroundColor(Color.white)
+            Text("Requirements")
+            .font(.title)
+            .fontWeight(.semibold)
+                .foregroundColor(Color.white)
+            HStack {
+                StatBox(img_name: "coin", description: "Friendly Accuracy", item: Text("\(self.assignment.friendlyAccuracy, specifier: "%.1f")%")).foregroundColor(Color.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .stroke(Color.white, lineWidth: 2)
+                )
+                StatBox(img_name: "coin", description: "Enemy Accuracy", item: Text("\(self.assignment.enemyAccuracy, specifier: "%.1f")%")).foregroundColor(Color.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .stroke(Color.white, lineWidth: 2)
+                )
+            }
+            StatBox(img_name: "coin", description: "Time Allotted", item: Text("\(self.assignment.time, specifier: "%.1f") s")).foregroundColor(Color.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10.0)
+                    .stroke(Color.white, lineWidth: 2)
+            )
             HStack {
                 VStack {
                     Text("Library")
@@ -44,7 +65,7 @@ struct AssignmentDetail: View {
                     List {
                         ForEach(self.assignment.library.sorted(), id: \.id) {card in
                             CardView(folder: card.name, back: Color.gray)
-                        }
+                        }.listRowBackground(Color.lightBlack)
                     }
                 }
                 VStack {
@@ -54,7 +75,7 @@ struct AssignmentDetail: View {
                     List {
                         ForEach(self.assignment.friendly.sorted(), id: \.id) {card in
                             CardView(folder: card.name, back: Color.blue)
-                        }
+                        }.listRowBackground(Color.lightBlack)
                     }
                     Text("Enemy")
                     .font(.title)
@@ -62,7 +83,7 @@ struct AssignmentDetail: View {
                     List {
                         ForEach(self.assignment.enemy.sorted(), id: \.id) {card in
                             CardView(folder: card.name, back: Color.red)
-                        }
+                        }.listRowBackground(Color.lightBlack)
                     }
                 }
             }
@@ -85,10 +106,18 @@ struct AssignmentDetail: View {
                         }
                     }) {
                         Text("Delete Assigment")
+                        .padding(15)
+                        .background(Color(red: 0.5, green: 0, blue: 0))
+                        .foregroundColor(Color.white)
+                        .cornerRadius(25)
                     }
                     Spacer()
                     NavigationLink(destination: Students(doc: self.doc, name: "Assignment \(self.assignment.name)", assignment: self.doc!.collection("assignments").document(self.assignment.name))) {
                         Text("Progress")
+                        .padding(15)
+                        .background(Color(red: 0.6, green: 0.6, blue: 0.6))
+                        .foregroundColor(Color.white)
+                        .cornerRadius(25)
                         }
                     Spacer()
                 }
@@ -111,9 +140,17 @@ struct AssignmentDetail: View {
                     self.alert = true
                 }) {
                     Text("Save")
+                    .padding(15)
+                    .background(Color(red: 0.6, green: 0.6, blue: 0.6))
+                    .foregroundColor(Color.white)
+                    .cornerRadius(25)
                 }
             }
-        }.alert(isPresented: self.$alert) {
+        }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
+        .onAppear{
+                UITableView.appearance().backgroundColor = .clear
+        }
+        .alert(isPresented: self.$alert) {
             Alert(title: Text("\(self.alertTitle)"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
             self.alert = false
         }))}
