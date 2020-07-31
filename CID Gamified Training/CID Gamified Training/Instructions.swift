@@ -60,6 +60,10 @@ struct Instructions: View {
                 }
             }
             .padding([.leading, .bottom, .trailing])
+            Rectangle()
+            .frame(height: 1.0, alignment: .bottom)
+            .foregroundColor(Color.white)
+            .offset(y: -15)
             Spacer()
             HStack{
                 VStack {
@@ -90,10 +94,10 @@ struct Instructions: View {
                 Text("Start")
                     .font(.largeTitle)
                     .fontWeight(.black)
-                    .foregroundColor(Color.darkBlue)
+                    .foregroundColor(Color.white)
                     .padding(15)
                     .background(Color(red: 0.6, green: 0.6, blue: 0.6))
-                    .cornerRadius(25)
+                    .cornerRadius(40)
             }
             Spacer()
         } .onAppear{

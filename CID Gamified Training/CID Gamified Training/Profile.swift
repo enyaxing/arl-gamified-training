@@ -57,7 +57,11 @@ struct Profile: View {
             .padding()
             .frame(maxWidth: .infinity)
            
-            Divider()
+//            Divider()
+            Rectangle()
+            .frame(height: 1.0, alignment: .bottom)
+            .foregroundColor(Color.white)
+            .offset(y: -15)
             
             VStack(alignment: .leading){
                 HStack{

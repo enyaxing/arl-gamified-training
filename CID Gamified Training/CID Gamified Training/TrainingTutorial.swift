@@ -40,7 +40,7 @@ struct TrainingTutorial: View {
     @State var aboutDescription: String = "Here you'll work on recognizing whether vehicles are friendly or enemy."
 
     /** Current tite. */
-    @State var aboutTitle: String = "Welcome to training!"
+    @State var aboutTitle: String = "Welcome to Training!"
 
     /** Whether the tutorial basics have already been completed. */
     @State var tutorialFirstRound: Bool = true
@@ -349,11 +349,11 @@ struct TrainingTutorialMain: View {
                 aboutTitle = "Make a decision."
                 aboutDescription = "Identify whether each vehicle is friendly or enemy, and tap the corresponding button."
             case .correctPromotion:
-                aboutTitle = "You earned a star."
-                aboutDescription = "Every question answered correctly grants you one star."
+                aboutTitle = "You earned some points."
+                aboutDescription = "Every question answered correctly grants you points."
             case .correctPrevention:
                 aboutTitle = "Correct."
-                aboutDescription = "You did not lose a star. Answering questions incorrectly causes you to lose stars."
+                aboutDescription = "You did not lose any points Answering questions incorrectly causes you to lose stars."
             case .correctNeutral:
                 aboutTitle = "Correct."
                 aboutDescription = ""
@@ -362,10 +362,10 @@ struct TrainingTutorialMain: View {
                 aboutDescription = "There are 20 questions per round."
             case .incorrectPrevention:
                 aboutTitle = "You lost a star."
-                aboutDescription = "Every question answered incorrectly causes you to lose one star."
+                aboutDescription = "Every question answered incorrectly causes you to lose points."
             case .incorrectPromotion:
                 aboutTitle = "Incorrect."
-                aboutDescription = "You did not gain a star."
+                aboutDescription = "You did not gain any points."
             case .incorrectNeutral:
                 aboutTitle = "Incorrect."
                 aboutDescription = "Try again next time."

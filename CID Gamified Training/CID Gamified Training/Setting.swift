@@ -61,6 +61,10 @@ struct Setting: View {
                     .fontWeight(.black)
                     .foregroundColor(Color.white)
             }
+            Rectangle()
+            .frame(height: 1.0, alignment: .bottom)
+            .foregroundColor(Color.white)
+            .offset(y: -15)
             Text("Directions: Click a vehicle to move it.  The order is Library → Friendly → Enemy → Library.")
              .foregroundColor(Color.white)
             Spacer()
