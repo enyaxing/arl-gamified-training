@@ -74,8 +74,7 @@ extension UIScreen{
 struct Input: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding(.horizontal, 30.0)
-            .padding(.vertical)
+            .padding(.all)
             .font(.custom("Helvetica", size: 16))
             .background(
                 RoundedRectangle(cornerRadius: 4)
@@ -83,6 +82,7 @@ struct Input: ViewModifier {
                     .frame(width: 343, height: 50)
                     .shadow(color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)), radius:4, x:0, y:4)
             )
+            .frame(maxWidth: 343)
     }
 }
 

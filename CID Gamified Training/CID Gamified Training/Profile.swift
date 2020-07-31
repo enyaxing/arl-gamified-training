@@ -39,104 +39,105 @@ struct Profile: View {
         dateFormatter.dateFormat = "HH:mm dd MMM yy"
         
         return ScrollView {
-            VStack {
-                HStack(alignment: .center) {
-                    VStack(alignment: .leading) {
-                       Text(name)
-                           .font(.headingFont)
-                            .foregroundColor(Color.white)
-                       HStack(alignment: .center){
-                           Image("mail").resizable().frame(width: 24, height: 24)
-                           Text(email)
-                               .font(.bodyFontSmall)
-                            .foregroundColor(Color.white)
-                       }
-                    }
-                    Spacer()
-                    Image("pfp-default").resizable().frame(width: 50, height: 50)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-               
-                Divider()
-                
-                VStack(alignment: .leading){
-                    HStack{
-                        Text("Statistics")
-                        .font(.headingFont)
+            HStack(alignment: .center) {
+                VStack(alignment: .leading) {
+                   Text(name)
+                       .font(.headingFont)
                         .foregroundColor(Color.white)
-                        NavigationLink(destination: StatDetail(prevSessions: self.prevSessionIds, uid: self.uid)){
-                            Text("Details")
-                        }
-                    }
-                    HStack {
-                        // Placeholder stats for now
-                        StatBox(img_name: "coin", description: "sessions completed").foregroundColor(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10.0)
-                                .stroke(Color.white, lineWidth: 2)
-                        )
-                        StatBox(img_name: "time", description: "time trained").foregroundColor(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10.0)
-                                .stroke(Color.white, lineWidth: 2)
-                        )
-                    }
-                    
-                    HStack {
-                        StatBox(img_name: "stopwatch", description: "avg response time").foregroundColor(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10.0)
-                                .stroke(Color.white, lineWidth: 2)
-                        )
-                        StatBox(img_name: "accuracy", description: "accuracy").foregroundColor(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10.0)
-                                .stroke(Color.white, lineWidth: 2)
-                        )
-                    }
+                   HStack(alignment: .center){
+                       Image("mail").resizable().frame(width: 24, height: 24)
+                       Text(email)
+                           .font(.bodyFontSmall)
+                        .foregroundColor(Color.white)
+                   }
                 }
-                .padding(.top)
-                Text("Previous Sessions:")
+                Spacer()
+                Image("pfp-default").resizable().frame(width: 50, height: 50)
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+           
+            Divider()
+            
+            VStack(alignment: .leading){
+                HStack{
+                    Text("Statistics")
                     .font(.headingFont)
                     .foregroundColor(Color.white)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 30)
-                    .padding(.horizontal)
-                ForEach(self.prevSessionIds, id: \.self) {sess in
-                    NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false), uid: self.uid, session: self.prevSessions[sess]!)){
-                        HStack {
-                            Text("\(self.dateFormatter.string(for: self.prevSessions[sess]?.timestamp.dateValue()) ?? "Unknown date")")
-                                .foregroundColor(Color.white)
-                            Spacer()
-                            // Placeholder
-                            Text("\(self.prevSessions[sess]!.type)")
-                                .foregroundColor(Color.white)
-                            Spacer()
-                            // Placeholder
-                            Text("\(self.prevSessions[sess]!.points)")
-                                .foregroundColor(Color.white)
-                            Spacer()
-                            Image("navigate_next").resizable().frame(width: 24, height: 24).foregroundColor(Color.white)
-                        }
-                        .foregroundColor(.black)
+                    NavigationLink(destination: StatDetail(prevSessions: self.prevSessionIds, uid: self.uid)){
+                        Text("Details")
                     }
-                    .frame(maxWidth: UIScreen.screenWidth)
-                    .frame(height: UIScreen.screenHeight / 30, alignment: .leading)
-                    .padding(10)
+                }
+                HStack {
+                    // Placeholder stats for now
+                    StatBox(img_name: "coin", description: "sessions completed").foregroundColor(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10.0)
+                            .stroke(Color.white, lineWidth: 2)
+                    )
+                    StatBox(img_name: "time", description: "time trained").foregroundColor(Color.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10.0)
                             .stroke(Color.white, lineWidth: 2)
                     )
                 }
+                
+                HStack {
+                    StatBox(img_name: "stopwatch", description: "avg response time").foregroundColor(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10.0)
+                            .stroke(Color.white, lineWidth: 2)
+                    )
+                    StatBox(img_name: "accuracy", description: "accuracy").foregroundColor(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10.0)
+                            .stroke(Color.white, lineWidth: 2)
+                    )
+                }
+            }
+            .padding(.top)
+            Text("Previous Sessions:")
+                .font(.headingFont)
+                .foregroundColor(Color.white)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 30)
                 .padding(.horizontal)
-                .padding(.vertical, 2)
-                Spacer()
-            }.onAppear{
+            ForEach(self.prevSessionIds, id: \.self) {sess in
+                NavigationLink(destination: Summary(answers: self.answers, sess: sess, countdown:Binding.constant(false), uid: self.uid, session: self.prevSessions[sess]!)){
+                    HStack {
+                        Text("\(self.dateFormatter.string(for: self.prevSessions[sess]?.timestamp.dateValue()) ?? "Unknown date")")
+                            .foregroundColor(Color.white)
+                        Spacer()
+                        // Placeholder
+                        Text("\(self.prevSessions[sess]!.type)")
+                            .foregroundColor(Color.white)
+                        Spacer()
+                        // Placeholder
+                        Text("\(self.prevSessions[sess]!.points)")
+                            .foregroundColor(Color.white)
+                        Spacer()
+                        Image("navigate_next").resizable().frame(width: 24, height: 24).foregroundColor(Color.white)
+                    }
+                    .foregroundColor(.black)
+                }
+                .frame(maxWidth: UIScreen.screenWidth)
+                .frame(height: UIScreen.screenHeight / 30, alignment: .leading)
+                .padding(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .stroke(Color.white, lineWidth: 2)
+                )
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 2)
+            Spacer()
+            
+        }
+            .onAppear{
                 self.setHeader(doc: self.db.document(self.uid))
                 self.getSessions(db: self.db.document(self.uid).collection("sessions"))
-            }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
-        }
+            }
+            .background(Color.lightBlack.edgesIgnoringSafeArea(.all))
     }
 
     /** Gets list of sessions for this user from firebase. */

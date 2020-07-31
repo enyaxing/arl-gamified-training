@@ -52,12 +52,12 @@ struct Signin: View {
             } else {
                 NavigationView {
                     VStack {
-                        TextField("Email", text: $email).offset(x: 20)
-                            .inputStyle()
-
-                        SecureField("Password", text: $password).offset(x: 20)
+                        
+                        TextField("Email", text: $email)
                             .inputStyle()
                         
+                        SecureField("Password", text: $password)
+                            .inputStyle()
                         Spacer()
                         Spacer()
                         VStack {
