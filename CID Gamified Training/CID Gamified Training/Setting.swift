@@ -131,6 +131,9 @@ struct Setting: View {
                 }) {
                     Text("Reset")
                      .foregroundColor(Color.white)
+                    .padding(15)
+                    .background(Color(red: 0, green: 0.2, blue: 0))
+                    .cornerRadius(25)
                 }
                 Spacer()
                 Button(action: {
@@ -138,12 +141,18 @@ struct Setting: View {
                 }) {
                     Text("Save")
                      .foregroundColor(Color.white)
+                    .padding(15)
+                    .background(Color(red: 0, green: 0.4, blue: 0))
+                    .cornerRadius(25)
                 }
                 Spacer()
                 if self.user.userType != "instructor" && self.classes != nil{
                     NavigationLink(destination: Assignments(classes: self.classes!)) {
                         Text("Assignments")
                          .foregroundColor(Color.white)
+                        .padding(15)
+                        .background(Color(red: 0, green: 0.6, blue: 0))
+                        .cornerRadius(25)
                     }
                     Spacer()
                 }
@@ -153,6 +162,9 @@ struct Setting: View {
                     }) {
                         Text("Random")
                          .foregroundColor(Color.white)
+                        .padding(15)
+                        .background(Color(red: 0, green: 0.8, blue: 0))
+                        .cornerRadius(25)
                     }
                     Spacer()
                 }

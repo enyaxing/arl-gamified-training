@@ -51,7 +51,7 @@ struct Assignments: View {
                     Spacer()
                 }
             }
-        }.background(Color.black.edgesIgnoringSafeArea(.all))
+        }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
         .onAppear{
             UITableView.appearance().backgroundColor = .clear
             self.getassignments(db: self.classes!.collection("assignments"))

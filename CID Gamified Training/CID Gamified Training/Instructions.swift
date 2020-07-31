@@ -91,6 +91,9 @@ struct Instructions: View {
                     .font(.largeTitle)
                     .fontWeight(.black)
                     .foregroundColor(Color.darkBlue)
+                    .padding(15)
+                    .background(Color(red: 0.6, green: 0.6, blue: 0.6))
+                    .cornerRadius(25)
             }
             Spacer()
         } .onAppear{

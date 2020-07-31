@@ -75,7 +75,7 @@ struct Students: View {
                     Spacer()
                 }
             }
-        }.background(Color.black.edgesIgnoringSafeArea(.all))
+        }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
         .onAppear{
             UITableView.appearance().backgroundColor = .clear
             self.getStudents(doc: self.doc!)

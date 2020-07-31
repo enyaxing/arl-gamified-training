@@ -62,7 +62,7 @@ struct EditClasses: View {
                 Spacer()
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.black.edgesIgnoringSafeArea(.all))
+        .background(Color.lightBlack.edgesIgnoringSafeArea(.all))
             .alert(isPresented: self.$alert) {
             Alert(title: Text("\(self.alertTitle)"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
             self.alert = false
