@@ -24,57 +24,67 @@ struct StatDetail: View {
     @State var vehicleSecond: [String: Double] = [:]
     @State var tagSecond: [String: Double] = [:]
     
+    @State var selectedTab = 0
+    
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
     var uid: String
     
     var body: some View {
-        VStack {
-            Text("Stat Details")
+        
+        TabView(selection: $selectedTab) {
+            VStack {
+                Text("Stat Details")
                 .font(.largeTitle)
                 .fontWeight(.black)
-            Text("Accuracy")
+                Text("Vehicle Accuracy")
+                .font(.title)
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
+                List {
+                    ForEach(self.vehiclePercent.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
+                        StatView(name: key, num: value, type: 0)
+                    }
+                }
+                Text("Vehicle Average Response Time")
+                .font(.title)
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
+                List {
+                    ForEach(self.vehicleSecond.sorted(by: { $0.value > $1.value}), id: \.key) {key, value in
+                        StatView(name: key, num: value, type: 1)
+                    }
+                }
+            } .tabItem {
+                Text("Vehicle")
+            }.tag(0)
+            VStack {
+                Text("Stat Details")
                 .font(.largeTitle)
-            HStack{
-                VStack {
-                    Text("Vehicle")
-                    List {
-                        ForEach(self.vehiclePercent.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
-                            StatView(name: key, num: value, type: 0)
-                        }
+                .fontWeight(.black)
+                Text("Tag Accuracy")
+                .font(.title)
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
+                List {
+                    ForEach(self.tagPercent.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
+                        StatView(name: key, num: value, type: 0)
                     }
                 }
-                VStack {
-                    Text("Tag")
-                    List {
-                        ForEach(self.tagPercent.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
-                            StatView(name: key, num: value, type: 0)
-                        }
+                Text("Tag Average Response Time")
+                .font(.title)
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
+                List {
+                    ForEach(self.tagSecond.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
+                        StatView(name: key, num: value, type: 1)
                     }
                 }
-            }
-            Text("Average Time")
-                .font(.largeTitle)
-            HStack {
-                VStack {
-                    Text("Vehicle")
-                    List {
-                        ForEach(self.vehicleSecond.sorted(by: { $0.value > $1.value}), id: \.key) {key, value in
-                            StatView(name: key, num: value, type: 1)
-                        }
-                    }
-                }
-                VStack {
-                    Text("Tag")
-                    List {
-                        ForEach(self.tagSecond.sorted(by: { $0.value > $1.value }), id: \.key) {key, value in
-                            StatView(name: key, num: value, type: 1)
-                        }
-                    }
-                }
-            }
-        } .onAppear{
+            }.tabItem {
+                Text("Tag")
+            }.tag(1)
+        }.onAppear{
             self.getStats(sessions: self.prevSessions)
         }
     }
