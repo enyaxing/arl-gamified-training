@@ -41,18 +41,18 @@ struct AssignmentDetail: View {
             .fontWeight(.semibold)
                 .foregroundColor(Color.white)
             HStack {
-                StatBox(img_name: "coin", description: "Friendly Accuracy", item: Text("\(self.assignment.friendlyAccuracy, specifier: "%.1f")%")).foregroundColor(Color.white)
+                StatBox(img_name: "acc1", description: "Friendly Accuracy", item: Text("\(self.assignment.friendlyAccuracy, specifier: "%.1f")%")).foregroundColor(Color.white)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10.0)
                         .stroke(Color.white, lineWidth: 2)
                 )
-                StatBox(img_name: "coin", description: "Enemy Accuracy", item: Text("\(self.assignment.enemyAccuracy, specifier: "%.1f")%")).foregroundColor(Color.white)
+                StatBox(img_name: "acc2", description: "Enemy Accuracy", item: Text("\(self.assignment.enemyAccuracy, specifier: "%.1f")%")).foregroundColor(Color.white)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10.0)
                         .stroke(Color.white, lineWidth: 2)
                 )
             }
-            StatBox(img_name: "coin", description: "Time Allotted", item: Text("\(self.assignment.time, specifier: "%.1f") s")).foregroundColor(Color.white)
+            StatBox(img_name: "time", description: "Time Allotted", item: Text("\(self.assignment.time, specifier: "%.1f") s")).foregroundColor(Color.white)
             .overlay(
                 RoundedRectangle(cornerRadius: 10.0)
                     .stroke(Color.white, lineWidth: 2)

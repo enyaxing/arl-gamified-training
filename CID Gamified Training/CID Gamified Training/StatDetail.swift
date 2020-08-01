@@ -61,6 +61,7 @@ struct StatDetail: View {
                     }.listRowBackground(Color.lightBlack)
                 }
             } .tabItem {
+                Image(systemName: "car.fill")
                 Text("Vehicle")
             }.tag(0)
             .background(Color.lightBlack.edgesIgnoringSafeArea(.all))
@@ -91,6 +92,7 @@ struct StatDetail: View {
                     }.listRowBackground(Color.lightBlack)
                 }
             }.tabItem {
+                Image(systemName: "tag")
                 Text("Tag")
             }.tag(1)
             .background(Color.lightBlack.edgesIgnoringSafeArea(.all))
