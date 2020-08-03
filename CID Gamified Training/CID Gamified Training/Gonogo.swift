@@ -2,8 +2,8 @@
 //  Gonogo.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/8/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/8/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 import SwiftUI
 import Darwin
@@ -313,7 +313,12 @@ struct GonogoMain: View {
         }
     }
     
-    /** Calculates the score, out of 50 based on response time. */
+    /** Calculates the score, out of 50 based on response time.
+    Uses an exponential function to map time to points where (0, 50) and (5, 1) are poitns on the graph.
+    Parameters:
+       timeElapsed - Double representing response time for the question.
+    Return:
+       Int representing points earned. */
     func calculateTimeScore(timeElapsed: Double) -> Int {
         let b: Double = log(1 / Double(fullPointVal)) / 5
         let timeScore: Int = Int(Double(fullPointVal) * pow(Darwin.M_E, b * timeElapsed))
@@ -321,7 +326,10 @@ struct GonogoMain: View {
     }
 }
 
-/** Randomly select enemy:friendly at 4:1 ratio. */
+/** Randomly select enemy:friendly at 4:1 ratio.
+ Return:
+    Int representing which folder to select vehicle from.
+    0 == friendly, 1== enemy*/
 func selectRandom() -> Int {
     let rand = Int.random(in: 1...5)
     if rand <= 4 {

@@ -2,8 +2,8 @@
 //  ContentView.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/8/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/8/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 import SwiftUI
 import Firebase
@@ -219,9 +219,6 @@ struct ContentView: View {
                         self.invalid = false
                     }))
             }
-//            .onAppear{
-//                initial(uid: self.user.uid)
-//            }
         }
     }
 
@@ -244,7 +241,11 @@ struct ContentView: View {
     }
 }
 
-/** Obtain focus value from firebase user. */
+/** Obtain focus value from Firebase user.
+ Parameters:
+    db - CollectionReference of users collection
+    user - Global variable representing current user.
+    defaults - default variables. */
 func newFocus(db: CollectionReference, user: GlobalUser, defaults: UserDefaults) {
     db.document(user.uid).getDocument { (document, error) in
         if let document = document, document.exists {
@@ -262,21 +263,23 @@ func newFocus(db: CollectionReference, user: GlobalUser, defaults: UserDefaults)
     }
 }
 
+/** Obtain overal statistics from Firebase.
+ Parameters:
+    db - CollectionReference of users collection
+    user - Global variable representing current user.
+    defaults - default variables. */
 func obtainFields(db: CollectionReference, user: GlobalUser, defaults: UserDefaults) {
     db.document(user.uid).getDocument { (document, error) in
         if let document = document, document.exists {
             if document.get("avgResponseTime") != nil {
                 user.avgResponseTime = document.get("avgResponseTime") as! Double
             }
-
             if document.get("totalSessions") != nil {
                 user.totalSessions = document.get("totalSessions") as! Int
             }
-
             if document.get("avgResponseTime") != nil {
                 user.avgResponseTime = document.get("avgResponesTime") as! Double
             }
-
             if document.get("accuracy") != nil {
                 user.avgResponseTime = document.get("accuracy") as! Double
             }
