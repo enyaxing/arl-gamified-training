@@ -2,8 +2,8 @@
 //  Signup.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/16/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/16/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
@@ -52,10 +52,8 @@ struct Signin: View {
             } else {
                 NavigationView {
                     VStack {
-                        
                         TextField("Email", text: $email)
                             .inputStyle()
-                        
                         SecureField("Password", text: $password)
                             .inputStyle()
                         Spacer()
@@ -66,23 +64,19 @@ struct Signin: View {
                             }) {
                                 Text("LOG IN")
                                     .customRoundedButtonStyle()
-                            }
-                                .padding()
-                            
+                            } .padding()
                             Button(action: {
                                 self.signup = true
                             }) {
                                 Text("New User? Sign up Here!")
                                     .font(.custom("Helvetica-Bold", size: 16))
                                     .foregroundColor(Color.armyGreen)
-                            }
-                                .padding()
+                            } .padding()
                         }
                     }
                     .navigationBarTitle("Sign In")
                     .modifier(AdaptsToKeyboard())
                 }
-            
             }
         }.alert(isPresented: $invalid) {
             Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
@@ -94,7 +88,10 @@ struct Signin: View {
         }
     }
     
-    /** Login function*/
+    /** Login function
+     Parameters:
+        email - String representing the email of the student
+        password - String representing the password of the student. */
     func login(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {

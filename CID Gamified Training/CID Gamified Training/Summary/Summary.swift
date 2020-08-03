@@ -2,8 +2,8 @@
 //  Summary.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/11/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/11/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 import SwiftUI
 import Firebase
@@ -38,18 +38,19 @@ struct Summary: View {
     /** Session object to be summarized. */
     @State var session: Session
     
+    /** Comment about tag performance displayed on top of page. */
     @State var tagID = ""
     
     var body: some View {
         VStack {
             Text("Summary")
-            .font(.largeTitle)
-            .fontWeight(.black)
-            .foregroundColor(Color.white)
+                .font(.largeTitle)
+                .fontWeight(.black)
+                .foregroundColor(Color.white)
             Rectangle()
-            .frame(height: 1.0, alignment: .bottom)
-            .foregroundColor(Color.white)
-            .offset(y: -15)
+                .frame(height: 1.0, alignment: .bottom)
+                .foregroundColor(Color.white)
+                .offset(y: -15)
             Text("Session Type: \(self.session.type)")
                 .font(.headline)
                 .fontWeight(.bold)
@@ -62,19 +63,19 @@ struct Summary: View {
             Group {
                 if self.user.regular == "promotion" {
                     Text("Correct: \(countCorrect(answer: answers))/\(answers.count)")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.darkBlue)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.darkBlue)
                 } else if self.user.regular == "prevention" {
                     Text("Incorrect: \(incorrect(answer: answers))/\(answers.count)")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.enemyRed)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.enemyRed)
                 } else {
                     Text("Correct: \(countCorrect(answer: answers))")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.darkBlue)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.darkBlue)
                     Text("Incorrect: \(incorrect(answer: answers))")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.enemyRed)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.enemyRed)
                 }
             }
             Text(tagID)
@@ -85,7 +86,6 @@ struct Summary: View {
                     }
                 }.listRowBackground(Color.lightBlack)
             }
-            
         } .navigationBarBackButtonHidden(hideback)
             .onAppear{
                 UITableView.appearance().backgroundColor = .clear
@@ -122,7 +122,9 @@ struct Summary: View {
         }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
     }
     
-    /** Get the list of answers of session from Firebase. */
+    /** Get the list of answers of session from Firebase.
+     Parameters:
+        db - CollectionReference to answers collection in firebase. */
     func getAnswers(db: CollectionReference) {
         var ret: [Answer] = []
         db.getDocuments() {(query, err) in
@@ -146,7 +148,9 @@ struct Summary: View {
         }
     }
     
-    /** Update and save stats on Firebase. */
+    /** Update and save stats on Firebase.
+     Parameters:
+        doc - DocumentReference to user document in Firebase. */
     func updateStats(doc: DocumentReference) {
         doc.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -195,7 +199,11 @@ struct Summary: View {
     }
 }
 
-/** Count the number of correct answers. */
+/** Count the number of correct answers.
+ Parameters:
+    answer - List of answers for this summary.
+ Return:
+    Int representing number of correct answers. */
 func countCorrect(answer: [Answer]) -> Int {
     var count = 0
     for ans in answer {
@@ -206,17 +214,25 @@ func countCorrect(answer: [Answer]) -> Int {
     return count
 }
 
-/** Count the number of incorrect answers. */
+/** Count the number of incorrect answers.
+ Parameters:
+    answer - List of answers for this summary.
+ Return:
+    Int representing number of incorrect answers. */
 func incorrect(answer: [Answer]) -> Int {
     return answer.count - countCorrect(answer: answer)
 }
 
-/** Calculate percentage of correct answers. */
+/** Calculate percentage of correct answers.
+ Parameters:
+    answer - List of answers for this summary.
+ Return:
+    List of Doubles of length 2.
+    Double[0] = percentage of friendly correct.
+    Double[1] = percentage of enemy correct. */
 func percentage(answer: [Answer]) -> [Double] {
-    
     var friend: [Answer] = []
     var foe: [Answer] = []
-    
     for ans in answer {
         if ans.expected == "friendly" {
             friend.append(ans)
@@ -226,11 +242,14 @@ func percentage(answer: [Answer]) -> [Double] {
     }
     let first = ((Double(countCorrect(answer: friend)) / Double(friend.count)) * 100.0)
     let second = ((Double(countCorrect(answer: foe)) / Double(foe.count)) * 100.0)
-    
     return [first, second]
 }
 
-/** Parse image reference to be saved on Firebase. */
+/** Parse image reference to be saved on Firebase.
+ Parameters:
+    location - String representing complete file path.
+ Return:
+    String representing part of the file path starting with CID Images. */
 func parseImage(location: String) -> String {
     var count = 3
     var charCount = 0
@@ -246,7 +265,11 @@ func parseImage(location: String) -> String {
     return String(location.suffix(charCount))
 }
 
-/** Parse question id to be saved on Firebase. */
+/** Parse question id to be saved on Firebase.
+ Parameters:
+    id - Int representing question number 0-19
+ Return:
+    2 digit String from 01-20 */
 func parseID(id: Int) -> String {
     let title = id + 1
     if title < 10 {
@@ -256,6 +279,11 @@ func parseID(id: Int) -> String {
     }
 }
 
+/** Generates tag comments based on list of answers.
+ Parameter:
+    answers - List of answers
+ Return:
+    String representing the comment to be displayed. */
 func readTags(answers: [Answer]) -> String {
     let decoder = JSONDecoder()
     var ret = ""
@@ -263,10 +291,8 @@ func readTags(answers: [Answer]) -> String {
         do {
             let jsonData = try Data(contentsOf: path)
             let tags: [Tags] = try! decoder.decode([Tags].self, from: jsonData)
-            
             var countTags = [String:Int]()
             var incTags = [String:Int]()
-            
             for ans in answers {
                 for tag in tags {
                     if parseImage(location: ans.image) == tag.image {
@@ -316,7 +342,6 @@ func checkComplete(user: DocumentReference, uid: String, percentage: [Double], t
                 }
                 modelFriends.sort()
                 modelEnemies.sort()
-                
                 assignment.getDocuments() {(query, err) in
                     if err != nil {
                         print("Error getting docs.")

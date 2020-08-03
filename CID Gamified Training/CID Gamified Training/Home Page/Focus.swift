@@ -2,8 +2,8 @@
 //  Focus.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/16/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/16/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
@@ -26,20 +26,20 @@ struct Focus: View {
     
     var body: some View {
         Color.lightBlack.edgesIgnoringSafeArea(.all).overlay(
-        VStack {
-            Text("Please select your focus style.")
-            .foregroundColor(Color.white)
-            Picker(selection: $selection, label: Text("Picker")) {
-                Text("Gain").tag("promotion").id(UUID())
-                Text("Loss").tag("prevention").id(UUID())
-                Text("Neutral").tag("neutral").id(UUID())
-            } .pickerStyle(SegmentedPickerStyle())
-        } .onDisappear {
-            self.db.document(self.user.uid).setData(["focus": self.selection], merge: true)
-            newFocus(db: self.db, user: self.user, defaults: self.defaults)
-        }.onAppear {
-            self.selection = self.user.regular
-        }
+            VStack {
+                Text("Please select your focus style.")
+                .foregroundColor(Color.white)
+                Picker(selection: $selection, label: Text("Picker")) {
+                    Text("Gain").tag("promotion").id(UUID())
+                    Text("Loss").tag("prevention").id(UUID())
+                    Text("Neutral").tag("neutral").id(UUID())
+                } .pickerStyle(SegmentedPickerStyle())
+            } .onDisappear {
+                self.db.document(self.user.uid).setData(["focus": self.selection], merge: true)
+                newFocus(db: self.db, user: self.user, defaults: self.defaults)
+            }.onAppear {
+                self.selection = self.user.regular
+            }
         )
     }
 }

@@ -2,8 +2,8 @@
 //  Signup.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/16/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/16/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
@@ -56,25 +56,20 @@ struct Signup: View {
                 }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal)
-                
                 Spacer()
-                
                 Button(action: {
                     self.createUser(email: self.email, password: self.password, name: self.name, selection: self.selection)
                 }) {
                     Text("Create Account")
                         .customRoundedButtonStyle()
-                }
-                    .padding()
-                
+                } .padding()
                 Button(action: {
                     self.signup = false
                 }) {
                     Text("Already have an account? Sign in here!")
                         .font(.custom("Helvetica-Bold", size: 16))
                         .foregroundColor(Color.armyGreen)
-                }
-                    .padding()
+                } .padding()
             } .navigationBarTitle("Sign Up")
                 .alert(isPresented: $invalid) {
                     Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
@@ -87,7 +82,12 @@ struct Signup: View {
         }
     }
     
-    /** Create user function. */
+    /** Create user function.
+     Parameters:
+        email - String representing email of user
+        password - String representing password of user
+        name - String representing name of user
+        selection - String representing user type either "student" or "instructor" */
     func createUser(email: String, password: String, name: String, selection: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if name.isEmpty {

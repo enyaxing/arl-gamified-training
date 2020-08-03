@@ -2,8 +2,8 @@
 //  Model.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/15/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/15/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import Foundation
@@ -38,11 +38,14 @@ struct Model: Identifiable {
     /** List of unselected photo folders. */
     static var unselectedFolder: [Card] = dirLoad()
     
-    /** Load the friendly and foe model arrays with friendlyFolder and enemyFolder card arrays. */
+    /** Load the friendly and foe model arrays with friendlyFolder and enemyFolder card arrays.
+     Parameters:
+        name - String, either "friendly" or "enemy" indicating which should be loaded.
+     Return:
+        An array of Models to be used in the training games.*/
     static func settingLoad(name: String) -> [Model] {
         let fm = FileManager.default
         let path = Bundle.main.resourcePath! + "/CID Images"
-        
         var ret: [Model] = []
         if name == "friendly" {
             for card in self.friendlyFolder {
@@ -71,6 +74,9 @@ struct Model: Identifiable {
     }
 }
 
+/** Syncs the enemy and friendly settings with the ones present in firebase.
+ Parameters:
+    uid - String representing the user's uid*/
 func initial(uid: String) {
     let db = Firestore.firestore().collection("users").document(uid)
     var friend: [Card] = []
@@ -109,9 +115,14 @@ func initial(uid: String) {
             print("error")
         }
     }
-    print("done initializing")
 }
 
+/** Checks if a certain vehicle is present in a folder.
+ Parameters:
+    name - String of the vehicle to search for.
+    arr - Array of Cards representing a folder either enemy or friendly
+ Return:
+    Bool indicating whether the vehicle is present or not.*/
 func check(name: String, arr: [Card]) -> Bool {
     for card in arr {
         if name == card.name {
@@ -122,7 +133,9 @@ func check(name: String, arr: [Card]) -> Bool {
 }
 
 /** How to read file names in directory.
-    Loads the unselected array. */
+    Loads the unselected array.
+ Return:
+    An array of Cards representign the unselected vehicles.*/
 func dirLoad() -> [Card] {
     let fm = FileManager.default
     let path = Bundle.main.resourcePath! + "/CID Images"
