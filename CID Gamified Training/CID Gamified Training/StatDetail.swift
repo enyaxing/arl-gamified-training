@@ -2,33 +2,58 @@
 //  StatDetail.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 7/14/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 7/14/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
 import Firebase
 
+/** View shows detailed statistics on vehicles and tags.
+ Displays accuracy percentage and average response time. */
 struct StatDetail: View {
     
+    /** List of previous sessions identified by their id in Firebase. */
     @State var prevSessions: [String] = []
+    
+    /** Mapping from vehicle name to total response time. */
     @State var vehicleTime: [String: Double] = [:]
+    
+    /** Mapping from tag to total response time. */
     @State var tagTime: [String: Double] = [:]
+    
+    /** Mapping from vehicle name to total number correct. */
     @State var vehicleAccuracy: [String: Double] = [:]
+    
+    /** Mapping from tag to total number correct. */
     @State var tagAccuracy: [String: Double] = [:]
+    
+    /** Mapping from vehicle name to total number of questions. */
     @State var vehicleCount: [String: Double] = [:]
+    
+    /** Mapping from tag to total number of questions. */
     @State var tagCount: [String: Double] = [:]
     
+    /** Mapping from vehicle name to percentage correct. */
     @State var vehiclePercent: [String: Double] = [:]
+    
+    /** Mapping from tag to percentage correct. */
     @State var tagPercent: [String: Double] = [:]
+    
+    /** Mapping from vehicle name to average response time in seconds. */
     @State var vehicleSecond: [String: Double] = [:]
+    
+    /** Mapping from tag to average response time in seconds. */
     @State var tagSecond: [String: Double] = [:]
     
+    /** Selected tab.
+     0 == vehicles, 1 == tag. */
     @State var selectedTab = 0
     
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
+    /** UID of student. */
     var uid: String
     
     var body: some View {
@@ -104,6 +129,10 @@ struct StatDetail: View {
         }
     }
     
+    /** Get stats by counting number of responses, number of correct responses,
+     and summing response time for each vehicle and tag.
+     Parameters:
+        sessions - List of session ids to loop through. */
     func getStats(sessions: [String]) {
         let sess = self.db.document(self.uid).collection("sessions")
         let decoder = JSONDecoder()
@@ -136,7 +165,6 @@ struct StatDetail: View {
                                     self.vehiclePercent[name] = self.vehicleAccuracy[name]! / self.vehicleCount[name]!
                                     self.vehicleSecond[name] = self.vehicleTime[name]! / self.vehicleCount[name]!
                                 }
-                                
                                 for tag in tags {
                                     if document.get("image") as! String == tag.image {
                                         for label in tag.tags {

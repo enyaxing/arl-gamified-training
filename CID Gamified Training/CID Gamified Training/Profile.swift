@@ -2,8 +2,8 @@
 //  Profile.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/22/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/22/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
@@ -22,8 +22,13 @@ struct Profile: View {
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
 
+    /** List of session ids to be sorted. */
     @State var prevSessionIds: [String] = []
+    
+    /** Mapping from session ids to session object. */
     @State var prevSessions: [String: Session] = [:]
+    
+    /** List of answers. */
     @State var answers: [Answer] = []
     
     /** Name of the user. */
@@ -31,8 +36,8 @@ struct Profile: View {
     
     /** Email of the user. */
     @State var email = "test"
-
-    let endTimestamp = Timestamp()
+    
+    /** Date formatter object. */
     let dateFormatter = DateFormatter()
     
     var body: some View {
@@ -56,13 +61,10 @@ struct Profile: View {
             }
             .padding()
             .frame(maxWidth: .infinity)
-           
-//            Divider()
             Rectangle()
             .frame(height: 1.0, alignment: .bottom)
             .foregroundColor(Color.white)
             .offset(y: -15)
-            
             VStack(alignment: .leading){
                 HStack{
                     Text("Statistics")
@@ -73,7 +75,6 @@ struct Profile: View {
                     }
                 }
                 HStack {
-                    // Placeholder stats for now
                     StatBox(img_name: "coin", description: "sessions completed").foregroundColor(Color.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10.0)
@@ -85,7 +86,6 @@ struct Profile: View {
                             .stroke(Color.white, lineWidth: 2)
                     )
                 }
-                
                 HStack {
                     StatBox(img_name: "stopwatch", description: "avg response time").foregroundColor(Color.white)
                     .overlay(
@@ -98,8 +98,7 @@ struct Profile: View {
                             .stroke(Color.white, lineWidth: 2)
                     )
                 }
-            }
-            .padding(.top)
+            }.padding(.top)
             Text("Previous Sessions:")
                 .font(.headingFont)
                 .foregroundColor(Color.white)
@@ -112,17 +111,14 @@ struct Profile: View {
                         Text("\(self.dateFormatter.string(for: self.prevSessions[sess]?.timestamp.dateValue()) ?? "Unknown date")")
                             .foregroundColor(Color.white)
                         Spacer()
-                        // Placeholder
                         Text("\(self.prevSessions[sess]!.type)")
                             .foregroundColor(Color.white)
                         Spacer()
-                        // Placeholder
                         Text("\(self.prevSessions[sess]!.points)")
                             .foregroundColor(Color.white)
                         Spacer()
                         Image("navigate_next").resizable().frame(width: 24, height: 24).foregroundColor(Color.white)
-                    }
-                    .foregroundColor(.black)
+                    }.foregroundColor(.black)
                 }
                 .frame(maxWidth: UIScreen.screenWidth)
                 .frame(height: UIScreen.screenHeight / 30, alignment: .leading)
@@ -135,16 +131,15 @@ struct Profile: View {
             .padding(.horizontal)
             .padding(.vertical, 2)
             Spacer()
-            
-        }
-            .onAppear{
-                self.setHeader(doc: self.db.document(self.uid))
-                self.getSessions(db: self.db.document(self.uid).collection("sessions"))
-            }
-            .background(Color.lightBlack.edgesIgnoringSafeArea(.all))
+        }.onAppear{
+            self.setHeader(doc: self.db.document(self.uid))
+            self.getSessions(db: self.db.document(self.uid).collection("sessions"))
+        }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
     }
 
-    /** Gets list of sessions for this user from firebase. */
+    /** Gets list of sessions for this user from firebase.
+     Parameters:
+        db - CollectionReference to sessions reference in Firebase. */
     func getSessions(db: CollectionReference) {
         var ret: [String] = []
         db.getDocuments() {(query, err) in
@@ -163,8 +158,10 @@ struct Profile: View {
         }
     }
 
-    /** Obtain user name and email from firebase. */
-    func setHeader(doc: DocumentReference){
+    /** Obtain user name and email from Firebase.
+     Parameters:
+        doc - DocumentReference to user profile in Firebase. */
+    func setHeader(doc: DocumentReference) {
         doc.getDocument { (document, error) in
             if let document = document, document.exists {
                 if document.get("name") != nil {
@@ -190,9 +187,13 @@ struct Profile: View {
             }
         }
     }
-
 }
 
+/** Formats timestamp.
+ Parameters:
+    second - epoch time or seconds elapsed since January 1, 1970 midnight
+ Return:
+    String of formatted date to be displayed. */
 func format_time_interval(second: TimeInterval) -> String {
     let formatter = DateComponentsFormatter()
     formatter.unitsStyle = .positional

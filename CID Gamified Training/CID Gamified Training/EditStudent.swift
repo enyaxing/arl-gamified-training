@@ -2,8 +2,8 @@
 //  EditStudent.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/30/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/30/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
@@ -21,6 +21,7 @@ struct EditStudent: View {
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
+    /** Reference to class document in Firebase. */
     var classes: DocumentReference?
     
     /** Show alert. */
@@ -70,7 +71,9 @@ struct EditStudent: View {
         }))}
     }
     
-    /** Add a student to the list of students for this instructor. */
+    /** Add a student to the list of students for this instructor.
+     Parameters:
+        email - String representign email of student ot be added. */
     func add(email: String) {
         let instructor = self.classes!
         db.getDocuments() {(query, err) in
@@ -120,7 +123,9 @@ struct EditStudent: View {
         }
     }
     
-    /** Remove student from the list of students for this instructor. */
+    /** Remove student from the list of students for this instructor.
+     Parameters:
+        email - String representing email of student to be removed. */
     func remove(email: String) {
         let instructor = self.classes!
         db.getDocuments() {(query, err) in

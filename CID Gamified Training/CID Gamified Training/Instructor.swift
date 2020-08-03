@@ -2,8 +2,8 @@
 //  Instructor.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/22/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/22/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
@@ -38,65 +38,63 @@ struct Instructor: View {
     
     var body: some View {
         NavigationView {
-        VStack(alignment: .leading, spacing: 20) {
-            HStack {
-                Spacer()
-                Text("\(name)'s Instructor Portal")
-                .font(.title)
-                .fontWeight(.black)
+            VStack(alignment: .leading, spacing: 20) {
+                HStack {
+                    Spacer()
+                    Text("\(name)'s Instructor Portal")
+                    .font(.title)
+                    .fontWeight(.black)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
-                Spacer()
-            }
-            Text("  Classes:")
-                .font(.title)
-                .fontWeight(.semibold)
-                .foregroundColor(Color(red: 0.6, green: 0.6, blue: 0.6))
-            List {
-                ForEach(self.classes.sorted(by: { $0.0 < $1.0 }), id: \.key) {key, value in
-                    NavigationLink(destination: Students(doc: value, name: key)){
-                        Text(key)
-                            .foregroundColor(Color.white)
+                    Spacer()
+                }
+                Text("  Classes:")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color(red: 0.6, green: 0.6, blue: 0.6))
+                List {
+                    ForEach(self.classes.sorted(by: { $0.0 < $1.0 }), id: \.key) {key, value in
+                        NavigationLink(destination: Students(doc: value, name: key)){
+                            Text(key).foregroundColor(Color.white)
+                        }
+                    } .listRowBackground(Color(red: 0.2, green: 0.2, blue: 0.2))
+                }
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        self.logout()
+                    }) {
+                        Text("Sign out")
+                        .foregroundColor(Color.white)
+                        .padding(15)
+                        .background(Color(red: 0, green: 0.2, blue: 0))
+                        .cornerRadius(25)
                     }
-                } .listRowBackground(Color(red: 0.2, green: 0.2, blue: 0.2))
-            }
-                
-            HStack {
-                Spacer()
-                Button(action: {
-                    self.logout()
-                }) {
-                    Text("Sign out")
-                    .foregroundColor(Color.white)
-                    .padding(15)
-                    .background(Color(red: 0, green: 0.2, blue: 0))
-                    .cornerRadius(25)
-                }
-                Spacer()
-                NavigationLink(destination: Focus()) {
-                    Text(self.user.regular)
+                    Spacer()
+                    NavigationLink(destination: Focus()) {
+                        Text(self.user.regular)
                         .foregroundColor(Color.white)
-                    .padding(15)
-                    .background(Color(red: 0, green: 0.4, blue: 0))
-                    .cornerRadius(25)
-                }
-                Spacer()
-                NavigationLink(destination: EditClasses(listClass: self.$classes)) {
-                    Text("Edit Classes")
+                        .padding(15)
+                        .background(Color(red: 0, green: 0.4, blue: 0))
+                        .cornerRadius(25)
+                    }
+                    Spacer()
+                    NavigationLink(destination: EditClasses(listClass: self.$classes)) {
+                        Text("Edit Classes")
                         .foregroundColor(Color.white)
-                    .padding(15)
-                    .background(Color(red: 0, green: 0.6, blue: 0))
-                    .cornerRadius(25)
+                        .padding(15)
+                        .background(Color(red: 0, green: 0.6, blue: 0))
+                        .cornerRadius(25)
+                    }
+                    Spacer()
                 }
-                Spacer()
-            }
-        } .background(Color.lightBlack.edgesIgnoringSafeArea(.all))
-            .onAppear{
-                UITableView.appearance().backgroundColor = .clear
-            self.setHeader(doc: self.db.document(self.user.uid))
-            self.getClasses(db: self.db.document(self.user.uid).collection("classes"))
+            } .background(Color.lightBlack.edgesIgnoringSafeArea(.all))
+                .onAppear{
+                    UITableView.appearance().backgroundColor = .clear
+                    self.setHeader(doc: self.db.document(self.user.uid))
+                    self.getClasses(db: self.db.document(self.user.uid).collection("classes"))
+                }
         }
-    }
     }
     
     /** Logout function. */
@@ -113,7 +111,9 @@ struct Instructor: View {
         }
     }
     
-    /** Gets list of sessions for this user from firebase. */
+    /** Gets list of sessions for this user from firebase.
+     Parameters:
+        db - CollectionReference to the classes collection in Firebase. */
     func getClasses(db: CollectionReference) {
         db.getDocuments() {(query, err) in
             if err != nil {
@@ -127,7 +127,9 @@ struct Instructor: View {
         }
     }
     
-    /** Obtain name and email from firebase. */
+    /** Obtain name and email from firebase.
+     Parameters:
+        doc - DocumentReference to the user document. */
     func setHeader(doc: DocumentReference){
         doc.getDocument { (document, error) in
             if let document = document, document.exists {

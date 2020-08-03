@@ -2,8 +2,8 @@
 //  CardView.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/22/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/22/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
@@ -20,19 +20,21 @@ struct CardView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 40)
         .fill(back).frame(width: 175, height: 50).overlay(
-        HStack {
-        Image(uiImage: UIImage(imageLiteralResourceName: getImage()))
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-        .frame(width: 40, height: 40)
-        Text(folder)
-        Spacer()
-        } .frame(width: 150, height: 40)
-        .offset(x: 10)
+            HStack {
+                Image(uiImage: UIImage(imageLiteralResourceName: getImage()))
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40, height: 40)
+                Text(folder)
+                Spacer()
+            } .frame(width: 150, height: 40)
+            .offset(x: 10)
         )
     }
     
-    /** Retrieve image from folder name. */
+    /** Retrieve image from folder name.
+     Return:
+        String representing the path to the image. */
     func getImage() -> String {
         let fm = FileManager.default
         let path = Bundle.main.resourcePath! + "/CID Images"

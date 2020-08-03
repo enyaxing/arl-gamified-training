@@ -2,16 +2,22 @@
 //  AdvancedSetting.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 7/16/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 7/16/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
 
+/** View lets instructor select accuracy and time requirements for assignments. */
 struct AdvancedSetting: View {
     
+    /** Required friendly accuracy rate. */
     @Binding var friendlyAccuracy: Int
+    
+    /** Required enemy accuracy rate. */
     @Binding var enemyAccuracy: Int
+    
+    /** Required time of completion. */
     @Binding var time: Int
     
     var body: some View {

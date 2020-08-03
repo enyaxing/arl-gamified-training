@@ -2,15 +2,18 @@
 //  AssignmentDetail.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 7/6/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 7/6/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
 import Firebase
 
+/** View that displays detailed information about a specific assignment.
+ Displays enemy and friendly vehicles as well as required accuracy rates and time for assignment. */
 struct AssignmentDetail: View {
     
+    /** Assignment to be displayed in detail. */
     var assignment: Assignment
     
     /** Show alert. */
@@ -19,15 +22,19 @@ struct AssignmentDetail: View {
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
+    /** Document Reference of class in Firebase. */
     @State var doc: DocumentReference?
     
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
     
+    /** Alert title. */
     @State var alertTitle = "Success"
     
+    /** Alert message. */
     @State var error = ""
     
+    /** Mapping from assignment name to assignment. */
     @Binding var assignments: [String : Assignment]
     
     var body: some View {
@@ -87,7 +94,6 @@ struct AssignmentDetail: View {
                     }
                 }
             }
-            
             if self.user.userType == "instructor" && self.doc != nil{
                 HStack{
                     Spacer()
@@ -148,7 +154,7 @@ struct AssignmentDetail: View {
             }
         }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
         .onAppear{
-                UITableView.appearance().backgroundColor = .clear
+            UITableView.appearance().backgroundColor = .clear
         }
         .alert(isPresented: self.$alert) {
             Alert(title: Text("\(self.alertTitle)"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {

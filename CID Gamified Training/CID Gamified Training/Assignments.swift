@@ -2,13 +2,14 @@
 //  Assignments.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 7/6/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 7/6/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
 import Firebase
 
+/** View that lets you see existing assignments. */
 struct Assignments: View {
     
     /** Reference to global user variable. */
@@ -17,8 +18,10 @@ struct Assignments: View {
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
+    /** Mapping from assignment name to assignment. */
     @State var assignments: [String : Assignment] = [:]
     
+    /** Class documentReference in Firebase. */
     var classes: DocumentReference?
     
     var body: some View {
@@ -58,7 +61,9 @@ struct Assignments: View {
         }
     }
     
-    /** Gets list of sessions for this user from firebase. */
+    /** Gets list of sessions for this user from firebase.
+     Parameters:
+        db - CollectionReference of assignments collection in Firebase. */
     func getassignments(db: CollectionReference) {
         let fm = FileManager.default
         let path = Bundle.main.resourcePath! + "/CID Images"
@@ -90,6 +95,11 @@ struct Assignments: View {
     }
 }
 
+/** Converts a list of strings to a list of cards.
+ Parameters:
+    arr - list of strings to be converted.
+ Return:
+    Resulting list of cards. */
 func strCards(arr: [String]) -> [Card] {
     var ret: [Card] = []
     for str in arr {

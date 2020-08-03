@@ -2,8 +2,8 @@
 //  Setting.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/19/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/19/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
@@ -30,18 +30,25 @@ struct Setting: View {
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
     
+    /** Assignment name. */
     @State var name = ""
     
+    /** Required friendly accuracy percentage. */
     @State var friendlyAccuracy = 100
     
+    /** Required enemy accruacy percentage. */
     @State var enemyAccuracy = 100
     
+    /** Required time of assignment completion. */
     @State var time = 60
     
+    /** Document reference to class in Firebase. */
     @State var classes: DocumentReference? = nil
     
+    /** Title of alert. */
     @State var alertTitle = "Error"
     
+    /** Alert message. */
     @State var alertMessage = "Cannot have empty friendly or enemy list. Please add another vehicle before removing this vehicle."
     
     var body: some View {
@@ -57,9 +64,9 @@ struct Setting: View {
                 }
             } else {
                 Text("Settings")
-                    .font(.largeTitle)
-                    .fontWeight(.black)
-                    .foregroundColor(Color.white)
+                .font(.largeTitle)
+                .fontWeight(.black)
+                .foregroundColor(Color.white)
             }
             Rectangle()
             .frame(height: 1.0, alignment: .bottom)
@@ -71,9 +78,9 @@ struct Setting: View {
             HStack {
                 VStack {
                     Text("Library")
-                        .font(.title)
-                        .fontWeight(.heavy)
-                         .foregroundColor(Color.white)
+                    .font(.title)
+                    .fontWeight(.heavy)
+                    .foregroundColor(Color.white)
                     List {
                         ForEach(self.library, id: \.id) {card in
                             CardView(folder: card.name, back: Color.gray)
@@ -90,7 +97,7 @@ struct Setting: View {
                     Text("Friendly")
                     .font(.title)
                     .fontWeight(.heavy)
-                     .foregroundColor(Color.white)
+                    .foregroundColor(Color.white)
                     List {
                         ForEach(self.friendly, id: \.id) {card in
                             CardView(folder: card.name, back: Color.darkBlue)
@@ -105,7 +112,7 @@ struct Setting: View {
                     Text("Enemy")
                     .font(.title)
                     .fontWeight(.heavy)
-                     .foregroundColor(Color.white)
+                    .foregroundColor(Color.white)
                     List {
                         ForEach(self.enemy, id: \.id) {card in
                             CardView(folder: card.name, back: Color.enemyRed)
@@ -144,7 +151,7 @@ struct Setting: View {
                     self.save()
                 }) {
                     Text("Save")
-                     .foregroundColor(Color.white)
+                    .foregroundColor(Color.white)
                     .padding(15)
                     .background(Color(red: 0, green: 0.4, blue: 0))
                     .cornerRadius(25)
@@ -153,7 +160,7 @@ struct Setting: View {
                 if self.user.userType != "instructor" && self.classes != nil{
                     NavigationLink(destination: Assignments(classes: self.classes!)) {
                         Text("Assignments")
-                         .foregroundColor(Color.white)
+                        .foregroundColor(Color.white)
                         .padding(15)
                         .background(Color(red: 0, green: 0.6, blue: 0))
                         .cornerRadius(25)
@@ -165,7 +172,7 @@ struct Setting: View {
                         self.random()
                     }) {
                         Text("Random")
-                         .foregroundColor(Color.white)
+                        .foregroundColor(Color.white)
                         .padding(15)
                         .background(Color(red: 0, green: 0.8, blue: 0))
                         .cornerRadius(25)
@@ -187,6 +194,8 @@ struct Setting: View {
         }.background(Color.lightBlack.edgesIgnoringSafeArea(.all))
     }
     
+    /** If student, saves the current settings to be used in training games.
+        if instructor, saves the current settings as an assignment. */
     func save() {
         if self.friendly.count == 0 || self.enemy.count == 0 {
             self.alertTitle = "Error"
@@ -222,6 +231,7 @@ struct Setting: View {
         }
     }
     
+    /** Gets the class of the student. */
     func getClass() {
         let doc = self.db.document(self.user.uid)
         doc.getDocument { (document, error) in
@@ -235,6 +245,8 @@ struct Setting: View {
         }
     }
     
+    /** Generates a random assignment.
+        Selects one enemy and one friendly vehicle uniformly at random. */
     func random() {
         self.library += self.friendly
         self.library += self.enemy

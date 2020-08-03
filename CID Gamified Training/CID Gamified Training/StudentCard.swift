@@ -9,11 +9,19 @@
 import SwiftUI
 import Firebase
 
+/** Student row display when showing assignment progress. */
 struct StudentCard: View {
     
+    /** Student name. */
     var name: String
+    
+    /** Student id. */
     var id: String
+    
+    /** Reference to assignment document */
     var doc: DocumentReference?
+    
+    /** Is the assignment completed by this student. */
     @State var complete = false
     
     var body: some View {
@@ -40,6 +48,9 @@ struct StudentCard: View {
         }
     }
     
+    /** Checks if assignment is completed by this student.
+     Parameters:
+        doc - DocumentReference to assignment document. */
     func checkStudent(doc: DocumentReference) {
         doc.getDocument { (document, error) in
             if let document = document, document.exists {

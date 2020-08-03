@@ -2,13 +2,14 @@
 //  Students.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 7/7/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 7/7/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
 import Firebase
 
+/** View that lists all students in a particular class. */
 struct Students: View {
     
     /** Connection to firebase user collection. */
@@ -20,10 +21,13 @@ struct Students: View {
     /** Dictionary of student IDs to student names. */
     @State var students: [String:String] = [:]
     
+    /** DocumentReference of the class to be displayed. */
     var doc: DocumentReference?
     
+    /** Name of the class or assignment. */
     var name: String
     
+    /** Document Reference of the assignment to be displayed. */
     var assignment: DocumentReference?
     
     var body: some View {
@@ -33,8 +37,8 @@ struct Students: View {
                 Text(self.name)
                 .font(.title)
                 .fontWeight(.black)
-                    .foregroundColor(Color.white)
-                    .multilineTextAlignment(.center)
+                .foregroundColor(Color.white)
+                .multilineTextAlignment(.center)
                 Spacer()
             }
             Text("  Students:")
@@ -82,7 +86,9 @@ struct Students: View {
         }
     }
     
-    /** Obtain students from firebase*/
+    /** Obtain students from firebase
+     Parameters:
+        doc - DocumentReference of class document. */
     func getStudents(doc: DocumentReference) {
         doc.getDocument { (document, error) in
             if let document = document, document.exists {

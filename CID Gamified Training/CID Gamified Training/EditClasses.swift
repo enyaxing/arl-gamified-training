@@ -2,13 +2,14 @@
 //  EditClasses.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 7/7/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 7/7/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
 import Firebase
 
+/** View that lets you add and remove classes. */
 struct EditClasses: View {
     
     /** Email in the text input field. */
@@ -32,6 +33,7 @@ struct EditClasses: View {
     /** Has the user been found.*/
     @State var found = false
     
+    /** Mapping from class name to class documentReference in Firebase. */
     @Binding var listClass: [String:DocumentReference]
     
     var body: some View {
@@ -69,6 +71,9 @@ struct EditClasses: View {
         }))}
     }
     
+    /** Add class to instructor profile.
+     Parameters:
+        classes - class name to create. */
     func add(classes: String) {
         let db = self.db.document(self.user.uid).collection("classes")
         db.getDocuments() {(query, err) in
@@ -95,6 +100,9 @@ struct EditClasses: View {
         }
     }
     
+    /** Remove a class from instructor profile.
+     Parameters:
+        classes - class name to remove. */
     func remove(classes: String) {
         let db = self.db.document(self.user.uid).collection("classes")
         db.getDocuments() {(query, err) in
