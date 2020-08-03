@@ -3,12 +3,13 @@
 //  CID Gamified Training
 //
 //  Created by Enya Xing on 6/22/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
 import Firebase
 
+/** When user interacts with the tutorial, it sends a signal as a type of the following back. */
 enum AboutType {
     case defaultNone, welcomeAbout, buttonAbout, correctPrevention, correctPromotion, correctNeutral, incorrectPrevention, incorrectPromotion, incorrectNeutral, progressBarAbout
 }
@@ -117,9 +118,16 @@ struct TrainingTutorialMain: View {
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
+    /** The title portion of the bottom pop-up view. */
     @Binding var aboutTitle: String
+    
+    /** The description portion of the bottom pop-up view. */
     @Binding var aboutDescription: String
+    
+    /** Shows which pop-up is showing based on user input. */
     @Binding var activeAboutType: AboutType
+    
+    /** Determines if we should show the pop-up. */
     @Binding var showAboutView: Bool
 
     var btnBack : some View {
@@ -340,6 +348,7 @@ struct TrainingTutorialMain: View {
         }
     }
 
+    /** Sets the correct descriptor based on the current activeAboutType. */
     func setCorrectDescriptor() -> () {
         switch activeAboutType {
             case .welcomeAbout:
@@ -374,7 +383,9 @@ struct TrainingTutorialMain: View {
                 aboutTitle = ""
         }
     }
-
+    
+    /** Takes in an AboutType and sets it as the current activeAboutType. Also sets the descriptor and makes the
+        about view show. */
     func changeAboutView(curAboutType: AboutType) -> () {
         self.activeAboutType = curAboutType
         self.setCorrectDescriptor()
@@ -384,10 +395,19 @@ struct TrainingTutorialMain: View {
 
 struct AboutViewTraining: View {
 
+    /** Title of the about pop-up. */
     @Binding var aboutTitle: String
+    
+    /** Description of the about pop-up. */
     @Binding var aboutDescription: String
+    
+    /** Whether the about view should show or not.  */
     @Binding var showAboutView: Bool
+    
+    /** Determines which about view type to show.  */
     @Binding var activeAboutType: AboutType
+    
+    /** If it is the tutorial's first round, there will be extra instructions and welcome displaying. */
     @Binding var tutorialFirstRound: Bool
 
     var body: some View {
@@ -425,12 +445,14 @@ struct AboutViewTraining: View {
         .edgesIgnoringSafeArea(.top)
     }
 
+    /** Introduction of the buttons for the user to press. */
     func showButtonAction() -> () {
         aboutTitle = "Make a decision."
         aboutDescription = "Identify whether each vehicle is friendly or enemy, and tap the corresponding button."
         self.activeAboutType = .buttonAbout
     }
 
+    /** Explains the progress bar. */
     func showProgressButtonAbout() -> () {
         aboutTitle = "Here's the progress bar."
         aboutDescription = "There are 20 questions per round."

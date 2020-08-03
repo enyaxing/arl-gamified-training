@@ -2,8 +2,8 @@
 //  Question.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/8/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Enya Xing on 6/8/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 import SwiftUI
 import Surge

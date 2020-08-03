@@ -3,7 +3,7 @@
 //  CID Gamified Training
 //
 //  Created by Enya Xing on 6/24/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
@@ -118,11 +118,19 @@ struct GonogoTutorialMain: View {
     /** To close the view. */
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    /** The title portion of the bottom pop-up view. */
     @Binding var aboutTitle: String
+    
+    /** The description portion of the bottom pop-up view. */
     @Binding var aboutDescription: String
+    
+    /** Shows which pop-up is showing based on user input. */
     @Binding var activeAboutType: AboutType
+    
+    /** Determines if we should show the pop-up. */
     @Binding var showAboutView: Bool
     
+    /** View for the top left back button. */
     var btnBack : some View {
         Button(action: {
         self.presentationMode.wrappedValue.dismiss()
@@ -235,6 +243,7 @@ struct GonogoTutorialMain: View {
         }
     }
     
+    /** Sets the correct descriptor based on the current activeAboutType. */
     func setCorrectDescriptor() -> () {
         switch activeAboutType {
             case .welcomeAbout:
@@ -270,6 +279,8 @@ struct GonogoTutorialMain: View {
         }
     }
     
+    /** Takes in an AboutType and sets it as the current activeAboutType. Also sets the descriptor and makes the
+        about view show. */
     func changeAboutView(curAboutType: AboutType) -> () {
         self.activeAboutType = curAboutType
         self.setCorrectDescriptor()
@@ -375,10 +386,19 @@ struct GonogoTutorialMain: View {
 
 struct AboutViewGoNoGo: View {
     
+    /** Title of the about pop-up. */
     @Binding var aboutTitle: String
+    
+    /** Description of the about pop-up. */
     @Binding var aboutDescription: String
+    
+    /** Whether the about view should show or not.  */
     @Binding var showAboutView: Bool
+    
+    /** Determines which about view type to show.  */
     @Binding var activeAboutType: AboutType
+    
+    /** If it is the tutorial's first round, there will be extra instructions and welcome displaying. */
     @Binding var tutorialFirstRound: Bool
     
     var body: some View {
@@ -416,12 +436,14 @@ struct AboutViewGoNoGo: View {
         .edgesIgnoringSafeArea(.top)
     }
     
+    /** Introduction of the buttons for the user to press. */
     func showButtonAction() -> () {
         aboutTitle = "Make a decision."
         aboutDescription = "If the vehicle is an enemy, hit the enemy button. Otherwise, do nothing. You have three seconds per trial."
         self.activeAboutType = .buttonAbout
     }
     
+    /** Explains the progress bar. */
     func showProgressButtonAbout() -> () {
         aboutTitle = "Here's the progress bar."
         aboutDescription = "There are 20 questions per round."
