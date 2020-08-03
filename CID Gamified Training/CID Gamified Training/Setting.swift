@@ -55,10 +55,11 @@ struct Setting: View {
         VStack {
             if self.user.userType == "instructor" {
                 Text("Create Assignment")
-                .font(.largeTitle)
-                .fontWeight(.black)
-                .foregroundColor(Color.white)
+                    .font(.largeTitle)
+                    .fontWeight(.black)
+                    .foregroundColor(Color.white)
                 TextField("Assignment Name", text: $name)
+                    .padding()
                 NavigationLink(destination: AdvancedSetting(friendlyAccuracy: self.$friendlyAccuracy, enemyAccuracy: self.$enemyAccuracy, time: self.$time)) {
                     Text("Advanced Settings")
                 }
@@ -68,12 +69,11 @@ struct Setting: View {
                 .fontWeight(.black)
                 .foregroundColor(Color.white)
             }
-            Rectangle()
-            .frame(height: 1.0, alignment: .bottom)
-            .foregroundColor(Color.white)
-            .offset(y: -15)
+            Divider()
+
             Text("Directions: Click a vehicle to move it.  The order is Library → Friendly → Enemy → Library.")
              .foregroundColor(Color.white)
+            .padding()
             Spacer()
             HStack {
                 VStack {

@@ -22,23 +22,29 @@ struct AdvancedSetting: View {
     
     var body: some View {
         VStack {
-            Picker(selection: $friendlyAccuracy, label: Text("Friendly Accuracy:")) {
-                ForEach(Array(stride(from: 0, to: 105, by: 5)), id: \.self) { index in
-                    Text("\(index)%").tag(index).id(UUID())
-                }
-            }
-            Picker(selection: $enemyAccuracy, label: Text("Enemy Accuracy:")) {
-                ForEach(Array(stride(from: 0, to: 105, by: 5)), id: \.self) { index in
-                    Text("\(index)%").tag(index).id(UUID())
-                }
-            }
-            Picker(selection: $time, label: Text("Time:")) {
-                ForEach(Array(stride(from: 10, to: 305, by: 5)), id: \.self) { index in
-                    Text("\(index) s").tag(index).id(UUID())
+            Form {
+                Section {
+                    Picker(selection: $friendlyAccuracy, label: Text("Friendly Accuracy:")) {
+                        ForEach(Array(stride(from: 0, to: 105, by: 5)), id: \.self) { index in
+                            Text("\(index)%").tag(index).id(UUID())
+                        }
+                    }
+                    Picker(selection: $enemyAccuracy, label: Text("Enemy Accuracy:")) {
+                        ForEach(Array(stride(from: 0, to: 105, by: 5)), id: \.self) { index in
+                            Text("\(index)%").tag(index).id(UUID())
+                        }
+                    }
+                    Picker(selection: $time, label: Text("Time:")) {
+                        ForEach(Array(stride(from: 10, to: 305, by: 5)), id: \.self) { index in
+                            Text("\(index) s").tag(index).id(UUID())
+                        }
+                    }
                 }
             }
         }
+        .navigationBarTitle("Advanced Settings", displayMode: .inline)
     }
+    
 }
 
 struct AdvancedSetting_Previews: PreviewProvider {

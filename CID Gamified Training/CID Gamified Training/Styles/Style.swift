@@ -60,6 +60,7 @@ extension Font {
     static var bodyFontSmall: Font {
         return Font.custom("Helvetica", size: 13.0)
     }
+
 }
 
 extension UIScreen{
