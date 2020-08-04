@@ -1,0 +1,1294 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		666F71C0177B1DCC85E24CED /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F854BE26425E61C2BBB45051 /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework */; };
+		9815F3E024D211D1006E2B55 /* incorrect.json in Resources */ = {isa = PBXBuildFile; fileRef = 9815F3DF24D211D1006E2B55 /* incorrect.json */; };
+		9815F3E224D22252006E2B55 /* plus.json in Resources */ = {isa = PBXBuildFile; fileRef = 9815F3E124D22252006E2B55 /* plus.json */; };
+		9815F3E424D22257006E2B55 /* minus.json in Resources */ = {isa = PBXBuildFile; fileRef = 9815F3E324D22257006E2B55 /* minus.json */; };
+		983C89ED24B45DE100DDA148 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 983C89EC24B45DE100DDA148 /* GameKit.framework */; };
+		983D181024A15A0A0011FF62 /* blue.json in Resources */ = {isa = PBXBuildFile; fileRef = 983D180F24A15A0A0011FF62 /* blue.json */; };
+		983D181224A15B380011FF62 /* countdown.json in Resources */ = {isa = PBXBuildFile; fileRef = 983D181124A15B380011FF62 /* countdown.json */; };
+		985E362424AD9C02005EE3C3 /* Neutral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E362324AD9C02005EE3C3 /* Neutral.swift */; };
+		985E362624AD9EC3005EE3C3 /* four.json in Resources */ = {isa = PBXBuildFile; fileRef = 985E362524AD9EC3005EE3C3 /* four.json */; };
+		985E362824ADAC82005EE3C3 /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E362724ADAC82005EE3C3 /* Promotion.swift */; };
+		985E362A24ADAC8D005EE3C3 /* Prevention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985E362924ADAC8D005EE3C3 /* Prevention.swift */; };
+		985F5706249182F10087D44B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 985F5705249182F10087D44B /* Lottie */; };
+		985F5745249184150087D44B /* T.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F570E249184140087D44B /* T.json */; };
+		985F5746249184150087D44B /* A.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F570F249184140087D44B /* A.json */; };
+		985F5747249184150087D44B /* X.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5710249184140087D44B /* X.json */; };
+		985F5748249184150087D44B /* BlinkingCursor.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5711249184140087D44B /* BlinkingCursor.json */; };
+		985F5749249184150087D44B /* M.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5712249184140087D44B /* M.json */; };
+		985F574A249184150087D44B /* L.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5713249184140087D44B /* L.json */; };
+		985F574B249184150087D44B /* Y.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5714249184140087D44B /* Y.json */; };
+		985F574C249184150087D44B /* U.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5715249184140087D44B /* U.json */; };
+		985F574D249184150087D44B /* K.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5716249184140087D44B /* K.json */; };
+		985F574E249184150087D44B /* R.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5717249184140087D44B /* R.json */; };
+		985F574F249184150087D44B /* G.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5718249184140087D44B /* G.json */; };
+		985F5750249184150087D44B /* F.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5719249184140087D44B /* F.json */; };
+		985F5751249184150087D44B /* S.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571A249184140087D44B /* S.json */; };
+		985F5752249184150087D44B /* J.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571B249184140087D44B /* J.json */; };
+		985F5753249184150087D44B /* I.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571C249184140087D44B /* I.json */; };
+		985F5754249184150087D44B /* E.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571D249184140087D44B /* E.json */; };
+		985F5755249184150087D44B /* Apostrophe.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571E249184140087D44B /* Apostrophe.json */; };
+		985F5756249184150087D44B /* P.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F571F249184140087D44B /* P.json */; };
+		985F5757249184150087D44B /* Q.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5720249184140087D44B /* Q.json */; };
+		985F5758249184150087D44B /* D.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5721249184140087D44B /* D.json */; };
+		985F5759249184150087D44B /* Colon.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5722249184140087D44B /* Colon.json */; };
+		985F575A249184150087D44B /* H.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5723249184140087D44B /* H.json */; };
+		985F575B249184150087D44B /* C.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5724249184140087D44B /* C.json */; };
+		985F575C249184150087D44B /* V.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5725249184140087D44B /* V.json */; };
+		985F575D249184150087D44B /* Comma.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5726249184140087D44B /* Comma.json */; };
+		985F575E249184150087D44B /* O.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5727249184140087D44B /* O.json */; };
+		985F575F249184150087D44B /* Z.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5728249184140087D44B /* Z.json */; };
+		985F5760249184150087D44B /* N.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F5729249184140087D44B /* N.json */; };
+		985F5761249184150087D44B /* W.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572A249184140087D44B /* W.json */; };
+		985F5762249184150087D44B /* B.json in Resources */ = {isa = PBXBuildFile; fileRef = 985F572B249184140087D44B /* B.json */; };
+		985F5778249184AA0087D44B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985F5777249184AA0087D44B /* LottieView.swift */; };
+		987D94E124ABFC920045B245 /* xmark.json in Resources */ = {isa = PBXBuildFile; fileRef = 987D94E024ABFC910045B245 /* xmark.json */; };
+		98898B4124AA8E6000DC754B /* line.json in Resources */ = {isa = PBXBuildFile; fileRef = 98898B4024AA8E6000DC754B /* line.json */; };
+		98A031E5248ED60900239274 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 98A031E4248ED60900239274 /* .swiftlint.yml */; };
+		98E7F612249AB1400034E912 /* star.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F611249AB1400034E912 /* star.json */; };
+		98E7F615249AB4B00034E912 /* one.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F613249AB4B00034E912 /* one.json */; };
+		98E7F616249AB4B00034E912 /* zero.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E7F614249AB4B00034E912 /* zero.json */; };
+		98E7F618249ABE490034E912 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E7F617249ABE490034E912 /* Countdown.swift */; };
+		98E89E1424A696BF00E2DE9C /* StopWatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E89E1324A696BF00E2DE9C /* StopWatchManager.swift */; };
+		98E89E1824A6B08900E2DE9C /* stopwatch.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E89E1724A6B08900E2DE9C /* stopwatch.json */; };
+		98E89E1924A6B74D00E2DE9C /* GonogoTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C599691824A3CB6600B34A65 /* GonogoTutorial.swift */; };
+		C526F0F424AB07D100E457F0 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526F0F324AB07D100E457F0 /* Session.swift */; };
+		C54B3E6524D2BBC8007C773B /* AdaptsToKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B3E6424D2BBC8007C773B /* AdaptsToKeyboard.swift */; };
+		C5634EF724AD0BAA00A9D95E /* StatBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5634EF624AD0BAA00A9D95E /* StatBox.swift */; };
+		C5955CD324A18F8D0081AA44 /* TrainingTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */; };
+		C5CA7FC1249DB1E000F2BFD5 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CA7FC0249DB1E000F2BFD5 /* Style.swift */; };
+		C5CA7FC4249DCA9200F2BFD5 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CA7FC3249DCA9200F2BFD5 /* ButtonStyle.swift */; };
+		C5CA7FC6249DCB4200F2BFD5 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CA7FC5249DCB4200F2BFD5 /* ProgressBar.swift */; };
+		C5D4DA2D24BE2AFD00F15A6E /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C5D4DA2C24BE2AFD00F15A6E /* SwiftUICharts */; };
+		D663760F1D1D0ABC58CC2D16 /* Pods_CID_Gamified_Training.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */; };
+		D83DA4B420C1CCB6F1F8311D /* Pods_CID_Gamified_TrainingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */; };
+		FA33666B24926C29004D96DB /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33666A24926C29004D96DB /* Summary.swift */; };
+		FA33666D24926F74004D96DB /* Rejection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33666C24926F74004D96DB /* Rejection.swift */; };
+		FA3366712492A800004D96DB /* correct.json in Resources */ = {isa = PBXBuildFile; fileRef = FA33666F2492A800004D96DB /* correct.json */; };
+		FA33A7FE24A2449E0042F390 /* Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33A7FD24A2449E0042F390 /* Instructions.swift */; };
+		FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E75248E7B9300F77C7B /* AppDelegate.swift */; };
+		FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E77248E7B9300F77C7B /* SceneDelegate.swift */; };
+		FA360E7A248E7B9300F77C7B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E79248E7B9300F77C7B /* ContentView.swift */; };
+		FA360E7C248E7B9500F77C7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA360E7B248E7B9500F77C7B /* Assets.xcassets */; };
+		FA360E7F248E7B9500F77C7B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA360E7E248E7B9500F77C7B /* Preview Assets.xcassets */; };
+		FA360E82248E7B9500F77C7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */; };
+		FA360E8D248E7B9600F77C7B /* CID_Gamified_TrainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E8C248E7B9600F77C7B /* CID_Gamified_TrainingTests.swift */; };
+		FA360E98248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360E97248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift */; };
+		FA360EAE248E807000F77C7B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EAD248E807000F77C7B /* Question.swift */; };
+		FA360EB0248E809200F77C7B /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EAF248E809200F77C7B /* Training.swift */; };
+		FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA360EB7248ED74900F77C7B /* Gonogo.swift */; };
+		FA37FC4124B4C54600A6901D /* Students.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37FC4024B4C54600A6901D /* Students.swift */; };
+		FA37FC4324B4C8EF00A6901D /* EditClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA37FC4224B4C8EF00A6901D /* EditClasses.swift */; };
+		FA5CBED324B628B60025DD6A /* tags.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5CBED224B628B60025DD6A /* tags.json */; };
+		FA5CBED524B62B4B0025DD6A /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5CBED424B62B4B0025DD6A /* Tags.swift */; };
+		FAB9767124A0FF24004613B4 /* Instructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9767024A0FF24004613B4 /* Instructor.swift */; };
+		FAB9767324A100E8004613B4 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9767224A100E8004613B4 /* Profile.swift */; };
+		FABF3EBF249D255B00B96FC9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF3EBE249D255B00B96FC9 /* Setting.swift */; };
+		FABF3EC1249D256A00B96FC9 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF3EC0249D256A00B96FC9 /* Card.swift */; };
+		FABF3EC3249D3DA800B96FC9 /* CID Images in Resources */ = {isa = PBXBuildFile; fileRef = FABF3EC2249D3DA700B96FC9 /* CID Images */; };
+		FABF71FB24ABA66F0077E2B7 /* EditStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABF71FA24ABA66F0077E2B7 /* EditStudent.swift */; };
+		FACECD41249CFF570069125A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACECD40249CFF570069125A /* User.swift */; };
+		FAD0D79F24A0F04F003F2BC3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD0D79E24A0F04F003F2BC3 /* CardView.swift */; };
+		FADCA61224C09F93001EB434 /* AdvancedSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCA61124C09F93001EB434 /* AdvancedSetting.swift */; };
+		FAEC7C5E24B39B59001D6A3C /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC7C5D24B39B59001D6A3C /* Assignments.swift */; };
+		FAEC7C6024B39F99001D6A3C /* AssignmentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC7C5F24B39F99001D6A3C /* AssignmentDetail.swift */; };
+		FAEC7C6224B3A0A2001D6A3C /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC7C6124B3A0A2001D6A3C /* Assignment.swift */; };
+		FAEFD8CD249916FA004FA58B /* Focus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8CC249916FA004FA58B /* Focus.swift */; };
+		FAEFD8CF24991D98004FA58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */; };
+		FAEFD8D124992B0E004FA58B /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8D024992B0E004FA58B /* Signup.swift */; };
+		FAEFD8D324993097004FA58B /* Signin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEFD8D224993097004FA58B /* Signin.swift */; };
+		FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B112493F386006CF82A /* SummaryRow.swift */; };
+		FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B132493F3B9006CF82A /* SummaryDetail.swift */; };
+		FAF40B162493F3CB006CF82A /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF40B152493F3CB006CF82A /* Answer.swift */; };
+		FAF922C52497BBD500F3EA80 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF922C42497BBD500F3EA80 /* Model.swift */; };
+		FAFD9E5A24BDF5040008B277 /* StatDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD9E5924BDF5040008B277 /* StatDetail.swift */; };
+		FAFD9E5C24BDFE3B0008B277 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD9E5B24BDFE3B0008B277 /* StatView.swift */; };
+		FAFD9E5E24BE10060008B277 /* StudentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD9E5D24BE10060008B277 /* StudentCard.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA360E89248E7B9600F77C7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA360E6A248E7B9300F77C7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA360E71248E7B9300F77C7B;
+			remoteInfo = "CID Gamified Training";
+		};
+		FA360E94248E7B9600F77C7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA360E6A248E7B9300F77C7B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA360E71248E7B9300F77C7B;
+			remoteInfo = "CID Gamified Training";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3A072E26B06846B8808B17AD /* Pods-CID Gamified Training-CID Gamified TrainingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training-CID Gamified TrainingUITests.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4BA07CF9C67D9CD254514D71 /* Pods-CID Gamified TrainingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified TrainingTests.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified TrainingTests/Pods-CID Gamified TrainingTests.release.xcconfig"; sourceTree = "<group>"; };
+		614D84461AF81BEA1A359CAD /* Pods-CID Gamified Training.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training.debug.xcconfig"; sourceTree = "<group>"; };
+		694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CID_Gamified_Training.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CID_Gamified_TrainingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9815F3DF24D211D1006E2B55 /* incorrect.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = incorrect.json; sourceTree = "<group>"; };
+		9815F3E124D22252006E2B55 /* plus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plus.json; sourceTree = "<group>"; };
+		9815F3E324D22257006E2B55 /* minus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = minus.json; sourceTree = "<group>"; };
+		983C89EC24B45DE100DDA148 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		983D180F24A15A0A0011FF62 /* blue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue.json; sourceTree = "<group>"; };
+		983D181124A15B380011FF62 /* countdown.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countdown.json; sourceTree = "<group>"; };
+		985E362324AD9C02005EE3C3 /* Neutral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neutral.swift; sourceTree = "<group>"; };
+		985E362524AD9EC3005EE3C3 /* four.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = four.json; sourceTree = "<group>"; };
+		985E362724ADAC82005EE3C3 /* Promotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promotion.swift; sourceTree = "<group>"; };
+		985E362924ADAC8D005EE3C3 /* Prevention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prevention.swift; sourceTree = "<group>"; };
+		985F570E249184140087D44B /* T.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = T.json; sourceTree = "<group>"; };
+		985F570F249184140087D44B /* A.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = A.json; sourceTree = "<group>"; };
+		985F5710249184140087D44B /* X.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = X.json; sourceTree = "<group>"; };
+		985F5711249184140087D44B /* BlinkingCursor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BlinkingCursor.json; sourceTree = "<group>"; };
+		985F5712249184140087D44B /* M.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = M.json; sourceTree = "<group>"; };
+		985F5713249184140087D44B /* L.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = L.json; sourceTree = "<group>"; };
+		985F5714249184140087D44B /* Y.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Y.json; sourceTree = "<group>"; };
+		985F5715249184140087D44B /* U.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = U.json; sourceTree = "<group>"; };
+		985F5716249184140087D44B /* K.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = K.json; sourceTree = "<group>"; };
+		985F5717249184140087D44B /* R.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = R.json; sourceTree = "<group>"; };
+		985F5718249184140087D44B /* G.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = G.json; sourceTree = "<group>"; };
+		985F5719249184140087D44B /* F.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = F.json; sourceTree = "<group>"; };
+		985F571A249184140087D44B /* S.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = S.json; sourceTree = "<group>"; };
+		985F571B249184140087D44B /* J.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = J.json; sourceTree = "<group>"; };
+		985F571C249184140087D44B /* I.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = I.json; sourceTree = "<group>"; };
+		985F571D249184140087D44B /* E.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = E.json; sourceTree = "<group>"; };
+		985F571E249184140087D44B /* Apostrophe.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Apostrophe.json; sourceTree = "<group>"; };
+		985F571F249184140087D44B /* P.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = P.json; sourceTree = "<group>"; };
+		985F5720249184140087D44B /* Q.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Q.json; sourceTree = "<group>"; };
+		985F5721249184140087D44B /* D.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = D.json; sourceTree = "<group>"; };
+		985F5722249184140087D44B /* Colon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Colon.json; sourceTree = "<group>"; };
+		985F5723249184140087D44B /* H.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = H.json; sourceTree = "<group>"; };
+		985F5724249184140087D44B /* C.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = C.json; sourceTree = "<group>"; };
+		985F5725249184140087D44B /* V.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = V.json; sourceTree = "<group>"; };
+		985F5726249184140087D44B /* Comma.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Comma.json; sourceTree = "<group>"; };
+		985F5727249184140087D44B /* O.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = O.json; sourceTree = "<group>"; };
+		985F5728249184140087D44B /* Z.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Z.json; sourceTree = "<group>"; };
+		985F5729249184140087D44B /* N.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = N.json; sourceTree = "<group>"; };
+		985F572A249184140087D44B /* W.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = W.json; sourceTree = "<group>"; };
+		985F572B249184140087D44B /* B.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = B.json; sourceTree = "<group>"; };
+		985F5777249184AA0087D44B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		987D94E024ABFC910045B245 /* xmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xmark.json; sourceTree = "<group>"; };
+		98898B4024AA8E6000DC754B /* line.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = line.json; sourceTree = "<group>"; };
+		98A031E4248ED60900239274 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		98E7F611249AB1400034E912 /* star.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star.json; sourceTree = "<group>"; };
+		98E7F613249AB4B00034E912 /* one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = one.json; sourceTree = "<group>"; };
+		98E7F614249AB4B00034E912 /* zero.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = zero.json; sourceTree = "<group>"; };
+		98E7F617249ABE490034E912 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
+		98E89E1324A696BF00E2DE9C /* StopWatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchManager.swift; sourceTree = "<group>"; };
+		98E89E1724A6B08900E2DE9C /* stopwatch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stopwatch.json; sourceTree = "<group>"; };
+		AC257A6E2836F63691C0FAE8 /* Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified Training.release.xcconfig"; path = "Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training.release.xcconfig"; sourceTree = "<group>"; };
+		C526F0F324AB07D100E457F0 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		C54B3E6424D2BBC8007C773B /* AdaptsToKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptsToKeyboard.swift; sourceTree = "<group>"; };
+		C5634EF624AD0BAA00A9D95E /* StatBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatBox.swift; sourceTree = "<group>"; };
+		C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTutorial.swift; sourceTree = "<group>"; };
+		C599691824A3CB6600B34A65 /* GonogoTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GonogoTutorial.swift; path = "CID Gamified Training/Games/GonogoTutorial.swift"; sourceTree = SOURCE_ROOT; };
+		C5CA7FC0249DB1E000F2BFD5 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		C5CA7FC3249DCA9200F2BFD5 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
+		C5CA7FC5249DCB4200F2BFD5 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		CA6FEA425998A184252E3E11 /* Pods-CID Gamified TrainingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CID Gamified TrainingTests.debug.xcconfig"; path = "Target Support Files/Pods-CID Gamified TrainingTests/Pods-CID Gamified TrainingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F854BE26425E61C2BBB45051 /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA33666A24926C29004D96DB /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		FA33666C24926F74004D96DB /* Rejection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rejection.swift; sourceTree = "<group>"; };
+		FA33666F2492A800004D96DB /* correct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = correct.json; sourceTree = "<group>"; };
+		FA33A7FD24A2449E0042F390 /* Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructions.swift; sourceTree = "<group>"; };
+		FA360E72248E7B9300F77C7B /* CID Gamified Training.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CID Gamified Training.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA360E75248E7B9300F77C7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FA360E77248E7B9300F77C7B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "CID Gamified Training/SceneDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		FA360E79248E7B9300F77C7B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FA360E7B248E7B9500F77C7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA360E7E248E7B9500F77C7B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FA360E81248E7B9500F77C7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FA360E83248E7B9500F77C7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA360E88248E7B9600F77C7B /* CID Gamified TrainingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CID Gamified TrainingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA360E8C248E7B9600F77C7B /* CID_Gamified_TrainingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CID_Gamified_TrainingTests.swift; sourceTree = "<group>"; };
+		FA360E8E248E7B9600F77C7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA360E93248E7B9600F77C7B /* CID Gamified TrainingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CID Gamified TrainingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA360E97248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CID_Gamified_TrainingUITests.swift; sourceTree = "<group>"; };
+		FA360E99248E7B9600F77C7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA360EAD248E807000F77C7B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		FA360EAF248E809200F77C7B /* Training.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Training.swift; path = "CID Gamified Training/Games/Training.swift"; sourceTree = SOURCE_ROOT; };
+		FA360EB7248ED74900F77C7B /* Gonogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Gonogo.swift; path = "CID Gamified Training/Games/Gonogo.swift"; sourceTree = SOURCE_ROOT; };
+		FA37FC4024B4C54600A6901D /* Students.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Students.swift; sourceTree = "<group>"; };
+		FA37FC4224B4C8EF00A6901D /* EditClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClasses.swift; sourceTree = "<group>"; };
+		FA5CBED224B628B60025DD6A /* tags.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tags.json; sourceTree = "<group>"; };
+		FA5CBED424B62B4B0025DD6A /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
+		FAB9767024A0FF24004613B4 /* Instructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructor.swift; sourceTree = "<group>"; };
+		FAB9767224A100E8004613B4 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		FABF3EBE249D255B00B96FC9 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		FABF3EC0249D256A00B96FC9 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		FABF3EC2249D3DA700B96FC9 /* CID Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "CID Images"; sourceTree = "<group>"; };
+		FABF71FA24ABA66F0077E2B7 /* EditStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStudent.swift; sourceTree = "<group>"; };
+		FACECD40249CFF570069125A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FAD0D79E24A0F04F003F2BC3 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		FADCA61124C09F93001EB434 /* AdvancedSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSetting.swift; sourceTree = "<group>"; };
+		FAEC7C5D24B39B59001D6A3C /* Assignments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
+		FAEC7C5F24B39F99001D6A3C /* AssignmentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetail.swift; sourceTree = "<group>"; };
+		FAEC7C6124B3A0A2001D6A3C /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
+		FAEFD8CC249916FA004FA58B /* Focus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Focus.swift; sourceTree = "<group>"; };
+		FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FAEFD8D024992B0E004FA58B /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		FAEFD8D224993097004FA58B /* Signin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signin.swift; sourceTree = "<group>"; };
+		FAF40B112493F386006CF82A /* SummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRow.swift; sourceTree = "<group>"; };
+		FAF40B132493F3B9006CF82A /* SummaryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDetail.swift; sourceTree = "<group>"; };
+		FAF40B152493F3CB006CF82A /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = "CID Gamified Training/Objects/Answer.swift"; sourceTree = SOURCE_ROOT; };
+		FAF922C42497BBD500F3EA80 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		FAFD9E5924BDF5040008B277 /* StatDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatDetail.swift; sourceTree = "<group>"; };
+		FAFD9E5B24BDFE3B0008B277 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
+		FAFD9E5D24BE10060008B277 /* StudentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCard.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA360E6F248E7B9300F77C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				983C89ED24B45DE100DDA148 /* GameKit.framework in Frameworks */,
+				C5D4DA2D24BE2AFD00F15A6E /* SwiftUICharts in Frameworks */,
+				985F5706249182F10087D44B /* Lottie in Frameworks */,
+				D663760F1D1D0ABC58CC2D16 /* Pods_CID_Gamified_Training.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E85248E7B9600F77C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D83DA4B420C1CCB6F1F8311D /* Pods_CID_Gamified_TrainingTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E90248E7B9600F77C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				666F71C0177B1DCC85E24CED /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5678E027EEA9ED43C7E7560B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				983C89EC24B45DE100DDA148 /* GameKit.framework */,
+				694ED05EDD6591FF8EFD9A43 /* Pods_CID_Gamified_Training.framework */,
+				F854BE26425E61C2BBB45051 /* Pods_CID_Gamified_Training_CID_Gamified_TrainingUITests.framework */,
+				94F9150C0D382CC390554CA5 /* Pods_CID_Gamified_TrainingTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56EC43024CD540961ABEE83F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				614D84461AF81BEA1A359CAD /* Pods-CID Gamified Training.debug.xcconfig */,
+				BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */,
+				AC257A6E2836F63691C0FAE8 /* Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig */,
+				3A072E26B06846B8808B17AD /* Pods-CID Gamified Training-CID Gamified TrainingUITests.release.xcconfig */,
+				CA6FEA425998A184252E3E11 /* Pods-CID Gamified TrainingTests.debug.xcconfig */,
+				4BA07CF9C67D9CD254514D71 /* Pods-CID Gamified TrainingTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9820861B249C1D94007D6F78 /* Questionnaire */ = {
+			isa = PBXGroup;
+			children = (
+				FA360EAD248E807000F77C7B /* Question.swift */,
+				FAEFD8CC249916FA004FA58B /* Focus.swift */,
+				FA33666C24926F74004D96DB /* Rejection.swift */,
+			);
+			path = Questionnaire;
+			sourceTree = "<group>";
+		};
+		9820861C249C1DCD007D6F78 /* Home Page */ = {
+			isa = PBXGroup;
+			children = (
+				FA360E79248E7B9300F77C7B /* ContentView.swift */,
+				FAEFD8D224993097004FA58B /* Signin.swift */,
+				FAEFD8D024992B0E004FA58B /* Signup.swift */,
+			);
+			path = "Home Page";
+			sourceTree = "<group>";
+		};
+		984D669A249C060900903431 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				985F5707249184140087D44B /* TestAnimations */,
+				985F5777249184AA0087D44B /* LottieView.swift */,
+				985E362724ADAC82005EE3C3 /* Promotion.swift */,
+				985E362924ADAC8D005EE3C3 /* Prevention.swift */,
+				985E362324AD9C02005EE3C3 /* Neutral.swift */,
+				98E89E1324A696BF00E2DE9C /* StopWatchManager.swift */,
+				98E7F617249ABE490034E912 /* Countdown.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
+		984D669D249C078600903431 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				FA33666A24926C29004D96DB /* Summary.swift */,
+				FAF40B112493F386006CF82A /* SummaryRow.swift */,
+				FAF40B132493F3B9006CF82A /* SummaryDetail.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
+		985F5707249184140087D44B /* TestAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				985E362524AD9EC3005EE3C3 /* four.json */,
+				987D94E024ABFC910045B245 /* xmark.json */,
+				98898B4024AA8E6000DC754B /* line.json */,
+				9815F3E124D22252006E2B55 /* plus.json */,
+				9815F3E324D22257006E2B55 /* minus.json */,
+				98E89E1724A6B08900E2DE9C /* stopwatch.json */,
+				983D181124A15B380011FF62 /* countdown.json */,
+				983D180F24A15A0A0011FF62 /* blue.json */,
+				FA33666F2492A800004D96DB /* correct.json */,
+				9815F3DF24D211D1006E2B55 /* incorrect.json */,
+				98E7F613249AB4B00034E912 /* one.json */,
+				98E7F611249AB1400034E912 /* star.json */,
+				98E7F614249AB4B00034E912 /* zero.json */,
+				985F570D249184140087D44B /* TypeFace */,
+			);
+			path = TestAnimations;
+			sourceTree = "<group>";
+		};
+		985F570D249184140087D44B /* TypeFace */ = {
+			isa = PBXGroup;
+			children = (
+				985F570E249184140087D44B /* T.json */,
+				985F570F249184140087D44B /* A.json */,
+				985F5710249184140087D44B /* X.json */,
+				985F5711249184140087D44B /* BlinkingCursor.json */,
+				985F5712249184140087D44B /* M.json */,
+				985F5713249184140087D44B /* L.json */,
+				985F5714249184140087D44B /* Y.json */,
+				985F5715249184140087D44B /* U.json */,
+				985F5716249184140087D44B /* K.json */,
+				985F5717249184140087D44B /* R.json */,
+				985F5718249184140087D44B /* G.json */,
+				985F5719249184140087D44B /* F.json */,
+				985F571A249184140087D44B /* S.json */,
+				985F571B249184140087D44B /* J.json */,
+				985F571C249184140087D44B /* I.json */,
+				985F571D249184140087D44B /* E.json */,
+				985F571E249184140087D44B /* Apostrophe.json */,
+				985F571F249184140087D44B /* P.json */,
+				985F5720249184140087D44B /* Q.json */,
+				985F5721249184140087D44B /* D.json */,
+				985F5722249184140087D44B /* Colon.json */,
+				985F5723249184140087D44B /* H.json */,
+				985F5724249184140087D44B /* C.json */,
+				985F5725249184140087D44B /* V.json */,
+				985F5726249184140087D44B /* Comma.json */,
+				985F5727249184140087D44B /* O.json */,
+				985F5728249184140087D44B /* Z.json */,
+				985F5729249184140087D44B /* N.json */,
+				985F572A249184140087D44B /* W.json */,
+				985F572B249184140087D44B /* B.json */,
+			);
+			path = TypeFace;
+			sourceTree = "<group>";
+		};
+		C5634EF524AD0B8000A9D95E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C5CA7FC5249DCB4200F2BFD5 /* ProgressBar.swift */,
+				C5634EF624AD0BAA00A9D95E /* StatBox.swift */,
+				C54B3E6424D2BBC8007C773B /* AdaptsToKeyboard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C5CA7FC2249DCA3000F2BFD5 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				C5CA7FC0249DB1E000F2BFD5 /* Style.swift */,
+				C5CA7FC3249DCA9200F2BFD5 /* ButtonStyle.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		FA0D505F24D99E4300C836F9 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				FA360EAF248E809200F77C7B /* Training.swift */,
+				FA360EB7248ED74900F77C7B /* Gonogo.swift */,
+				C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */,
+				C599691824A3CB6600B34A65 /* GonogoTutorial.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		FA360E69248E7B9300F77C7B = {
+			isa = PBXGroup;
+			children = (
+				98A031E4248ED60900239274 /* .swiftlint.yml */,
+				FA360E74248E7B9300F77C7B /* CID Gamified Training */,
+				FA360E8B248E7B9600F77C7B /* CID Gamified TrainingTests */,
+				FA360E96248E7B9600F77C7B /* CID Gamified TrainingUITests */,
+				FA360E73248E7B9300F77C7B /* Products */,
+				56EC43024CD540961ABEE83F /* Pods */,
+				5678E027EEA9ED43C7E7560B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FA360E73248E7B9300F77C7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA360E72248E7B9300F77C7B /* CID Gamified Training.app */,
+				FA360E88248E7B9600F77C7B /* CID Gamified TrainingTests.xctest */,
+				FA360E93248E7B9600F77C7B /* CID Gamified TrainingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA360E74248E7B9300F77C7B /* CID Gamified Training */ = {
+			isa = PBXGroup;
+			children = (
+				FABF3EC2249D3DA700B96FC9 /* CID Images */,
+				FA360E75248E7B9300F77C7B /* AppDelegate.swift */,
+				FA360E77248E7B9300F77C7B /* SceneDelegate.swift */,
+<<<<<<< HEAD
+=======
+				FA360E79248E7B9300F77C7B /* ContentView.swift */,
+				FAF40B152493F3CB006CF82A /* Answer.swift */,
+				FAF922C42497BBD500F3EA80 /* Model.swift */,
+				C5634EF524AD0B8000A9D95E /* Components */,
+>>>>>>> 2f378218ac0d901a6118d4b097872bff0dc75206
+				9820861C249C1DCD007D6F78 /* Home Page */,
+				FA0D505F24D99E4300C836F9 /* Games */,
+				9820861B249C1D94007D6F78 /* Questionnaire */,
+				FAF127E524D999590042D6EE /* Games */,
+				984D669D249C078600903431 /* Summary */,
+				FAF127E824D99A290042D6EE /* Profile */,
+				FAF127E924D99A310042D6EE /* Instructor */,
+				FAF127E724D99A210042D6EE /* Assignments */,
+				FAF127E624D999B50042D6EE /* Objects */,
+				C5634EF524AD0B8000A9D95E /* Components */,
+				C5CA7FC2249DCA3000F2BFD5 /* Styles */,
+				984D669A249C060900903431 /* Transitions */,
+				FA360E7B248E7B9500F77C7B /* Assets.xcassets */,
+				FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */,
+				FA360E83248E7B9500F77C7B /* Info.plist */,
+				FAEFD8CE24991D97004FA58B /* GoogleService-Info.plist */,
+				FA360E7D248E7B9500F77C7B /* Preview Content */,
+				FA5CBED224B628B60025DD6A /* tags.json */,
+			);
+			path = "CID Gamified Training";
+			sourceTree = "<group>";
+		};
+		FA360E7D248E7B9500F77C7B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FA360E7E248E7B9500F77C7B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FA360E8B248E7B9600F77C7B /* CID Gamified TrainingTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA360E8C248E7B9600F77C7B /* CID_Gamified_TrainingTests.swift */,
+				FA360E8E248E7B9600F77C7B /* Info.plist */,
+			);
+			path = "CID Gamified TrainingTests";
+			sourceTree = "<group>";
+		};
+		FA360E96248E7B9600F77C7B /* CID Gamified TrainingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FA360E97248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift */,
+				FA360E99248E7B9600F77C7B /* Info.plist */,
+			);
+			path = "CID Gamified TrainingUITests";
+			sourceTree = "<group>";
+		};
+		FAF127E524D999590042D6EE /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				FA360EAF248E809200F77C7B /* Training.swift */,
+				FA360EB7248ED74900F77C7B /* Gonogo.swift */,
+				C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */,
+				C599691824A3CB6600B34A65 /* GonogoTutorial.swift */,
+				FA33A7FD24A2449E0042F390 /* Instructions.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		FAF127E624D999B50042D6EE /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				FAF40B152493F3CB006CF82A /* Answer.swift */,
+				FAF922C42497BBD500F3EA80 /* Model.swift */,
+				FACECD40249CFF570069125A /* User.swift */,
+				C526F0F324AB07D100E457F0 /* Session.swift */,
+				FAEC7C6124B3A0A2001D6A3C /* Assignment.swift */,
+				FA5CBED424B62B4B0025DD6A /* Tags.swift */,
+				FABF3EC0249D256A00B96FC9 /* Card.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		FAF127E724D99A210042D6EE /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				FABF3EBE249D255B00B96FC9 /* Setting.swift */,
+				FAEC7C5D24B39B59001D6A3C /* Assignments.swift */,
+				FAEC7C5F24B39F99001D6A3C /* AssignmentDetail.swift */,
+				FADCA61124C09F93001EB434 /* AdvancedSetting.swift */,
+				FAD0D79E24A0F04F003F2BC3 /* CardView.swift */,
+				FAFD9E5D24BE10060008B277 /* StudentCard.swift */,
+			);
+			path = Assignments;
+			sourceTree = "<group>";
+		};
+		FAF127E824D99A290042D6EE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FAB9767224A100E8004613B4 /* Profile.swift */,
+				FAFD9E5924BDF5040008B277 /* StatDetail.swift */,
+				FAFD9E5B24BDFE3B0008B277 /* StatView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		FAF127E924D99A310042D6EE /* Instructor */ = {
+			isa = PBXGroup;
+			children = (
+				FAB9767024A0FF24004613B4 /* Instructor.swift */,
+				FA37FC4024B4C54600A6901D /* Students.swift */,
+				FABF71FA24ABA66F0077E2B7 /* EditStudent.swift */,
+				FA37FC4224B4C8EF00A6901D /* EditClasses.swift */,
+			);
+			path = Instructor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FA360E71248E7B9300F77C7B /* CID Gamified Training */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA360E9C248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified Training" */;
+			buildPhases = (
+				E57EE99EE135336F3A950ECE /* [CP] Check Pods Manifest.lock */,
+				FA360E6E248E7B9300F77C7B /* Sources */,
+				FA360E6F248E7B9300F77C7B /* Frameworks */,
+				FA360E70248E7B9300F77C7B /* Resources */,
+				F3876C2C3870F3C3376454B1 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CID Gamified Training";
+			packageProductDependencies = (
+				985F5705249182F10087D44B /* Lottie */,
+				C5D4DA2C24BE2AFD00F15A6E /* SwiftUICharts */,
+			);
+			productName = "CID Gamified Training";
+			productReference = FA360E72248E7B9300F77C7B /* CID Gamified Training.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FA360E87248E7B9600F77C7B /* CID Gamified TrainingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA360E9F248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified TrainingTests" */;
+			buildPhases = (
+				065BA8676820AFCDAB7DDF91 /* [CP] Check Pods Manifest.lock */,
+				FA360E84248E7B9600F77C7B /* Sources */,
+				FA360E85248E7B9600F77C7B /* Frameworks */,
+				FA360E86248E7B9600F77C7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA360E8A248E7B9600F77C7B /* PBXTargetDependency */,
+			);
+			name = "CID Gamified TrainingTests";
+			productName = "CID Gamified TrainingTests";
+			productReference = FA360E88248E7B9600F77C7B /* CID Gamified TrainingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FA360E92248E7B9600F77C7B /* CID Gamified TrainingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA360EA2248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified TrainingUITests" */;
+			buildPhases = (
+				DAFE9D8AAF16CAD7B6D6070A /* [CP] Check Pods Manifest.lock */,
+				FA360E8F248E7B9600F77C7B /* Sources */,
+				FA360E90248E7B9600F77C7B /* Frameworks */,
+				FA360E91248E7B9600F77C7B /* Resources */,
+				6468B137AC0E3D712BC29DB7 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA360E95248E7B9600F77C7B /* PBXTargetDependency */,
+			);
+			name = "CID Gamified TrainingUITests";
+			productName = "CID Gamified TrainingUITests";
+			productReference = FA360E93248E7B9600F77C7B /* CID Gamified TrainingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA360E6A248E7B9300F77C7B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = Alex;
+				TargetAttributes = {
+					FA360E71248E7B9300F77C7B = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					FA360E87248E7B9600F77C7B = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = FA360E71248E7B9300F77C7B;
+					};
+					FA360E92248E7B9600F77C7B = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = FA360E71248E7B9300F77C7B;
+					};
+				};
+			};
+			buildConfigurationList = FA360E6D248E7B9300F77C7B /* Build configuration list for PBXProject "CID Gamified Training" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FA360E69248E7B9300F77C7B;
+			packageReferences = (
+				985F5704249182F10087D44B /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				C5D4DA2B24BE2AFD00F15A6E /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
+			productRefGroup = FA360E73248E7B9300F77C7B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA360E71248E7B9300F77C7B /* CID Gamified Training */,
+				FA360E87248E7B9600F77C7B /* CID Gamified TrainingTests */,
+				FA360E92248E7B9600F77C7B /* CID Gamified TrainingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FA360E70248E7B9300F77C7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				985F5762249184150087D44B /* B.json in Resources */,
+				9815F3E024D211D1006E2B55 /* incorrect.json in Resources */,
+				985F575F249184150087D44B /* Z.json in Resources */,
+				985F5745249184150087D44B /* T.json in Resources */,
+				985F5751249184150087D44B /* S.json in Resources */,
+				985F5758249184150087D44B /* D.json in Resources */,
+				98E7F616249AB4B00034E912 /* zero.json in Resources */,
+				985F574E249184150087D44B /* R.json in Resources */,
+				985E362624AD9EC3005EE3C3 /* four.json in Resources */,
+				FABF3EC3249D3DA800B96FC9 /* CID Images in Resources */,
+				985F5760249184150087D44B /* N.json in Resources */,
+				985F574D249184150087D44B /* K.json in Resources */,
+				985F5761249184150087D44B /* W.json in Resources */,
+				985F574F249184150087D44B /* G.json in Resources */,
+				985F5753249184150087D44B /* I.json in Resources */,
+				9815F3E224D22252006E2B55 /* plus.json in Resources */,
+				983D181224A15B380011FF62 /* countdown.json in Resources */,
+				985F574C249184150087D44B /* U.json in Resources */,
+				985F575E249184150087D44B /* O.json in Resources */,
+				985F575C249184150087D44B /* V.json in Resources */,
+				FA5CBED324B628B60025DD6A /* tags.json in Resources */,
+				985F5754249184150087D44B /* E.json in Resources */,
+				985F5749249184150087D44B /* M.json in Resources */,
+				98A031E5248ED60900239274 /* .swiftlint.yml in Resources */,
+				985F574B249184150087D44B /* Y.json in Resources */,
+				985F5757249184150087D44B /* Q.json in Resources */,
+				FA3366712492A800004D96DB /* correct.json in Resources */,
+				987D94E124ABFC920045B245 /* xmark.json in Resources */,
+				985F575B249184150087D44B /* C.json in Resources */,
+				FA360E82248E7B9500F77C7B /* LaunchScreen.storyboard in Resources */,
+				98E7F615249AB4B00034E912 /* one.json in Resources */,
+				FA360E7F248E7B9500F77C7B /* Preview Assets.xcassets in Resources */,
+				985F5752249184150087D44B /* J.json in Resources */,
+				98E7F612249AB1400034E912 /* star.json in Resources */,
+				985F575A249184150087D44B /* H.json in Resources */,
+				985F5755249184150087D44B /* Apostrophe.json in Resources */,
+				FA360E7C248E7B9500F77C7B /* Assets.xcassets in Resources */,
+				985F575D249184150087D44B /* Comma.json in Resources */,
+				985F574A249184150087D44B /* L.json in Resources */,
+				FAEFD8CF24991D98004FA58B /* GoogleService-Info.plist in Resources */,
+				983D181024A15A0A0011FF62 /* blue.json in Resources */,
+				985F5759249184150087D44B /* Colon.json in Resources */,
+				9815F3E424D22257006E2B55 /* minus.json in Resources */,
+				98898B4124AA8E6000DC754B /* line.json in Resources */,
+				98E89E1824A6B08900E2DE9C /* stopwatch.json in Resources */,
+				985F5748249184150087D44B /* BlinkingCursor.json in Resources */,
+				985F5756249184150087D44B /* P.json in Resources */,
+				985F5747249184150087D44B /* X.json in Resources */,
+				985F5750249184150087D44B /* F.json in Resources */,
+				985F5746249184150087D44B /* A.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E86248E7B9600F77C7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E91248E7B9600F77C7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		065BA8676820AFCDAB7DDF91 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CID Gamified TrainingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6468B137AC0E3D712BC29DB7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training-CID Gamified TrainingUITests/Pods-CID Gamified Training-CID Gamified TrainingUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAFE9D8AAF16CAD7B6D6070A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CID Gamified Training-CID Gamified TrainingUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E57EE99EE135336F3A950ECE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CID Gamified Training-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3876C2C3870F3C3376454B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CID Gamified Training/Pods-CID Gamified Training-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA360E6E248E7B9300F77C7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FACECD41249CFF570069125A /* User.swift in Sources */,
+				FABF71FB24ABA66F0077E2B7 /* EditStudent.swift in Sources */,
+				FAF922C52497BBD500F3EA80 /* Model.swift in Sources */,
+				FAD0D79F24A0F04F003F2BC3 /* CardView.swift in Sources */,
+				FAFD9E5A24BDF5040008B277 /* StatDetail.swift in Sources */,
+				FAB9767124A0FF24004613B4 /* Instructor.swift in Sources */,
+				C54B3E6524D2BBC8007C773B /* AdaptsToKeyboard.swift in Sources */,
+				FAFD9E5C24BDFE3B0008B277 /* StatView.swift in Sources */,
+				FABF3EBF249D255B00B96FC9 /* Setting.swift in Sources */,
+				98E89E1924A6B74D00E2DE9C /* GonogoTutorial.swift in Sources */,
+				FAF40B122493F386006CF82A /* SummaryRow.swift in Sources */,
+				985E362424AD9C02005EE3C3 /* Neutral.swift in Sources */,
+				985E362824ADAC82005EE3C3 /* Promotion.swift in Sources */,
+				C5CA7FC1249DB1E000F2BFD5 /* Style.swift in Sources */,
+				FA360EB8248ED74900F77C7B /* Gonogo.swift in Sources */,
+				FAF40B162493F3CB006CF82A /* Answer.swift in Sources */,
+				C5955CD324A18F8D0081AA44 /* TrainingTutorial.swift in Sources */,
+				98E7F618249ABE490034E912 /* Countdown.swift in Sources */,
+				C5CA7FC4249DCA9200F2BFD5 /* ButtonStyle.swift in Sources */,
+				FAEFD8D324993097004FA58B /* Signin.swift in Sources */,
+				FADCA61224C09F93001EB434 /* AdvancedSetting.swift in Sources */,
+				FA37FC4324B4C8EF00A6901D /* EditClasses.swift in Sources */,
+				C5CA7FC6249DCB4200F2BFD5 /* ProgressBar.swift in Sources */,
+				FAF40B142493F3B9006CF82A /* SummaryDetail.swift in Sources */,
+				FAEC7C6024B39F99001D6A3C /* AssignmentDetail.swift in Sources */,
+				FAEC7C5E24B39B59001D6A3C /* Assignments.swift in Sources */,
+				FA37FC4124B4C54600A6901D /* Students.swift in Sources */,
+				FA5CBED524B62B4B0025DD6A /* Tags.swift in Sources */,
+				FAEFD8D124992B0E004FA58B /* Signup.swift in Sources */,
+				FA360E76248E7B9300F77C7B /* AppDelegate.swift in Sources */,
+				FABF3EC1249D256A00B96FC9 /* Card.swift in Sources */,
+				98E89E1424A696BF00E2DE9C /* StopWatchManager.swift in Sources */,
+				FA33A7FE24A2449E0042F390 /* Instructions.swift in Sources */,
+				FA360EAE248E807000F77C7B /* Question.swift in Sources */,
+				FAFD9E5E24BE10060008B277 /* StudentCard.swift in Sources */,
+				C526F0F424AB07D100E457F0 /* Session.swift in Sources */,
+				FA360E78248E7B9300F77C7B /* SceneDelegate.swift in Sources */,
+				FAB9767324A100E8004613B4 /* Profile.swift in Sources */,
+				FA360E7A248E7B9300F77C7B /* ContentView.swift in Sources */,
+				FAEFD8CD249916FA004FA58B /* Focus.swift in Sources */,
+				FA360EB0248E809200F77C7B /* Training.swift in Sources */,
+				FA33666B24926C29004D96DB /* Summary.swift in Sources */,
+				FA33666D24926F74004D96DB /* Rejection.swift in Sources */,
+				985E362A24ADAC8D005EE3C3 /* Prevention.swift in Sources */,
+				FAEC7C6224B3A0A2001D6A3C /* Assignment.swift in Sources */,
+				985F5778249184AA0087D44B /* LottieView.swift in Sources */,
+				C5634EF724AD0BAA00A9D95E /* StatBox.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E84248E7B9600F77C7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA360E8D248E7B9600F77C7B /* CID_Gamified_TrainingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA360E8F248E7B9600F77C7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA360E98248E7B9600F77C7B /* CID_Gamified_TrainingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA360E8A248E7B9600F77C7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA360E71248E7B9300F77C7B /* CID Gamified Training */;
+			targetProxy = FA360E89248E7B9600F77C7B /* PBXContainerItemProxy */;
+		};
+		FA360E95248E7B9600F77C7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA360E71248E7B9300F77C7B /* CID Gamified Training */;
+			targetProxy = FA360E94248E7B9600F77C7B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FA360E80248E7B9500F77C7B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA360E81248E7B9500F77C7B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FA360E9A248E7B9600F77C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FA360E9B248E7B9600F77C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FA360E9D248E7B9600F77C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 614D84461AF81BEA1A359CAD /* Pods-CID Gamified Training.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
+				DEVELOPMENT_TEAM = NT6WD95XKF;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FA360E9E248E7B9600F77C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA4432F36ED528D92084D69A /* Pods-CID Gamified Training.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
+				DEVELOPMENT_TEAM = BD9H74X3L8;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FA360EA0248E7B9600F77C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA6FEA425998A184252E3E11 /* Pods-CID Gamified TrainingTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NT6WD95XKF;
+				INFOPLIST_FILE = "CID Gamified TrainingTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-TrainingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CID Gamified Training.app/CID Gamified Training";
+			};
+			name = Debug;
+		};
+		FA360EA1248E7B9600F77C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BA07CF9C67D9CD254514D71 /* Pods-CID Gamified TrainingTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NT6WD95XKF;
+				INFOPLIST_FILE = "CID Gamified TrainingTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-TrainingTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CID Gamified Training.app/CID Gamified Training";
+			};
+			name = Release;
+		};
+		FA360EA3248E7B9600F77C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC257A6E2836F63691C0FAE8 /* Pods-CID Gamified Training-CID Gamified TrainingUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NT6WD95XKF;
+				INFOPLIST_FILE = "CID Gamified TrainingUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-TrainingUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "CID Gamified Training";
+			};
+			name = Debug;
+		};
+		FA360EA4248E7B9600F77C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A072E26B06846B8808B17AD /* Pods-CID Gamified Training-CID Gamified TrainingUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NT6WD95XKF;
+				INFOPLIST_FILE = "CID Gamified TrainingUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-TrainingUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "CID Gamified Training";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA360E6D248E7B9300F77C7B /* Build configuration list for PBXProject "CID Gamified Training" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA360E9A248E7B9600F77C7B /* Debug */,
+				FA360E9B248E7B9600F77C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA360E9C248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified Training" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA360E9D248E7B9600F77C7B /* Debug */,
+				FA360E9E248E7B9600F77C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA360E9F248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified TrainingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA360EA0248E7B9600F77C7B /* Debug */,
+				FA360EA1248E7B9600F77C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA360EA2248E7B9600F77C7B /* Build configuration list for PBXNativeTarget "CID Gamified TrainingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA360EA3248E7B9600F77C7B /* Debug */,
+				FA360EA4248E7B9600F77C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		985F5704249182F10087D44B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.8;
+			};
+		};
+		C5D4DA2B24BE2AFD00F15A6E /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		985F5705249182F10087D44B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 985F5704249182F10087D44B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		C5D4DA2C24BE2AFD00F15A6E /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5D4DA2B24BE2AFD00F15A6E /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = FA360E6A248E7B9300F77C7B /* Project object */;
+}
