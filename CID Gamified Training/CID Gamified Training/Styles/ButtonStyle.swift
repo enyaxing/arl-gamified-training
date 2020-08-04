@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 
+/** Button style currently being used for the "Friendly" in training and go/no-go. */
 struct FriendlyButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -21,7 +22,7 @@ struct FriendlyButtonStyle: ButtonStyle {
     }
 }
 
-
+/** Button style currently being used for the "Enemy" in training and go/no-go. */
 struct EnemyButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
