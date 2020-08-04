@@ -9,7 +9,10 @@
 import SwiftUI
 
 struct Countdown: View {
+    // is this transition playing?
     @Binding var playing: Bool
+    
+    // instructions page
     @Binding var instructions: Bool
     
     var body: some View {

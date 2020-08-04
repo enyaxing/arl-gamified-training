@@ -9,8 +9,13 @@
 import SwiftUI
 
 struct Neutral: View {
+    // time taken to answer question
     @State var secondsElapsed:Double
+    
+    // is the reponse correct or incorrect?
     @State var type:String
+    
+    // is the animation playing?
     @Binding var playing: Bool
     var body: some View {
         Group {
