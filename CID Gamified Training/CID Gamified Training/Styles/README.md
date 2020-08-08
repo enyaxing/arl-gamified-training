@@ -11,3 +11,7 @@ A view modifier that allows elements to be pushed up in the screen if a text inp
 ### `ButtonStyle.swift`
 
 Stores several button modifiers used. `FriendlyButtonStyle` is used for the friendly button in game sessions, and `EnemyButtonStyle` is used for the enemy button. `CustomDefaultButtonStyle` is in the same style as the other two, but is intended for other colored custom buttons.
+
+### `Style.swift`
+
+Created to store other custom style elements for the app theme. Stores custom colors, fonts, and other button view modifiers.
