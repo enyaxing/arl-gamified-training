@@ -93,3 +93,6 @@ Model represents photo to be displayed during training. Also has reference to li
    - Parameters: `name:String` - Vehicle to search for; `arr:[Card]` - Represents a folder either enemy or friendly
  - `dirLoad() -> [Card]` - How to read file names in directory. Loads the unselected array
    - Return: An array of Cards representing the unselected vehicles
+
+### Dependencies
+Card.swift
