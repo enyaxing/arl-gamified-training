@@ -61,7 +61,6 @@
 		98E89E1824A6B08900E2DE9C /* stopwatch.json in Resources */ = {isa = PBXBuildFile; fileRef = 98E89E1724A6B08900E2DE9C /* stopwatch.json */; };
 		98E89E1924A6B74D00E2DE9C /* GonogoTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C599691824A3CB6600B34A65 /* GonogoTutorial.swift */; };
 		C526F0F424AB07D100E457F0 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526F0F324AB07D100E457F0 /* Session.swift */; };
-		C54B3E6524D2BBC8007C773B /* AdaptsToKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54B3E6424D2BBC8007C773B /* AdaptsToKeyboard.swift */; };
 		C5634EF724AD0BAA00A9D95E /* StatBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5634EF624AD0BAA00A9D95E /* StatBox.swift */; };
 		C5955CD324A18F8D0081AA44 /* TrainingTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5955CD224A18F8D0081AA44 /* TrainingTutorial.swift */; };
 		C5CA7FC1249DB1E000F2BFD5 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CA7FC0249DB1E000F2BFD5 /* Style.swift */; };
@@ -861,7 +860,6 @@
 				FAD0D79F24A0F04F003F2BC3 /* CardView.swift in Sources */,
 				FAFD9E5A24BDF5040008B277 /* StatDetail.swift in Sources */,
 				FAB9767124A0FF24004613B4 /* Instructor.swift in Sources */,
-				C54B3E6524D2BBC8007C773B /* AdaptsToKeyboard.swift in Sources */,
 				FAFD9E5C24BDFE3B0008B277 /* StatView.swift in Sources */,
 				FABF3EBF249D255B00B96FC9 /* Setting.swift in Sources */,
 				98E89E1924A6B74D00E2DE9C /* GonogoTutorial.swift in Sources */,
@@ -1069,7 +1067,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"CID Gamified Training/Preview Content\"";
-				DEVELOPMENT_TEAM = NT6WD95XKF;
+				DEVELOPMENT_TEAM = BD9H74X3L8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "CID Gamified Training/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -1077,7 +1075,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training2";
+				PRODUCT_BUNDLE_IDENTIFIER = "ARL.CID-Gamified-Training";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

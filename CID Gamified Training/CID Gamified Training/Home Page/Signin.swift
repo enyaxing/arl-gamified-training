@@ -75,7 +75,6 @@ struct Signin: View {
                         }
                     }
                     .navigationBarTitle("Sign In")
-                    .modifier(AdaptsToKeyboard())
                 }
             }
         }.alert(isPresented: $invalid) {
