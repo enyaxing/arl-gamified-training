@@ -13,7 +13,21 @@ The go/no-go format allows users only one option (enemy) when an image appears. 
 - `points:Int` - Points
 - `answers:[Answer]` - List of answers
 - `countdown:Bool` - Show countdown
-- `startTimestamp:Timestamp` - Records the start of the session 
+- `startTimestamp:Timestamp` - Records the start of the session
+- `user:GlobalUser` - Reference to global user variable
+- `questionCount:Int` - Keeps track of which question we are on
+- `stopped:Bool` - Boolean to show if the training game has ended
+- `alert:Bool` - Boolean to show ending alert
+- `feedback:Bool` - When to show feedback
+- `correct:Bool` - Is question correct?
+- `folder:Int` - Friendly or foe folder selector; 0: friendly, 1: foe
+- `index:Int` - Index to keep track of which picture is shown; 1: friendly, 2: foe
+- `stopWatchManager:StopWatchManager` - Creates Stopwatch object
+- `presentationMode:Binding<PresentationMode>` -  To close the view
+- `fullPointVal:Int` - How much is considered to be full score
+- `btnBack:someView` - Back button view
+- `timeRemaining:Int` - Time remaining for the turn
+- `four:Bool` - Should we multiply the score by 4? 
 
 ### Functions
  - `enemyActionButton()` - Action performed when enemy button clicked.
@@ -22,7 +36,7 @@ The go/no-go format allows users only one option (enemy) when an image appears. 
  - `selectRandom()` - Randomly select enemy:friendly at 4:1 ratio.
  
 ### Dependencies
-Answer.swift
+Answer.swift, StopWatchManager.swift, Model.swift
 
 ## GonogoTutorial.swift
 
