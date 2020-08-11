@@ -52,6 +52,18 @@ Users also have the option of walking through a tutorial mode of the go/no-go fo
 
 After a user selects a training session, the first page they will see is an instructions page with some helpful tips before they begin.
 
+### Fields
+- `friendly:[Card]` - List of friendly vehicles
+- `enemy:[Card]` - List of enemy vehicles
+- `type:Int` - 1: training, 2: go/no-go
+- `instructions:Bool` - Show instructions
+- `user:GlobalUser` - Reference to global user variable
+- `presentationMode:Binding<PresentationMode>` - To close the view
+- `btnBack:someView` - Back button view
+
+### Dependencies
+- Model.swift, Card.swift
+
 ## Training.swift
 
 The forced choice format allows users two options (friendly/enemy) when an image appears. The session will not proceed unless the user responds to the current image. There are twenty total questions. 
