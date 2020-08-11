@@ -1,9 +1,28 @@
 # arl-gamified-training
 X-Force Summer 2020
 
+# Games
+The files in this folder deals with the functioning of the game itself.
+
 ## Gonogo.swift
 
 The go/no-go format allows users only one option (enemy) when an image appears. If the user does not respond within three seconds, the app will assume the user has selected to identify the vehicle as friendly. The session will then proceed to the next question. There are twenty total questions. 
+
+### Fields
+- `summary:Bool` - Show summary view
+- `points:Int` - Points
+- `answers:[Answer]` - List of answers
+- `countdown:Bool` - Show countdown
+- `startTimestamp:Timestamp` - Records the start of the session 
+
+### Functions
+ - `enemyActionButton()` - Action performed when enemy button clicked.
+ - `headline()` - Action performed when enemy button clicked.
+ - `calculateTimeScore(timeElapsed: Double)` - Uses an exponential function to map time to points.
+ - `selectRandom()` - Randomly select enemy:friendly at 4:1 ratio.
+ 
+### Dependencies
+Answer.swift
 
 ## GonogoTutorial.swift
 
