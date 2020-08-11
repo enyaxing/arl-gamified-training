@@ -70,6 +70,29 @@ The forced choice format allows users two options (friendly/enemy) when an image
 
 ## TrainingTutorial.swift
 
-####TRAININGTUTORIALMAIN
-
 Users also have the option of walking through a tutorial mode of the forced choice format, where the app introduces all the features the user will see in this style of training session.
+
+### Fields
+- `summary:Bool` - Show summary view
+- `points:Int` - Points
+- `type:String` - Type
+- `answers:[Answer]` - List of answers
+- `countdown:Bool` - current state of countdown transition
+- `showAboutView:Bool` - Whether we should show the about view
+- `activeAboutType:AboutType` - Which about descriptor is active
+- `aboutDescription:String` - Current description
+- `aboutTitle:String` - Current title
+- `tutorialFirstRound:Bool` - Whether the tutorial basics have already been completed
+- `startTimestamp:Timestamp` - Records the start of the session
+- `user:GlobalUser` - Reference to global user variable
+- `questionCount:Int` - Keeps track of which question we are on
+- `stopped:Bool` - Boolean to show if the training game has ended
+- `alert:Bool` - Boolean to show ending alert
+- `feedback:Bool` - When to show feedback
+- `corret:Bool` - Is the question correct?
+- `summary:Bool` - Show summary
+- `folder:Int` - Friendly or foe folder selector; 0: friendly, 1: foe 
+- `index:Int` - Index to keep track of which picture is shown; 1: friendly 2: foe
+- `btnBack:someView` - back button view
+
+### Functions
