@@ -43,6 +43,7 @@ Some miscellaneous files found in the project that don't contain actual Swift co
  - .swiftlint.yml - Style guidelines enforced by swiftlint
  - calculation.py - Python file for calculating regulatory focus heuristic using promotion and prevention scores from questionairre
  - tags.json - Json file that contains tags for images
+ - CID Images - A directory containing images used during training sessions.  Images are categarorized by type of vehicle.
 
 ## Notes
 The master branch contains all features except AR and 3D view.  To view these features, please switch to the ar branch.  The reason for this separation is for simulation purposes.  All features can be simulated on a Mac without an iPhone except for the AR and 3D views which require a physical iPhone.  
