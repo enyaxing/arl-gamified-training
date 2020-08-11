@@ -94,5 +94,12 @@ Users also have the option of walking through a tutorial mode of the forced choi
 - `folder:Int` - Friendly or foe folder selector; 0: friendly, 1: foe 
 - `index:Int` - Index to keep track of which picture is shown; 1: friendly 2: foe
 - `btnBack:someView` - back button view
+- `tutorialFirstRound:Bool` - If it is the tutorial's first round, there will be extra instructions and welcome displaying
 
 ### Functions
+- `friendlyButtonAction()` - Action performed when friendly button clicked
+- `enemyActionButton()` - Action performed when enemy button clicked
+- `setCorrectDescriptor()` - Sets the correct descriptor based on the current activeAboutType
+- `changeAboutView(curAboutType: AboutType)` - Sets activeAboutType as curAboutType, sets the description, and makes the AboutView show
+- `showButtonAction()` - Introduction of the buttons for the user to press
+- `showProgressButtonAbout()` - Explains the progress ba
