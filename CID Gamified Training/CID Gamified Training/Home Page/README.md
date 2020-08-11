@@ -27,5 +27,12 @@ Users are able to sign in with an email and a password.
 New users are able create an account with an email and a password.
 
 ### Fields
-
-
+- `name:String` - Text in name field
+- `email:String` - Text in email field
+- `password:String` - Text in password field  
+- `signup:Bool` - Is the sign-up page shown?
+- `invalid:Bool` - Credentials invalid and show alert
+- `error:String` - Error message for alert
+- `user:GlobalUser` - Reference to global users object
+- `selection:String` - student or instructor?
+   
