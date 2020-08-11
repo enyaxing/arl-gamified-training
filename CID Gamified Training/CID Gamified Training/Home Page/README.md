@@ -7,6 +7,18 @@ X-Force Summer 2020
 Contains the home page of the app. Features include a questionnaire, forced choice training session, and go/no-go training session. Users also have the option to sign out, change their focus style, view their settings, and see their personal profiles.
 
 ### Fields
+- `back:Bool` - Hide navigation back bar
+- `error:String` - Error message for alerts
+- `invalid:Bool` - Is log-out invalid?
+- `countdown:Bool` - current state of transition
+- `instructions:Bool` - show instructions
+- `user:GlobalUser` - Reference to global user variable
+
+### Functions
+- `logout()` - Logout function
+- `newFocus(db: CollectionReference, user: GlobalUser, defaults: UserDefaults)` - Obtain focus value from Firebase user
+- `obtainFields(db: CollectionReference, user: GlobalUser, defaults: UserDefaults)` - Obtain overall statistics from Firebase
+
 
 ## Signin.swift
 Users are able to sign in with an email and a password.
