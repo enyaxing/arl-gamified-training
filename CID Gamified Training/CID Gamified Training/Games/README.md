@@ -17,7 +17,7 @@ The go/no-go format allows users only one option (enemy) when an image appears. 
 
 ### Functions
  - `enemyActionButton()` - Action performed when enemy button clicked.
- - `headline()` - Action performed when enemy button clicked.
+ - `headline()` - Questions remaining and time remaining.
  - `calculateTimeScore(timeElapsed: Double)` - Uses an exponential function to map time to points.
  - `selectRandom()` - Randomly select enemy:friendly at 4:1 ratio.
  
