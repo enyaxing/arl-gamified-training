@@ -33,20 +33,36 @@ Users also have the option of walking through a tutorial mode of the go/no-go fo
 - `points:Int` - Points
 - `type:String` - Type
 - `answers:[Answer]` - List of answers
-- `countdown:Bool` - Show countdown
-- `showAboutView: Bool` - Whether we should show the about view
-- `activeAboutType: AboutType` - Which about descriptor is active
-- `aboutDescription: String` - Current description
-- `aboutTitle: String` - Current title
-- `tutorialFirstRound: Bool` - Whether the tutorial basics have already been completed
-- `startTimestamp:Timestamp` - Records the start of the session 
+- `countdown:Bool` - current state of countdown transition
+- `showAboutView:Bool` - Whether we should show the about view
+- `activeAboutType:AboutType` - Which about descriptor is active
+- `aboutDescription:String` - Current description
+- `aboutTitle:String` - Current title
+- `tutorialFirstRound:Bool` - Whether the tutorial basics have already been completed
+- `startTimestamp:Timestamp` - Records the start of the session
+- `user:GlobalUser` - Reference to global user variable
+- `questionCount:Int` - Keeps track of which question we are on
+- `stopped:Bool` - Boolean to show if the training game has ended
+- `alert:Bool` - Boolean to show ending alert
+- `feedback:Bool` - When to show feedback
+- `corret:Bool` - Is the question correct?
+- `summary:Bool` - Show summary
+- `folder:Int` - Friendly or foe folder selector; 0: friendly, 1: foe 
+- `index:Int` - Index to keep track of which picture is shown; 1: friendly 2: foe
+- `btnBack:someView` - back button view
+- `tutorialFirstRound:Bool` - If it is the tutorial's first round, there will be extra instructions and welcome displaying
+- `timeRemaining:Int` - Time remaining for the turn
 
 ### Functions
- - `enemyActionButton()` - Action performed when enemy button clicked.
- - `setCorrectDescriptor()` - Sets the correct descriptor based on the current activeAboutType.
- - `changeAboutView(curAboutType: AboutType)` - Takes in an AboutType and sets it as the current activeAboutType. Also sets the descriptor and makes the
-    about view show
- - `headline()` - Questions remaining and time remaining.
+- `friendlyButtonAction()` - Action performed when friendly button clicked
+- `enemyActionButton()` - Action performed when enemy button clicked
+- `setCorrectDescriptor()` - Sets the correct descriptor based on the current activeAboutType
+- `changeAboutView(curAboutType: AboutType)` - Sets activeAboutType as curAboutType, sets the description, and makes the AboutView show
+- `showButtonAction()` - Introduction of the buttons for the user to press
+- `showProgressButtonAbout()` - Explains the progress bar
+
+### Dependencies
+- Answer.swift, StopWatchManager.swift
 
 ## Instructions.swift
 
