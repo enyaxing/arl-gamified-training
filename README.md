@@ -1,7 +1,16 @@
 # ARL Gamified Training
 
 ## About
-
+ - **Who**
+   - **Primary Contributors** - Christine Lou (UC Berkeley), Kyle Lui (UC Berkeley), Enya Xing (UC Berkeley)
+   - **Sponsor** - Dr. Benjamin Files (Army Research Lab West)
+   - **Target Audience** - Soldiers who need to practice distinguishing between friendly and enemy combat vehicles
+   - **Support** - National Security Innovation Network, XForce Fellowship Program, Army Research Lab West
+ - **What** - Our purpose is to design, develop, and test a multi-platform application that facilitates practicing making vehicle identification judgments quickly and accurately. The application uses a personalized gamification approach based on the user’s regulatory focus to make training fun and engaging.  The app includes formative and summative assessments of combat identification skills, an in game reward system, and an instructor interface that can be used to monitor student progress.
+ - **Where** - Remote collaboration
+ - **When** - Summer 2020
+ - **Why** - According to prior research, there are measurable benefits to practice and training when a gamified approach is implemented.  The amount of benefit is directly related to the person’s personality, psychology, and regulatory focus, as well as the feedback framework.  Our app aims to provide a convenient means of practicing distinguishing between friendly and enemy vehicles while incorporating specifically tailored feedback frameworks for optimal performance.
+ - **How** - The project was coded using the XCode IDE and SwiftUI.  Github was used for version control.  Asana was used for task management.  Slack, Google Meet, and Microsoft Teams were used for communication.  Google Drive was used for documentation.
 
 ## Installation Instructions
 
@@ -21,7 +30,7 @@
 12. Your app should now be working and you should now be able to run it like a normal app.
 
 ## Firebase
-https://console.firebase.google.com/u/0/project/arl-gamified-training-2767b/overview
+https://console.firebase.google.com/u/0/project/arl-gamified-training-2767b/overview  
 Firebase was used as a backend for signin/signup authentication and as a database to store user information.  Currently privacy rules/regulations are set to expire on 09/17/2020.  Please update these rules through Firebase for future use of the app.
 
 ## App Flow Chart
