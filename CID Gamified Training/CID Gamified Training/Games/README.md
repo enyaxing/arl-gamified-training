@@ -28,6 +28,19 @@ Answer.swift
 
 Users also have the option of walking through a tutorial mode of the go/no-go format, where the app introduces all the features the user will see in this style of training session.
 
+### Fields
+- `summary:Bool` - Show summary view
+- `points:Int` - Points
+- `type:String` - Type
+- `answers:[Answer]` - List of answers
+- `countdown:Bool` - Show countdown
+- `showAboutView: Bool` - Whether we should show the about view
+- `activeAboutType: AboutType` - Which about descriptor is active
+- `aboutDescription: String` - Current description
+- `aboutTitle: String` - Current title
+- `tutorialFirstRound: Bool` - Whether the tutorial basics have already been completed
+- `startTimestamp:Timestamp` - Records the start of the session 
+
 ## Instructions.swift
 
 After a user selects a training session, the first page they will see is an instructions page with some helpful tips before they begin.
