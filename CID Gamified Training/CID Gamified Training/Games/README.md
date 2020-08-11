@@ -70,4 +70,6 @@ The forced choice format allows users two options (friendly/enemy) when an image
 
 ## TrainingTutorial.swift
 
+####TRAININGTUTORIALMAIN
+
 Users also have the option of walking through a tutorial mode of the forced choice format, where the app introduces all the features the user will see in this style of training session.
