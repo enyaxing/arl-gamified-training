@@ -35,4 +35,7 @@ New users are able create an account with an email and a password.
 - `error:String` - Error message for alert
 - `user:GlobalUser` - Reference to global users object
 - `selection:String` - student or instructor?
+
+### Functions
+- `createUser(email: String, password: String, name: String, selection: String)` - Create user function
    
