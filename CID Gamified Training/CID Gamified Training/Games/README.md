@@ -41,6 +41,13 @@ Users also have the option of walking through a tutorial mode of the go/no-go fo
 - `tutorialFirstRound: Bool` - Whether the tutorial basics have already been completed
 - `startTimestamp:Timestamp` - Records the start of the session 
 
+### Functions
+ - `enemyActionButton()` - Action performed when enemy button clicked.
+ - `setCorrectDescriptor()` - Sets the correct descriptor based on the current activeAboutType.
+ - `changeAboutView(curAboutType: AboutType)` - Takes in an AboutType and sets it as the current activeAboutType. Also sets the descriptor and makes the
+    about view show
+ - `headline()` - Questions remaining and time remaining.
+
 ## Instructions.swift
 
 After a user selects a training session, the first page they will see is an instructions page with some helpful tips before they begin.
