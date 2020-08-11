@@ -62,7 +62,7 @@ Users also have the option of walking through a tutorial mode of the go/no-go fo
 - `showProgressButtonAbout()` - Explains the progress bar
 
 ### Dependencies
-- Answer.swift, StopWatchManager.swift
+- Answer.swift, StopWatchManager.swift, Model.swift
 
 ## Instructions.swift
 
@@ -83,6 +83,33 @@ After a user selects a training session, the first page they will see is an inst
 ## Training.swift
 
 The forced choice format allows users two options (friendly/enemy) when an image appears. The session will not proceed unless the user responds to the current image. There are twenty total questions. 
+
+### Fields
+- `summary:Bool` - Show summary view
+- `points:Int` - Points
+- `answers:[Answer]` - List of answers
+- `countdown:Bool` - Show countdown
+- `startTimestamp:Timestamp` - Records the start of the session
+- `user:GlobalUser` - Reference to global user variable
+- `questionCount:Int` - Keeps track of which question we are on
+- `stopped:Bool` - Boolean to show if the training game has ended
+- `alert:Bool` - Boolean to show ending alert
+- `feedback:Bool` - When to show feedback
+- `correct:Bool` - Is question correct?
+- `folder:Int` - Friendly or foe folder selector; 0: friendly, 1: foe
+- `index:Int` - Index to keep track of which picture is shown; 1: friendly, 2: foe
+- `stopWatchManager:StopWatchManager` - Creates Stopwatch object
+- `presentationMode:Binding<PresentationMode>` -  To close the view
+- `fullPointVal:Int` - How much is considered to be full score
+- `btnBack:someView` - Back button view
+
+### Functions
+- `friendlyButtonAction()` - Action performed when friendly button clicked
+- `enemyActionButton()` - Action performed when enemy button clicked
+- `calculateTimeScore(timeElapsed: Double)` - Calculates the score, out of 50 based on response time
+
+### Dependencies
+Answer.swift, StopWatchManager.swift, Model.swift
 
 ## TrainingTutorial.swift
 
@@ -121,4 +148,4 @@ Users also have the option of walking through a tutorial mode of the forced choi
 - `showProgressButtonAbout()` - Explains the progress bar
 
 ### Dependencies
-- Answer.swift, StopWatchManager.swift
+- Answer.swift, StopWatchManager.swift, Model.swift
