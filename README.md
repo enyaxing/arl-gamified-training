@@ -29,6 +29,24 @@
 11. Your app should now be installed on your iphone.  You will be prompted to trust the app.  Go to Settings -> General -> Profiles or Profiles & Device Management and select the app and click trust.
 12. Your app should now be working and you should now be able to run it like a normal app.
 
+## File Structure 
+To access the bulk of the files, under the project root directory, go to the directory `CID Gamified Training`. There are individual readmes inside of each subdirectory. Here's an explanation of all subfolder purposes in this directory: 
+- /Assets.xcassets - folder containing all images and other assets used in this project
+- /Assignments - deals with setting the vehicles to appear as friendly or enemy during the practice sessinos as well as creating assignments on the instructor side that can be practiced by the students
+- /Base.lproj - automatically generated folder that contains LaunchScreen.storyboard, helps app run
+- /CID Images - contains image library of all vehicles. Add more vehicles here through creating a new folder with vehicle type as the folder name, and include all relevant vehicle images inside the new folder. 
+- /Components - reusable components used throughout the app
+- /Games - deals with the functioning of the game itself
+- /Home Page - contains sign-in, sign-up, and app home screen views
+- /Instructor - contains files pertaining to the instructor side of the app
+- /Objects - contains self-defined objects used throughout the app
+- /Profile - contains files relevant to student user profile
+ - /Questionnaire - contains files that make up the quesitonnaire 
+ - /Styles - contains custom styles used in the app
+ - /Summary - deals with files pertaining to the summary view, specifically shown at the end of training and view of past sessions
+ - /Transitions - contains transition wrappers for animations. /Transitions/TestAnimations stores json files for Lottie animations.
+
+
 ## Firebase
 https://console.firebase.google.com/u/0/project/arl-gamified-training-2767b/overview  
 Firebase was used as a backend for signin/signup authentication and as a database to store user information.  Currently privacy rules/regulations are set to expire on 09/17/2020.  Please update these rules through Firebase for future use of the app.
