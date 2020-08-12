@@ -9,6 +9,7 @@
 import SwiftUI
 import Combine
 
+/** Allows button at the bottom of the screen to bump up in response to open keyboard. */ 
 struct AdaptsToKeyboard: ViewModifier {
     @State var currentHeight: CGFloat = 0
 
