@@ -33,6 +33,55 @@
 https://console.firebase.google.com/u/0/project/arl-gamified-training-2767b/overview  
 Firebase was used as a backend for signin/signup authentication and as a database to store user information.  Currently privacy rules/regulations are set to expire on 09/17/2020.  Please update these rules through Firebase for future use of the app.
 
+### Firestore Structure
+Firestore is the subset of Firebase that deals with user data storage within a database.  It is structured using collections which resemble directories and within collections there are documents that contain the actual fields of data.  Documents may also contain collections which leads to a hierarchical database structure.  Below describes how our Firestore database is structured:
+
+ - users - Collection of users where the document id is the uid of the user.  There are two types of users: students and instructors
+   - Student user
+     - accuracy - Number representing overall question accuracy
+     - avgResponseRate - Number representing average response time per question
+     - class - Reference to class collection to which this student belongs
+     - enemy - Array representing a list of enemy vehicles
+     - friendly - Array representing a list of friendly vehicles
+     - focus - String representing regulatory focus type
+     - name - String representing student name
+     - pass - String representing password
+     - totalSessions - Number representing total sessions played
+     - totalTime - Number representing total time played
+     - uid - String representing the uid of the student
+     - user - String representing username/email of student
+     - userType - String representing whether this is a student or instructor
+     - sessions - Collection of all sessions played where the document id is a timestamp of when the session ended.
+       - points - Number representing total points earned during the session
+       - time - Number representing the timestamp of when the session ended
+       - type - String representing the type of training (ie Forced Choice, Go/No-Go, Tutorial)
+       - answers - Collection of answers for this session where the document id is the question number 01-20
+         - expected - String representing expected answer
+         - received - String representing received answer
+         - id - Number representing the question id
+         - time - Number representing the response time
+         - image - String representing the path to the image shown
+         - vehicleName - String representign the vehicle name
+   - Instructor user
+     - enemy - Array representing a list of enemy vehicles
+     - friendly - Array representing a list of friendly vehicles
+     - focus - String representing regulatory focus type
+     - name - String representing student name
+     - pass - String representing password
+     - uid - String representing the uid of the student
+     - user - String representing username/email of student
+     - userType - String representing whether this is a student or instructor
+     - classes - Collection of all classes where the document id is the name of the class
+       - students - Map from student uid to student name in this class
+       - assignments - Collection of all assignments for this class where the document id is the name of the assignment
+         - description - String representing the description for the assignment
+         - enemy - Array representing a list of enemy vehicles
+         - friendly - Array representing a list of friendly vehicles
+         - enemyAccuracy - Number representing the enemy accuracy requirement to complete assignment
+         - friendlyAccuracy - Number representing the friendly accuracy requirement to complete assignment
+         - time - Number representing the time requirement to complete assignment
+         - name - String representing the name of the assignment
+
 ## App Flow Chart
 ![FlowChart](https://github.com/enyaxing/arl-gamified-training/blob/master/Flow%20Chart.png)
 
