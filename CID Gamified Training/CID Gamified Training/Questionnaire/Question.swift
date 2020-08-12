@@ -240,7 +240,7 @@ struct Question: View {
         return (pre, pro)
     }
     
-    /** Adpated from Dr. Files, calculates confidence intervals given user questionnaire responses. */
+    /** Adapated from Dr. Files, calculates confidence intervals given user questionnaire responses. */
     func calculateIntervals(_ pre: Double, _ pro: Double) -> [[Double]] {
         let B: Matrix<Double> = [[1.565563, -0.502494, -0.112472, -6.720915, -2.630483, 1.413550, 0.676953, 0.641702, 0.282040]]
         let T = 0.677422
@@ -288,85 +288,6 @@ struct Question: View {
         scores[2][2] = scores [2][0] + temp6
         
         return scores
-    }
-}
-
-struct RadioButtons: View {
-    /** Stores the user's current selected response. */
-    @Binding var curResponse: Int
-    
-    /** References the question that the user is currently on. */
-    @Binding var questionCount: Int
-    
-    let responseDescription = [["never or seldom", "sometimes", "very often"],
-                                ["never or seldom", "sometimes", "very often"],
-                                ["never or seldom", "a few times", "many times"],
-                                ["never or seldom", "sometimes", "very often"],
-                                ["never or seldom", "sometimes", "always"],
-                                ["never or seldom", "sometimes", "very often"],
-                                ["never or seldom", "sometimes", "very often"],
-                                ["never or seldom", "sometimes", "very often"],
-                                ["never true", "sometimes true", "very often true"],
-                                ["certainly false", " ", "certainly true"],
-                                ["certainly false", " ", "certainly true"]
-     ]
-    
-    var body: some View {
-        VStack {
-            HStack {
-                ForEach(1...5, id: \.self) {i in
-                    Button(action: {
-                        self.curResponse = i
-                    }) {
-                        VStack {
-                            ZStack{
-                                Circle().fill(self.curResponse == i ? Color.armyGreen : Color.white.opacity(0.8)).frame(width: 30, height: 35)
-                                if self.curResponse == i{
-                                    Circle().stroke(Color.white, lineWidth: 4).frame(width: 32, height: 25)
-                                }
-                            }
-                            Text("\(i)")
-                                .foregroundColor(Color.white)
-                                .fontWeight(.semibold)
-                        }
-                        .frame(width: 50.0, height: 50)
-                    }
-                    .foregroundColor(.black)
-                }
-                .padding(.top)
-            }
-            
-            HStack {
-                Text(getResponseDescription(1))
-                    .multilineTextAlignment(.center)
-                    .padding(.trailing, 20.0)
-                    .frame(width: 100.0)
-                    .foregroundColor(Color.white)
-                Text(getResponseDescription(3))
-                    .multilineTextAlignment(.center)
-                    .frame(width: 100.0)
-                    .foregroundColor(Color.white)
-                Text(getResponseDescription(5))
-                    .multilineTextAlignment(.center)
-                    .padding(.leading)
-                    .frame(width: 100.0)
-                    .foregroundColor(Color.white)
-            }
-            .padding(.top)
-            
-        }
-    }
-    
-    /** Returns the correct response description based on current response. Based on responseDescription values.*/
-    func getResponseDescription(_ num: Int) -> String {
-        if num == 1 {
-            return responseDescription[questionCount][0]
-        } else if num == 3 {
-            return responseDescription[questionCount][1]
-        } else if num ==  5 {
-            return responseDescription[questionCount][2]
-        }
-        return " "
     }
 }
 

@@ -3,7 +3,7 @@
 //  CID Gamified Training
 //
 //  Created by Enya Xing on 6/19/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
