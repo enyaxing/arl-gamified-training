@@ -11,7 +11,7 @@ This is the main summary view dispalyed as soon as a training session is complet
  - `user:GlobalUser` - Reference to global user variable
  - `db:CollectionReference` - Connection to firebase user collection
  - `countdown:Bool` - Show countdown
- - `uid:String1 - UID of the user
+ - `uid:String` - UID of the user
  - `endTime:Timestamp` - Records timestamp of when the session has finished
  - `session:Session` - Session object to be summarized
  - `tagID:String` - Comment about the tag performance displayed at the top of the page
