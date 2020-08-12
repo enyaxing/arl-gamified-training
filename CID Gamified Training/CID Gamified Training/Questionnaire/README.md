@@ -33,7 +33,17 @@ Contains the questionnaire page. Users can take the 11-question questionnaire, a
 - `presentationMode: Binding<PresentationMode>` - environment variable used to dismiss view
 
 ### Functions
+- `answered (_ ans: Int)` - When we receive an answer, record the response and give the user the next question
+  - Paramters: `ans` - the current answer selected (value 1 through 5)
+- `nextQuestion()` - Checks if we have reached the end of the quiz. If we are done, calculate and show the results. If not, go on to the next question
+- `prevQuestion()` - Goes back one question
+- `isAlreadyCompleted()` - Checks whether the quiz has already been completed
+- `isCompleted() -> Bool` - Checks if we have finished the quiz
+- `analyzeScore()` - Calculates which regulatory focus type will be most beneficial to the user. Returns the type as either preventino, promotion, or neutral
+- `calculateIntervals(_ pre: Double, _pro: Double) -> [[Double]]` - Adapated from Dr. Files, calculates confidence intervals given user questionnaire responses
+  - Parameters: `pre` - prevention score; `pro` - promotion score
 
+     
 ### Dependencies
 
 ## Rejection.swift
