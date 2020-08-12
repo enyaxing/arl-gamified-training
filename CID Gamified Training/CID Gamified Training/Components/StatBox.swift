@@ -8,13 +8,20 @@
 
 import SwiftUI
 
+/** Contains the StatBox seen in profile views and assignment details. To use it, pass in the image icon name along with a description. */
 struct StatBox: View {
     
     /** Reference to global user variable. */
     @EnvironmentObject var user: GlobalUser
     
+    
+    /** Name of the image icon to display. */
     @State var img_name: String
+
+    /** a description of the statistic. */
     @State var description: String
+
+    /** optional default item description. */
     @State var item: Text?
     
     var body: some View {
