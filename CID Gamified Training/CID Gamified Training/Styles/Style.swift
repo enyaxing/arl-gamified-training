@@ -131,7 +131,7 @@ struct CustomRoundedButtonStrokeStyle: ViewModifier {
 }
 
 
-/** Wrapping modifiers*/
+/** Wrapping modifiers for easier access. */
 extension View {
     func inputStyle() -> some View {
         self.modifier(Input())
