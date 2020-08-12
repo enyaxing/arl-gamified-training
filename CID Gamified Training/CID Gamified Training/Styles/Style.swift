@@ -9,8 +9,8 @@
 import Foundation
 import SwiftUI
 
+/** Color style extensions. */
 extension Color {
-    // colors
     static var armyGreen: Color {
        return Color(red: 0.302, green: 0.471, blue: 0.306, opacity: 1)
     }
@@ -44,6 +44,7 @@ extension Color {
     }
 }
 
+/** Style font extensions. */ 
 extension Font {
     static var bodyFontBold: Font {
         return Font.custom("Helvetica-Bold", size: 18.0)
