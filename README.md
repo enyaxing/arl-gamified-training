@@ -33,7 +33,6 @@
 To access the bulk of the app files, under the project root directory, go to the directory `CID Gamified Training/CID Gamified Training`. There are individual readmes inside of each subdirectory. Here's an explanation of all subfolder purposes in this directory: 
 - `/Assets.xcassets` - folder containing all images and other assets used in this project
 - `/Assignments` - deals with setting the vehicles to appear as friendly or enemy during the practice sessinos as well as creating assignments on the instructor side that can be practiced by the students
-- `/Base.lproj` - automatically generated folder that contains LaunchScreen.storyboard, helps app run
 - `/CID Images` - contains image library of all vehicles. Add more vehicles here through creating a new folder with vehicle type as the folder name, and include all relevant vehicle images inside the new folder. 
 - `/Components` - reusable components used throughout the app
 - `/Game` - deals with the functioning of the game itself
