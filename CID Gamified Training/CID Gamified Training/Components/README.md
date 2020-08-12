@@ -22,3 +22,15 @@ Contains the StatBox seen in profile views and assignment details. To use it, pa
 - `description: String` - Description of the statistic
 - `item: Text?` - Optional default item description
 - `user:GlobalUser` - Reference to global user variable
+
+## RadioButtons.swift
+
+### Fields
+- `curResponse: Int` - Stores the user's current selected response
+- `questionCount: Int` - References the question that the user is currently on
+- `responseDescription: [[String]]` - Description for each response as it varies by question
+
+### Functions
+- `getResponseDescription(_ num: Int) -> String - Returns the correct response description based on current response. Based on responseDescription values. 
+  - Parameters: `num: Int` - Current number for the level of agreement for the question
+  - Return value: `String` - Returns correct response description for the current question and agreement level
