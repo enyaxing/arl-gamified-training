@@ -6,6 +6,7 @@
 //  Copyright © 2020 X-Force. All rights reserved.
 //
 
+import SwiftUI
 /** 5 radio buttons that are selectable with labels underneath for level of agreement. */
 struct RadioButtons: View {
     /** Stores the user's current selected response. */
