@@ -2,8 +2,8 @@
 //  SummaryRow.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/12/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/12/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 import SwiftUI
 
@@ -14,6 +14,8 @@ struct SummaryRow: View {
     var answer: Answer
     
     var body: some View {
+        RoundedRectangle(cornerRadius: 40)
+            .fill(color(answer: answer)).frame(width: 350, height: 50).overlay(
         HStack {
             Image(uiImage: UIImage(imageLiteralResourceName: answer.image))
             .resizable()
@@ -31,11 +33,16 @@ struct SummaryRow: View {
                 }
             }
             Spacer()
-            } .background(color(answer: answer))
+            }.offset(x: 15)
+        )
     }
 }
 
-/** Is the answer correct. */
+/** Is the answer correct.
+ Parameter:
+    answer - The answer to be checked
+ Return:
+    Bool representing whether the answer is correct or not. */
 func correct(answer: Answer) -> Bool {
     if answer.expected == answer.received {
         return true
@@ -43,12 +50,16 @@ func correct(answer: Answer) -> Bool {
     return false
 }
 
-/** Background green if correct and red if incorrect. */
+/** Background blue if correct and red if incorrect.
+ Parameter:
+    answer - The answer to be checked
+ Return:
+    Color to be displayed as background. */
 func color(answer: Answer) -> Color {
     if correct(answer: answer) {
-        return Color.blue
+        return Color.darkBlue
     } else {
-        return Color.red
+        return Color.enemyRed
     }
 }
 

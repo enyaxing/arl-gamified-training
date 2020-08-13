@@ -2,8 +2,8 @@
 //  Signup.swift
 //  CID Gamified Training
 //
-//  Created by Alex on 6/16/20.
-//  Copyright © 2020 Alex. All rights reserved.
+//  Created by Kyle Lui on 6/16/20.
+//  Copyright © 2020 X-Force. All rights reserved.
 //
 
 import SwiftUI
@@ -33,6 +33,9 @@ struct Signin: View {
     /** Save who is logged in locally. */
     let defaults = UserDefaults.standard
     
+    /** Used for log in and new user button to float up. */
+    @State private var bottomPadding: CGFloat = 0
+    
     /** Connection to firebase user collection. */
     let db = Firestore.firestore().collection("users")
     
@@ -49,37 +52,45 @@ struct Signin: View {
             } else {
                 NavigationView {
                     VStack {
-                        Form {
-                            Section(header: Text("Account Information")) {
-                                TextField("Email", text: $email)
-                                SecureField("Password", text: $password)
-                            }
+                        TextField("Email", text: $email)
+                            .inputStyle()
+                        SecureField("Password", text: $password)
+                            .inputStyle()
+                        Spacer()
+                        Spacer()
+                        VStack {
                             Button(action: {
                                 self.login(email: self.email, password: self.password)
                             }) {
-                                Text("Sign in")
-                            }
+                                Text("LOG IN")
+                                    .customRoundedButtonStyle()
+                            } .padding()
                             Button(action: {
                                 self.signup = true
                             }) {
                                 Text("New User? Sign up Here!")
-                            }
-                        }.navigationBarTitle("Sign in")
+                                    .font(.custom("Helvetica-Bold", size: 16))
+                                    .foregroundColor(Color.armyGreen)
+                            } .padding()
+                        }
                     }
+                    .navigationBarTitle("Sign In")
                 }
             }
         }.alert(isPresented: $invalid) {
             Alert(title: Text("Invalid Credentials"), message: Text(self.error), dismissButton: .default(Text("Dismiss"), action: {
             self.invalid = false
-        })
-        )
-        }.onAppear {
+        }))}
+        .onAppear {
             self.email = ""
             self.password = ""
         }
     }
     
-    /** Login function*/
+    /** Login function
+     Parameters:
+        email - String representing the email of the student
+        password - String representing the password of the student. */
     func login(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
@@ -100,5 +111,6 @@ struct Signin: View {
 struct Signin_Previews: PreviewProvider {
     static var previews: some View {
         Signin().environmentObject(GlobalUser())
+            .environment(\.colorScheme, .dark)
     }
 }
