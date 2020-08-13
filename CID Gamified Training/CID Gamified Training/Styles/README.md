@@ -9,6 +9,7 @@ X-Force Summer 2020
 A view modifier that allows elements to be pushed up in the screen if a text input box is selected and the keyboard shows on screen. Currently used for the login page where the login button will move up.
 
 ### Fields
+
 - `currentHeight: CGFloat` - set to 0 initially, keeps track of the current height value and adjusts according to keyboard position
 
 ### `ButtonStyle.swift`
